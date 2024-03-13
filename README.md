@@ -13,3 +13,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 [Dart Cheat Seet](./Cheat-sheet/dart-cheat-sheet.pdf)
 
 [Flutter Cheat Seet](./Cheat-sheet/flutter-cheat-sheet.pdf)
+
+## Temario
+
+- 01_dart_intro
+  - Repaso de Dart
