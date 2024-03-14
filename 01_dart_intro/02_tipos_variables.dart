@@ -25,6 +25,23 @@ void main() {
 
   final sprites = <String>['ditto/front.png', 'ditto/back.png'];
 
+  //? El tipo de datos dynamic es especial.
+  // Significa que puede ser cualquier tipo de dato.
+  // dynamic por defecto es null:   dynamic == null   y hay que hacer algún tipo de evaluación de null safety.
+  // No tiene sentido indicar dynamic? porque dynamic siempre podría venir nulo.
+  // Debemos intentar NO usarlo hasta cuando sea posible.
+  // Tenemos que encontrar un balance entre cuándo usar dynamic y cuando no.
+  // Es útil usarlo cuando recibimos un map, dada una request a una API, para no tener que mapear todas las
+  // posibles respuestas.
+  //
+  // Cualquier valor es permitido en dynamic.
+  dynamic errorMessage = 'Hola';
+  errorMessage = true;
+  errorMessage = [1, 2, 3, 4, 5, 6];
+  errorMessage = {1, 2, 3, 4, 5, 6};
+  errorMessage = () => true;
+  errorMessage = null;
+
 // print multilinea con tres comillas dobles
   print("""
   $pokemon
@@ -32,5 +49,6 @@ void main() {
   $isAlive
   $abilities
   $sprites
+  $errorMessage
   """);
 }
