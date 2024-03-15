@@ -59,3 +59,4 @@ dart <nombreprograma.dart>
 - 04_list_iterables_sets.dart
 - 05_funciones_parametros.dart
 - 06_parametros_con_nombre.dart
+- 07_clases.dart
