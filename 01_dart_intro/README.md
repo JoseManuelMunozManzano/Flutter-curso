@@ -50,8 +50,10 @@ Cómo es posible que Flutter sea tan rápido? Comparado con React Native:
 Ejecutar cada proyecto de la siguiente manera:
 
 ```
-dart <nombreprograma.dart>
+dart --enable-asserts <nombreprograma.dart>
 ```
+
+Se indica la bandera --enable-asserts para habilitar la validación de las aserciones.
 
 - 01_hello_world.dart
 - 02_tipos_variables.dart
