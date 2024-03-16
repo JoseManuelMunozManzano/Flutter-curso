@@ -61,3 +61,4 @@ dart <nombreprograma.dart>
 - 06_parametros_con_nombre.dart
 - 07_clases.dart
 - 08_name_constructors.dart
+- 09_getters_setters.dart
