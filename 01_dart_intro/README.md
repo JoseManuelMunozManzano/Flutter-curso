@@ -64,3 +64,4 @@ Se indica la bandera --enable-asserts para habilitar la validación de las aserc
 - 07_clases.dart
 - 08_name_constructors.dart
 - 09_getters_setters.dart
+- 10_clases_abstractas_enumeraciones.dart
