@@ -18,3 +18,7 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - 01_dart_intro
   - Repaso de Dart
+- 02_instalación_flutter
+  - Instalación de Flutter
+  - Configurar emuladores
+  - Configurar nuestros dispositivos físicos
