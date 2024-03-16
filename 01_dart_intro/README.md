@@ -71,3 +71,6 @@ Se indica la bandera --enable-asserts para habilitar la validación de las aserc
 - 13_async_await.dart
 - 14_try_on_catch_finally.dart
 - 15_streams.dart
+- 16_async_asterisco_await.dart
+
+NOTA: Actualmente la desestructuración está disponible en beta. Estar pendiente de cuando sale oficialmente para empezar a usarla.
