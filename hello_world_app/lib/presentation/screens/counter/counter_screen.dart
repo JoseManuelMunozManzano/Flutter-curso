@@ -17,6 +17,13 @@ class CounterScreen extends StatelessWidget {
     //
     // Un Scaffold da la bases de un diseño de material.
     return Scaffold(
+      appBar: AppBar(
+        // Con estas dos propiedades se deja la Barra de arriba del móvil como lo dejaría Material 2
+        // centerTitle: true,
+        // backgroundColor: const Color.fromARGB(255, 60, 174, 231),
+
+        title: const Text('Counter Screen'),        
+      ),
       // El Center Widget se encarga de centrar su hijo en las dimensiones que tenga disponibles el padre.
       body: const Center(
         child: Column(

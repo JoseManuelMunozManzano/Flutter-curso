@@ -25,11 +25,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Este MaterialApp es nuestra aplicación.
-    // Indicamos const porque este código NUNCA va a cambiar.
-    return const MaterialApp(
+    return MaterialApp(
       // Esto es para que no aparezca en el emulador el banner indicando que estamos en DEBUG
       debugShowCheckedModeBanner: false,
-      home: CounterScreen()
+      theme: ThemeData(
+        // Para habilitar Material 3, aunque ya no haga falta porque ya viene por defecto.
+        useMaterial3: true,
+        // Para crear una paleta de colores.
+        // Seleccionando un color, Flutter nos va a hacer una paleta de colores, y un color skin basado en ese color.
+        colorSchemeSeed: Colors.blue,
+      ),
+
+      // Se acostumbra a que el hijo sea siempre la última propiedad a definir.
+      // Indicamos const porque este código NUNCA va a cambiar.
+      home: const CounterScreen()
     );
   }
 }
