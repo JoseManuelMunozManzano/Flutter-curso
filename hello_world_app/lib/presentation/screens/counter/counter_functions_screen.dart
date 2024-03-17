@@ -46,7 +46,7 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
           ),
         ),
         // Como Widget indicaremos un Column, ya que necesitamos más de un Widget FloatingActionButton.
-        floatingActionButton: const Column(
+        floatingActionButton: Column(
           // Sin mainAxisAlignment, el FloatingActionButton coloca el botón arriba del todo, y lo queremos abajo.
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -65,7 +65,7 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
             //      Y por último se llevará a un nuevo archivo.
             //
             // Este es el código que se repetía.
-            // 
+            //
             // FloatingActionButton(
             //   shape: const StadiumBorder(),
             //   onPressed: () {
@@ -75,35 +75,71 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
             //   child: const Icon(Icons.plus_one),
             // ),
 
-            CustomButton(icon: Icons.refresh_rounded),
+            CustomButton(
+              icon: Icons.refresh_rounded,
+              onPressed: () {
+                // Recordar que esta sentencia puede estar fuera o dentro del setState()
+                clickCounter = 0;
+                setState(() {});
+              },
+            ),
             // Para agregar una separación, podemos usar un Widget llamado Sizedbox, que es un contenedor o una
             // caja con un tamaño específico
-            SizedBox(height: 10),
-            CustomButton(icon: Icons.exposure_minus_1_outlined),
-            SizedBox(height: 10),
-            CustomButton(icon: Icons.plus_one),
+            const SizedBox(height: 10),
+            CustomButton(
+              icon: Icons.exposure_minus_1_outlined,
+              onPressed: () {
+                if (clickCounter == 0) return;
+                clickCounter--;
+                setState(() {});
+              },
+            ),
+            const SizedBox(height: 10),
+            CustomButton(
+              icon: Icons.plus_one,
+              onPressed: () {
+                clickCounter++;
+                setState(() {});
+              },
+            ),
           ],
         ));
   }
 }
 
+// Botón personalizado
 class CustomButton extends StatelessWidget {
-
   // No esperamos un Widget, sino la data.
   final IconData icon;
 
-  // Para añadir las propiedades al constructor, situar el ratón en el nombre 
+  // Función como argumento.
+  // Para saber el tipo de onPressed nos vamos a un Widget que lo use, como FloatingActionButton
+  // más abajo. Situamos el ratón en esa palabra y pulsamos Cmd + click para que me lleve a la definición
+  // de ese Widget. Ahora solo me toca buscar onPressed hasta que vea el tipo de dato.
+  // Veremos que el tipo es VoidCallback?, con interrogación, es decir opcional, porque puede que no lo envíen.
+  final VoidCallback? onPressed;
+
+  // Para añadir las propiedades al constructor, situar el ratón en el nombre
   // del constructorpulsar Cmd + . y seleccionar Add final field formal parameters.
   const CustomButton({
     super.key,
     required this.icon,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       shape: const StadiumBorder(),
-      onPressed: () {},
+      // Para hacer sonido cuando se toca el botón.
+      enableFeedback: true,
+      // Para pronunciar la sombra.
+      // Si la pongo en 0 parece que los botones están pegados ahí.
+      elevation: 5,
+      // Si en onPressed indicamos null
+      // onPressed: null
+      // veremos que no podemos hacer click en los botones. Están disabled.
+      onPressed: onPressed,
       child: Icon(icon),
     );
   }
