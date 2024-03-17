@@ -50,3 +50,16 @@ Dentro de `presentation` crearemos la carpeta `screens`. Un screen en un Widget 
 Como podemos tener varios screens, para este proyecto vamos a crear, dentro de la carpeta `screens` otra carpeta llamada `counter`
 
 En esta carpeta `counter` vamos a crear nuestro screen `counter_screen.dart`
+
+## Cambiar estado de la aplicación
+
+Tenemos distintos estados:
+
+- Estado global de la aplicación es un estado al que todos los Widgets, independientemente de su posición en el árbol de Widgets (BuildContext), tienen acceso.
+- Estado de un Widget (y sus hijos) es una variable a la que puede acceder el Widget y sus hijos, pero estos no directamente, sino mediante paso de parámetros.
+
+No se puede cambiar un estado en un StatelessWidget. Si necesitamos tener estado en un Widget, este debe ser un StatefulWidget.
+
+Debe haber los menos posibles StatefulWidget posibles en nuestra app. Esto no significa que no deba haber, ya que son necesarios para gestioanr el estado de nuestra app, pero casi todos los Widget deberían ser StatelessWidget.
+
+Indicar también que, para gestionar el estado, existen también paquetes especiales.
