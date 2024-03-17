@@ -73,3 +73,9 @@ Dicho fuente es la copia de `counter_screen.dart`.
 Y en nuestro fuente `main.dart` cambiamos la referencia home a este nuevo fuente.
 
 Hemos hecho esta copia para poder hacer pruebas con el AppBar.
+
+## Widgets personalizados
+
+Tenemos que tener mucho cuidado con que Flutter no se descontrole, en el sentido de tener una especie de callback Hell con llave, llave, corchete, llave...
+
+Cuando vemos que hay mucho nivel de indentación, lo mejor es extraer ese Widget, para que el proyecto sea más fácil de mantener.
