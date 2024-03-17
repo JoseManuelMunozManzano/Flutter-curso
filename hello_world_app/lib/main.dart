@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world_app/presentation/screens/counter/counter_screen.dart';
 
 void main() {
   // runApp: Ejecución de Widget inicial.
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 // Tenemos dos tipos de Widgets principales y todos los demás Widgets extienden uno de ellos:
@@ -28,12 +29,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       // Esto es para que no aparezca en el emulador el banner indicando que estamos en DEBUG
       debugShowCheckedModeBanner: false,
-
-      // Un Scaffold da la bases de un diseño de material
-      home: Scaffold(
-        // El Center Widget se encarga de centrar su hijo en las dimensiones que tenga disponibles el padre.
-        body: Center(child: Text('Hola Mundo')),
-      )
+      home: CounterScreen()
     );
   }
 }
