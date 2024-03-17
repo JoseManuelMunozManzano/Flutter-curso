@@ -15,9 +15,14 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Counter Functions'),
+          centerTitle: true,
           // Iconos en la parte izquierda: propiedad leading.
           //    Si necesitamos más de uno, usamos un Widget Row, que permite un array de Widgets.
           // Iconos en la parte derecha: array actions, que ya de por si es un array de Widgets
+          leading: const Align(
+              alignment: Alignment.center,
+              child: FlutterLogo(),
+            ),
           actions: [
             IconButton(
                 // Icon es un Widget especial para mostrar iconos.
@@ -29,7 +34,8 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
                 }),
           ],
         ),
-        body: Center(
+        body:
+        Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
