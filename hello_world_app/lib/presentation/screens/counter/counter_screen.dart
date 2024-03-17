@@ -15,10 +15,26 @@ class CounterScreen extends StatelessWidget {
     //
     //return const Placeholder();
     //
-    // Un Scaffold da la bases de un diseño de material
-    return const Scaffold(
+    // Un Scaffold da la bases de un diseño de material.
+    return Scaffold(
       // El Center Widget se encarga de centrar su hijo en las dimensiones que tenga disponibles el padre.
-      body: Center(child: Text('Counter Screen')),
+      body: const Center(
+        child: Column(
+          // La propiedad mainAxisAlignment está esperando un objeto que sea del tipo MainAxisAlignment,
+          // que es una enumeración. Esta propiedad es parecida a Flexbox de CSS.
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('10', style: TextStyle(fontSize: 160, fontWeight: FontWeight.w100),),
+            Text('Clicks', style: TextStyle(fontSize: 25),)
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+        },
+        child: const Icon(Icons.plus_one),
+      ),
     );
   }
 }
