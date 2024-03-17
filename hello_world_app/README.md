@@ -22,3 +22,13 @@ Esta sección crearemos nuestra primera aplicación real de Flutter, la que nos 
 - Indicar el nombre del proyecto, que deberá ser todo en minúsculas, y, si se separa por palabras, usar el guión bajo.
   - Nuestro proyecto se llama: `hello_world_app`
 - Empieza a generarse la app, y Flutter detecta en qué Sistema Operativo estamos para crear la estructura de directorios.
+
+## Lanzar emulador
+
+- Pulsar Cmd+Shift+P
+- Escribir y seleccionar Flutter: Launch Emulator
+  - Yo voy a hacer las pruebas con el simulador de iOS
+- Estando en el archivo main.dart, volver a pulsar Cmd+Shift+P
+- Escribir y seleccionar Flutter: Select Device
+- Seleccionar el dispositivo iOS
+- Pulsar F5
