@@ -63,3 +63,13 @@ No se puede cambiar un estado en un StatelessWidget. Si necesitamos tener estado
 Debe haber los menos posibles StatefulWidget posibles en nuestra app. Esto no significa que no deba haber, ya que son necesarios para gestioanr el estado de nuestra app, pero casi todos los Widget deberían ser StatelessWidget.
 
 Indicar también que, para gestionar el estado, existen también paquetes especiales.
+
+## AppBar y Acciones
+
+Se ha creado en la carpeta `/lib/presentation/screens/counter` el fuente `counter_functions_screen.dart`.
+
+Dicho fuente es la copia de `counter_screen.dart`.
+
+Y en nuestro fuente `main.dart` cambiamos la referencia home a este nuevo fuente.
+
+Hemos hecho esta copia para poder hacer pruebas con el AppBar.

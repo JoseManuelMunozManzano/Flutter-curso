@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world_app/presentation/screens/counter/counter_screen.dart';
+import 'package:hello_world_app/presentation/screens/counter/counter_functions_screen.dart';
+// import 'package:hello_world_app/presentation/screens/counter/counter_screen.dart';
 
 void main() {
   // runApp: Ejecución de Widget inicial.
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
 
       // Se acostumbra a que el hijo sea siempre la última propiedad a definir.
       // Indicamos const porque este código NUNCA va a cambiar.
-      home: const CounterScreen()
+      //
+      // home: const CounterScreen()
+      home: const CounterFunctionsScreen()
     );
   }
 }
