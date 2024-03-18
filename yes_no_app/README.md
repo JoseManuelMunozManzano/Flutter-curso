@@ -51,3 +51,13 @@ Dentro de la carpeta `config` crearemos otra carpeta llamada `theme`.
 Dentro de la carpeta `theme` crearemos un archivo llamado `app_theme.dart`.
 
 Creamos la clase `AppTheme` que devolverá algo de tipo `ThemeData`.
+
+## ChatScreen
+
+Para evitar que se nos descontrole la app, apilando Widget tras Widget, nos vamos a llevar el Scaffold a un fichero nuevo en otra carpeta.
+
+En la carpeta `lib` vamos a crear: `lib/presentation/chat`
+
+Dentro de `chat` vamos a colocar todo lo que tiene que ver con pantallas de chat.
+
+Creamos ahí un nuevo archivo llamado `chat_screen.dart`
