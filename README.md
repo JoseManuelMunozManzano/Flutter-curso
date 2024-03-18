@@ -52,3 +52,4 @@ Todo con una sola base de código.
   - Configurar emuladores
   - Configurar nuestros dispositivos físicos
 - hello_world_app
+- yes_no_app
