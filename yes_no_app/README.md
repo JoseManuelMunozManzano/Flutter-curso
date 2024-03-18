@@ -16,7 +16,6 @@ En esta sección veremos:
   - Padding
   - Image (desde internet)
   - ClipRRect (bordes redondeados)
-  - Entre otros...
 
 La sección está llena de contenido para construir este pequeño chat, pero la funcionalidad la haremos en la siguiente sección.
 
@@ -38,3 +37,17 @@ La sección está llena de contenido para construir este pequeño chat, pero la 
 - Escribir y seleccionar Flutter: Select Device
 - Seleccionar el dispositivo iOS
 - Pulsar F5
+
+## Estilo global para la aplicación
+
+El estilo (theme) estará en un archivo independiente para poder manipularlo de manera global.
+
+Cuando hablamos de tema nos referimos a como queremos que luzcan los distintos Widgets.
+
+En la carpeta `lib`, crearemos una carpeta `config`.
+
+Dentro de la carpeta `config` crearemos otra carpeta llamada `theme`.
+
+Dentro de la carpeta `theme` crearemos un archivo llamado `app_theme.dart`.
+
+Creamos la clase `AppTheme` que devolverá algo de tipo `ThemeData`.
