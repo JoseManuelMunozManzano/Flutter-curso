@@ -61,3 +61,16 @@ En la carpeta `lib` vamos a crear: `lib/presentation/chat`
 Dentro de `chat` vamos a colocar todo lo que tiene que ver con pantallas de chat.
 
 Creamos ahí un nuevo archivo llamado `chat_screen.dart`
+
+## ListView - Area de los mensajes
+
+Añadimos un body dentro del Scaffold que se encuentra en el archivo `chat_screen.dart`
+
+El body es lo que vamos a poder colocar en el area opr debajo del appBar. Si no tuviéramos el appBar, sería todo el espacio disponible.
+
+En el body hacemos referencia a un StatelessWidget `_ChatView` que construye un Widget ListView que consta de:
+
+- Un builder
+- itemCount
+- itemBuilder(context, index)
+- Contenido del itemBuilder
