@@ -88,6 +88,12 @@ https://docs.flutter.dev/get-started/install/macos/mobile-ios?tab=download#confi
 
 Para abrir el simulador de iOS ejecutar `open -a Simulator` o en Spotlight ejecutar `simulator`
 
+Si da el siguiente error: `Unable to boot the Simulator`
+
+Pulsar sobre el icono de la manzana -> Ajustes del Sistema -> General -> Almacenamiento -> Desarrollador
+
+Borrar "Developer Caches"
+
 ## Mac - Android Emulator
 
 Seguir este documentación:
