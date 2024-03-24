@@ -134,6 +134,70 @@ onChanged: (value) {
 },
 ```
 
+## Obtener control de un input
+
+Con este elemento obtenemos el control del input al que se asocia.
+
+`final textController = TextEditingController();`
+
+```
+return TextFormField(
+  // Para asociarlo
+  controller: textController,
+
+  // Y para usarlo, por ejemplo para limpiar un input de texto cuando hemos pulsado enter (en este caso, por ser onFieldSubmitted):
+  onFieldSubmitted: (value) {
+    textController.clear();
+  },
+);
+```
+
+Y si estamos en otro sitio, pero relacionado, y queremos obtener el texto del input:
+
+```
+suffixIcon: IconButton(
+  icon: const Icon(Icons.send_outlined),
+  onPressed: () {
+
+    // Usamos esto
+    final textValue = textController.value.text;
+
+    print('button: $textValue');
+
+    // Y para limpiar el texto
+    textController.clear();
+  },
+);
+```
+
+## Mantener el foco
+
+Cuando un elemento necesita un foco, se puede hacer de la siguiente manera:
+
+`final focusNode = FocusNode();`
+
+Y para usarlo:
+
+```
+return TextFormField(
+  // Al hacer click fuera del input se va a remover el foco
+  onTapOutside: (event) {
+    focusNode.unfocus();
+  },
+
+  // Indicamos que tiene el foco.
+  focusNode: focusNode,
+
+  onFieldSubmitted: (value) {
+    print('Submit value $value');
+    textController.clear();
+
+    // Lo usamos para mantener el foco una vez se ha pulsado Enter.
+    focusNode.requestFocus();
+  },
+);
+```
+
 ## Temario
 
 - 01_dart_intro
