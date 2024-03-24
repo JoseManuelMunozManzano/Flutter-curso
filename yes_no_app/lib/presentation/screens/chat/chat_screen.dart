@@ -1,5 +1,6 @@
 // Para importar el paquete de Material usamos el snippet: importM
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
 
 // Para crear una clase StatelessWidget usamos el snippet: stlesw
 // Los screen regresan un Scaffold.
@@ -43,16 +44,15 @@ class _ChatView extends StatelessWidget {
           children: [
             // Expanded permite expandir el Widget hijo a todo el espacio disponible por el padre.
             Expanded(
-              // El builder es un constructor que en tiempo de ejecución Flutter va a ejecutar para construir ese Widget.
-              // Permite tener una lista de miles de elementos.
-              // El context es el árbol de Widgets y el índice indica que elemento se está renderizando en ese momento.
-              child: ListView.builder(
-                // Si no se indica el itemCount, los elementos son infinitos.
-                itemCount: 100,
-                itemBuilder: (context, index)  {
-                return Text('Indice: $index');
-              })
-            ),
+                // El builder es un constructor que en tiempo de ejecución Flutter va a ejecutar para construir ese Widget.
+                // Permite tener una lista de miles de elementos.
+                // El context es el árbol de Widgets y el índice indica que elemento se está renderizando en ese momento.
+                child: ListView.builder(
+                    // Si no se indica el itemCount, los elementos son infinitos.
+                    itemCount: 100,
+                    itemBuilder: (context, index) {
+                      return const MyMessageBubble();
+                    })),
             Text('Mundo')
           ],
         ),

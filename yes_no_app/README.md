@@ -56,7 +56,7 @@ Creamos la clase `AppTheme` que devolverá algo de tipo `ThemeData`.
 
 Para evitar que se nos descontrole la app, apilando Widget tras Widget, nos vamos a llevar el Scaffold a un fichero nuevo en otra carpeta.
 
-En la carpeta `lib` vamos a crear: `lib/presentation/chat`
+En la carpeta `lib` vamos a crear: `lib/presentation/screens/chat`
 
 Dentro de `chat` vamos a colocar todo lo que tiene que ver con pantallas de chat.
 
@@ -74,3 +74,19 @@ En el body hacemos referencia a un StatelessWidget `_ChatView` que construye un 
 - itemCount
 - itemBuilder(context, index)
 - Contenido del itemBuilder
+
+## Mis Mensajes - Burbuja de chat
+
+Las burbujas de chat son algo claramente visual.
+
+De nuevo, tener claro que lo más difícil en Flutter es conseguir que el código de los Widgets no se nos descontrole y acaben siendo imposibles de leer.
+
+Vamos a crear una nueva carpeta dentro de la carpeta `presentation` llamada `widgets`.
+
+La idea de esta carpeta es que sean widgets específicos, pequeños, que sean reutilizables.
+
+Como estos widgets en concreto están relacionados con el chat, dentro vamos a crear otra carpeta llamada `chat`.
+
+Y vamos a crear un archivo llamado `my_message_bubble.dart`.
+
+Este widget lo usamos en el archivo `chat_screen_dart`.

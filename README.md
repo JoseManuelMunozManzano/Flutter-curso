@@ -43,6 +43,28 @@ Con Flutter podemos (independientemente de que se recomiende o no por temas de m
 
 Todo con una sola base de código.
 
+Hay tres partes en Flutter:
+
+- La construcción de la lógica de negocio
+- La conexión de la lógica de negocio y nuestros Widgets
+- La creación del diseño de la aplicación
+
+## Trabajar con los colores indicados en el seed
+
+Para no tener que hardcodear colores en cada Widget.
+
+Lo que se hace es indicar en `main.dart` la paleta de colores: `theme: AppTheme(selectedColor: 1).theme(),`
+
+Y luego en cada Widget donde necesitemos acceso a la paleta accedemos al contexto: `final colors = Theme.of(context).colorScheme;`
+
+Y para usarlo en un Widet Decoration, por ejemplo un color primario en función de nuestra paleta de colores:
+
+```
+decoration: BoxDecoration(
+   color: colors.primary, borderRadius: BorderRadius.circular(20)
+)
+```
+
 ## Temario
 
 - 01_dart_intro
