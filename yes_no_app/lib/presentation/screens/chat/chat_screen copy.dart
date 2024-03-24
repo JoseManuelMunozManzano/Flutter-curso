@@ -1,9 +1,5 @@
 // Para importar el paquete de Material usamos el snippet: importM
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yes_no_app/domain/entities/message.dart';
-
-import 'package:yes_no_app/presentation/providers/chat_provider.dart';
 import 'package:yes_no_app/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
 import 'package:yes_no_app/presentation/widgets/shared/message_field_box.dart';
@@ -33,14 +29,9 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-// La versión anterior de este código está en chat_screen copy.dart
-// Está bien que sea un StatelessWidget, ya que ahora el estado lo maneja Provider.
 class _ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Hacemos la referencia al provider, indicando la instancia del MultiProvider que necesito, que es ChatProvider.
-    final chatProvider = context.watch<ChatProvider>();
-
     // SafeArea evita que nuestros Widgets acaben en zonas que usan los móviles, por ejemplo la parte de abajo, que haga
     // que nuestros widgets no se vean.
     return SafeArea(
@@ -60,16 +51,13 @@ class _ChatView extends StatelessWidget {
                 // El context es el árbol de Widgets y el índice indica que elemento se está renderizando en ese momento.
                 child: ListView.builder(
                     // Si no se indica el itemCount, los elementos son infinitos.
-                    itemCount: chatProvider.messages.length,
+                    itemCount: 100,
                     itemBuilder: (context, index) {
-                      // Esto regresa una instancia de Message, mi entidad, y sabe si el mensaje es mío o de ella.
-                      final message = chatProvider.messages[index];
-
-                      return (message.fromWho == FromWho.hers)
-                        ? const HerMessageBubble()
-                        : const MyMessageBubble();
+                      return (index % 2 == 0)
+                          ? const HerMessageBubble()
+                          : const MyMessageBubble();
                     })),
-
+            
             // Caja de texto de mensajes.
             const MessageFieldBox(),
           ],

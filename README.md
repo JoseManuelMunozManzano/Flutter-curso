@@ -198,6 +198,87 @@ return TextFormField(
 );
 ```
 
+## Instalar y usar Provider
+
+Ir a la ruta: https://pub.dev/packages/provider
+
+Algo que tenemos que tener en cuenta a la hora de instalar un paquete es la plataforma (PLATFORM) Para el paquete provider, vemos que las plataformas posibles son Android, iOS, Linux, MacOs, Web y Windows. Pero no todos los paquetes funcionan para todas las plataformas.
+
+Otra cosa que tenemos que tener en cuenta a la hora de instalar un paquete es la versión de Dart para la que el paquete está disponible. En el caso de Provider, indica `Dart 3 compatible`.
+
+Para instalar:
+
+- Pulsar Installing
+  - Ahí nos indica como instalar el paquete
+
+Formas de instalar paquetes:
+
+- Forma 1
+  - Ir al terminal, a la raiz del proyecto y ejecutar: `flutter pub add provider`.
+  - Podemos ver donde se han instalado todos esos paquetes. Para ello abrir el archivo `pubspec.yaml` y bajar hasta ver `dependencies`
+- Forma 2
+  - Abrir el fichero `pubspec.yaml`, bajar hasta dependencias y escribir: `provider: ^6.1.2`
+  - Grabar el archivo o, en VSCode, pulsar la flecha hacia abajo, donde indica `Get Packages`
+- Forma 3
+  - Si, en VSCode hemos instalado el plugin `Pubspec Assist`
+    - Pulsar Cmd+Shift+P y escribir pubassist. Seleccionar `Pubspec Assist: Add/update dependencies`
+    - Escribir el nombre del paquete `provider`
+
+Envolver archivo `main.dart` con nuestro Provider para crear un provider a nivel global de nuestra aplicación:
+
+- Situarnos sobre MaterialApp y pulsar Cmd+.
+- Pulsar sobre Wrap with widget...
+- Cambiar el nombre a `MultiProvider`
+- Indicar el listado de providers. En nuestra app, como tenemos un provider que se encarga de notificar cuando hay cambios (ChangeNotifier), el provider que indicaremos es `ChangeNotifierProvider`, y este tiene una propiedad `create` que espera que hagamos la creación de la instancia inicial, que es `ChatProvider()`
+
+```
+@override
+Widget build(BuildContext context) {
+  return MultiProvider(
+    providers: [
+      // El argumento es el context, pero si no se va a usar se suele indicar _
+      ChangeNotifierProvider(create: (_) => ChatProvider())
+    ],
+    child: MaterialApp(
+      ...
+    ),
+  );
+}
+```
+
+Al grabar el archivo veremos ahora en la barra de debug de VSCode un icono Flutter de DevTools.
+
+Si lo pulsamos veremos la estructura del BuildContext.
+
+## Leer un valor del Provider
+
+De nuevo, ir a la web: https://pub.dev/packages/provider#reading-a-value y leer la documentación.
+
+La forma más fácil de leer un valor es usar las siguientes extensiones del BuildContext:
+
+- context.watch<T>() : el Widget escucha los cambios sobre T (siendo T el provider especificado) y redibuja
+- context.read<T>() : regresa el provider sin escuchar los cambios, es decir, no redibuja
+- context.select<T, R>(R cb(T value)) : solo se notifica al Widget cuando alguna propiedad concreta del provider cambia
+- Provider.of<T>(context, listen: false) : similar a context.read<T>()
+
+Ejemplo en archivo `chat_screen.dart`
+
+```
+class _ChatView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Hacemos la referencia al provider, indicando la instancia del MultiProvider que necesito, que es ChatProvider.
+    final chatProvider = context.watch<ChatProvider>();
+
+    return SafeArea(
+      ...
+    )
+  }
+}
+```
+
+El código `final chatProvider = context.watch<ChatProvider>();` es muy parecido a este que aparece más arriba para obtener información del context `final colors = Theme.of(context).colorScheme;`
+
 ## Temario
 
 - 01_dart_intro
