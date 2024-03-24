@@ -119,3 +119,21 @@ No está enteramente relacionada al chat. Podríamos querer esa caja de texto pa
 Dentro de la carpeta `widgets` se crea otra carpeta llamada `shared` y dentro un archivo llamado `message_field_box.dart`.
 
 Este widget lo usamos en el archivo `chat_screen_dart`.
+
+## Entidad - Message
+
+Nos vamos a enfocar en una unidad atómica, una entidad, que será el mensaje.
+
+En Clean Architecture, las entities no son equivalentes directos a los modelos de la base de datos.
+
+La entity es una convención, y esta es un objeto que usaremos a lo largo de nuestra aplicación como en este caso seran los mensajes. Este es un objeto clave en nuestra aplicación ya que sin mensajes no hay un chat.
+
+Las entities representan objetos de dominio que encapsulan la lógica de negocio fundamental y son independientes de la capa de almacenamiento o base de datos.
+
+Los modelos de la base de datos se utilizan para mapear los datos entre la aplicación y la base de datos subyacente. A menudo, se realizan transformaciones entre las entities y los modelos de la base de datos en las capas de repositorio o en la capa de aplicación para separar la lógica de dominio de los detalles de almacenamiento. Por lo tanto, aunque las entidades y los modelos de la base de datos pueden contener información similar, tienen responsabilidades y preocupaciones diferentes.
+
+El mensaje va a contener el texto, de manera opcional la imagen (un URL) y también necesitamos identificar cuales son mis mensajes y cuales los de otra persona.
+
+Para alojar los entities, vamos a crear una nueva carpeta dentro de `lib` llamada `domain`, y dentro vamos a crear otra carpeta llamada `entities`. En esta carpeta vamos a crear la entity `message.dart`.
+
+Todo el código que haya en la carpeta `domain` va a ser puro Dart. NO va a haber nada de Widgets.
