@@ -98,3 +98,13 @@ Dentro de la carpeta `widgets` creamos la carpeta `her_message_bubble.dat`.
 El contenido es muy similar al del archivo `my_message_bubble.dart`, pero tiene cosas muy diferentes, como una imagen.
 
 Este widget lo usamos, alternándolo con ``my_message_bubble.dart` en `chat_screen.dart`.
+
+## TextFormField
+
+Es una caja de texto, que vamos a situar en la parte de abajo de la app, para poder escribir texto.
+
+No está enteramente relacionada al chat. Podríamos querer esa caja de texto para reutilizarla en otras partes del dispositivo, como arriba para que sirviera de buscados, o flotante...
+
+Dentro de la carpeta `widgets` se crea otra carpeta llamada `shared` y dentro un archivo llamado `message_field_box.dart`.
+
+Este widget lo usamos en el archivo `chat_screen_dart`.

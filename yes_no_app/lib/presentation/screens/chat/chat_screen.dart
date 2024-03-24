@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:yes_no_app/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:yes_no_app/presentation/widgets/shared/message_field_box.dart';
 
 // Para crear una clase StatelessWidget usamos el snippet: stlesw
 // Los screen regresan un Scaffold.
@@ -56,7 +57,9 @@ class _ChatView extends StatelessWidget {
                           ? const HerMessageBubble()
                           : const MyMessageBubble();
                     })),
-            Text('Mundo')
+            
+            // Caja de texto de mensajes.
+            const MessageFieldBox(),
           ],
         ),
       ),

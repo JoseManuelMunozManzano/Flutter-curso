@@ -118,6 +118,22 @@ loadingBuilder: (context, child, loadingProgress) {
   );
 ```
 
+## Recibir lo que la persona escribe
+
+Se puede hacer de las siguientes maneras (puede haber más)
+
+```
+// El texto completo, obtenido al pulsar Enter.
+onFieldSubmitted: (value) {
+  print('Submit value $value');
+},
+
+// Cada valor de la tecla pulsada.
+onChanged: (value) {
+  print('changed: $value');
+},
+```
+
 ## Temario
 
 - 01_dart_intro
