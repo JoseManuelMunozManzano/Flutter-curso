@@ -1,8 +1,6 @@
 # yes_no_app
 
-En esta sección haremos el diseño de la aplicación de YesNo, la cual eventualmente responderá nuestras preguntas (siempre y cuando sean de si o no).
-
-En esta sección veremos:
+Para la parte del diseño de la aplicación de YesNo, la cual eventualmente responderá nuestras preguntas (siempre y cuando sean de si o no), veremos:
 
 - TextEditingControllers
 - Focus Nodes
@@ -17,7 +15,20 @@ En esta sección veremos:
   - Image (desde internet)
   - ClipRRect (bordes redondeados)
 
-La sección está llena de contenido para construir este pequeño chat, pero la funcionalidad la haremos en la siguiente sección.
+La sección está llena de contenido para construir este pequeño chat.
+
+Para la parte de la lógica de negocio de nuestra aplicación, veremos:
+
+- Gestores de estado
+- Mappers
+- Peticiones HTTP
+- Dio
+- Paquetes
+- Funciones que retornan valores como callbacks
+- Scroll
+- Provider
+
+Al finalizar la sección tendremos una buena base de como alojar el estado fuera de los widgets y que los widgets se actualicen y tomen la información que necesitan del gestor de estado.
 
 ## Creación de proyecto desde VSCode
 
