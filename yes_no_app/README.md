@@ -137,3 +137,25 @@ El mensaje va a contener el texto, de manera opcional la imagen (un URL) y tambi
 Para alojar los entities, vamos a crear una nueva carpeta dentro de `lib` llamada `domain`, y dentro vamos a crear otra carpeta llamada `entities`. En esta carpeta vamos a crear la entity `message.dart`.
 
 Todo el código que haya en la carpeta `domain` va a ser puro Dart. NO va a haber nada de Widgets.
+
+## Provider - Gestor de estado
+
+Recordemos que el BuildContext contiene la información de como está nuestra aplicación, la estructura del árbol de Widgets...
+
+Los Widgets pueden (o no) tener estado. Los Widgets con estado son los StatefulWidget.
+
+Si un Widget muy abajo en la estructura del árbol de Widgets necesita la información que se encuentra en otro Widget muy arriba en la estructura del árbol de Widgets, habría que ir pasando dicha información por todo el árbol de Widgets para poder comunicarse entre sí.
+
+Esto es muy ineficiente y muy laborioso de modificar.
+
+La idea de los gestores de estado es poder manejar la data de forma sencilla y centralizada. También sirven como un puente entre distintas capas de nuestra aplicación.
+
+La data es aquella información que el usuario va manipulando.
+
+Hay varios manejadores de estado que podemos usar.
+
+En esta app vamos a usar Provider.
+
+Vamos a crear una carpeta dentro de `presentation` llamada `providers`.
+
+Podríamos crear muchas carpetas dentro de la carpeta providers en función de nuestras pantallas (screens) En este caso vamos a crear directamente el archivo llamado `chat_provider.dart`
