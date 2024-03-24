@@ -58,6 +58,10 @@ class _ChatView extends StatelessWidget {
                 // Permite tener una lista de miles de elementos.
                 // El context es el árbol de Widgets y el índice indica que elemento se está renderizando en ese momento.
                 child: ListView.builder(
+                    // Cualquier elemento que trabaje con scroll tiene un controller que da el control sobre ese scroll.
+                    // Ese scroller tiene que ser notificado cuando hay un nuevo mensaje.
+                    // En chart_provider tenemos dicho controller y aqúi lo vinculamos a este ListView.
+                    controller: chatProvider.chatScrollController,
                     // Si no se indica el itemCount, los elementos son infinitos.
                     itemCount: chatProvider.messages.length,
                     itemBuilder: (context, index) {

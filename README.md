@@ -279,6 +279,21 @@ class _ChatView extends StatelessWidget {
 
 El código `final chatProvider = context.watch<ChatProvider>();` es muy parecido a este que aparece más arriba para obtener información del context `final colors = Theme.of(context).colorScheme;`
 
+## Truco para que Flutter tarde en hacer una animación
+
+Da la sensación de que se procesa y se hace.
+
+Y también corrige un bug. El provider notifica a los listeners que hubo un cambio pero no le da el tiempo suficiente para que se redibuje la UI y el scrollController se actualize. Con este delay damos ese tiempo.
+
+```
+  // Indicamos async y que haga un delayed
+  Future<void> moveScrollToBotton() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    // Y aquí lo que queramos que haga.
+  }
+```
+
 ## Temario
 
 - 01_dart_intro
