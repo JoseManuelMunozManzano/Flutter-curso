@@ -1,9 +1,12 @@
 // Importamos el paquete de material usando el snippet importM
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 
 // Creamos un StatelessWidget usando el snippet stlesw
 class MyMessageBubble extends StatelessWidget {
-  const MyMessageBubble({super.key});
+  final Message message;
+
+  const MyMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +23,16 @@ class MyMessageBubble extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-              // En vez de tener que indicar un color (Colors.black por ejemplo), gracias a 
+              // En vez de tener que indicar un color (Colors.black por ejemplo), gracias a
               // obtener el colorScheme definido en nuestro contexto, al indicar que queremos
               // el color primario, en función del modo light o dark, este cambia de forma
               // dinámica.
-              color: colors.primary, borderRadius: BorderRadius.circular(20)),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              color: colors.primary,
+              borderRadius: BorderRadius.circular(20)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child:
-                Text('Irure esse ea ad', style: TextStyle(color: Colors.white)),
+                Text(message.text, style: const TextStyle(color: Colors.white)),
           ),
         ),
         const SizedBox(

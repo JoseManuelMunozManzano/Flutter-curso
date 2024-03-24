@@ -33,7 +33,6 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-// La versión anterior de este código está en chat_screen copy.dart
 // Está bien que sea un StatelessWidget, ya que ahora el estado lo maneja Provider.
 class _ChatView extends StatelessWidget {
   @override
@@ -67,11 +66,20 @@ class _ChatView extends StatelessWidget {
 
                       return (message.fromWho == FromWho.hers)
                         ? const HerMessageBubble()
-                        : const MyMessageBubble();
+                        : MyMessageBubble(message: message);
                     })),
 
             // Caja de texto de mensajes.
-            const MessageFieldBox(),
+            // En onValue es el texto que se puso en la caja de texto.
+            // Pasamos una función que el hijo llamará, en este caso sendMessage()
+            //
+            MessageFieldBox(
+              // Forma "normal"
+              // onValue: (String value) => chatProvider.sendMessage(value),
+              //
+              // Forma corta cuando la misma cantidad de argumentos se usa para llamar a la función (y en las mismas posiciones)
+              onValue: chatProvider.sendMessage
+            ),
           ],
         ),
       ),

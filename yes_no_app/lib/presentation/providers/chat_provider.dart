@@ -9,7 +9,6 @@ import 'package:yes_no_app/domain/entities/message.dart';
 // Por ejemplo, podemos tener providers solo a nivel de formularios.
 // O lo podemos tener en el raiz para que todos los Widgets lo puedan ver.
 class ChatProvider extends ChangeNotifier {
-
   List<Message> messages = [
     // 2 mensajes hardcodeados de prueba.
     Message(text: 'Hola amor!', fromWho: FromWho.me),
@@ -18,6 +17,12 @@ class ChatProvider extends ChangeNotifier {
 
   // Cuando recibamos el texto lo añadiremos a la lista.
   Future<void> sendMessage(String text) async {
-    // TODO: implementar método
+    final newMessage = Message(text: text, fromWho: FromWho.me);
+    messages.add(newMessage);
+
+    // Esto es para indicar a Flutter que algo cambió.
+    // Notifica a todos los que estén escuchando este cambio.
+    // En nuestra app, sería notificado chat_screen.dart, ya que usa el context.watchz<ChatProvider>()
+    notifyListeners();
   }
 }
