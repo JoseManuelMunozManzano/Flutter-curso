@@ -65,6 +65,35 @@ decoration: BoxDecoration(
 )
 ```
 
+## Obtener dimensiones del dispositivo
+
+El MediaQuery nos va a dar información respecto al dispositivo que lo está ejecutando.
+
+El context hace referencia al árbol de Widgets, donde también tenemos otra información como las dimensiones y características del dispositivo donde se está ejecutando la app.
+
+Usando size obtenemos las dimensiones del dispositivo.
+
+`final size = MediaQuery.of(context).size;`
+
+Y para usarlo en una imagen:
+
+```
+child: Image.network(
+    'https://yesno.wtf/assets/no/1-c7d128c95c1740ec76e120146c870f0b.gif',
+    width: size.width * 0.7,
+    // La idea de dejar un height específico, es para evitar que las imágenes
+    // varíen unas de otras. Siempre voy a saber su alto.
+    height: 150
+)
+```
+
+## Borrar y generar dependencias
+
+Usando la terminal y en la raiz del proyecto, ejecutar:
+
+- flutter clean
+- flutter pub get
+
 ## Temario
 
 - 01_dart_intro

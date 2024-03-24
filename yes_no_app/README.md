@@ -90,3 +90,11 @@ Como estos widgets en concreto están relacionados con el chat, dentro vamos a c
 Y vamos a crear un archivo llamado `my_message_bubble.dart`.
 
 Este widget lo usamos en el archivo `chat_screen_dart`.
+
+## Mensajes de ella - Burbuja de chat
+
+Dentro de la carpeta `widgets` creamos la carpeta `her_message_bubble.dat`.
+
+El contenido es muy similar al del archivo `my_message_bubble.dart`, pero tiene cosas muy diferentes, como una imagen.
+
+Este widget lo usamos, alternándolo con ``my_message_bubble.dart` en `chat_screen.dart`.
