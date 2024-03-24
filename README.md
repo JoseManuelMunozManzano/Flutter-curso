@@ -49,6 +49,13 @@ Hay tres partes en Flutter:
 - La conexión de la lógica de negocio y nuestros Widgets
 - La creación del diseño de la aplicación
 
+## Borrar y generar dependencias
+
+Usando la terminal y en la raiz del proyecto, ejecutar:
+
+- flutter clean
+- flutter pub get
+
 ## Trabajar con los colores indicados en el seed
 
 Para no tener que hardcodear colores en cada Widget.
@@ -87,12 +94,29 @@ child: Image.network(
 )
 ```
 
-## Borrar y generar dependencias
+## Mostrar mensaje mientras se carga la imagen
 
-Usando la terminal y en la raiz del proyecto, ejecutar:
+Usamos `loadingBuilder` dentro de nuestro Widget `Image`
 
-- flutter clean
-- flutter pub get
+Recordar que un Builder es algo que se va a construir en tiempo de ejecución.
+
+El child es nuestra misma imagen cuando se carga, ya construida enteramente.
+
+El context es nuestro árbol de Widgets e info del dispositivo.
+
+```
+loadingBuilder: (context, child, loadingProgress) {
+  // Si se cargo por completo, regresa la imagen
+  if (loadingProgress == null) return child;
+
+  // Indicando el mismo size se evitan brincos en el diseño cuando pasamos del loader a la imagen.
+  return Container(
+    width: size.width * 0.7,
+    height: 150,
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    child: const Text('Se está enviando una imagen'),
+  );
+```
 
 ## Temario
 
