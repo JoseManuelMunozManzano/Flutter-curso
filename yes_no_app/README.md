@@ -159,3 +159,11 @@ En esta app vamos a usar Provider.
 Vamos a crear una carpeta dentro de `presentation` llamada `providers`.
 
 Podríamos crear muchas carpetas dentro de la carpeta providers en función de nuestras pantallas (screens) En este caso vamos a crear directamente el archivo llamado `chat_provider.dart`
+
+## Petición HTTP
+
+Dentro de `lib/config` creamos la carpeta `helpers`, y dentro el archivo `get_yes_no_answer.dart`
+
+En este archivo incluiremos una petición HTTP.
+
+En `chat_provider.dart` usaremos esta petición.

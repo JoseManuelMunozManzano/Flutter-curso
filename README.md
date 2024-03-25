@@ -221,7 +221,8 @@ Formas de instalar paquetes:
   - Grabar el archivo o, en VSCode, pulsar la flecha hacia abajo, donde indica `Get Packages`
 - Forma 3
   - Si, en VSCode hemos instalado el plugin `Pubspec Assist`
-    - Pulsar Cmd+Shift+P y escribir pubassist. Seleccionar `Pubspec Assist: Add/update dependencies`
+    - Pulsar Cmd+Shift+P y escribir pubassist
+    - Seleccionar `Pubspec Assist: Add/update dependencies`
     - Escribir el nombre del paquete `provider`
 
 Envolver archivo `main.dart` con nuestro Provider para crear un provider a nivel global de nuestra aplicación:
@@ -292,6 +293,44 @@ Y también corrige un bug. El provider notifica a los listeners que hubo un camb
 
     // Y aquí lo que queramos que haga.
   }
+```
+
+## Petición HTTP
+
+Aunque se puede hacer una petición HTTP directamente con Dart, es necesario mucho código.
+Al final vamos a acabar usando uno de dos paquetes:
+
+- http: https://pub.dev/packages/http
+- dio: https://pub.dev/packages/dio
+
+Para instalar dio:
+
+- Pulsar, en VSCode, `Cmd+Shift+P`
+- Seleccionar `Pubspec Assist: Add/update dependencies`
+- Escribir el nombre del paquete `dio`
+
+Dio es muy fácil de usar e incluso hace la serialización del mapa por nosotros.
+
+```
+class GetYesNoAnswer {
+  // Con Dio podemos usar las BaseOptions, que nos permite indicar la url, headers y muchísimas más cosas.
+  // final _dio = Dio(BaseOptions(
+  //   baseUrl:
+  // ));
+
+  final _dio = Dio();
+
+  Future<Message> getAnswer() async {
+    final response = await _dio.get('https://yesno.wtf/api');
+
+    // Forma sencilla de devolver lo que queremos, pero sin usar Mappers
+    return Message(
+      text: response.data['answer'],
+      fromWho: FromWho.hers,
+      imageUrl: response.data['image'],
+    );
+  }
+}
 ```
 
 ## Temario
