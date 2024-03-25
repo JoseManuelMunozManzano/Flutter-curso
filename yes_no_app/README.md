@@ -167,3 +167,17 @@ Dentro de `lib/config` creamos la carpeta `helpers`, y dentro el archivo `get_ye
 En este archivo incluiremos una petición HTTP.
 
 En `chat_provider.dart` usaremos esta petición.
+
+## Mappers
+
+En Dart es muy usual crear, para las respuestas de los API, una clase para recibir la respuesta y crear una instancia para poder acceder a sus valores con la notación de punto en vez de con las llaves. Así evitamos equivocaciones y que el código sea volatil (que cambien el nombre de una propiedad de la respuesta).
+
+Dentro de la carpeta `lib` creamos la carpeta `infrastructure`, donde irán nuestras clases Mapper.
+
+La labor de la infraestructura es que nos sirva de punto intermedio entre el dominio y la presentación. Estos son patrones de arquitectura limpia.
+
+Dentro de la carpeta `infrastructure` crearemos otra carpeta llamada `models` y dentro crearemos los diferentes modelos que me sirvan para trabajar la data.
+
+El objetivo es, con la respuesta HTTP, crear un Mapper.
+
+En `models` creamos el archivo `yes_no_model.dart`

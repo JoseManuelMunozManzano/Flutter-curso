@@ -333,6 +333,62 @@ class GetYesNoAnswer {
 }
 ```
 
+## Mappers
+
+En Dart es muy usual crear, para las respuestas de los API, una clase para recibir la respuesta y crear una instancia para poder acceder a sus valores con la notación de punto en vez de con las llaves, como en el ejemplo de arriba. Así evitamos equivocaciones y que el código sea volatil (que cambien el nombre de una propiedad de la respuesta).
+
+El objetivo es, con la respuesta HTTP, crear un Mapper.
+
+Ejemplo de Mapper:
+
+```
+// El objetivo de esta clase es tener todas las propiedades que vienen en la response HTTP.
+// Es como crearse una adaptación específica de la respuesta.
+class YesNoModel {
+  String answer;
+  bool forced;
+  String image;
+
+  YesNoModel({
+    required this.answer,
+    required this.forced,
+    required this.image,
+  });
+
+  // Una vez creada esta clase, nos falta recibir un mapa y con ese mapa crear una instancia de esta clase.
+  // Aquí tenemos para ello este Factory Constructor.
+  factory YesNoModel.fromJsonMap(Map<String, dynamic> json) =>
+      YesNoModel(
+        // Y luego, de este mapa tendríamos que evaluar que propiedades son las que ocupamos.
+        // Con esto ya podemos usar notación de punto para evitar equivocarme al escribir.
+        answer: json['answer'],
+        forced: json['forced'],
+        image: json['image']
+    );
+}
+```
+
+Y ahora la gestión de la respuesta HTTP cambia a:
+
+```
+class GetYesNoAnswer {
+  final _dio = Dio();
+
+  Future<Message> getAnswer() async {
+    final response = await _dio.get('https://yesno.wtf/api');
+
+    final yesNoModel = YesNoModel.fromJsonMap(response.data);
+
+    // Podemos usar notación de punto.
+    return Message(
+      text: yesNoModel.answer,
+      fromWho: FromWho.hers,
+      imageUrl: yesNoModel.image,
+    );
+  }
+}
+```
+
 ## Temario
 
 - 01_dart_intro

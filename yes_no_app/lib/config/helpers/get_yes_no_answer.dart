@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:yes_no_app/domain/entities/message.dart';
+import 'package:yes_no_app/infrastructure/models/yes_no_model.dart';
 
 // Aunque se puede hacer una petición HTTP directamente con Dart, es necesario mucho código.
 // Al final vamos a acabar usando uno de dos paquetes:
@@ -17,10 +18,13 @@ class GetYesNoAnswer {
   Future<Message> getAnswer() async {
     final response = await _dio.get('https://yesno.wtf/api');
 
+    final yesNoModel = YesNoModel.fromJsonMap(response.data);
+
+    // Podemos usar notación de punto.
     return Message(
-      text: response.data['answer'],
+      text: yesNoModel.answer,
       fromWho: FromWho.hers,
-      imageUrl: response.data['image'],
+      imageUrl: yesNoModel.image,
     );
   }
 }
