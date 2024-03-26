@@ -21,10 +21,14 @@ class GetYesNoAnswer {
     final yesNoModel = YesNoModel.fromJsonMap(response.data);
 
     // Podemos usar notación de punto.
-    return Message(
-      text: yesNoModel.answer,
-      fromWho: FromWho.hers,
-      imageUrl: yesNoModel.image,
-    );
+    //
+    // Esto ya no hace falta porque usamos la creación de la instancia del archivo yes_no_model.dart
+    // return Message(
+    //   text: yesNoModel.answer,
+    //   fromWho: FromWho.hers,
+    //   imageUrl: yesNoModel.image,
+    // );
+
+    return yesNoModel.toMessageEntity();
   }
 }

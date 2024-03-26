@@ -389,6 +389,17 @@ class GetYesNoAnswer {
 }
 ```
 
+Notar que es muy fácil generar este Mapper porque son 3 campos.
+Podemos usar la extensión de VSCode `Paste JSON as Code` o ir a la web: `https://quicktype.io/`
+
+En Postman hacer la petición a la API y copiar la respuesta.
+
+En la web, seleccionar las opciones indicadas en la imagen y pegar la respuesta de Postman. Se ha cambiado el nombre del root a YesNoModel.
+
+![alt QuickType](./Images/03_Quicktype.png)
+
+Y como vemos, genera el código automáticamente.
+
 ## Temario
 
 - 01_dart_intro
