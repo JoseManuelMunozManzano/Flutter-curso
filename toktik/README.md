@@ -85,3 +85,11 @@ Notar que creamos un subdirectorio `discover` dentro de `screens`. Esto es porqu
 En la carpeta `presentation` creamos una carpeta `providers` y dentro un archivo `discover_provider.dart`.
 
 La problemática futura puede verse en ese fichero de provider.
+
+## Mapper - VideoPost - LocalVideo
+
+En la carpeta `lib` creamos una carpeta `infrastructure` y dentro una carpeta `models`.
+
+Más adelante veremos la separación entre modelos y mappers, pero por ahora lo vamos a hacer todo dentro de los models.
+
+Creamos el archivo `local_video_model.dart`. El objetivo de este model es que nos ayude a mapear como luce el archivo `shared/data/local_video_post.dart` a un VideoPost entity.
