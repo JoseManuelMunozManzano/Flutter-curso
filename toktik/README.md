@@ -75,3 +75,13 @@ Tal y como lo hemos indicado, con `videos/` se importan todos los videos que se 
 Cuando se incluyen assets, se recomienda cerrar la app completamente y volverla a ejecutar.
 
 NOTA: Los videos están cogidos de la página `https://www.pexels.com/search/videos/vertical/`
+
+## Provider y problemática futura
+
+En la carpeta `lib` creamos una carpeta `presentation`, dentro una carpeta `screens` y dentro una carpeta `discover`. El objetivo de discover es, dado nuestro Home Screen, ir descubriendo videos. En `discover` creamos un nuevo Widget llamado `discover_screen.dart`.
+
+Notar que creamos un subdirectorio `discover` dentro de `screens`. Esto es porque podemos tener varias páginas que estén relacionadas a esa característica.
+
+En la carpeta `presentation` creamos una carpeta `providers` y dentro un archivo `discover_provider.dart`.
+
+La problemática futura puede verse en ese fichero de provider.
