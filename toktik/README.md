@@ -93,3 +93,11 @@ En la carpeta `lib` creamos una carpeta `infrastructure` y dentro una carpeta `m
 Más adelante veremos la separación entre modelos y mappers, pero por ahora lo vamos a hacer todo dentro de los models.
 
 Creamos el archivo `local_video_model.dart`. El objetivo de este model es que nos ayude a mapear como luce el archivo `shared/data/local_video_post.dart` a un VideoPost entity.
+
+## Circular Progress y PageView
+
+Vamos a crear un Scroll genérico para reutilizar en diferentes screens.
+
+En la carpeta `presentation` creamos una carpeta `widgets` y dentro creamos la carpeta `shared`.
+
+Creamos el archivo `video_scrollable_view.dart`.

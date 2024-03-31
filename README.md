@@ -274,6 +274,12 @@ class _ChatView extends StatelessWidget {
     // Hacemos la referencia al provider, indicando la instancia del MultiProvider que necesito, que es ChatProvider.
     final chatProvider = context.watch<ChatProvider>();
 
+    // Otra forma más antigua de hacer lo mismo de arriba es:
+    // final otroProvider = Provider.of<DiscoverProvider>(context);
+    //
+    // Y si solo quisiéramos escuchar
+    // final otroProvider = Provider.of<DiscoverProvider>(context, listen: false);
+
     return SafeArea(
       ...
     )
@@ -456,6 +462,32 @@ Ejemplo con cascada:
 ```
 
 Puede verse que sirve para evitar tener que estar haciendo referencia constante al objeto.
+
+## PageView
+
+Es un Widget que nos permite hacer scroll a pantalla completa. Similar a un listado.
+
+Toma todo el espacio disponible en la pantalla o el espacio que se le esté asignando.
+
+```
+return PageView(
+  // Por defecto el movimiento es horizontal.
+  // Lo cambiamos para esta app a vertical.
+  scrollDirection: Axis.vertical,
+  // Para que funcione el scroll horizontal/vertical en Android.
+  physics: const BouncingScrollPhysics(),
+  // Para ir viendo estos colores, mover el ratón con el botón izquierdo pulsado en el dispositivo simulado, a la derecha
+  // y a izquierda (o arriba y abajo en este caso), para que cambie de color.
+  children: [
+    Container(color: Colors.red),
+    Container(color: Colors.blue),
+    Container(color: Colors.teal),
+    Container(color: Colors.yellow),
+    Container(color: Colors.pink),
+    Container(color: Colors.deepOrange),
+  ],
+);
+```
 
 ## Temario
 
