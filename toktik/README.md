@@ -131,3 +131,9 @@ Hay que instalar el paquete: `video_player`.
 Vamos a crear un Widget general llamado FullScreenPlayer que recibirá como parámetro un URL, con la idea de que sea genérico, ya que siempre será más fácil que otra app le pase una URL a tener que implementar un objeto como videoPost (lo que usa esta app) Esto es lo que se llama Open/Close, es decir, abierto a la expansión pero cerrado a la modificación.
 
 En la carpeta `widgets` creamos una carpeta `video` y dentro el archivo `fullscreen_player.dart`.
+
+## Gradiente de fondo
+
+Creamos un nuevo Widget relacionado al reproductor de video.
+
+Para ello, en la carpeta `/widgets/video` creamos un archivo `video_background.dart`.

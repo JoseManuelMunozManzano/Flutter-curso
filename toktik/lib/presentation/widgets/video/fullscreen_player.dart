@@ -1,5 +1,6 @@
 // Usamos snippet impm
 import 'package:flutter/material.dart';
+import 'package:toktik/presentation/widgets/video/video_background.dart';
 import 'package:video_player/video_player.dart';
 
 // Usamos snippet stlesw, pero luego lo transformamos a un StatefulWidget, tal y como indica
@@ -76,6 +77,10 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
               children: [
                 VideoPlayer(controller),
                 // Gradiente para poder ver mejor los textos blancos.
+                VideoBackground(
+                  stops: const [0.8, 1.0],
+                ),
+
                 // Texto
                 Positioned(
                   bottom: 50,
