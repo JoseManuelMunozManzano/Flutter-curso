@@ -231,12 +231,15 @@ Envolver archivo `main.dart` con nuestro Provider para crear un provider a nivel
 - Pulsar sobre Wrap with widget...
 - Cambiar el nombre a `MultiProvider`
 - Indicar el listado de providers. En nuestra app, como tenemos un provider que se encarga de notificar cuando hay cambios (ChangeNotifier), el provider que indicaremos es `ChangeNotifierProvider`, y este tiene una propiedad `create` que espera que hagamos la creación de la instancia inicial, que es `ChatProvider()`
+  - Por defecto, el comportamiento natural de los Change NotifierProvider es que, hasta que no sea necesario, Provider NO creará la instancia. Es decir, por defecto son cargados de manera perezosa. Indicando la propiedad lazy en false, evitamos esa carga perezosa y, por tanto, se crea la intancia: `lazy: false,` Puede ser conveniente cuando sabemos que hay una carga asíncrona de data que el usuario siempre va a necesitar.
 
 ```
 @override
 Widget build(BuildContext context) {
   return MultiProvider(
     providers: [
+      // Si queremos que se cree la instancia.
+      // lazy: false,
       // El argumento es el context, pero si no se va a usar se suele indicar _
       ChangeNotifierProvider(create: (_) => ChatProvider())
     ],
@@ -415,6 +418,44 @@ Sin embargo, dichos recursos no van a estar disponibles en nuestra app hasta que
 Tal y como lo hemos indicado, con `videos/` se importan todos los videos que se encuentren en esa carpeta, pero NO LOS SUBDIRECTORIOS. Si hubiera subdirectorios, hay que indicarlos.
 
 Cuando se incluyen assets, se recomienda cerrar la app completamente y volverla a ejecutar.
+
+## Operador de cascada
+
+Lo vemos en el proyecto `toktik`.
+
+En la parte `DiscoverProvider()..loadNextPage()`, a `..` se le llama operador de cascada.
+
+```
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => DiscoverProvider()..loadNextPage())],
+      child: MaterialApp(
+        title: 'TokTik',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme().getTheme(),
+        home: const DiscoverScreen()
+      ),
+    );
+  }
+```
+
+Ejemplo sin cascada:
+
+```
+  myObject.someMethod();
+  myObject.someOtherMethod();
+```
+
+Ejemplo con cascada:
+
+```
+  myObject
+    ..someMethod();
+    ..someOtherMethod();
+```
+
+Puede verse que sirve para evitar tener que estar haciendo referencia constante al objeto.
 
 ## Temario
 
