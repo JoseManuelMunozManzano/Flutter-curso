@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:toktik/domain/entities/video_post.dart';
 import 'package:toktik/presentation/widgets/shared/video_buttons.dart';
+import 'package:toktik/presentation/widgets/video/fullscreen_player.dart';
 
 // Usamos snippet stlesw
 class VideoScrollableView extends StatelessWidget {
@@ -32,6 +33,14 @@ class VideoScrollableView extends StatelessWidget {
         return Stack(
           children: [
             // Video Player + gradiente
+            // Tamaño específico de la pantalla de video. Usamos expand para que expanda a toda la pantalla.
+            // Sin el, puede que el tamaño no sea el esperado por nosotros.
+            SizedBox.expand(
+              child: FullScreenPlayer(
+                caption: videoPost.caption,
+                videoUrl: videoPost.videoUrl,
+              ),
+            ),
 
             // Botones
             // Por defecto, todos los Widgets se colocan en la posición 0,0 del dispositivo (arriba a la izquierda)

@@ -119,3 +119,15 @@ Para trabajar con formateo de números instalamos un paquete llamado `intl`
 Instalamos un paquete llamado `animate_do`.
 
 https://pub.dev/packages/animate_do
+
+## Video Player
+
+https://docs.flutter.dev/cookbook/plugins/play-video
+
+El objetivo es reproducir el video, pero hay más cosas que aparecen en la documentación arriba indicada, como permisos que hay que dar en distintos archivos para poder reproducir según qué videos, o saber que los videos deben provenir de una URL https.
+
+Hay que instalar el paquete: `video_player`.
+
+Vamos a crear un Widget general llamado FullScreenPlayer que recibirá como parámetro un URL, con la idea de que sea genérico, ya que siempre será más fácil que otra app le pase una URL a tener que implementar un objeto como videoPost (lo que usa esta app) Esto es lo que se llama Open/Close, es decir, abierto a la expansión pero cerrado a la modificación.
+
+En la carpeta `widgets` creamos una carpeta `video` y dentro el archivo `fullscreen_player.dart`.

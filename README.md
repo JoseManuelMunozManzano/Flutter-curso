@@ -225,6 +225,8 @@ Formas de instalar paquetes:
     - Seleccionar `Pubspec Assist: Add/update dependencies`
     - Escribir el nombre del paquete `provider`
 
+Siempre que instalemos un paquete, deberíamos revisar si hay que tener en cuenta algo para que funcione en iOS, Android, Web...
+
 Envolver archivo `main.dart` con nuestro Provider para crear un provider a nivel global de nuestra aplicación:
 
 - Situarnos sobre MaterialApp y pulsar Cmd+.
@@ -562,6 +564,10 @@ class HumanFormats {
 }
 ```
 
+## Truco para saber lo que ocupa un Widget en pantalla
+
+Se suele usar `Placerholder()`, cuando veremos una X en el espacio reservado, o `Container(color: Colors.red)` y veremos ese color en el espacio reservado.
+
 ## Animaciones en Flutter
 
 Instalamos un paquete llamado `animate_do`.
@@ -577,6 +583,18 @@ https://www.youtube.com/watch?v=oreOdtQ124M
 https://www.youtube.com/watch?v=QLUI3Pxw1Z8
 
 https://www.youtube.com/watch?v=w698MRVTB2E
+
+## Video Player
+
+https://docs.flutter.dev/cookbook/plugins/play-video
+
+Para visualizar videos, instalamos el paquete `video_player`.
+
+Siempre que instalemos un paquete, deberíamos revisar si hay que tener en cuenta algo para que funcione en iOS, Android, Web...
+
+Por ejemplo, para cargar videos de Internet en Android, hay que añadir el siguiente permiso en `AndroidManifest.xml`
+
+`<uses-permission android:name="android.permission.INTERNET"/>`
 
 ## Temario
 
