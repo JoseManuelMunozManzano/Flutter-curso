@@ -52,26 +52,38 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
     return FutureBuilder(
       future: controller.initialize(),
       // El snapshot es el estado del future de arriba.
-      builder: (context, snapshot) {        
+      builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return const Center(child: CircularProgressIndicator(strokeWidth: 2));
         }
 
         // Si el estado es done, entonces muestro el video.
-        return AspectRatio(
-          aspectRatio: controller.value.aspectRatio,
-          // Como vamos a tener un gradiente y botones de pausa y play al video, usaremos un Stack.
-          child: Stack(
-            children: [
-              VideoPlayer(controller),
-              // Gradiente para poder ver mejor los textos blancos.
-              // Texto
-              Positioned(
-                bottom: 50,
-                left: 20,
-                child: _VideoCaption(caption: widget.caption,)
-              ),
-            ],
+
+        // Si pulso en la pantalla entonces se pausa. Si vuelvo a pulsar se reproduce el video.
+        return GestureDetector(
+          onTap: () {
+            if (controller.value.isPlaying) {
+              controller.pause();
+              return;
+            }
+
+            controller.play();
+          },
+          child: AspectRatio(
+            aspectRatio: controller.value.aspectRatio,
+            // Como vamos a tener un gradiente y botones de pausa y play al video, usaremos un Stack.
+            child: Stack(
+              children: [
+                VideoPlayer(controller),
+                // Gradiente para poder ver mejor los textos blancos.
+                // Texto
+                Positioned(
+                  bottom: 50,
+                  left: 20,
+                  child: _VideoCaption(caption: widget.caption,)
+                ),
+              ],
+            ),
           ),
         );
       },

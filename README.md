@@ -643,6 +643,28 @@ Pasos del ciclo de vida:
 - initState() - Creación del state. Siempre hay que ejecutar lo primero `super.initState();`
 - dispose() - Cuando se destruye el Widget. Siempre hay que ejecutar lo último `super.dispose();`
 
+## GestureDetector()
+
+Es un Widget que tiene muchas funciones incorporadas para tratar el tema de gestos sobre la pantalla, como pulsar, pellizcar...
+
+Ejemplo:
+
+```
+return GestureDetector(
+
+  // Si pulso en la pantalla entonces se pausa un video. Si vuelvo a pulsar se reproduce el video.
+  onTap: () {
+    if (controller.value.isPlaying) {
+      controller.pause();
+      return;
+    }
+
+    controller.play();
+  },
+  ...
+);
+```
+
 ## Temario
 
 - 01_dart_intro
