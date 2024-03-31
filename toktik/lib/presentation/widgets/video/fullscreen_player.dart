@@ -52,9 +52,49 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
     return FutureBuilder(
       future: controller.initialize(),
       // El snapshot es el estado del future de arriba.
-      builder: (context, snapshot) {
-        return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+      builder: (context, snapshot) {        
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+        }
+
+        // Si el estado es done, entonces muestro el video.
+        return AspectRatio(
+          aspectRatio: controller.value.aspectRatio,
+          // Como vamos a tener un gradiente y botones de pausa y play al video, usaremos un Stack.
+          child: Stack(
+            children: [
+              VideoPlayer(controller),
+              // Gradiente para poder ver mejor los textos blancos.
+              // Texto
+              Positioned(
+                bottom: 50,
+                left: 20,
+                child: _VideoCaption(caption: widget.caption,)
+              ),
+            ],
+          ),
+        );
       },
+    );
+  }
+}
+
+// Usamos snippet stlesw
+class _VideoCaption extends StatelessWidget {
+
+  final String caption;
+
+  const _VideoCaption({super.key, required this.caption});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final titleStyle = Theme.of(context).textTheme.titleLarge;
+
+    return SizedBox(
+      // Por 0.6 para que no llegue a tomar el espacio donde tenemos esos botones
+      width: size.width * 0.6,
+      child: Text(caption, maxLines: 2, style: titleStyle),
     );
   }
 }
