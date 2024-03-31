@@ -101,3 +101,9 @@ Vamos a crear un Scroll genérico para reutilizar en diferentes screens.
 En la carpeta `presentation` creamos una carpeta `widgets` y dentro creamos la carpeta `shared`.
 
 Creamos el archivo `video_scrollable_view.dart`.
+
+## Botones de like y views
+
+Como en el archivo `video_scrollable_view.dart` hay mucha información, el Widget con los botones lo creamos en su propio archivo.
+
+Dentro de la carpeta `shared` creamos el archivo `video_buttons.dart`.

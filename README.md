@@ -489,6 +489,58 @@ return PageView(
 );
 ```
 
+Y dinámico, con ejemplo de Stack y Positioned:
+
+```
+// Con builder construimos el PageView bajo demanda.
+// En vez de tener en children todo lo que queremos renderizar, solo tendremos lo que realmente
+// necesitamos (dinámico) en un itemBuilder.
+return PageView.builder(
+  scrollDirection: Axis.vertical,
+  physics: const BouncingScrollPhysics(),
+  // Los elementos que tengo.
+  itemCount: videos.length,
+  itemBuilder: (context, index) {
+    final VideoPost videoPost = videos[index];
+
+    // Construimos un stack, que permite colocar sus hijos unos sobre otros. Esto nos permite
+    // alinear y posionarlos en relación al espacio que les da el padre.
+    // En el ejemplo tenemos tres Widgets: De fondo el video, un gradiente y botones de manejo.
+    return Stack(
+      children: [
+        // Video Player + gradiente
+
+        // Botones
+        // Por defecto, todos los Widgets se colocan en la posición 0,0 del dispositivo (arriba a la izquierda)
+        // Para colocarlo en la posición que queramos, debemos envolver nuestro Widget en un Widget llamado Positioned.
+        // Positioned trabaja junto al Stack y nos permite definir la posición del Widget hijo.
+        Positioned(
+          bottom: 40,
+          right: 20,
+          child: VideoButtons(video: videoPost)
+        ),
+      ],
+    );
+  } ,
+);
+```
+
+## Positioned
+
+Por defecto, todos los Widgets se colocan en la posición 0,0 del dispositivo (arriba a la izquierda)
+
+Para colocarlo en la posición que queramos, debemos envolver nuestro Widget en un Widget llamado Positioned.
+
+Positioned trabaja junto al Stack y nos permite definir la posición del Widget hijo.
+
+```
+Positioned(
+  bottom: 40,
+  right: 20,
+  child: VideoButtons(video: videoPost)
+),
+```
+
 ## Temario
 
 - 01_dart_intro
