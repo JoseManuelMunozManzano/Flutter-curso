@@ -1,5 +1,6 @@
 // Usamos snippet impm
 import 'package:flutter/material.dart';
+import 'package:toktik/config/helpers/human_formats.dart';
 import 'package:toktik/domain/entities/video_post.dart';
 
 // Usamos snippet stlesw
@@ -13,7 +14,7 @@ class VideoButtons extends StatelessWidget {
     return Column(
       children: [
         _CustomIconButton(value: video.likes, iconColor: Colors.red, iconData: Icons.favorite,),
-        _CustomIconButton(value: video.likes, iconData: Icons.remove_red_eye_outlined,),
+        _CustomIconButton(value: video.views, iconData: Icons.remove_red_eye_outlined,),
       ],
     );
   }
@@ -37,9 +38,12 @@ class _CustomIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(onPressed: () {}, icon: Icon(iconData, color: color, size: 30,)),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(iconData, color: color, size: 30,)
+        ),
 
-        Text('$value'),
+        Text(HumanFormats.humanReadableNumber(value.toDouble())),
       ],
     );
   }

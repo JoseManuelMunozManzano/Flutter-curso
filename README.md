@@ -541,6 +541,27 @@ Positioned(
 ),
 ```
 
+## Formateo de números
+
+Instalamos un paquete llamado `intl`.
+
+Ejemplo de uso:
+
+```
+class HumanFormats {
+
+  static String humanReadableNumber(double number) {
+
+    final formatterNumber = NumberFormat.compactCurrency(
+      decimalDigits: 0,
+      symbol: '',
+    ).format(number);
+
+    return formatterNumber;
+  }
+}
+```
+
 ## Temario
 
 - 01_dart_intro

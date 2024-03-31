@@ -107,3 +107,9 @@ Creamos el archivo `video_scrollable_view.dart`.
 Como en el archivo `video_scrollable_view.dart` hay mucha información, el Widget con los botones lo creamos en su propio archivo.
 
 Dentro de la carpeta `shared` creamos el archivo `video_buttons.dart`.
+
+## Formateo de números
+
+En la carpeta `config` creamos una nueva carpeta `helpers`, y dentro, creamos el archivo `human_formats.dart`.
+
+Para trabajar con formateo de números instalamos un paquete llamado `intl`
