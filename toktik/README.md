@@ -113,3 +113,9 @@ Dentro de la carpeta `shared` creamos el archivo `video_buttons.dart`.
 En la carpeta `config` creamos una nueva carpeta `helpers`, y dentro, creamos el archivo `human_formats.dart`.
 
 Para trabajar con formateo de números instalamos un paquete llamado `intl`
+
+## Animaciones en Flutter
+
+Instalamos un paquete llamado `animate_do`.
+
+https://pub.dev/packages/animate_do

@@ -562,6 +562,22 @@ class HumanFormats {
 }
 ```
 
+## Animaciones en Flutter
+
+Instalamos un paquete llamado `animate_do`.
+
+La web del paquete es: https://pub.dev/packages/animate_do
+
+Y distintos videos de YouTube con la funcionalidad:
+
+https://www.youtube.com/watch?v=48jIUnc1TQo&list=PLCKuOXG0bPi1E-uXVd4j2iLqkbTYaHARX&index=2
+
+https://www.youtube.com/watch?v=oreOdtQ124M
+
+https://www.youtube.com/watch?v=QLUI3Pxw1Z8
+
+https://www.youtube.com/watch?v=w698MRVTB2E
+
 ## Temario
 
 - 01_dart_intro
