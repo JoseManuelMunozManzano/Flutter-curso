@@ -415,7 +415,7 @@ Y como vemos, genera el código automáticamente.
 
 En la carpeta raiz del proyecto creamos una carpeta `assets`, es decir, recursos estáticos, donde colocamos las carpetas con dichos recursos. Los recursos estáticos son parte de la app, es decir, irán en el bundle inicial de la aplicación y estarán disponibles directamente en la memoria del dispositivo.
 
-Sin embargo, dichos recursos no van a estar disponibles en nuestra app hasta que lo indiquemos en el fichero pubspec.yaml, en la parte donde indica como añadir assets a la aplicación, y lo dejamos así.
+Sin embargo, dichos recursos no van a estar disponibles en nuestra app hasta que lo indiquemos en el fichero `pubspec.yaml`, en la parte donde indica como añadir `assets` a la aplicación, y lo dejamos así.
 
 ```
   # To add assets to your application, add an assets section, like this:
@@ -595,6 +595,53 @@ Siempre que instalemos un paquete, deberíamos revisar si hay que tener en cuent
 Por ejemplo, para cargar videos de Internet en Android, hay que añadir el siguiente permiso en `AndroidManifest.xml`
 
 `<uses-permission android:name="android.permission.INTERNET"/>`
+
+## Acceso a propiedades del StatefulWidget en la clase State.
+
+Dado el StatefulWidget siguiente:
+
+```
+class FullScreenPlayer extends StatefulWidget {
+  final String videoUrl;
+  final String caption;
+
+  const FullScreenPlayer({
+    super.key,
+    required
+    this.videoUrl,
+    required this.caption
+  });
+
+  @override
+  State<FullScreenPlayer> createState() => _FullScreenPlayerState();
+}
+```
+
+Y su estado, para poder acceder a una propiedad, como por ejemplo caption, usaremos widget.caption.
+
+```
+class _FullScreenPlayerState extends State<FullScreenPlayer> {
+  @override
+  Widget build(BuildContext context) {
+
+    // Usamos widget para acceder a las propiedades del StatefulWidget.
+    widget.caption;
+
+    return const Placeholder();
+  }
+}
+```
+
+## Ciclos de Vida
+
+Los StatelessWidgnet NO tienen ciclo de vida. Se crean siempre que haga falta.
+
+Los StatefulWidget SI tienen ciclo de vida.
+
+Pasos del ciclo de vida:
+
+- initState() - Creación del state. Siempre hay que ejecutar lo primero `super.initState();`
+- dispose() - Cuando se destruye el Widget. Siempre hay que ejecutar lo último `super.dispose();`
 
 ## Temario
 
