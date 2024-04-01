@@ -23,14 +23,6 @@ class DiscoverProvider extends ChangeNotifier {
   // Esto lo acabaremos resolviendo.
   Future<void> loadNextPage() async {
 
-    // Simular comunicación asíncrona de 2 sg.
-    // Cuando pasen suponemos que tenemos los videos, los cargamos y los añade a la lista de videos. 
-    await Future.delayed(const Duration(seconds: 2));
-
-    final List<VideoPost> newVideos = videoPosts.map(
-      (video) => LocalVideoModel.fromJson(video).toVideoPostEntity()
-    ).toList();
-
     videos.addAll(newVideos);
     initialLoading = false;
 

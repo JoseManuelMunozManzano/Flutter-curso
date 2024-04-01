@@ -14,8 +14,8 @@ Nosotros tenemos que priorizar que nuestra app no sufra muchos cambios cuando ca
 
 Vamos a usar dos conceptos fundamentales que son parte de una arquitectura limpia:
 
-- Data Sources: Lugar de donde vamos a obtener los datos. Puede ser que tengamos datos locales, o que vengan desde una conexión Http, Https, o de distintos URLs...
-- Repository: Nosotros no vamos a tratar directamente con los Data Sources. Vamos a tener una capa de repositorio que es el que va a hablar con esa fuente de datos. Cuando creamos el repositorio le mandamos un Data Source y el se encarga de llamar a los métodos que tenga nuestro Data Source. Con esto conseguimos una capa de protección y, si cambia el Data Source, no vamos a tener que cambiar nuestra app.
+- DataSource: Lugar de donde vamos a obtener los datos. Puede ser que tengamos datos locales, o que vengan desde una conexión Http, Https, o de distintos URLs...
+- Repository: Nosotros no vamos a tratar directamente con los DataSources. Vamos a tener una capa de repositorio que es el que va a hablar con esa fuente de datos. Cuando creamos el repositorio le mandamos la clase abstracta de DataSource y el se encarga de llamar a los métodos que tenga nuestro DataSource. Con esto conseguimos una capa de protección y, si cambia el DataSource, no vamos a tener que cambiar nuestra app.
 
 ## Uso de arquitectura limpia
 
@@ -40,3 +40,33 @@ Se ha copiado el proyecto `toktik` y se le ha dado el nombre `toktik_con_reposit
 - Pulsar F5
 
 NOTA: Se recomienda probar esta aplicación en dispositivo físico porque el emulador puede tener ciertos problemas a la hora de reproducir ciertos videos.
+
+## Datasource y Repositorios
+
+Vamos a crear unas clases abstractas que nos van a servir para identificar clases que van a extender o a implementar esas clases abstractas.
+
+A nuestro Provider no le tiene que importar de donde vienen los videos. Al final del día, vengan de donde vengan, lo único que tiene que hacer este Provider es devolver una lista de VideoPost.
+
+Con esta idea, aplicamos también el principio de Responsabilidad Única, por la que la clase DiscoverProvider sólo es responsable de pasar una lista de VideoPost a los Widgets. No tiene que procesarlos ni convertirlos ni mapearlos.
+
+En la carpeta `domain` creamos dos carpetas, `datasources` y `repositories`.
+
+El DataSource indica de dónde vamos a tomar los datos. Al final del día vamos a tener videos locales, videos web, videos del staging y videos que pueden venir de la aplicación de producción. Pero, en el dominio, solo vamos a crear la clase abstracta que va gobernar las implementaciones de los origenes de datos.
+
+Creamos, dentro de `datasources` el archivo `video_posts_datasource.dart`.
+
+Creamos, dentro de `repositories` el archivo `video_posts_repository.dart`.
+
+## Implementaciones
+
+En la carpeta `infrastructure`, a la que en otros sitios también la llaman data, creamos las carpetas `datasources` y `repositories`.
+
+Es aquí donde vamos a realizar las implementaciones de las clases abstractas.
+
+Como ahora mismo solo tenemos videos locales, dentro de `datasources` vamos a crear la implementación `local_video_datasource_impl.dart`.
+
+Si, en algún momento, nuestros videos vinieran de la web, podríamos crear la implementación web_video_datasource_impl.dart, por ejemplo.
+
+En la carpeta `repositories` creamos el archivo de implementación `video_posts_repository_impl.dart`.
+
+Notar que, para el nombre del repositorio, no se hace referencia a si los videos son locales, vienen de la web, etc.
