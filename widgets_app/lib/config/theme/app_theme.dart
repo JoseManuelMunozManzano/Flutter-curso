@@ -29,5 +29,9 @@ class AppTheme {
   ThemeData getTheme() => ThemeData(
     useMaterial3: true,   // esto ya no haría falta
     colorSchemeSeed: colorList[selectedColor],
+    // Si tengo muchos appBar y quiero que todos tengan el mismo alineado
+    appBarTheme: const AppBarTheme(
+      centerTitle: false,
+    )
   );
 }

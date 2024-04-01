@@ -43,3 +43,15 @@ El objetivo es dejar las bases necesarias para empezar a trabajar en las próxim
 ## Tema y estilos de la aplicación
 
 En la carpeta `lib` creamos la carpeta `config` y dentro la carpeta `theme`. En esta última carpeta creamos el archivo `app_theme.dart`.
+
+## Opciones de nuestra aplicación
+
+Las opciones del menú pueden venir de cualquier lugar, como una petición Http, de un archivo JSON...
+
+Para esta app las vamos a tener hardcodeadas.
+
+En la carpeta `config` vamos a crear la carpeta `menu` y dentro el archivo `menu_items.dart`.
+
+¿Dónde vamos a usar nuestro MenuItem? Basado en nuestro list de MenuItem iremos creando nuestra pantalla.
+
+Como no queremos que nuestro main tenga toda la información de la aplicación, en la carpeta `lib` creamos la carpeta `presentation`, dentro la carpeta `screens`, dentro la carpeta `home` y dentro el archivo `home_screen.dart`.
