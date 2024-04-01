@@ -709,3 +709,4 @@ return Positioned.fill(
 - toktik
 - toktik_con_repositorios
   - De aquí en adelante vamos a seguir trabajando usando las bases de la arquitectura limpia (salvo los Casos de Uso)
+- widgets_app
