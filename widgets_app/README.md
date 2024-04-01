@@ -40,4 +40,6 @@ El objetivo es dejar las bases necesarias para empezar a trabajar en las próxim
 - Seleccionar el dispositivo iOS
 - Pulsar F5 para probar que funciona
 
-NOTA: Se recomienda probar esta aplicación en dispositivo físico porque el emulador puede tener ciertos problemas a la hora de reproducir ciertos videos.
+## Tema y estilos de la aplicación
+
+En la carpeta `lib` creamos la carpeta `config` y dentro la carpeta `theme`. En esta última carpeta creamos el archivo `app_theme.dart`.
