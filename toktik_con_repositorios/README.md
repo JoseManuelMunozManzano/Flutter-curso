@@ -25,6 +25,20 @@ El objetivo de usar una arquitectura limpia no es hacer que nuestra app sea infa
 
 A costo de crear más clases, más archivos y más código, vamos a crear diferentes capas que van a impedir que nuestra app sufra cambios, que sea más fácil de modificar y de mantener.
 
+Usando arquitectura limpia, desde los providers se acaba llamando a los casos de uso (usecases), que son las reglas de negocio de la institución.
+
+En este curso no se ven casos de uso. El objetivo de este curso, con respecto a la arquitectura limpia, es dar las bases para que sea más amigable entrar en ella.
+
+¿Cómo sería el flujo de una arquitectura limpia?
+
+1. UI
+2. Presentación (gestores de estado, como Provider)
+3. Casos de uso
+4. Repositorios y datasources
+5. Información regresa al UI
+
+Como se ha dicho, en este curso se ven todos los puntos menos el de Casos de uso.
+
 ## Creación de proyecto desde VSCode
 
 Se ha copiado el proyecto `toktik` y se le ha dado el nombre `toktik_con_repositorios`.
@@ -70,3 +84,11 @@ Si, en algún momento, nuestros videos vinieran de la web, podríamos crear la i
 En la carpeta `repositories` creamos el archivo de implementación `video_posts_repository_impl.dart`.
 
 Notar que, para el nombre del repositorio, no se hace referencia a si los videos son locales, vienen de la web, etc.
+
+## Usando el repositorio y origen de datos
+
+En la carpeta `providers`, archivo `discover_provider.dart` vamos a llamar a nuestra implementación del repositorio.
+
+En `main.dart` vamos a tener que indicar, en DiscoverProvider, el nombre de la implementación concreta del repositorio y del DataSource.
+
+Es en `main.dart` donde, si cambiamos el DataSource o el Repository, cambiamos eso, sin tener que tocar nada más de la aplicación.
