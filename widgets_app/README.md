@@ -85,3 +85,9 @@ En la carpeta `screens` creamos el archivo `screens.dart`.
 Este archivo se encarga de exportar todos los screens.
 
 Con esto los archivos quedan separados, pero los cogemos de un único lugar, lo que disminuye las importaciones en otros fuentes.
+
+## Diferentes botones pre-configurados
+
+Flutter ya viene con varios tipos de botones.
+
+En el fuente `buttons_screen.dart`, como no queremos que todo el código quede ahí, donde se indica `Placeholder()` pulsamos `Cmd+.` y seleccionamos `Extract Widget`. Le ponemos el nombre `_ButtonsView`. Todo esto con el objetivo de ser ordenados.

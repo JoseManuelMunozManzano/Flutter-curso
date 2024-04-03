@@ -878,6 +878,24 @@ export 'package:widgets_app/presentation/screens/cards/cards_screen.dart';
 export 'package:widgets_app/presentation/screens/home/home_screen.dart';
 ```
 
+## Truco para saber cuánto ocupan los Widgets en pantalla
+
+Envolver con un DecoratedBox y decorar con un color de fondo.
+
+Por ejemplo:
+
+```
+return SizedBox(
+  child: DecoratedBox(
+    decoration: const BoxDecoration(color: Colors.green),
+
+    child: Wrap(
+      ...
+    ),
+  ),
+);
+```
+
 ## Temario
 
 - 01_dart_intro
