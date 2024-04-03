@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 // Creamos un StatelessWidget usando el snippet stlesw
 class CardsScreen extends StatelessWidget {
+  
+  static const name = 'cards_screen';
+
   const CardsScreen({super.key});
 
   @override

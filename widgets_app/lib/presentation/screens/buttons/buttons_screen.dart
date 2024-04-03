@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 // Creamos un StatelessWidget usando el snippet stlesw
 class ButtonsScreen extends StatelessWidget {
+  
+  static const name = 'buttons_screen';
+
   const ButtonsScreen({super.key});
 
   @override

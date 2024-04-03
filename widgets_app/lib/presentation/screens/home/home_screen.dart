@@ -2,9 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/presentation/screens/cards/cards_screen.dart';
 
 // Usamos el snippet stlesw para crear un StatelessWidget.
 class HomeScreen extends StatelessWidget {
+
+  // Esta propiedad estática y constante sirve para definir el nombre de la ruta en la navegación
+  static const name = 'home_screen';
+
   const HomeScreen({super.key});
 
   @override
@@ -64,7 +69,7 @@ class _CustomListTile extends StatelessWidget {
 
         // NAVEGACION
         //
-        // Forma 1
+        // Forma 1 propia de Flutter
         // push() hay que entenderlo como que va a crear un Stack de tarjetas.
         // Tengo una tarjeta, y con push() pongo encima otra y con push() pongo encima otra...
         // Y con pop() las voy retirando en sentido LIFO
@@ -78,18 +83,28 @@ class _CustomListTile extends StatelessWidget {
         //   ),
         // );
         
-        // Forma 2
+        // Forma 2 propia de Flutter
         // Y para usar los nombres de rutas:
         // Navigator.pushNamed(context, menuItem.link);
         // Esta otra opción es posible:
         // Navigator.of(context).pushNamed(menuItem.link);
 
-        // Forma 3
+        // Forma 3 propia de go_router
         // Pero ninguna de estas dos técnicas se va a usar. Vamos a usar go_router.
         // go_router expande la funcionalidad del context, por ejemplo, context.go(), por lo que
         // podemos usar el context para la navegación.
         // NOTA: Indicar también que la funcionalidad Navigator.of(context).push() sigue funcionando.
+        //
         context.push(menuItem.link);
+
+        // Forma 3 pero usando rutas con nombre
+        // Solo podemos ir a esa ruta.
+        // context.pushNamed(CardsScreen.name);
+        // Para usar push por cualquier nombre, nuestros items en menu_items.dart (class MenuItem) deberían tener
+        // el nombre de la ruta a la cual ir.
+        // Abajo se vería el ejemplo, pero NO existe esa propiedad nombreRuta, es un ejemplo.
+        // context.push(menuItem.nombreRuta);
+
 
       },
     );

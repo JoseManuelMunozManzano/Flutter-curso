@@ -710,7 +710,7 @@ El objetivo principal de go_router es que nos haga fácil y explicativo la maner
 
 https://pub.dev/packages/go_router y pulsar en `API Reference`.
 
-- Forma 1:
+- Forma 1, propia de Flutter:
 
 ```
 onTap: () {
@@ -729,7 +729,7 @@ onTap: () {
 },
 ```
 
-- Forma 2:
+- Forma 2, propia de Flutter:
 
 ```
 // En main.dart definimos las rutas.
@@ -766,6 +766,8 @@ onTap: () {
 - Instalar el paquete `go_router` usando `PubSpec Assist`
 - Las rutas se crean con la misma sintaxis que se usa en programación web
 - go_router expande la funcionalidad del context, por ejemplo, context.go(), por lo que podemos usar el context para la navegación
+- Indicar que todo lo que es el `Navigator` de Flutter sigue funcionando
+- En este ejemplo de usa el path para la navegación
 
 ```
 // Fuente app_router.dart
@@ -810,6 +812,54 @@ onTap: () {
   // NOTA: Indicar también que la funcionalidad Navigator.of(context).push() sigue funcionando.
 
   context.push(menuItem.link);
+},
+
+```
+
+## go_router usando rutas con nombre
+
+En vez del path, podemos usar rutas con nombre para realizar la navegación.
+
+https://pub.dev/documentation/go_router/latest/topics/Named%20routes-topic.html
+
+No es que sea mejor una que la otra, podemos usar navegación por `path` o por `name`, la que nos venga mejor.
+
+Ejemplo:
+
+```
+// Fuente app_router.dart
+import 'package:go_router/go_router.dart';
+import 'package:widgets_app/presentation/screens/screens.dart';
+
+final appRouter = GoRouter(
+  initialLocation: '/',
+  routes: [
+    GoRoute(
+      path: '/',
+
+      // Indicando name, podemos hacer que la navegación sea por nombre.
+      // Lo que se ha hecho es, en cada Screen, indicar una propiedad estática con el nombre.
+      name: HomeScreen.name,
+
+      builder: (context, state) => const HomeScreen(),
+    ),
+
+    ...
+  ],
+);
+
+// En home_screen.dart
+class HomeScreen extends StatelessWidget {
+
+  // Esta propiedad estática y constante sirve para definir el nombre de la ruta en la navegación
+  static const name = 'home_screen';
+
+  ...
+}
+
+// Y en home_screen.dart, más abajo, en el onTap()
+onTap: () {
+  context.pushNamed(CardsScreen.name);
 },
 
 ```
