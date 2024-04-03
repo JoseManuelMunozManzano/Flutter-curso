@@ -91,3 +91,11 @@ Con esto los archivos quedan separados, pero los cogemos de un único lugar, lo 
 Flutter ya viene con varios tipos de botones.
 
 En el fuente `buttons_screen.dart`, como no queremos que todo el código quede ahí, donde se indica `Placeholder()` pulsamos `Cmd+.` y seleccionamos `Extract Widget`. Le ponemos el nombre `_ButtonsView`. Todo esto con el objetivo de ser ordenados.
+
+## Botón personalizado
+
+Vamos a hacer un botón desde cero, estilizado con la apariencia que nos convenga y que sea reutilizable en distintas apps.
+
+Lo hacemos en el archivo `buttons_screen.dart`.
+
+Se podría crear también en la carpeta de `widgets`, recibiendo argumentos del onPress, el texto o el icono que queremos mostrar...

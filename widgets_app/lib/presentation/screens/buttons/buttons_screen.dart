@@ -84,7 +84,7 @@ class _ButtonsView extends StatelessWidget {
                 label: const Text('Text Icon')
               ),
 
-              // TODO: custom button
+              const CustomButton(),
 
               IconButton(onPressed: () {}, icon: const Icon(Icons.app_registration_rounded)),
 
@@ -128,3 +128,32 @@ class _ButtonsView extends StatelessWidget {
 // De nuevo, esto no solo les sirve para IconButtons, sino para TextInputFields,
 //  Switchs, etc. Básicamente cualquier widget que tenga un
 //  MaterialStateProperty<Color> como tipo de color.
+
+
+// Creamos un StatelessWidget usando el snippet stlesw
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Material(
+      color: colors.primary,
+      // Se puede usar este borderRadius o envolver Material en un Widget ClipRRect e indicar la misma sentencia que vemos abajo.
+      borderRadius: BorderRadius.circular(20),
+      // InkWell es como un GestureDetector, pero reacciona al Splash Screen (un fondo
+      //simple -generalmente blanco o del color principal de la aplicación – junto 
+      //con el logotipo de nuestra aplicación y un breve texto)
+      child: InkWell(
+        // Solo haciendo el onTap, al pulsar en el icono se ve como una luz que se mueve.
+        // Recordar que si se indica valor null, el botón estaría deshabilitado.
+        onTap: () {},
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Text('Hola Mundo', style: TextStyle(color: Colors.white),),
+        ),
+      ),
+    );
+  }
+}

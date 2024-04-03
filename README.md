@@ -14,6 +14,13 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 [Flutter Cheat Seet](./Cheat-sheet/flutter-cheat-sheet.pdf)
 
+- Para que se vean unas flechas que conectan los distintos child en VSCode, ir a la configuración de usuario:
+
+```
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true
+```
+
 ## Qué es Flutter
 
 SDK portable - Open source framework - UI Widget Library
@@ -894,6 +901,37 @@ return SizedBox(
     ),
   ),
 );
+```
+
+## Botón personalizado
+
+```
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Material(
+      color: colors.primary,
+      // Se puede usar este borderRadius o envolver Material en un Widget ClipRRect e indicar la misma sentencia que vemos abajo.
+      borderRadius: BorderRadius.circular(20),
+      // InkWell es como un GestureDetector, pero reacciona al Splash Screen (un fondo
+      //simple -generalmente blanco o del color principal de la aplicación – junto
+      //con el logotipo de nuestra aplicación y un breve texto)
+      child: InkWell(
+        // Solo haciendo el onTap, al pulsar en el icono se ve como una luz que se mueve.
+        // Recordar que si se indica valor null, el botón estaría deshabilitado.
+        onTap: () {},
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Text('Hola Mundo', style: TextStyle(color: Colors.white),),
+        ),
+      ),
+    );
+  }
+}
 ```
 
 ## Temario
