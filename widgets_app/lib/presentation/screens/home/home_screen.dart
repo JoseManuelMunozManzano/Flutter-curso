@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
-import 'package:widgets_app/presentation/screens/cards/cards_screen.dart';
 
 // Usamos el snippet stlesw para crear un StatelessWidget.
 class HomeScreen extends StatelessWidget {
@@ -104,8 +103,6 @@ class _CustomListTile extends StatelessWidget {
         // el nombre de la ruta a la cual ir.
         // Abajo se vería el ejemplo, pero NO existe esa propiedad nombreRuta, es un ejemplo.
         // context.push(menuItem.nombreRuta);
-
-
       },
     );
   }
