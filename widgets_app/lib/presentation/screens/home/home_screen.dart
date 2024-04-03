@@ -1,6 +1,7 @@
 // Usamos el snippet impm para importar el paquete de Material
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/presentation/screens/buttons/buttons_screen.dart';
 
 // Usamos el snippet stlesw para crear un StatelessWidget.
 class HomeScreen extends StatelessWidget {
@@ -60,7 +61,26 @@ class _CustomListTile extends StatelessWidget {
       subtitle: Text(menuItem.subTitle),
       trailing: Icon(Icons.arrow_forward_ios_rounded, color: colors.primary),
       onTap: () {
-        // TODO: navegar a otras pantallas
+
+        // push() hay que entenderlo como que va a crear un Stack de tarjetas.
+        // Tengo una tarjeta, y con push() pongo encima otra y con push() pongo encima otra...
+        // Y con pop() las voy retirando en sentido LIFO
+        // Usando Navigator.of(context).replace() se destruye la ruta anterior, no podiendo regresar a ella.
+        // Como ButtonsScreen tiene un AppBar sabe que tenemos un historial y podemos echar para atrás.
+        //
+        // Habiendo añadido nombres de rutas en main.dart, esto ya no haría falta
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(
+        //     builder: (context) => const ButtonsScreen(),
+        //   ),
+        // );
+        //
+        // Y para usar los nombres de rutas:
+        // Navigator.pushNamed(context, menuItem.link);
+        // Esta otra opción es posible:
+        Navigator.of(context).pushNamed(menuItem.link);
+
+        // Pero ninguna de estas dos técnicas se va a usar. Vamos a usar go_router
       },
     );
   }

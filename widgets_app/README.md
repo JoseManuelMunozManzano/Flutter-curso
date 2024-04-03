@@ -55,3 +55,17 @@ En la carpeta `config` vamos a crear la carpeta `menu` y dentro el archivo `menu
 ¿Dónde vamos a usar nuestro MenuItem? Basado en nuestro list de MenuItem iremos creando nuestra pantalla.
 
 Como no queremos que nuestro main tenga toda la información de la aplicación, en la carpeta `lib` creamos la carpeta `presentation`, dentro la carpeta `screens`, dentro la carpeta `home` y dentro el archivo `home_screen.dart`.
+
+## Navegación entre pantallas
+
+https://docs.flutter.dev/ui/navigation
+
+Antes de hacer la navegación, necesitamos más screens para navegar.
+
+En la carpeta `presentation/screens` creamos la carpeta `buttons` y dentro el archivo `buttons_screen.dart`.
+
+En la carpeta `presentation/screens` creamos la carpeta `cards` y dentro el archivo `cards_screen.dart`.
+
+Recordar que sabemos que son pantallas porque tienen el Widget `Scaffold()`.
+
+Se muestran distintas formas de realizar la navegación.

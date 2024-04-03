@@ -696,6 +696,70 @@ return Positioned.fill(
 );
 ```
 
+## Navegación entre pantallas
+
+https://docs.flutter.dev/ui/navigation
+
+La navegación 2.0 de Flutter es bastante compleja.
+
+Se muestra un ejemplo con `onTap()`, pero obviamente puede ser `onPressed: () {}` o cualquier otro gestor de eventos.
+
+Se muestran distintas alternativas para realizar la navegación. Nosotros vamos a usar `go_router`.
+
+El objetivo principal de go_router es que nos haga fácil y explicativo la manera de observar los argumentos por el URL, parametrizarlos, hacer validaciones, sacar al usuario si no está autenticado...
+
+Forma 1:
+
+```
+onTap: () {
+
+  // push() hay que entenderlo como que va a crear un Stack de tarjetas.
+  // Tengo una tarjeta, y con push() pongo encima otra y con push() pongo encima otra...
+  // Y con pop() las voy retirando en sentido LIFO
+  // Usando Navigator.of(context).replace() se destruye la ruta anterior, no podiendo regresar a ella.
+  // Como ButtonsScreen tiene un AppBar sabe que tenemos un historial y podemos echar para atrás.
+
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const ButtonsScreen(),
+    ),
+  );
+},
+```
+
+Forma 2:
+
+```
+// En main.dart definimos las rutas.
+
+return MaterialApp(
+  debugShowCheckedModeBanner: false,
+  theme: AppTheme(selectedColor: 0).getTheme(),
+  home: const HomeScreen(),
+
+  // Para la navegación, se pueden definir rutas, pero no se recomienda por una serie de limitantes.
+  // Ver la web para saber las limitantes.
+  // Al tener estos nombres de rutas la navegación se hace más fácil.
+  routes: {
+    '/buttons': (context) => const ButtonsScreen(),
+    '/cards': (context) => const CardsScreen(),
+  },
+
+);
+
+// En home_screen.dart accedemos a esas rutas.
+
+onTap: () {
+
+  // Y para usar los nombres de rutas:
+  Navigator.pushNamed(context, menuItem.link);
+
+  // Esta otra opción es posible:
+  // Navigator.of(context).pushNamed(menuItem.link);
+},
+
+```
+
 ## Temario
 
 - 01_dart_intro
