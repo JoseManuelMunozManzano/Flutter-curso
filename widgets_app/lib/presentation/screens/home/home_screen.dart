@@ -1,7 +1,7 @@
 // Usamos el snippet impm para importar el paquete de Material
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
-import 'package:widgets_app/presentation/screens/buttons/buttons_screen.dart';
 
 // Usamos el snippet stlesw para crear un StatelessWidget.
 class HomeScreen extends StatelessWidget {
@@ -62,6 +62,9 @@ class _CustomListTile extends StatelessWidget {
       trailing: Icon(Icons.arrow_forward_ios_rounded, color: colors.primary),
       onTap: () {
 
+        // NAVEGACION
+        //
+        // Forma 1
         // push() hay que entenderlo como que va a crear un Stack de tarjetas.
         // Tengo una tarjeta, y con push() pongo encima otra y con push() pongo encima otra...
         // Y con pop() las voy retirando en sentido LIFO
@@ -74,13 +77,20 @@ class _CustomListTile extends StatelessWidget {
         //     builder: (context) => const ButtonsScreen(),
         //   ),
         // );
-        //
+        
+        // Forma 2
         // Y para usar los nombres de rutas:
         // Navigator.pushNamed(context, menuItem.link);
         // Esta otra opción es posible:
-        Navigator.of(context).pushNamed(menuItem.link);
+        // Navigator.of(context).pushNamed(menuItem.link);
 
-        // Pero ninguna de estas dos técnicas se va a usar. Vamos a usar go_router
+        // Forma 3
+        // Pero ninguna de estas dos técnicas se va a usar. Vamos a usar go_router.
+        // go_router expande la funcionalidad del context, por ejemplo, context.go(), por lo que
+        // podemos usar el context para la navegación.
+        // NOTA: Indicar también que la funcionalidad Navigator.of(context).push() sigue funcionando.
+        context.push(menuItem.link);
+
       },
     );
   }

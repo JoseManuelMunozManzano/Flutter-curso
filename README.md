@@ -708,7 +708,9 @@ Se muestran distintas alternativas para realizar la navegación. Nosotros vamos 
 
 El objetivo principal de go_router es que nos haga fácil y explicativo la manera de observar los argumentos por el URL, parametrizarlos, hacer validaciones, sacar al usuario si no está autenticado...
 
-Forma 1:
+https://pub.dev/packages/go_router y pulsar en `API Reference`.
+
+- Forma 1:
 
 ```
 onTap: () {
@@ -727,7 +729,7 @@ onTap: () {
 },
 ```
 
-Forma 2:
+- Forma 2:
 
 ```
 // En main.dart definimos las rutas.
@@ -757,7 +759,73 @@ onTap: () {
   // Esta otra opción es posible:
   // Navigator.of(context).pushNamed(menuItem.link);
 },
+```
 
+- Forma 3 recomendada, usando el paquete `go_router`:
+
+- Instalar el paquete `go_router` usando `PubSpec Assist`
+- Las rutas se crean con la misma sintaxis que se usa en programación web
+- go_router expande la funcionalidad del context, por ejemplo, context.go(), por lo que podemos usar el context para la navegación
+
+```
+// Fuente app_router.dart
+// Código cogido de: https://pub.dev/documentation/go_router/latest/topics/Get%20started-topic.html
+// y luego modificado.
+import 'package:go_router/go_router.dart';
+import 'package:widgets_app/presentation/screens/screens.dart';
+
+final appRouter = GoRouter(
+  initialLocation: '/',
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomeScreen(),
+    ),
+
+    GoRoute(
+      path: '/buttons',
+      builder: (context, state) => const ButtonsScreen(),
+    ),
+
+    GoRoute(
+      path: '/cards',
+      builder: (context, state) => const CardsScreen(),
+    ),
+  ],
+);
+
+// Se conecta en main.dart
+// Se indica el router e indicamos su configuración
+return MaterialApp.router(
+  routerConfig: appRouter,
+
+  debugShowCheckedModeBanner: false,
+  theme: AppTheme(selectedColor: 0).getTheme(),
+);
+
+// Y en home_screen.dart
+onTap: () {
+  // go_router expande la funcionalidad del context, por ejemplo, context.go(), por lo que
+  // podemos usar el context para la navegación.
+  // NOTA: Indicar también que la funcionalidad Navigator.of(context).push() sigue funcionando.
+
+  context.push(menuItem.link);
+},
+
+```
+
+## Archivos de barril
+
+Es un archivo que se encarga de exportar todos los archivos de diferentes carpetas, por ejemplo, todos los screens.
+
+Con esto los archivos quedan separados, pero los cogemos de un único lugar, lo que disminuye las importaciones en otros fuentes.
+
+Ejemplo:
+
+```
+export 'package:widgets_app/presentation/screens/buttons/buttons_screen.dart';
+export 'package:widgets_app/presentation/screens/cards/cards_screen.dart';
+export 'package:widgets_app/presentation/screens/home/home_screen.dart';
 ```
 
 ## Temario

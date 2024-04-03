@@ -69,3 +69,19 @@ En la carpeta `presentation/screens` creamos la carpeta `cards` y dentro el arch
 Recordar que sabemos que son pantallas porque tienen el Widget `Scaffold()`.
 
 Se muestran distintas formas de realizar la navegación.
+
+### go_router
+
+La navegación la vamos a realizar con el paquete `go_router`.
+
+En la carpeta `config` creamos la carpeta `router` y dentro el archivo `app_router.dart`.
+
+Ahí pegamos el código que se encuentra en: https://pub.dev/documentation/go_router/latest/topics/Get%20started-topic.html
+
+## Archivos de barril
+
+En la carpeta `screens` creamos el archivo `screens.dart`.
+
+Este archivo se encarga de exportar todos los screens.
+
+Con esto los archivos quedan separados, pero los cogemos de un único lugar, lo que disminuye las importaciones en otros fuentes.
