@@ -1021,6 +1021,23 @@ void openDialog(BuildContext context) {
 }
 ```
 
+## Generar números aleatorios
+
+Tenemos que importar la librería matemática de Dart, en concreto Random: `import 'dart:math' show Random;`
+
+```
+void changeShape() {
+
+  final random = Random();
+
+  // Como no puede ser 0, si pasase entonces lo dejamos en el valor inicial 50.
+  width = random.nextInt(300) + 50;
+
+  // Para que realice el renderizado con los nuevos valores.
+  setState(() {});
+}
+```
+
 ## Temario
 
 - 01_dart_intro
