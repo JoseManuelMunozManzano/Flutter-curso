@@ -21,6 +21,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
   "dart.previewFlutterUiGuidesCustomTracking": true
 ```
 
+- Documentación de material para Flutter: https://m3.material.io/develop/flutter
+
 ## Qué es Flutter
 
 SDK portable - Open source framework - UI Widget Library
@@ -933,6 +935,24 @@ class CustomButton extends StatelessWidget {
   }
 }
 ```
+
+## Cards
+
+Ver esta documentación con ejemplos, ya que ya hay mucha configuración hecha:
+
+https://m3.material.io/components/cards/overview
+
+## SingleChildScrollView vs ListView
+
+Podemos ver el ListView como una optimización de la combinación del SingleChildScrollView + Column.
+
+Con el ListView, únicamente los items que son visibles son montados y renderizados, es decir, generados bajo demanda.
+
+Si usáramos el SingleChildScrollView, toda la lista es montada y renderizada, aunque no todos los items sean visibles.
+
+Teniendo esto en cuenta, en principio el ListView es mas interesante en cuanto a rendimiento, pero la parte negativa es que este es menos flexible, por lo que en layouts complejos donde la lista no sea muy grande, podemos implementar el SingleChildScrollView, sacrificando ese pequeño porcentaje de rendimiento pero ganando en cuanto a facilidad de realizar el diseño.
+
+En listas grandes, ahí ya normalmente siempre te interesará implementar un ListView (o cualquier elemento que tenga un Builder) para que los dispositivos con menos recursos no sufran tanto.
 
 ## Temario
 

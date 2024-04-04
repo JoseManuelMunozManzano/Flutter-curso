@@ -99,3 +99,13 @@ Vamos a hacer un botón desde cero, estilizado con la apariencia que nos conveng
 Lo hacemos en el archivo `buttons_screen.dart`.
 
 Se podría crear también en la carpeta de `widgets`, recibiendo argumentos del onPress, el texto o el icono que queremos mostrar...
+
+## Cards
+
+Las tarjetas no son más que unos agrupadores que ya tienen cierto estilo. Ya vienen preconfiguradas.
+
+https://m3.material.io/develop/flutter
+
+https://m3.material.io/components/cards/overview
+
+Nuestro fuente para esto es `cards_screen.dart`.
