@@ -185,8 +185,6 @@ class _CardType4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-
     return Card(
       // Otra forma de obtener bordes redondeados usando el Card.
       // hardEdge evita que los hijos se salgan del contenido de su padre.

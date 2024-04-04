@@ -109,3 +109,17 @@ https://m3.material.io/develop/flutter
 https://m3.material.io/components/cards/overview
 
 Nuestro fuente para esto es `cards_screen.dart`.
+
+## Resto de pantallas faltantes
+
+Dentro de la carpeta `screens` creamos la carpeta `animated` y dentro el archivo `animated_screen.dart`.
+
+Dentro de la carpeta `screens` creamos la carpeta `app_tutorial` y dentro el archivo `app_tutorial_screen.dart`.
+
+Dentro de la carpeta `screens` creamos la carpeta `infinite_scroll` y dentro el archivo `infinite_scroll_screen.dart`.
+
+Dentro de la carpeta `screens` creamos la carpeta `progress` y dentro el archivo `progress_screen.dart`.
+
+Dentro de la carpeta `screens` creamos la carpeta `snackbar` y dentro el archivo `snackbar_screen.dart`.
+
+Dentro de la carpeta `screens` creamos la carpeta `ui_controls` y dentro el archivo `ui_controls_screen.dart`.
