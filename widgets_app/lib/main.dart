@@ -13,6 +13,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Se indica el router e indicamos su configuración
     return MaterialApp.router(
+      // Este título de la aplicación aparece en el dialog de las licencias usadas.
+      title: 'Flutter Widgets',
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       theme: AppTheme(selectedColor: 0).getTheme(),

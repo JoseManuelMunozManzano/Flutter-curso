@@ -979,6 +979,48 @@ Image.network(
 ),
 ```
 
+## Mostrar licencias usadas
+
+Con este código se muestra un dialog propio de Flutter.
+
+```
+showAboutDialog(
+  context: context,
+  children: [
+    const Text('Nisi et est esse laborum aliquip dolore ad ad excepteur deserunt nisi voluptate aliqua pariatur. Aliqua aliquip ad non ullamco nisi nostrud dolor Lorem. Culpa ad nisi ipsum non Lorem et cillum fugiat est et nisi dolore. Quis sit deserunt sunt quis occaecat. Pariatur sit culpa magna mollit eiusmod do anim.'),
+  ]
+);
+
+Y el título de la app, que aparece en el dialog se indica en main.dart, antes de indicar routerConfig
+
+title: 'Flutter Widgets',
+```
+
+Si queremos personalizar y hacer nuestro propio dialog:
+
+```
+void openDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    // Esto es para evitar que, si se pulsa fuera del Dialog, este se cierre.
+    // Útil si queremos que el usuario tenga que validar algo, obligándole a
+    // pulsar en alguna de nuestras opciones.
+    barrierDismissible: false,
+    // Recordar que un builder se construye en tiempo de ejecución.
+    builder: (context) => AlertDialog(
+      title: const Text('¿Estás seguro?'),
+      content: const Text('Ullamco ipsum nulla velit eiusmod esse qui. Ea nisi laborum ullamco duis enim elit veniam. Sit quis voluptate aute nulla eu velit velit nostrud id. Duis id cupidatat voluptate id ad amet voluptate adipisicing irure voluptate voluptate cillum labore officia.'),
+      actions: [
+        // Gracias a go_router podemos usar context.pop()
+        // También se puede usar Navigator.pop(context)
+        TextButton(onPressed: () => context.pop(), child: const Text('Cancelar')),
+        FilledButton(onPressed: () => context.pop(), child: const Text('Aceptar')),
+      ],
+    ),
+  );
+}
+```
+
 ## Temario
 
 - 01_dart_intro
