@@ -138,3 +138,11 @@ Dentro de la carpeta `screens` creamos la carpeta `progress` y dentro el archivo
 Dentro de la carpeta `screens` creamos la carpeta `snackbar` y dentro el archivo `snackbar_screen.dart`.
 
 Dentro de la carpeta `screens` creamos la carpeta `ui_controls` y dentro el archivo `ui_controls_screen.dart`.
+
+## Animated Container
+
+https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html
+
+Es un contenedor que se puede animar.
+
+Sería como un contenedor normal, salvo que, cuando detecta un cambio en su propiedad (salvo el punto anterior y el final), anima ese cambio.
