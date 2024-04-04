@@ -517,6 +517,7 @@ return PageView.builder(
     // Construimos un stack, que permite colocar sus hijos unos sobre otros. Esto nos permite
     // alinear y posionarlos en relación al espacio que les da el padre.
     // En el ejemplo tenemos tres Widgets: De fondo el video, un gradiente y botones de manejo.
+    // Es decir, conforme más abajo aparece el Widget, más cerca de la pantalla se ve.
     return Stack(
       children: [
         // Video Player + gradiente
@@ -953,6 +954,30 @@ Si usáramos el SingleChildScrollView, toda la lista es montada y renderizada, a
 Teniendo esto en cuenta, en principio el ListView es mas interesante en cuanto a rendimiento, pero la parte negativa es que este es menos flexible, por lo que en layouts complejos donde la lista no sea muy grande, podemos implementar el SingleChildScrollView, sacrificando ese pequeño porcentaje de rendimiento pero ganando en cuanto a facilidad de realizar el diseño.
 
 En listas grandes, ahí ya normalmente siempre te interesará implementar un ListView (o cualquier elemento que tenga un Builder) para que los dispositivos con menos recursos no sufran tanto.
+
+## Visualización en márgenes inferiores del dispositivo
+
+Una forma fácil de evitar que los cards de abajo no se vean, porque chocan con los márgenes del dispositivo, es añadir al final un SizedBox.
+
+`const SizedBox(height: 50,)`
+
+Otra forma de corregir este problema es envolver todo en un SafeArea()
+
+## Obtener imagen de Internet
+
+```
+Image.network(
+  // String de donde se toma la imagen.
+  // El 600 es el width y el 350 el height.
+  'https://picsum.photos/id/${elevation.toInt()}/600/350',
+
+  // Pero ahora indico un tamaño en específico.
+  height: 350,
+
+  // Y como quiero que se adapte al espacio.
+  fit: BoxFit.cover,
+),
+```
 
 ## Temario
 
