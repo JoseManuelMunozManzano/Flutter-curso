@@ -146,3 +146,11 @@ https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html
 Es un contenedor que se puede animar.
 
 Sería como un contenedor normal, salvo que, cuando detecta un cambio en su propiedad (salvo el punto anterior y el final), anima ese cambio.
+
+## Tutorial de nuestra app
+
+Se usa para mostrar los primeros pasos de la app, como funciona...
+
+Necesitamos hacer ciertas configuraciones.
+
+En la pura raiz del proyecto, creamos la carpeta `assets`, dentro creamos la carpeta `images` y copiamos las imágenes.

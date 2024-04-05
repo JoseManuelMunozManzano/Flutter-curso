@@ -23,6 +23,14 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Documentación de material para Flutter: https://m3.material.io/develop/flutter
 
+## Recursos gratuitos
+
+https://undraw.co/illustrations
+
+https://www.freepik.es/
+
+https://www.flaticon.com/
+
 ## Qué es Flutter
 
 SDK portable - Open source framework - UI Widget Library
@@ -427,9 +435,9 @@ En la carpeta raiz del proyecto creamos una carpeta `assets`, es decir, recursos
 Sin embargo, dichos recursos no van a estar disponibles en nuestra app hasta que lo indiquemos en el fichero `pubspec.yaml`, en la parte donde indica como añadir `assets` a la aplicación, y lo dejamos así.
 
 ```
-  # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/videos/
+# To add assets to your application, add an assets section, like this:
+assets:
+  - assets/videos/
 ```
 
 Tal y como lo hemos indicado, con `videos/` se importan todos los videos que se encuentren en esa carpeta, pero NO LOS SUBDIRECTORIOS. Si hubiera subdirectorios, hay que indicarlos.
