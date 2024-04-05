@@ -39,6 +39,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Bolitas de los Slides para saber cuantos hay: https://api.flutter.dev/flutter/material/TabPageSelector-class.html
 
+- Fotos: https://picsum.photos/
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations
@@ -1141,6 +1143,19 @@ endReached ?
       onPressed: () => context.pop(),
     )
   ) : const SizedBox(),
+```
+
+## Eliminar espacio en blanco de la parte superior/inferior del móvil
+
+```
+return Scaffold(
+  body: MediaQuery.removePadding(
+    context: context,
+    removeTop: true,
+    removeBottom: true,
+    ...
+  )
+);
 ```
 
 ## Temario
