@@ -21,7 +21,23 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
   "dart.previewFlutterUiGuidesCustomTracking": true
 ```
 
+## Documentación
+
 - Documentación de material para Flutter: https://m3.material.io/develop/flutter
+
+- Apps responsive y adaptativas:
+
+  - https://docs.flutter.dev/ui/layout/responsive/adaptive-responsive
+  - https://pub.dev/packages/responsive_framework
+  - https://www.browserstack.com/guide/make-flutter-app-responsive
+  - https://inveritasoft.com/blog/how-to-build-responsive-apps-with-flutter-widgets-review
+  - https://hackernoon.com/creating-responsive-flutter-app-layouts-for-all-screen-sizes
+  - https://dev.to/dariodigregorio/building-responsive-uis-in-flutter-a-short-guide-5871
+  - https://dev.to/dariodigregorio/mastering-responsive-uis-in-flutter-the-full-guide-3g6i
+
+- Integrar YouTube Video Player en una app Flutter: https://dev.to/gunkev/how-to-integrate-youtube-video-player-in-a-flutter-application-4hil?mc_cid=00dcad088a&mc_eid=c9accb49be
+
+- Bolitas de los Slides para saber cuantos hay: https://api.flutter.dev/flutter/material/TabPageSelector-class.html
 
 ## Recursos gratuitos
 
@@ -435,14 +451,22 @@ En la carpeta raiz del proyecto creamos una carpeta `assets`, es decir, recursos
 Sin embargo, dichos recursos no van a estar disponibles en nuestra app hasta que lo indiquemos en el fichero `pubspec.yaml`, en la parte donde indica como añadir `assets` a la aplicación, y lo dejamos así.
 
 ```
-# To add assets to your application, add an assets section, like this:
-assets:
-  - assets/videos/
+  # To add assets to your application, add an assets section, like this:
+  # Ojo!! Indentado! porque va dentro de flutter
+flutter:
+  assets:
+    - assets/videos/
 ```
 
 Tal y como lo hemos indicado, con `videos/` se importan todos los videos que se encuentren en esa carpeta, pero NO LOS SUBDIRECTORIOS. Si hubiera subdirectorios, hay que indicarlos.
 
 Cuando se incluyen assets, se recomienda cerrar la app completamente y volverla a ejecutar.
+
+## Cargar imágenes de Assets
+
+`Image(image: AssetImage('assets/images/1.png'))`
+
+O también vale: `Image.asset(...)`
 
 ## Operador de cascada
 
@@ -526,6 +550,8 @@ return PageView.builder(
     // alinear y posionarlos en relación al espacio que les da el padre.
     // En el ejemplo tenemos tres Widgets: De fondo el video, un gradiente y botones de manejo.
     // Es decir, conforme más abajo aparece el Widget, más cerca de la pantalla se ve.
+    //
+    // Indicar que Column y Row se comportan como un Stack.
     return Stack(
       children: [
         // Video Player + gradiente
@@ -660,6 +686,9 @@ Pasos del ciclo de vida:
 
 - initState() - Creación del state. Siempre hay que ejecutar lo primero `super.initState();`
 - dispose() - Cuando se destruye el Widget. Siempre hay que ejecutar lo último `super.dispose();`
+
+Es buena práctica cuando colocamos un listener o se utiliza un controlador (controller) llamar al dispose().
+Esto se hace para limpiar los listeners que no se estén utilizando y no gastar más memoria de la necesaria.
 
 ## GestureDetector()
 
@@ -1065,6 +1094,53 @@ enum Transportation { car, plane, boat, submarine }
     }),
   );
 }),
+```
+
+## Ejemplo de destructuring en Dart 3
+
+La sintaxis es: final ClaseConPropiedades(:propiedad1, :propiedad2) = ClaseConPropiedades();
+
+Ejemplo: `final TextTheme(:titleLarge, :bodySmall) = Theme.of(context).textTheme;`
+
+## Que el tutorial solo se muestre una vez
+
+Para implementar un tutorial en una app que se muestre solo una vez al iniciarla por primera vez, puedes utilizar la clase `SharedPreferences`.
+
+Al hacerlo, podrás guardar un valor en el dispositivo para indicar si el tutorial ya ha sido mostrado previamente. De esta manera, la próxima vez que el usuario abra la app, verificarás si ese valor está presente en SharedPreferences. Si es así, omitirás la pantalla de tutorial y mostrarás directamente el contenido principal de la app. De esta forma, el tutorial solo se mostrará la primera vez que se inicia la app y no se repetirá en las siguientes ocasiones.
+
+URL sobre la documentación del mismo: https://pub.dev/packages/shared_preferences
+
+## Posicionar botón abajo y a la derecha en el dispositivo
+
+Ejemplo donde posicionamos un botón abajo y a la derecha en el dispositivo.
+
+```
+Positioned(
+  bottom: 30,
+  right: 30,
+  child: FilledButton(
+    child: const Text('Comenzar'),
+    onPressed: () => context.pop(),
+  )
+)
+```
+
+## Truco cuando tenemos que indicar un Widget pero realmente no queremos mostrar nada
+
+En este ejemplo, si la variable endReached es true, mostramos el botón, pero si no, mostramos un Widget que realmente no ocupada nada.
+
+Se hace con el Widget `SizedBox()` pero sin indicar nada.
+
+```
+endReached ?
+  Positioned(
+    bottom: 30,
+    right: 30,
+    child: FilledButton(
+      child: const Text('Comenzar'),
+      onPressed: () => context.pop(),
+    )
+  ) : const SizedBox(),
 ```
 
 ## Temario

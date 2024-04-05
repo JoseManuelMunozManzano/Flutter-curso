@@ -154,3 +154,7 @@ Se usa para mostrar los primeros pasos de la app, como funciona...
 Necesitamos hacer ciertas configuraciones.
 
 En la pura raiz del proyecto, creamos la carpeta `assets`, dentro creamos la carpeta `images` y copiamos las imágenes.
+
+Lo normal es los tutoriales es saber en que slide estamos para mostrar algún tipo de Widget en el último.
+
+Para animarlo convenientemente, usamos `Pubspec Assist` e instalamos `animate_do`.
