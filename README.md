@@ -1038,6 +1038,27 @@ void changeShape() {
 }
 ```
 
+## Ejemplo de map
+
+```
+enum Transportation { car, plane, boat, submarine }
+
+...Transportation.values.map((e) {
+  final item = Transportation.values[e.index];
+  final title = item.toString().split('.').last;
+
+  return RadioListTile(
+    title: Text(title.toUpperCase()),
+    subtitle: Text('Travel by $title'),
+    value: item,
+    groupValue: selectedTransportation,
+    onChanged: (value) => setState(() {
+      selectedTransportation = item;
+    }),
+  );
+}),
+```
+
 ## Temario
 
 - 01_dart_intro
