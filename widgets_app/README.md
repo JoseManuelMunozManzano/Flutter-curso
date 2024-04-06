@@ -182,3 +182,7 @@ Pero hay ciertos Widgets que ya detectan de forma automática la existencia de u
 Y en otras pantallas puede aparecer, por ejemplo el Widget `NavigationDrawerDestination()` de un menú lateral, muy pegado a la parte de arriba. Esto se hace automática y se ve bien tanto en un dispositivo iOS con notch como en un Android sin él.
 
 Por tanto, lo que tenemos que saber es si el dispositivo tiene o no Notch. Esto lo vemos en el fuente `side_menu.dart`.
+
+## Preparación de pantalla para Riverpod
+
+En la carpeta `presentation\screens` creamos la carpeta `counter` y dentro el archivo `counter_screen.dart`.
