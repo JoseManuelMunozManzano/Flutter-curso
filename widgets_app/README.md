@@ -30,9 +30,10 @@ Esta sección es fundamental para cualquier aplicación de Flutter, aprenderemos
 - Tiles
 - Listas
 - Pageviews
-- ...
-
-Esta sección nos ayudará a comprender más sobre cómo crear aplicaciones en Flutter.
+- Aprender sobre "Drawers" menú laterales
+- Gestor de estado Riverpod
+- Dispositivo posee (o no) notch o un espacio no visible en pantalla y evitar colocar contenido ahí
+- Theme Changer
 
 ## Creación de proyecto desde VSCode
 
