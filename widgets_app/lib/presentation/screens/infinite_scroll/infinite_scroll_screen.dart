@@ -77,6 +77,25 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     // un poquito para indicar que hay más imágenes para ver.
   }
 
+  // Pull Refresh
+  // Vamos a borrar todas las imágenes que tengamos y traer 5 nuevas imágenes.
+  Future<void> onRefresh() async {
+    isLoading = true;
+    setState(() {});
+
+    await Future.delayed(const Duration(seconds: 3));
+    if (!mounted) return;
+
+    isLoading = false;
+    final lastId = imagesIds.last;
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    addFiveImages();
+    isLoading = false;
+
+    setState(() {});
+  }
+
   void addFiveImages() {
     final lastId = imagesIds.last;
 
@@ -92,25 +111,12 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         context: context,
         removeTop: true,
         removeBottom: true,
-        // Como es una lista infinita, no todos los vamos a querer en memoria.
-        // Con el buider se construirán bajo demanda, porque sabe cuando están a punto de entrar en pantalla.
-        // Para hacer un infinite scroll tenemos que determinar que estamos al final del scroll, y entonces
-        // cargar nuevas imágenes (se añaden a nuestra lista de imagesIds y se muestran)
-        child: ListView.builder(
-          // Conectamos con nuestro controller.
-          controller: scrollController,
-          itemCount: imagesIds.length,
-          itemBuilder: (context, index) {
-            // FadeInImage nos permite cargar la imagen y mientras se carga muestra el placeholder Image.
-            return FadeInImage(
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 300,
-              placeholder: const AssetImage('assets/images/jar-loading.gif'),
-              image: NetworkImage(
-                  'https://picsum.photos/id/${imagesIds[index]}/500/300'),
-            );
-          },
+        // Con RefreshIndicator se consigue realizar el pull refresh.
+        child: RefreshIndicator(
+          onRefresh: onRefresh,
+          edgeOffset: 10,
+          strokeWidth: 2,
+          child: _ScrollPagesView(scrollController: scrollController, imagesIds: imagesIds),          
         ),
       ),
 
@@ -124,6 +130,40 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
             )
           : FadeIn(child: const Icon(Icons.arrow_back_ios_new_outlined)),
       ),
+    );
+  }
+}
+
+class _ScrollPagesView extends StatelessWidget {
+  const _ScrollPagesView({
+    required this.scrollController,
+    required this.imagesIds,
+  });
+
+  final ScrollController scrollController;
+  final List<int> imagesIds;
+
+  @override
+  Widget build(BuildContext context) {
+    // Como es una lista infinita, no todos los vamos a querer en memoria.
+    // Con el buider se construirán bajo demanda, porque sabe cuando están a punto de entrar en pantalla.
+    // Para hacer un infinite scroll tenemos que determinar que estamos al final del scroll, y entonces
+    // cargar nuevas imágenes (se añaden a nuestra lista de imagesIds y se muestran)
+    return ListView.builder(
+      // Conectamos con nuestro controller.
+      controller: scrollController,
+      itemCount: imagesIds.length,
+      itemBuilder: (context, index) {
+        // FadeInImage nos permite cargar la imagen y mientras se carga muestra el placeholder Image.
+        return FadeInImage(
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: 300,
+          placeholder: const AssetImage('assets/images/jar-loading.gif'),
+          image: NetworkImage(
+              'https://picsum.photos/id/${imagesIds[index]}/500/300'),
+        );
+      },
     );
   }
 }
