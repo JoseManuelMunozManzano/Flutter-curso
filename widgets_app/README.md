@@ -159,3 +159,14 @@ En la pura raiz del proyecto, creamos la carpeta `assets`, dentro creamos la car
 Lo normal es los tutoriales es saber en que slide estamos para mostrar algún tipo de Widget en el último.
 
 Para animarlo convenientemente, usamos `Pubspec Assist` e instalamos `animate_do`.
+
+## Menús laterales
+
+Dentro de nuestro `Scaffold()` podemos usar dos propiedades más para usar menús laterales:
+
+- drawer: Menú lateral de la izquierda de la pantalla y que se mueve a la derecha
+- endDrawer: Menú lateral de la derecha de la pantalla y que se mueve a la izquierda
+
+Para trabajar con los drawers o menús laterales tenemos el Widget `NavigationDrawer` que ya implementa el funcionamiento tradicional.
+
+En la carpeta `presentation` creamos una carpeta `widgets` y dentro el archivo `side_menu.dart`.

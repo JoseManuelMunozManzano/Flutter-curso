@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/presentation/widgets/side_menu.dart';
 
 // Usamos el snippet stlesw para crear un StatelessWidget.
 class HomeScreen extends StatelessWidget {
@@ -17,7 +18,9 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter + Material 3'),
       ),
-      body: const _HomeView()
+      body: const _HomeView(),
+      // Menús laterales
+      drawer: const SideMenu(),
     );
   }
 }
