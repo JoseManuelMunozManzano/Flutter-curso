@@ -39,7 +39,7 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Bolitas de los Slides para saber cuantos hay: https://api.flutter.dev/flutter/material/TabPageSelector-class.html
 
-- Fotos: https://picsum.photos/
+- Riverpod: https://riverpod.dev/
 
 ## Recursos gratuitos
 
@@ -48,6 +48,8 @@ https://undraw.co/illustrations
 https://www.freepik.es/
 
 https://www.flaticon.com/
+
+https://picsum.photos/
 
 ## Qué es Flutter
 
