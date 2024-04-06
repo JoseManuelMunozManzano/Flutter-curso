@@ -72,9 +72,9 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
       setState(() {});
     }
 
-    // TODO: mover scroll
     // Cuando cargan las imágenes y ya las tenemos en memoria queremos que el scroll se mueva
     // un poquito para indicar que hay más imágenes para ver.
+    moveScrollToBotton();
   }
 
   // Pull Refresh
@@ -94,6 +94,18 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     isLoading = false;
 
     setState(() {});
+  }
+
+  void moveScrollToBotton() {
+    // Solo cuando estamos cerca del final es que queremos forzar el movimiento.
+    if (scrollController.position.pixels + 100 <= scrollController.position.maxScrollExtent) return;
+
+    scrollController.animateTo(
+      // Si queremos que vaya arriba, sustituir toda la línea de abajo por 0
+      scrollController.position.pixels + 120,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn
+    );
   }
 
   void addFiveImages() {
@@ -116,7 +128,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
           onRefresh: onRefresh,
           edgeOffset: 10,
           strokeWidth: 2,
-          child: _ScrollPagesView(scrollController: scrollController, imagesIds: imagesIds),          
+          child: _ScrollPagesView(scrollController: scrollController, imagesIds: imagesIds),
         ),
       ),
 

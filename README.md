@@ -1158,6 +1158,40 @@ return Scaffold(
 );
 ```
 
+## En Scroll Infinito, cuando llegamos al final y carga nuevos elementos, que se mueva un poco para saber que hay nuevos elementos
+
+Hacer de cuentas que trabajamos con un scrollController (ver proyecto `widgets_app`, fuente `infinite_scroll_screen.dart`)
+
+```
+void moveScrollToBotton() {
+  // Solo cuando estamos cerca del final es que queremos forzar el movimiento.
+  if (scrollController.position.pixels + 100 <= scrollController.position.maxScrollExtent) return;
+
+  scrollController.animateTo(
+    scrollController.position.pixels + 120,
+    duration: const Duration(milliseconds: 300),
+    curve: Curves.fastOutSlowIn
+  );
+}
+```
+
+## En Scroll Infinito, cuando llegamos al final y carga nuevos elementos, que se vaya arriba
+
+Es igual al código anterior, pero ahora el offset es cero
+
+```
+void moveScrollToBotton() {
+  // Solo cuando estamos cerca del final es que queremos forzar el movimiento.
+  if (scrollController.position.pixels + 100 <= scrollController.position.maxScrollExtent) return;
+
+  scrollController.animateTo(
+    0,
+    duration: const Duration(milliseconds: 300),
+    curve: Curves.fastOutSlowIn
+  );
+}
+```
+
 ## Temario
 
 - 01_dart_intro
