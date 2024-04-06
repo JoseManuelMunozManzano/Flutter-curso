@@ -1194,6 +1194,34 @@ void moveScrollToBotton() {
 }
 ```
 
+## Saber si un dispositivo tiene Notch
+
+Se consigue sabiendo cuando padding hay en una dirección, en este caso en la parte de arriba.
+
+Se considera (se puede hacer un print para ver los valores de iOS y Android), que si el valor obtenido es mayor que 35 hay notch.
+
+`final hasNotch = MediaQuery.of(context).viewPadding.top > 35;`
+
+Y luego, por ejemplo:
+
+```
+children: [
+  Padding(
+    padding: EdgeInsets.fromLTRB(28, hasNotch ? 10 : 20, 16, 10),
+    child: const Text('Main'),
+  ),
+]
+```
+
+## Crear línea divisoria
+
+```
+const Padding(
+  padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
+  child: Divider(),
+),
+```
+
 ## Temario
 
 - 01_dart_intro

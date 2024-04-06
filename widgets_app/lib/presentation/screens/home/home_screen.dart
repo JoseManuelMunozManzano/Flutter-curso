@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: const _HomeView(),
       // Menús laterales
-      drawer: const SideMenu(),
+      drawer: const SideMenu(menuItems: appMenuItems,),
     );
   }
 }

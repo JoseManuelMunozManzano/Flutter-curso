@@ -170,3 +170,15 @@ Dentro de nuestro `Scaffold()` podemos usar dos propiedades más para usar menú
 Para trabajar con los drawers o menús laterales tenemos el Widget `NavigationDrawer` que ya implementa el funcionamiento tradicional.
 
 En la carpeta `presentation` creamos una carpeta `widgets` y dentro el archivo `side_menu.dart`.
+
+## Consideraciones de Notch y Opciones del menú
+
+Hay dispositivos con zonas donde no se puede renderizar, los llamados notch.
+
+Como Flutter nos da control desde el pixed (0, 0), es responsabilidad nuestra saber qué queremos renderizar.
+
+Pero hay ciertos Widgets que ya detectan de forma automática la existencia de un notch y lo evitan.
+
+Y en otras pantallas puede aparecer, por ejemplo el Widget `NavigationDrawerDestination()` de un menú lateral, muy pegado a la parte de arriba. Esto se hace automática y se ve bien tanto en un dispositivo iOS con notch como en un Android sin él.
+
+Por tanto, lo que tenemos que saber es si el dispositivo tiene o no Notch. Esto lo vemos en el fuente `side_menu.dart`.
