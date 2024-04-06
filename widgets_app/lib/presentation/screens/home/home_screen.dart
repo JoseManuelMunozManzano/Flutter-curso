@@ -14,13 +14,21 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      // Para poder cerrar el Drawer tras volver de la ejecución de un punto de menú,
+      // necesitamos una referencia al Scaffold que está abriendo ese Drawer.
+      // Para tener esa referencia necesito el key.
+      // Y con esto tenemos el estado actual del Scaffold.
+      key: scaffoldKey,
       appBar: AppBar(
         title: const Text('Flutter + Material 3'),
       ),
       body: const _HomeView(),
       // Menús laterales
-      drawer: const SideMenu(menuItems: appMenuItems,),
+      drawer: SideMenu(menuItems: appMenuItems, scaffoldKey: scaffoldKey,),
     );
   }
 }

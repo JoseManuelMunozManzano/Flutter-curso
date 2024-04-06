@@ -1222,6 +1222,10 @@ const Padding(
 ),
 ```
 
+## Ejemplo de uso de key
+
+Ver proyecto `widgets_app`, fuentes `home_screen.dart` y `side_menu.dart`, variable `scaffoldKey`.
+
 ## Temario
 
 - 01_dart_intro
