@@ -192,3 +192,9 @@ En la carpeta `presentation/screens` creamos la carpeta `counter` y dentro el ar
 En la carpeta `presentation` creamos la carpeta `providers` (no confundir con gestor de estado Provider, esto es para Riverpod) y el archivo `counter_provider.dart`.
 
 En la carpeta `providers` creamos otro archivo `theme_provider.dart`.
+
+## Pantalla para cambiar colores
+
+En la carpeta `screens` creamos la carpeta `theme_changer` y dentro el archivo `theme_changer_screen.dart`.
+
+Se instala la librería `colornames` para obtener el nombre de los colores.
