@@ -38,4 +38,20 @@ class AppTheme {
       centerTitle: false,
     )
   );
+
+  // FORMA DE CAMBIAR VARIABLES FINALES DE UNA CLASE.
+  // 
+  // La idea de este método es regresar una nueva instancia de AppTheme.  
+  // La idea es hacer una copia del tema actual (instacia) que fluirá por toda la aplicación.
+  // To-do lo que se pida será opcional.
+  // Forma de uso, por ejemplo en main.dart
+  //   ThemeData.dark().copyWith( incluir aquí las opciones que quiero cambiar);
+  AppTheme copyWith({
+    int? selectedColor,
+    bool? isDarkMode,
+  }) => AppTheme(
+    // Si no me mandan nada, utilizo el valor de la instancia anterior.
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkMode: isDarkMode ?? this.isDarkMode,
+  );
 }

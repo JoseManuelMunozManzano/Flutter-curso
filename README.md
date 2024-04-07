@@ -391,6 +391,29 @@ Pueden experimentar ambas sintaxis, y trabajar con la que más les guste. Pueden
 
 https://docs-v2.riverpod.dev/docs/concepts/about_code_generation
 
+## Cambiar variables final de una clase
+
+Este patrón se usa muchísimo en Flutter.
+
+Ver app `widgets_app`, fuente `app_theme.dart`.
+
+```
+// La idea de este método es regresar una nueva instancia de AppTheme.
+// La idea es hacer una copia del tema actual (instacia) que fluirá por toda la aplicación.
+// To-do lo que se pida será opcional.
+// Forma de uso, por ejemplo en main.dart
+//   ThemeData.dark().copyWith( incluir aquí las opciones que quiero cambiar);
+
+AppTheme copyWith({
+  int? selectedColor,
+  bool? isDarkMode,
+}) => AppTheme(
+  // Si no me mandan nada, utilizo el valor de la instancia anterior.
+  selectedColor: selectedColor ?? this.selectedColor,
+  isDarkMode: isDarkMode ?? this.isDarkMode,
+);
+```
+
 ## Truco para que Flutter tarde en hacer una animación
 
 Da la sensación de que se procesa y se hace.

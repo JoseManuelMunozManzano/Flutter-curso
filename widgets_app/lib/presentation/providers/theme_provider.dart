@@ -26,6 +26,9 @@ final selectedColorProvider = StateProvider<int>((ref) => 0);
 final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
   // Tenemos que regresar una instancia. Indicamos la que por defecto inicializa AppTheme.
   // Podríamos mandar información al constructor.
+  //
+  // El ref que aparece se podría mandar como argumento a ThemeNotifier(ref) y así tener acceso
+  // a todos los providers de Riverpod. En este caso no nos hace falta y por tanto no lo mandamos.
   (ref) => ThemeNotifier()
 );
 
@@ -45,7 +48,10 @@ class ThemeNotifier extends StateNotifier<AppTheme> {
   // }
 
   void toggleDarkmode() {
-
+    // Para cambiar variables de AppTheme finales, hemos creado en AppTheme el método copyWith().
+    // Riverpod sabe que estamos cambiando el state y va a realizar la notificación a todos los
+    // widgets donde sea necesario.
+    state = state.copyWith(isDarkMode: !state.isDarkMode);
   }
 
   void changeColorIndex(int colorIndex) {

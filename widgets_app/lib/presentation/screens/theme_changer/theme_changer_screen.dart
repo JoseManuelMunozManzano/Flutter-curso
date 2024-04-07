@@ -16,7 +16,10 @@ class ThemeChangerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final isDarkMode = ref.watch(isDarkModeProvider);
+    // Como vamos a usar un StateNotifierProvider, esto ya no hace falta.
+    // final isDarkMode = ref.watch(isDarkModeProvider);
+
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +30,8 @@ class ThemeChangerScreen extends ConsumerWidget {
                 ? Icons.dark_mode_outlined
                 : Icons.light_mode_outlined),
             onPressed: () {
-              ref.read(isDarkModeProvider.notifier).update((state) => !state);
+              // ref.read(isDarkModeProvider.notifier).update((state) => !state);
+              ref.read(themeNotifierProvider.notifier).toggleDarkmode();
             },
           )
         ],
