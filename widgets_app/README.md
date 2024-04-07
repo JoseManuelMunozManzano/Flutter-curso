@@ -185,4 +185,8 @@ Por tanto, lo que tenemos que saber es si el dispositivo tiene o no Notch. Esto 
 
 ## Preparación de pantalla para Riverpod
 
-En la carpeta `presentation\screens` creamos la carpeta `counter` y dentro el archivo `counter_screen.dart`.
+En la carpeta `presentation/screens` creamos la carpeta `counter` y dentro el archivo `counter_screen.dart`.
+
+## Introducción a Riverpod
+
+En la carpeta `presentation` creamos la carpeta `providers` (no confundir con gestor de estado Provider, esto es para Riverpod) y el archivo `counter_provider.dart`.

@@ -39,8 +39,6 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Bolitas de los Slides para saber cuantos hay: https://api.flutter.dev/flutter/material/TabPageSelector-class.html
 
-- Riverpod: https://riverpod.dev/
-
 ## Recursos gratuitos
 
 https://undraw.co/illustrations
@@ -327,6 +325,59 @@ class _ChatView extends StatelessWidget {
 ```
 
 El código `final chatProvider = context.watch<ChatProvider>();` es muy parecido a este que aparece más arriba para obtener información del context `final colors = Theme.of(context).colorScheme;`
+
+## Riverpod
+
+Documentación:
+
+- https://riverpod.dev/
+
+Riverpod sirve para manejar el estado de la aplicación, ya sea global, por widget, por pantalla...
+
+A diferencia de Provider, Riverpod NO depende del context.
+
+Se considera a Riverpod como el sucesor de Provider.
+
+Hay dos versiones de Riverpod (ver siguiente punto) y aquí vemos la versión 1 que no está obsoleta.
+
+Riverpod trabaja con providers (no confundir con el gestor de estado Provider), que son proveedores de información, y hay casos específicos para cada uno de ellos.
+
+Existen los paquetes flutter_riverpod para Flutter y riverpod para Dart.
+
+Nosotros vamos a usar el paquete `flutter_riverpod`.
+
+Para empezar a trabajar (revisar siempre la documentación primero):
+
+- En VSCode abrimos Pubspec Assist e instalamos `flutter_riverpod`
+- En `main.dart`, en `runApp()` envolvemos todo con un `ProviderScope()`
+  - ProviderScope es un tipo de Widget especial que va a mantener una referencia a todos los providers que utilicemos
+- A partir de aquí ya se puede empezar a trabajar. Se puede ver ejemplos en la app `widgets_app`, carpeta `presentation/providers`, que se usan en `presentation/screens/counter/counter_screen.dart`
+
+## Riverpod Annotations y generador de código
+
+Riverpod no hace mucho lanzó una nueva sintaxis.
+
+No marca como obsoleta la anterior sintaxis, lo que significa que ahora tenemos dos formas de usarlo.
+
+La nueva versión utiliza decoradores y anotaciones que ayudan al generador de código a crear el provider ideal para lo que queremos hacer.
+
+Tiene pros y contras esta nueva versión de código:
+
+- Pros:
+  - Es la forma recomendada por Riverpod
+  - Sintaxis mucho más simple
+  - Determina automáticamente el provider acorde a la necesidad
+- Cons:
+  - Hay que mantener un watch o ejecutar el generador en cada cambio que hagamos en los providers: `flutter pub run build_runner watch`
+  - Un paquete adicional de `riverpod_generator` como dependencia de desarrollo (que realmente no es gran problema)
+
+Pueden ver los ejercicios de una u otra sintaxis con el switch que colocaron en el sitio web de Riverpod.
+
+![alt Ejercicios usando ambas sintaxis](./Images/05_Riverpod_Exercises.png)
+
+Pueden experimentar ambas sintaxis, y trabajar con la que más les guste. Pueden leer más al respecto aquí
+
+https://docs-v2.riverpod.dev/docs/concepts/about_code_generation
 
 ## Truco para que Flutter tarde en hacer una animación
 
