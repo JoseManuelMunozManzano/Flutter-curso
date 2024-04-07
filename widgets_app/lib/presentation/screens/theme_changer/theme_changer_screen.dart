@@ -55,7 +55,14 @@ class _ThemeChangerView extends ConsumerWidget {
 
   void copyToClipBoard(BuildContext context, String value) {
     Clipboard.setData(ClipboardData(text: value)).then((_) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Color copied to clipboard'), duration: Duration(seconds: 1),));
+      ScaffoldMessenger.of(context).clearSnackBars();
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Color copied to clipboard'),
+          duration: Duration(seconds: 1),
+        )
+      );
     });
   }
 
@@ -68,7 +75,9 @@ class _ThemeChangerView extends ConsumerWidget {
     // Riverpod sabe cuando algo cambia para redibujar o no.
     final List<Color> colors = ref.watch(colorListProvider);
 
-    final int selectedColor = ref.watch(selectedColorProvider);
+    // Vamos a usar nuestro StateNotifierProvider, por lo que esto ya no hace falta.
+    // final int selectedColor = ref.watch(selectedColorProvider);
+    final int selectedColor = ref.watch(themeNotifierProvider).selectedColor;
 
     return ListView.builder(
       itemCount: colors.length,
@@ -78,8 +87,15 @@ class _ThemeChangerView extends ConsumerWidget {
 
         return ListTile(
           onTap: () {
-            if (ref.read(selectedColorProvider) != index) {
-              ref.read(selectedColorProvider.notifier).state = index;
+
+            // Usamos ahora nuestro StateNotifierProvider
+            // if (ref.read(selectedColorProvider) != index) {
+            //   ref.read(selectedColorProvider.notifier).state = index;
+            //   copyToClipBoard(context, radixString);
+            // }
+
+            if (ref.read(themeNotifierProvider).selectedColor != index) {
+              ref.read(themeNotifierProvider.notifier).changeColorIndex(index);
               copyToClipBoard(context, radixString);
             }
           },
@@ -90,8 +106,16 @@ class _ThemeChangerView extends ConsumerWidget {
             value: index == selectedColor,
             activeColor: color,
             onChanged: (value) {
-              if (ref.read(selectedColorProvider) != index) {
-                ref.read(selectedColorProvider.notifier).state = index;
+              // Usamos ahora nuestro StateNotifierProvider
+              // if (ref.read(selectedColorProvider) != index) {
+              //   ref.read(selectedColorProvider.notifier).state = index;
+              //   copyToClipBoard(context, radixString);
+              // }
+
+              if (ref.read(themeNotifierProvider).selectedColor != index) {
+                ref
+                    .read(themeNotifierProvider.notifier)
+                    .changeColorIndex(index);
                 copyToClipBoard(context, radixString);
               }
             },
