@@ -10,6 +10,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:widgets_app/presentation/providers/counter_provider.dart';
+import 'package:widgets_app/presentation/providers/theme_provider.dart';
 
 class CounterScreen extends ConsumerWidget {
 
@@ -24,9 +25,19 @@ class CounterScreen extends ConsumerWidget {
     // va a redibujar ese Widget donde sea necesario.
     final int clickCounter = ref.watch(counterProvider);
 
+    final bool isDarkMode = ref.watch(isDarkModeProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter Screen'),
+        actions: [
+          IconButton(
+            icon: Icon(isDarkMode ? Icons.dark_mode_outlined : Icons.light_mode_outlined),
+            onPressed: () {
+              ref.read(isDarkModeProvider.notifier).update((state) => !state);
+            },
+          )
+        ],
       ),
 
       // ignore: prefer_const_constructors
@@ -35,7 +46,21 @@ class CounterScreen extends ConsumerWidget {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          // IMPORTANTE: No se debe usar el watch() en métodos ya que NO se va a redibujar nada.
+          // Se usa read()
+          // Hay varias maneras de hacer un cambio en un StateProvider:
+          
+          // Forma 1: se indica notifier, para notificar ese cambio, y ya tenemos acceso
+          // al state, que se puede transformar. En este caso sumamos 1.
+          // Si no se indica el notifier (ni estate), estamos accediendo al valor del provider en ese momento.
+          ref.read(counterProvider.notifier).state++;
+          
+          // Forma 2: puede ser conveniente cuando necesitamos el estado.
+          // Tenemos el valor actual del estado y se le regresa el nuevo estado.
+          //
+          // ref.read(counterProvider.notifier).update((state) => state + 1);
+        },
         child: const Icon(Icons.add),
       ),
     );

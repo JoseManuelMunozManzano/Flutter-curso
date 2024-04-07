@@ -187,6 +187,8 @@ Por tanto, lo que tenemos que saber es si el dispositivo tiene o no Notch. Esto 
 
 En la carpeta `presentation/screens` creamos la carpeta `counter` y dentro el archivo `counter_screen.dart`.
 
-## Introducción a Riverpod
+## Riverpod
 
 En la carpeta `presentation` creamos la carpeta `providers` (no confundir con gestor de estado Provider, esto es para Riverpod) y el archivo `counter_provider.dart`.
+
+En la carpeta `providers` creamos otro archivo `theme_provider.dart`.
