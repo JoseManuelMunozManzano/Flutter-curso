@@ -353,7 +353,19 @@ Para empezar a trabajar (revisar siempre la documentación primero):
   - ProviderScope es un tipo de Widget especial que va a mantener una referencia a todos los providers que utilicemos
 - A partir de aquí ya se puede empezar a trabajar. Se puede ver ejemplos en la app `widgets_app`, carpeta `presentation/providers`, que se usan en `presentation/screens/counter/counter_screen.dart`
 
-## Riverpod Annotations y generador de código
+### Riverpod - StateNotifier
+
+La diferencia principal con un StateProvider, es que StateProvider lo usamos para un state "básico", básicamente un Boolean, Integer o String.
+
+Cuando necesitemos trabajar con un state mas complejo, ya sea un objeto, una lista, un map... ahí usaremos StateNotifierProvider.
+
+Tanto en isDarkModeProvider como en selectedColorProvider estamos manejando un boolean y un int, por lo que perfectamente podemos usar un StateProvider.
+
+Ahora, en themeNotifierProvider vamos a manejar un objeto, por lo que ahí tenemos que usar StateNotifierProvider.
+
+https://dhruvnakum.xyz/flutter-riverpod-stateprovider-statenotifier-statenotifierprovider-futureprovider-streamprovider
+
+### Riverpod Annotations y generador de código
 
 Riverpod no hace mucho lanzó una nueva sintaxis.
 

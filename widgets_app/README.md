@@ -198,3 +198,15 @@ En la carpeta `providers` creamos otro archivo `theme_provider.dart`.
 En la carpeta `screens` creamos la carpeta `theme_changer` y dentro el archivo `theme_changer_screen.dart`.
 
 Se instala la librería `colornames` para obtener el nombre de los colores.
+
+## Riverpod - StateNotifier
+
+La diferencia principal con un StateProvider, es que StateProvider lo usamos para un state "básico", básicamente un Boolean, Integer o String.
+
+Cuando necesitemos trabajar con un state mas complejo, ya sea un objeto, una lista, un map... ahí usaremos StateNotifierProvider.
+
+Tanto en isDarkModeProvider como en selectedColorProvider estamos manejando un boolean y un int, por lo que perfectamente podemos usar un StateProvider.
+
+Ahora, en themeNotifierProvider vamos a manejar un objeto, por lo que ahí tenemos que usar StateNotifierProvider.
+
+https://dhruvnakum.xyz/flutter-riverpod-stateprovider-statenotifier-statenotifierprovider-futureprovider-streamprovider

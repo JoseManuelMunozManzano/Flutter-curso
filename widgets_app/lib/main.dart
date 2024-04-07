@@ -19,8 +19,11 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final int selectedColor = ref.watch(selectedColorProvider);
-    final bool isDarkMode = ref.watch(isDarkModeProvider);
+    // Trabajando con un StateNotifierProvider, ya no nos haría falta esto.
+    // final int selectedColor = ref.watch(selectedColorProvider);
+    // final bool isDarkMode = ref.watch(isDarkModeProvider);
+
+    final AppTheme appTheme = ref.watch(themeNotifierProvider);
 
     // Se indica el router e indicamos su configuración
     return MaterialApp.router(
@@ -28,7 +31,10 @@ class MainApp extends ConsumerWidget {
       title: 'Flutter Widgets',
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectedColor: selectedColor, isDarkMode: isDarkMode).getTheme(),
+
+      // Usando StateNotifierProvider, ya no nos haría falta esto.
+      // theme: AppTheme(selectedColor: selectedColor, isDarkMode: isDarkMode).getTheme(),
+      theme: appTheme.getTheme(),
 
       // Ya no hace falta porque viene de appRouter
       // home: const HomeScreen(),
