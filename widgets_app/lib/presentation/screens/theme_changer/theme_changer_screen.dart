@@ -1,8 +1,7 @@
 // Uso de snippet impm para importar paquete de Material.
-import 'dart:ffi';
-
 import 'package:colornames/colornames.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:widgets_app/presentation/providers/theme_provider.dart';
 
@@ -28,14 +27,14 @@ class ThemeChangerScreen extends ConsumerWidget {
                 ? Icons.dark_mode_outlined
                 : Icons.light_mode_outlined),
             onPressed: () {
-
+              ref.read(isDarkModeProvider.notifier).update((state) => !state);
             },
           )
         ],
       ),
 
       // Lista de colores disponibles.
-      body: _ThemeChangerView(),
+      body: const _ThemeChangerView(),
     );
   }
 }
@@ -50,6 +49,12 @@ class ThemeChangerScreen extends ConsumerWidget {
 class _ThemeChangerView extends ConsumerWidget {
   const _ThemeChangerView();
 
+  void copyToClipBoard(BuildContext context, String value) {
+    Clipboard.setData(ClipboardData(text: value)).then((_) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Color copied to clipboard'), duration: Duration(seconds: 1),));
+    });
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
@@ -59,6 +64,8 @@ class _ThemeChangerView extends ConsumerWidget {
     // Riverpod sabe cuando algo cambia para redibujar o no.
     final List<Color> colors = ref.watch(colorListProvider);
 
+    final int selectedColor = ref.watch(selectedColorProvider);
+
     return ListView.builder(
       itemCount: colors.length,
       itemBuilder: (context, index) {
@@ -67,16 +74,22 @@ class _ThemeChangerView extends ConsumerWidget {
 
         return ListTile(
           onTap: () {
-            // TODO: Notificar el cambio
+            if (ref.read(selectedColorProvider) != index) {
+              ref.read(selectedColorProvider.notifier).state = index;
+              copyToClipBoard(context, radixString);
+            }
           },
           leading: CircleAvatar(backgroundColor: colors[index]),
           title: Text(color.colorName), // paquete colornames
           subtitle: Text('#$radixString'),
           trailing: Switch(
-            value: false,
+            value: index == selectedColor,
             activeColor: color,
-            onChanged: (value) async {
-              
+            onChanged: (value) {
+              if (ref.read(selectedColorProvider) != index) {
+                ref.read(selectedColorProvider.notifier).state = index;
+                copyToClipBoard(context, radixString);
+              }
             },
           ),
         );
