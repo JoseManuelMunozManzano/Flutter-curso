@@ -115,3 +115,17 @@ Hablamos de implementaciones cuando creamos clases que implementan las reglas de
 - Escribir y seleccionar Flutter: Select Device
 - Seleccionar el dispositivo iOS
 - Pulsar F5
+
+## Inicio de aplicación - Estilo y Router
+
+Empezamos creando, dentro de la carpeta `lib` la carpeta `config` y dentro las carpetas `theme` y `router`.
+
+En `theme` creamos el archivo `app_theme.dart`.
+
+En `router` creamos el archivo `app_router.dart`. Tenemos que instalar `go_router`.
+
+De nuevo, dentro de la carpeta `lib` creamos la carpeta `presentation`, dentro la carpeta `screens` y dentro la carpeta `movies` donde situaremos todas las pantallas relacionadas con movies.
+
+En `movies` creamos el archivo `home_screen.dart`.
+
+Y como sabemos que vamos a tener más screens, en la carpeta `screens` creamos el archivo de barril `screens.dart`.

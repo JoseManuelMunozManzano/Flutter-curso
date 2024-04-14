@@ -106,12 +106,12 @@ Al iniciar algún proyecto de Flutter, crear la carpeta `.vscode` en la raiz y d
 {
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.organizeImports": true
+    "quickfix.insertSemicolon": true,
   }
 }
 ```
 
-Esto ayuda a agregar la palabra `const` en donde debe sin tener que agregarlo manualmente, quitar importaciones innecesarias, y organizar nuestras importaciones al guardar nuestros cambios.
+Esto ayuda a agregar la palabra `const` en donde debe sin tener que agregarlo manualmente quitar importaciones innecesarias y añadir punto y coma al guardar nuestros cambios.
 
 ## Trabajar con los colores indicados en el seed
 
