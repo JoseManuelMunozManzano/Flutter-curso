@@ -129,3 +129,17 @@ De nuevo, dentro de la carpeta `lib` creamos la carpeta `presentation`, dentro l
 En `movies` creamos el archivo `home_screen.dart`.
 
 Y como sabemos que vamos a tener más screens, en la carpeta `screens` creamos el archivo de barril `screens.dart`.
+
+## Entidad - Repositorios y Datasources
+
+Empezamos creando, dentro de la carpeta `lib` la carpeta `domain`.
+
+Dentro de `domain` vamos a crear las carpetas `entities`, `datasources` y `repositories`.
+
+En la carpeta `entities` creamos la entidad `movie.dart`.
+
+En la carpeta `datasources` creamos el datasource `movies_datasource.dart` donde NO va la implementación, sino el contrato que deben cumplir los fuentes que lo implementen.
+
+En la carpeta `repositories` creamos el repositorio `movies_repository.dart` donde NO va la implementación, sino el contrato que deben cumplir los fuentes que lo implementen.
+
+Los repositorios van a llamar al datasource, porque el repositorio me va a permitir que se pueda cambiar el datasource sin que afecte al resto de la aplicación.
