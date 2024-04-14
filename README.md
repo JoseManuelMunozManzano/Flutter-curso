@@ -98,6 +98,20 @@ Usando la terminal y en la raiz del proyecto, ejecutar:
 - flutter clean
 - flutter pub get
 
+## Variables de entorno
+
+Creamos en la raiz del proyecto el archivo `.env` y ahí indicamos nuestras variables de entorno.
+
+Flutter no sabe de la existencia del archivo `.env` y no los maneja por defecto. Tenemos que configurarlo.
+
+Hay muchos paquetes que sirven para manejar los archivos de variables de entorno.
+
+Vamos a usar: https://pub.dev/packages/flutter_dotenv
+
+En esa URL puede verse la documentación para configurarlo en nuestra app de Flutter.
+
+Y no olvidar, a la hora de hacer commits en Git, añadir este fichero a `.gitignore` y crear un fichero `.env.template` indicando los nombres (sin las claves) de las variables de entorno que necesitamos.
+
 ## Settings de VSCode
 
 Al iniciar algún proyecto de Flutter, crear la carpeta `.vscode` en la raiz y dentro un archivo `settings.json` el cual contiene:

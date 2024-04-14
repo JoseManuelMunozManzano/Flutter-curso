@@ -156,6 +156,18 @@ Los repositorios van a llamar al datasource, porque el repositorio me va a permi
 
 Creamos en la raiz del proyecto el archivo `.env` y ahí indicamos nuestra clave de TMDB.
 
+Flutter no sabe de la existencia del archivo `.env` y no los maneja por defecto. Tenemos que configurarlo.
+
+Hay muchos paquetes que sirven para manejar los archivos de variables de entorno.
+
+Vamos a usar: https://pub.dev/packages/flutter_dotenv
+
+En esa URL puede verse la documentación para configurarlo en nuestra app de Flutter.
+
+Para no tener que estar acordándonos de los nombres de nuestras variables de entorno, en la carpeta `config` creamos una carpeta `constants` y dentro un archivo llamado `environment.dart`.
+
+El objetivo de esta clase `Environment` es alojar las variables de entorno, definidas estáticamente, para que sean fáciles de utilizar.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
