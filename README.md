@@ -39,6 +39,10 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Bolitas de los Slides para saber cuantos hay: https://api.flutter.dev/flutter/material/TabPageSelector-class.html
 
+- Documentación DDD (Domain Driven Design): https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a
+
+- Offline App con Flutter y SQLite: https://walkingtree.tech/make-your-apps-available-offline-using-flutter-and-sqlite/
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations
@@ -1326,3 +1330,5 @@ Ver proyecto `widgets_app`, fuentes `home_screen.dart` y `side_menu.dart`, varia
 - toktik_con_repositorios
   - De aquí en adelante vamos a seguir trabajando usando las bases de la arquitectura limpia (salvo los Casos de Uso)
 - widgets_app
+- cinemapedia
+  - Lo importante de esta app no es el listado en sí, sino que hemos seguido todos los principios de arquitectura limpia, con lo que será más fácil expandir su funcionalidad, cosa que se hace en la siguiente sección
