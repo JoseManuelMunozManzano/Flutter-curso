@@ -24,6 +24,14 @@ Puntualmente veremos:
 
 Todo el objetivo de la sección es poder establecer los cimientos ordenados de nuestra arquitectura para reforzarlos y verlos en la práctica.
 
+## TMDB
+
+https://www.themoviedb.org/
+
+https://developer.themoviedb.org/docs/getting-started
+
+https://developer.themoviedb.org/docs/authentication-application
+
 ## Reforzamiento de conceptos de arquitectura
 
 A continuación vamos a ver:
@@ -143,3 +151,11 @@ En la carpeta `datasources` creamos el datasource `movies_datasource.dart` donde
 En la carpeta `repositories` creamos el repositorio `movies_repository.dart` donde NO va la implementación, sino el contrato que deben cumplir los fuentes que lo implementen.
 
 Los repositorios van a llamar al datasource, porque el repositorio me va a permitir que se pueda cambiar el datasource sin que afecte al resto de la aplicación.
+
+## Variables de entorno
+
+Creamos en la raiz del proyecto el archivo `.env` y ahí indicamos nuestra clave de TMDB.
+
+## Testing
+
+En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
