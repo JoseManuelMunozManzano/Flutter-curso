@@ -39,7 +39,10 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Bolitas de los Slides para saber cuantos hay: https://api.flutter.dev/flutter/material/TabPageSelector-class.html
 
-- Documentación DDD (Domain Driven Design): https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a
+- Documentación DDD (Domain Driven Design):
+
+  - https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a
+  - https://medium.com/bimar-teknoloji/understanding-clean-architecture-and-domain-driven-design-ddd-24e89caabc40
 
 - Offline App con Flutter y SQLite: https://walkingtree.tech/make-your-apps-available-offline-using-flutter-and-sqlite/
 
@@ -94,6 +97,21 @@ Usando la terminal y en la raiz del proyecto, ejecutar:
 
 - flutter clean
 - flutter pub get
+
+## Settings de VSCode
+
+Al iniciar algún proyecto de Flutter, crear la carpeta `.vscode` en la raiz y dentro un archivo `settings.json` el cual contiene:
+
+```
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  }
+}
+```
+
+Esto ayuda a agregar la palabra `const` en donde debe sin tener que agregarlo manualmente, quitar importaciones innecesarias, y organizar nuestras importaciones al guardar nuestros cambios.
 
 ## Trabajar con los colores indicados en el seed
 
