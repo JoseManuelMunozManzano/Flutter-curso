@@ -483,7 +483,7 @@ Dio es muy fácil de usar e incluso hace la serialización del mapa por nosotros
 
 ```
 class GetYesNoAnswer {
-  // Con Dio podemos usar las BaseOptions, que nos permite indicar la url, headers y muchísimas más cosas.
+  // Con Dio podemos usar las BaseOptions, que nos permite indicar la base de la url, queryParameters, headers y muchísimas más cosas (ver proyecto cinemapedia)
   // final _dio = Dio(BaseOptions(
   //   baseUrl:
   // ));

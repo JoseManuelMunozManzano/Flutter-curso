@@ -1,5 +1,4 @@
 // Usamos snippet impm para importar material
-import 'package:cinemapedia/config/constants/environment.dart';
 import 'package:flutter/material.dart';
 
 // Usamos snippet stlesw para crear un StatelessWidget
@@ -13,10 +12,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(Environment.theMovieDbKey),
-      )
+    return const Scaffold(
+      body: Placeholder()
     );
   }
 }

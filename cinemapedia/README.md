@@ -168,6 +168,12 @@ Para no tener que estar acordándonos de los nombres de nuestras variables de en
 
 El objetivo de esta clase `Environment` es alojar las variables de entorno, definidas estáticamente, para que sean fáciles de utilizar.
 
+## Datasource - Obtener películas en cines
+
+Vamos a implementar el método `getNowPlaying()` de la clase abstracta `MoviesDatasource`.
+
+Para ello, en la carpeta `lib` creamos la carpeta `infrastructure`, que contendrá las implementaciones de los métodos que están en nuestra carpeta `domain`. Dentro creamos la carpeta `datasource` y dentro creamos el fuente `moviedb_datasource.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
