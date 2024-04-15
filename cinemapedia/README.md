@@ -178,6 +178,12 @@ Para ello, en la carpeta `lib` creamos la carpeta `infrastructure`, que contendr
 
 En la carpeta `infrastructure` creamos la carpeta `models`, dentro creamos la carpeta `moviedb` y dentro creamos dos archivos: `moviedb_response.dart` y `movie_moviedb.dart`.
 
+## MovieMappers - MovieDB hacia MovieEntity
+
+Como el modelo de datos de MovieDB (`infrastructure/models/moviedb/movie_moviedb.dart`) puede cambiar, lo que hacemos es mapear ese modelo al nuestro (`domain/entities/movie.dart`), que será fijo y no cambia. Con nuestra entidad, seguiremos trabajando en nuestra app.
+
+En la carpeta `infrastructure` creamos la carpeta `mappers` y dentro el archivo `movie_mapper.dart`, cuya única misión es leer los diferentes modelos que pueda haber y crear mi entidad.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
