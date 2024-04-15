@@ -172,7 +172,11 @@ El objetivo de esta clase `Environment` es alojar las variables de entorno, defi
 
 Vamos a implementar el método `getNowPlaying()` de la clase abstracta `MoviesDatasource`.
 
-Para ello, en la carpeta `lib` creamos la carpeta `infrastructure`, que contendrá las implementaciones de los métodos que están en nuestra carpeta `domain`. Dentro creamos la carpeta `datasource` y dentro creamos el fuente `moviedb_datasource.dart`.
+Para ello, en la carpeta `lib` creamos la carpeta `infrastructure`, que contendrá las implementaciones de los métodos que están en nuestra carpeta `domain`. Dentro creamos la carpeta `datasources` y dentro creamos el fuente `moviedb_datasource.dart`.
+
+## TheMovieDB - Modelos
+
+En la carpeta `infrastructure` creamos la carpeta `models`, dentro creamos la carpeta `moviedb` y dentro creamos dos archivos: `moviedb_response.dart` y `movie_moviedb.dart`.
 
 ## Testing
 
