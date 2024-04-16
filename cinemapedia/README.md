@@ -186,7 +186,11 @@ En la carpeta `infrastructure` creamos la carpeta `mappers` y dentro el archivo 
 
 ## MovieRepository - Implementación
 
-En la carpeta `infrastructure` creamos la carpeta `repository`
+En la carpeta `infrastructure` creamos la carpeta `repository` y dentro el archivo `movie_repository_impl.dart`.
+
+## Crear la instancia del repositorio - Riverpod
+
+En la carpeta `presentation` creamos la carpeta `providers`, dentro la carpeta `movies` y dentro creamos el archivo `movies_repository_provider.dart`, que es quien crea la instancia de `movie_repository_impl.dart`
 
 ## Testing
 
