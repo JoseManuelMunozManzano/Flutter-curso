@@ -196,6 +196,10 @@ En la carpeta `presentation` creamos la carpeta `providers`, dentro la carpeta `
 
 En la carpeta `presentation/providers` creamos el archivo `movies_providers.dart` que nos va a servir para definir todos los otros providers.
 
+## Archivo de barril
+
+En la carpeta `presentation/providers` nos creamos el archivo de barril `providers.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
