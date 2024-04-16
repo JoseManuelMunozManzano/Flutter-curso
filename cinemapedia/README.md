@@ -190,7 +190,11 @@ En la carpeta `infrastructure` creamos la carpeta `repository` y dentro el archi
 
 ## Crear la instancia del repositorio - Riverpod
 
-En la carpeta `presentation` creamos la carpeta `providers`, dentro la carpeta `movies` y dentro creamos el archivo `movies_repository_provider.dart`, que es quien crea la instancia de `movie_repository_impl.dart`
+En la carpeta `presentation` creamos la carpeta `providers`, dentro la carpeta `movies` y dentro creamos el archivo `movies_repository_provider.dart`, que es quien crea la instancia de `movie_repository_impl.dart`.
+
+## NowPlaying Provider y Notifier
+
+En la carpeta `presentation/providers` creamos el archivo `movies_providers.dart` que nos va a servir para definir todos los otros providers.
 
 ## Testing
 
