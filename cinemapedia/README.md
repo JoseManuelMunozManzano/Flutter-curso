@@ -184,6 +184,10 @@ Como el modelo de datos de MovieDB (`infrastructure/models/moviedb/movie_moviedb
 
 En la carpeta `infrastructure` creamos la carpeta `mappers` y dentro el archivo `movie_mapper.dart`, cuya única misión es leer los diferentes modelos que pueda haber y crear mi entidad.
 
+## MovieRepository - Implementación
+
+En la carpeta `infrastructure` creamos la carpeta `repository`
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
