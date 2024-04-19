@@ -24,6 +24,17 @@ Puntualmente veremos:
 
 Todo el objetivo de la sección es poder establecer los cimientos ordenados de nuestra arquitectura para reforzarlos y verlos en la práctica.
 
+Esta segunda sección tiene por objetivo realizar 4 consultas a TheMovieDB para obtener:
+
+- Películas populares
+- Películas en cines
+- Películas mejor calificadas
+- Películas que próximamente estarán en cines
+
+Para lograr esto seguiremos trabajando con los mismos principios y poco a poco iremos creando una aplicación robusta.
+
+También aprenderemos un poco sobre scroll horizontal infinito, slivers y más.
+
 ## TMDB
 
 https://www.themoviedb.org/
