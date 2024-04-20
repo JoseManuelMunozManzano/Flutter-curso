@@ -225,6 +225,12 @@ Se hace con esta estructura de carpetas porque la parte del appbar no tiene rela
 
 Como sabemos que van a haber más widgets creamos en la carpeta `widgets` el archivo de barril `widgets.dart`.
 
+## Carrusel de películas
+
+Para hacer este Widget Carrusel vamos a usar un Widget de terceros (https://pub.dev/packages/card_swiper) para hacerlo rápidamente.
+
+En la carpeta `presentation/widgets` creamos la carpeta `movies` y dentro el archivo `movies_slideshow.dart`, porque quiero que me sirva para mostrar películas y veo que está muy amarrado a mostrar películas.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.

@@ -46,6 +46,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Offline App con Flutter y SQLite: https://walkingtree.tech/make-your-apps-available-offline-using-flutter-and-sqlite/
 
+- Carrusel: https://pub.dev/packages/card_swiper
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations

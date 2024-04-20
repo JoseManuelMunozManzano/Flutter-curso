@@ -55,18 +55,20 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         const CustomAppBar(),
         
         // Dado el padre Column, expande todo lo posible, dando un ancho y un alto fijo.
-        Expanded(
-          child: ListView.builder(
-            itemCount: nowPlayingMovies.length,
-            itemBuilder: (context, index) {
-              final movie = nowPlayingMovies[index];
+        // Expanded(
+        //   child: ListView.builder(
+        //     itemCount: nowPlayingMovies.length,
+        //     itemBuilder: (context, index) {
+        //       final movie = nowPlayingMovies[index];
           
-              return ListTile(
-                title: Text(movie.title),
-              );
-            }
-          ),
-        )
+        //       return ListTile(
+        //         title: Text(movie.title),
+        //       );
+        //     }
+        //   ),
+        // )
+
+        MoviesSlideshow(movies: nowPlayingMovies)
       ]
     );
   }
