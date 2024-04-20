@@ -30,6 +30,8 @@ typedef MovieCallback = Future<List<Movie>> Function({int page});
 class MoviesNotifier extends StateNotifier<List<Movie>> {
 
   int currentPage = 0;
+  // Bandera para evitar cargar peticiones simultaneas. Solo cargar la siguiente página.
+  bool isLoading = false;
   // Defino el tipo de callback que espero, que tiene que cumplir la firma especificada en el typedef.
   MovieCallback fetchMoreMovies;
 
@@ -39,6 +41,9 @@ class MoviesNotifier extends StateNotifier<List<Movie>> {
 
   // El objetivo de este método es hacer alguna modificación al state.
   Future<void> loadNextPage() async {
+    if (isLoading) return;
+
+    isLoading = true;
     currentPage++;
 
     // Aquí es donde se podía haber hecho ref.getNowPlaying(), pero queda muy anclado.
@@ -46,5 +51,11 @@ class MoviesNotifier extends StateNotifier<List<Movie>> {
 
     // Siempre vamos a crear un nuevo estado para que el StateNotifier sepa que hubo un cambio y lo notifique.
     state = [...state, ...movies];
+
+    // Si tarda mucho en cargar, podemos poner un delay. Se indica como se haría porque no haría falta
+    // en este ejemplo concreto.
+    // Incluso este delay se puede llevar a una función aparte.
+    await Future.delayed(const Duration(milliseconds: 300));
+    isLoading = false;
   }
 }
