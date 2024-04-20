@@ -22,7 +22,12 @@ class MoviedbDatasource extends MoviesDatasource {
 
     // Cuando mandemos esta solicitud, tenemos que transformar la respuesta a mi entidad.
     // Creamos un modelo para leer la respuesta que viene de TMDB y un mapper para tomar esa data y crear nuesta entidad.
-    final response = await dio.get('/movie/now_playing');
+    // Añadimos el número de página como queryParameter.
+    final response = await dio.get('/movie/now_playing',
+      queryParameters: {
+        'page': page
+      }
+    );
     final movieDBResponse = MovieDbResponse.fromJson(response.data);
 
     final List<Movie> movies = movieDBResponse.results

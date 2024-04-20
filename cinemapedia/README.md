@@ -255,4 +255,4 @@ En la carpeta `config` creamos la carpeta `helpers` y dentro el archivo `human_f
 
 ## Testing
 
-En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
+En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.

@@ -812,7 +812,7 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
 
 Los StatelessWidgnet NO tienen ciclo de vida. Se crean siempre que haga falta.
 
-Los StatefulWidget SI tienen ciclo de vida.
+Los StatefulWidget SI tienen ciclo de vida. Si hay que crear un listener o un controller hay que convertir el Widget a StatefulWidget.
 
 Pasos del ciclo de vida:
 
