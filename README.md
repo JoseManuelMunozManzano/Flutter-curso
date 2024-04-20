@@ -48,6 +48,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Carrusel: https://pub.dev/packages/card_swiper
 
+- BottomNavigationBar: https://www.youtube.com/watch?v=HB5WMcxAmQQ
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations

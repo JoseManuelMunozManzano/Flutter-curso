@@ -235,6 +235,12 @@ En la carpeta `presentation/widgets` creamos la carpeta `movies` y dentro el arc
 
 En la carpeta `presentation/providers/movies` creamos el archivo `movies_slideshow_provider.dart`.
 
+## CustomBottomNavigationBar
+
+https://www.youtube.com/watch?v=HB5WMcxAmQQ
+
+En la carpeta `presentation/widgets/shared` creamos el archivo `custom_bottom_navigation.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
