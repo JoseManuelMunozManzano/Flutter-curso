@@ -33,7 +33,11 @@ Esta segunda sección tiene por objetivo realizar 4 consultas a TheMovieDB para 
 
 Para lograr esto seguiremos trabajando con los mismos principios y poco a poco iremos creando una aplicación robusta.
 
-También aprenderemos un poco sobre scroll horizontal infinito, slivers y más.
+También aprenderemos un poco sobre:
+
+- Custom AppBar
+- Scroll horizontal infinito
+- Slivers
 
 ## TMDB
 
@@ -42,6 +46,8 @@ https://www.themoviedb.org/
 https://developer.themoviedb.org/docs/getting-started
 
 https://developer.themoviedb.org/docs/authentication-application
+
+https://developer.themoviedb.org/reference/movie-details
 
 ## Reforzamiento de conceptos de arquitectura
 
@@ -210,6 +216,14 @@ En la carpeta `presentation/providers` creamos el archivo `movies_providers.dart
 ## Archivo de barril
 
 En la carpeta `presentation/providers` nos creamos el archivo de barril `providers.dart`.
+
+## Custom AppBar
+
+Para crear nuestro AppBar personalizado, creamos en la carpeta `presentation` la carpeta `widgets`, dentro la carpeta `shared` y dentro el archivo `custom_appbar.dart`.
+
+Se hace con esta estructura de carpetas porque la parte del appbar no tiene relación con las movies, es más general.
+
+Como sabemos que van a haber más widgets creamos en la carpeta `widgets` el archivo de barril `widgets.dart`.
 
 ## Testing
 
