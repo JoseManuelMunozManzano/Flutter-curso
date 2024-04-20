@@ -231,6 +231,10 @@ Para hacer este Widget Carrusel vamos a usar un Widget de terceros (https://pub.
 
 En la carpeta `presentation/widgets` creamos la carpeta `movies` y dentro el archivo `movies_slideshow.dart`, porque quiero que me sirva para mostrar películas y veo que está muy amarrado a mostrar películas.
 
+## Movies Slideshow Provider
+
+En la carpeta `presentation/providers/movies` creamos el archivo `movies_slideshow_provider.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
