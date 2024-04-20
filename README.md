@@ -1422,6 +1422,16 @@ Image.network(
 )
 ```
 
+## ListView vs ListView.builder
+
+Cuándo usar un ListView o un ListView.builder.
+
+Es bastante subjetivo. Si tenemos un número de elementos (itemCount) indefinido (unas veces pueden ser 10, pero otras 20...) tenemos que seleccionar el builder.
+
+El builder permite gestionar los Widgets de manera perezosa, mientras que ListView lo carga todo en memoria. Si el Widget es muy pesado o necesita mucho procesamiento para construirlo es mejor usar un builder.
+
+Casi siempre ListView.builder va a ser la mejor opción, a menos que sepamos que la cantidad de Widgets es constante y pequeña, y no son pesados de construir.
+
 ## Temario
 
 - 01_dart_intro
