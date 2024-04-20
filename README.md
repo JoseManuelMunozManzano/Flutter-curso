@@ -1434,6 +1434,16 @@ El builder permite gestionar los Widgets de manera perezosa, mientras que ListVi
 
 Casi siempre ListView.builder va a ser la mejor opción, a menos que sepamos que la cantidad de Widgets es constante y pequeña, y no son pesados de construir.
 
+## SingleChildScrollView
+
+Nos permiten tener Widgets que, sin este Widget, debordan la pantalla. Por ejemplo, varios ListView.
+
+## Slivers
+
+Son widgets especiales para controlar comportamientos del scrollView.
+
+Necesitan trabajar con un CustomScrollView
+
 ## Temario
 
 - 01_dart_intro

@@ -51,51 +51,103 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
 
-    return Column(
-      children: [
+    // return SingleChildScrollView(
+      // child: Column(...
+    return CustomScrollView(
+      slivers: [
 
-        const CustomAppBar(),
-        
-        // Dado el padre Column, expande todo lo posible, dando un ancho y un alto fijo.
-        // Expanded(
-        //   child: ListView.builder(
-        //     itemCount: nowPlayingMovies.length,
-        //     itemBuilder: (context, index) {
-        //       final movie = nowPlayingMovies[index];
-          
-        //       return ListTile(
-        //         title: Text(movie.title),
-        //       );
-        //     }
-        //   ),
-        // )
-
-        // Vamos a controlar, usando Riverpod, cuántas películas queremos mandar.
-        // Estrictamente hablando, es innecesario porque se puede hacer la lógica en esta llamada.
-        // MoviesSlideshow(movies: nowPlayingMovies > 0 ? : [])
-        // Pero vamos a explicar un concepto interesante de Riverpod y sus providers.
-        MoviesSlideshow(movies: slideShowMovies),
-
-        MovieHorizontalListview(
-          movies: nowPlayingMovies,
-          title: 'En cines',
-          subTitle: 'Lunes 20',
-          loadNextPage: () {
-            // Recordar que se usa el .read() dentro de funciones o callbacks.
-            ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-          },
+        // Llevo aquí mi AppBar, que ahora funciona con el scroll.
+        // Cuando hago scroll desaparece, pero cuando muevo un poco hacia arriba
+        // vuelve a aparecer.
+        const SliverAppBar(
+          floating: true,
+          title: CustomAppBar(),
+          // flexibleSpace: FlexibleSpaceBar(
+          //   titlePadding: EdgeInsets.all(0),
+          //   title: CustomAppBar(),
+          // ),
         ),
 
-      // Este nuevo MovieHorizontalListView genera un error en pantalla.
-      MovieHorizontalListview(
-        movies: nowPlayingMovies,
-        title: 'En cines',
-        subTitle: 'Lunes 20',
-        loadNextPage: () {
-          // Recordar que se usa el .read() dentro de funciones o callbacks.
-          ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-        },
-      ),        
+        // El delegate es la función que me a servir para crear Widgets dentro de este View.
+        SliverList(delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return Column(
+              children: [
+            
+                // Al añadir el CustomScrollView, mi Appbar ya no va a formar parte de ese ListView.
+                // Será parte de un nuevo sliver llamado SliverAppbar.
+                // const CustomAppBar(),
+                
+                // Dado el padre Column, expande todo lo posible, dando un ancho y un alto fijo.
+                // Expanded(
+                //   child: ListView.builder(
+                //     itemCount: nowPlayingMovies.length,
+                //     itemBuilder: (context, index) {
+                //       final movie = nowPlayingMovies[index];
+                  
+                //       return ListTile(
+                //         title: Text(movie.title),
+                //       );
+                //     }
+                //   ),
+                // )
+            
+                // Vamos a controlar, usando Riverpod, cuántas películas queremos mandar.
+                // Estrictamente hablando, es innecesario porque se puede hacer la lógica en esta llamada.
+                // MoviesSlideshow(movies: nowPlayingMovies > 0 ? : [])
+                // Pero vamos a explicar un concepto interesante de Riverpod y sus providers.
+                MoviesSlideshow(movies: slideShowMovies),
+            
+                MovieHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'En cines',
+                  subTitle: 'Lunes 20',
+                  loadNextPage: () {
+                    // Recordar que se usa el .read() dentro de funciones o callbacks.
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+            
+                // Los nuevos MovieHorizontalListView generan un error en pantalla por desbordamiento.
+                // Para evitar esto, envolvemos nuestro Column en el Widget SingleChildScrollView o
+                // con un CustomScrollView y el sliver, que es lo que al final hemos hecho.
+                MovieHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Próximamente',
+                  subTitle: 'En este mes',
+                  loadNextPage: () {
+                    // Recordar que se usa el .read() dentro de funciones o callbacks.
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+            
+                MovieHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Populares',
+                  // subTitle: '',
+                  loadNextPage: () {
+                    // Recordar que se usa el .read() dentro de funciones o callbacks.
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+            
+                MovieHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Mejor calificadas',
+                  subTitle: 'General',
+                  loadNextPage: () {
+                    // Recordar que se usa el .read() dentro de funciones o callbacks.
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+
+                // Espacio de gracia para que el usuario pueda hacer algo más de scroll.
+                const SizedBox(height: 10,)
+              ]
+            );
+          },
+          childCount: 1
+        ))
       ]
     );
   }
