@@ -1400,6 +1400,26 @@ class CustomAppBar extends StatelessWidget {
 
 ```
 
+## Error personalizado al cargar una imagen
+
+Ejemplo de errorBuilder en Image.network si hay error al cargarla. Se ve en el proyecto cinemapedia
+
+```
+Image.network(
+
+  // Por si da error al cargar
+  errorBuilder: (context, error, stackTrace) => Image.network(
+    errorBuilder: (context, error, stackTrace) =>
+        const Center(child: Text("Error al cargar la imagen")),
+    movie.backdropPath.replaceAll('w500', 'original'),
+    fit: BoxFit.cover,
+  ),
+
+  movie.backdropPath,
+  fit: BoxFit.cover,
+)
+```
+
 ## Temario
 
 - 01_dart_intro

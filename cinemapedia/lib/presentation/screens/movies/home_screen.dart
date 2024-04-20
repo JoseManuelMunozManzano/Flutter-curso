@@ -68,6 +68,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         //   ),
         // )
 
+        // Vamos a controlar, usando Riverpod, cuántas películas queremos mandar
         MoviesSlideshow(movies: nowPlayingMovies)
       ]
     );
