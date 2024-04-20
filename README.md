@@ -50,6 +50,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - BottomNavigationBar: https://www.youtube.com/watch?v=HB5WMcxAmQQ
 
+- HumanFormats - Números cortos: https://pub.dev/packages/intl
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations
@@ -728,12 +730,12 @@ class HumanFormats {
 
   static String humanReadableNumber(double number) {
 
-    final formatterNumber = NumberFormat.compactCurrency(
+    final formattedNumber = NumberFormat.compactCurrency(
       decimalDigits: 0,
       symbol: '',
     ).format(number);
 
-    return formatterNumber;
+    return formattedNumber;
   }
 }
 ```

@@ -245,6 +245,14 @@ En la carpeta `presentation/widgets/shared` creamos el archivo `custom_bottom_na
 
 En la carpeta `presentation/widgets/movies` creamos el archivo `movie_horizontal_listview.dart`.
 
+## HumanFormats - Números cortos
+
+https://pub.dev/packages/intl
+
+Para evitar que, si un día cambia la forma de usarse este paquete afecte a nuestro código, creamos un archivo aparte.
+
+En la carpeta `config` creamos la carpeta `helpers` y dentro el archivo `human_formats.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
