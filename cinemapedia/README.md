@@ -241,6 +241,10 @@ https://www.youtube.com/watch?v=HB5WMcxAmQQ
 
 En la carpeta `presentation/widgets/shared` creamos el archivo `custom_bottom_navigation.dart`.
 
+## Movie Horizontal ListView
+
+En la carpeta `presentation/widgets/movies` creamos el archivo `movie_horizontal_listview.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.

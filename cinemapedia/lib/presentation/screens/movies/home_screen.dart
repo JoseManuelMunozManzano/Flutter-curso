@@ -48,7 +48,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
 
-    // final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
 
     return Column(
@@ -74,7 +74,13 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         // Estrictamente hablando, es innecesario porque se puede hacer la lógica en esta llamada.
         // MoviesSlideshow(movies: nowPlayingMovies > 0 ? : [])
         // Pero vamos a explicar un concepto interesante de Riverpod y sus providers.
-        MoviesSlideshow(movies: slideShowMovies)
+        MoviesSlideshow(movies: slideShowMovies),
+
+        MovieHorizontalListview(
+          movies: nowPlayingMovies,
+          title: 'En cines',
+          subTitle: 'Lunes 20',
+        )
       ]
     );
   }
