@@ -57,6 +57,9 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
 
+    // FullScreen Loader
+    return const FullScreenLoader();
+
     // return SingleChildScrollView(
       // child: Column(...
     return CustomScrollView(

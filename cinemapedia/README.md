@@ -257,6 +257,10 @@ Para evitar que, si un día cambia la forma de usarse este paquete afecte a nues
 
 En la carpeta `config` creamos la carpeta `helpers` y dentro el archivo `human_formats.dart`.
 
+## FullScreen Loader
+
+En la carpeta `presentation/widgets/shared` creamos el archivo `full_screen_loader.dart` que es un Widget de carga a pantalla completa.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
