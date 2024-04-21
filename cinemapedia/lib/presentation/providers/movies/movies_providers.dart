@@ -25,6 +25,18 @@ final popularMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>
   return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
 });
 
+//* Próximamente
+final upcomingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getUpcoming;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
+//* Top Rated
+final topRatedMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getTopRated;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
 // Para especificar el tipo de función que espero.
 // Esto sirve para definir el caso de uso. MoviesNotifier recibe esta función para cargar más películas.
 // NOTA: Se podría haber pasado a MoviesNotifier() el ref desde StateNotifierProvider, y usar getNowPlaying(),

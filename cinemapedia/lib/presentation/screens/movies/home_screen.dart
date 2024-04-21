@@ -44,6 +44,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     // Recordar que indicando .notifier no quiero el valor, quiero el notifier.
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
     ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
+    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
   }
 
   @override
@@ -52,6 +54,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
+    final upcomingMovies = ref.watch(upcomingMoviesProvider);
 
     // return SingleChildScrollView(
       // child: Column(...
@@ -114,12 +118,12 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 // Para evitar esto, envolvemos nuestro Column en el Widget SingleChildScrollView o
                 // con un CustomScrollView y el sliver, que es lo que al final hemos hecho.
                 MovieHorizontalListview(
-                  movies: nowPlayingMovies,
+                  movies: upcomingMovies,
                   title: 'Próximamente',
                   subTitle: 'En este mes',
                   loadNextPage: () {
                     // Recordar que se usa el .read() dentro de funciones o callbacks.
-                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
                   },
                 ),
             
@@ -134,12 +138,12 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 ),
             
                 MovieHorizontalListview(
-                  movies: nowPlayingMovies,
+                  movies: topRatedMovies,
                   title: 'Mejor calificadas',
                   subTitle: 'General',
                   loadNextPage: () {
                     // Recordar que se usa el .read() dentro de funciones o callbacks.
-                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
                   },
                 ),
 
