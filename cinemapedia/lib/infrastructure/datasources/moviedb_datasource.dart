@@ -17,9 +17,21 @@ class MoviedbDatasource extends MoviesDatasource {
     }
   ));
 
+  List<Movie> _jsonToMovies(Map<String, dynamic> json) {
+    final movieDBResponse = MovieDbResponse.fromJson(json);
+
+    final List<Movie> movies = movieDBResponse.results
+        // Las películas sin poster se filtran
+        .where((moviedb) => moviedb.posterPath != '')
+        // El objetivo de este map es crearse la instancia de un Movie.
+        .map((moviedb) => MovieMapper.movieDBToEntity(moviedb))
+        .toList();
+
+    return movies;
+  }
+
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) async {
-
     // Cuando mandemos esta solicitud, tenemos que transformar la respuesta a mi entidad.
     // Creamos un modelo para leer la respuesta que viene de TMDB y un mapper para tomar esa data y crear nuesta entidad.
     // Añadimos el número de página como queryParameter.
@@ -28,16 +40,18 @@ class MoviedbDatasource extends MoviesDatasource {
         'page': page
       }
     );
-    final movieDBResponse = MovieDbResponse.fromJson(response.data);
 
-    final List<Movie> movies = movieDBResponse.results
-    // Las películas sin poster se filtran
-    .where((moviedb) => moviedb.posterPath != '')
-    // El objetivo de este map es crearse la instancia de un Movie.
-    .map(
-      (moviedb) => MovieMapper.movieDBToEntity(moviedb)
-    ).toList();
+    return _jsonToMovies(response.data);
+  }
+  
+  @override
+  Future<List<Movie>> getPopular({int page = 1}) async {
+    final response = await dio.get('/movie/popular',
+      queryParameters: {
+        'page': page
+      }
+    );
 
-    return movies;
+    return _jsonToMovies(response.data);
   }
 }

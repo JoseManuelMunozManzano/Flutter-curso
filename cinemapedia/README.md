@@ -39,6 +39,10 @@ También aprenderemos un poco sobre:
 - Scroll horizontal infinito
 - Slivers
 
+## Diagrama
+
+![alt Diagrama](../Images/06_cinemapedia_diagram.png)
+
 ## TMDB
 
 https://www.themoviedb.org/

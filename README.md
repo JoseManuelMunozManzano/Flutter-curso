@@ -333,6 +333,8 @@ Al grabar el archivo veremos ahora en la barra de debug de VSCode un icono Flutt
 
 Si lo pulsamos veremos la estructura del BuildContext.
 
+Contra de usar Provider: No permite dos instancias de la misma clase.
+
 ## Leer un valor del Provider
 
 De nuevo, ir a la web: https://pub.dev/packages/provider#reading-a-value y leer la documentación.
@@ -394,6 +396,8 @@ Para empezar a trabajar (revisar siempre la documentación primero):
 - En `main.dart`, en `runApp()` envolvemos todo con un `ProviderScope()`
   - ProviderScope es un tipo de Widget especial que va a mantener una referencia a todos los providers que utilicemos
 - A partir de aquí ya se puede empezar a trabajar. Se puede ver ejemplos en la app `widgets_app`, carpeta `presentation/providers`, que se usan en `presentation/screens/counter/counter_screen.dart`
+
+Uno de los beneficios de usar Riverpod es que permite crear dos instancias de la misma clase (ver proyecto cinemapedia)
 
 ### Riverpod - StateNotifier
 

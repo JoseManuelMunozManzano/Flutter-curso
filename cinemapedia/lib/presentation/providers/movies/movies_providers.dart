@@ -3,8 +3,9 @@ import 'package:cinemapedia/presentation/providers/movies/movies_repository_prov
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Consultaremos este provider para saber que películas están ahora en el cine.
-final nowPlayingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
-  
+// Los providers deben tratar de mantener la data lo más simple posible.
+final nowPlayingMoviesProvider =
+    StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
   // ¿De dónde vamos a obtener la función fetchMoreMovies que necesita nuestro MovierNotifier?
   // Esa función la tengo en MovieRepositoryImpl
   // Indicar que en la documentación de Riverpod sugieren usar watch() en vez de read() porque el día
@@ -12,6 +13,15 @@ final nowPlayingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movi
   // Obtenemos el código de la función getNowPlaying, sin los paréntesis porque NO queremos ejecutarlo.
   final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;
 
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
+//* Películas populares
+// Para las películas populares creamos otro StateNotifierProvider en vez de expandir el anterior.
+// Como se ha dicho, los providers deben mantener la data lo más simple posible.
+// Riverpod permite crear dos instancias de la misma clase.
+final popularMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getPopular;
   return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
 });
 
@@ -28,7 +38,6 @@ typedef MovieCallback = Future<List<Movie>> Function({int page});
 // Se hace lo más genérico posible para que sirva para todos los providers (de ahí el atributo fetchMoreMovies).
 // Y debe hacerse lo más sencillo posible para que sea fácil de leer y mantener.
 class MoviesNotifier extends StateNotifier<List<Movie>> {
-
   int currentPage = 0;
   // Bandera para evitar cargar peticiones simultaneas. Solo cargar la siguiente página.
   bool isLoading = false;
@@ -37,7 +46,7 @@ class MoviesNotifier extends StateNotifier<List<Movie>> {
 
   MoviesNotifier({
     required this.fetchMoreMovies,
-  }): super([]);
+  }) : super([]);
 
   // El objetivo de este método es hacer alguna modificación al state.
   Future<void> loadNextPage() async {

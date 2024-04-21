@@ -43,6 +43,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     // Este es el PUENTE. El read de provider manda a llamar a la siguiente página.
     // Recordar que indicando .notifier no quiero el valor, quiero el notifier.
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
   }
 
   @override
@@ -50,6 +51,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
 
     // return SingleChildScrollView(
       // child: Column(...
@@ -122,12 +124,12 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 ),
             
                 MovieHorizontalListview(
-                  movies: nowPlayingMovies,
+                  movies: popularMovies,
                   title: 'Populares',
                   // subTitle: '',
                   loadNextPage: () {
                     // Recordar que se usa el .read() dentro de funciones o callbacks.
-                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                    ref.read(popularMoviesProvider.notifier).loadNextPage();
                   },
                 ),
             
