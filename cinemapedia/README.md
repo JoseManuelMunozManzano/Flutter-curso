@@ -39,6 +39,16 @@ También aprenderemos un poco sobre:
 - Scroll horizontal infinito
 - Slivers
 
+Esta tercera sección está dedicada al diseño de la pantalla de película de forma individual. Aprenderemos:
+
+- Paso de parámetros
+- Loaders
+- Deep Linking
+- Caché Local
+- Slivers
+
+Esto significa que tenemos que volver a trabajar una nueva entidad, datasources, repositorios y demás para mantener separadas las responsabilidades.
+
 ## Diagrama
 
 ![alt Diagrama](../Images/06_cinemapedia_diagram.png)
@@ -266,6 +276,10 @@ En la carpeta `presentation/widgets/shared` creamos el archivo `full_screen_load
 Vamos a crear un provider que devuelva un booleano que me diga cuando tienen los 4 providers la data de las películas.
 
 En la carpeta `presentation/providers/movies` creamos el archivo `initial_loading_provider.dart`.
+
+## Screen para una película
+
+En la carpeta `presentation/screens/movies` creamos el screen `movie_screen.dart`.
 
 ## Testing
 
