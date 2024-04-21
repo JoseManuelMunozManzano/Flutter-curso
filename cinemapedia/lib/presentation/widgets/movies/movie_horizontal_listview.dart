@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // Como vamos a incluir un listener convertimos este Widget a StatefulWidget.
 class MovieHorizontalListview extends StatefulWidget {
@@ -70,7 +71,7 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
             itemCount: widget.movies.length,
             scrollDirection: Axis.horizontal,
             // Para que se vea igual en Android e IOs
-            physics: const BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),            
             itemBuilder: (context, index) {
               return FadeInRight(child: _Slide(movie: widget.movies[index]));
             },
@@ -119,7 +120,11 @@ class _Slide extends StatelessWidget {
                       );
                     }
 
-                    return FadeIn(child: child);
+                    return GestureDetector(
+                      // Recordar que indicamos .push() para que los usuarios puedan volver hacia atrás.
+                      onTap:() => context.push('/movie/${movie.id}') ,
+                      child: FadeIn(child: child)
+                    );
                   },
                 )
               ),

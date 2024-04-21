@@ -281,6 +281,10 @@ En la carpeta `presentation/providers/movies` creamos el archivo `initial_loadin
 
 En la carpeta `presentation/screens/movies` creamos el screen `movie_screen.dart`.
 
+## MaterialScrollBehavior para hacer scroll horizontal en Web
+
+En la carpeta `config` he creado la carpeta `scroll` y dentro he creado el archivo `custom_scroll_behavior.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
