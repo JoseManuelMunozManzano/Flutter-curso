@@ -261,6 +261,12 @@ En la carpeta `config` creamos la carpeta `helpers` y dentro el archivo `human_f
 
 En la carpeta `presentation/widgets/shared` creamos el archivo `full_screen_loader.dart` que es un Widget de carga a pantalla completa.
 
+## Escuchar múltiples providers simultáneamente
+
+Vamos a crear un provider que devuelva un booleano que me diga cuando tienen los 4 providers la data de las películas.
+
+En la carpeta `presentation/providers/movies` creamos el archivo `initial_loading_provider.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.

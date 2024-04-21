@@ -51,14 +51,17 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
 
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    // Vamos a escuchar simultáneamente varios providers.
+    // Cuando los cuatro tengan un valor quitamos el FullScreenLoader.
+    // Para esto usamos también Riverpod.
+    final initialLoading = ref.watch(initialLoadingProvider);
+    if (initialLoading) return const FullScreenLoader();
+
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
-
-    // FullScreen Loader
-    return const FullScreenLoader();
 
     // return SingleChildScrollView(
       // child: Column(...
