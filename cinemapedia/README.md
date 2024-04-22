@@ -295,6 +295,12 @@ Los datos obtenidos no se parecen a lo que tenemos hasta ahora. Tenemos, por tan
 
 En la carpeta `infrastructure/models/moviedb` creamos el modelo `movie_details.dart`.
 
+## MovieDB to Entity
+
+Como se ha dicho, una vez tenemos nuestro modelo, ahora creamos un mapper para mapearlo a nuestra entity Movie `movie.dart`.
+
+Usamos el mismo fuente de mappers, es decir, `infrastructure/mappers/movie_mapper.dart` y creamos un nuevo método estático.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.

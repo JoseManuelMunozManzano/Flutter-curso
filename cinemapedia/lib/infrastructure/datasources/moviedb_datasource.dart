@@ -83,11 +83,10 @@ class MoviedbDatasource extends MoviesDatasource {
     final response = await dio.get('/movie/{id}');
     if (response.statusCode != 200) throw Exception('Movie with id: $id not found');
 
-    final movieDB = MovieDetails.fromJson(response.data);
+    final movieDetails = MovieDetails.fromJson(response.data);
 
     // Mapeamos la respuesta de nuestro modelo a nuestra entidad.
-    // const Movie movie = MovieMapper;
-
+    final Movie movie = MovieMapper.movieDetailsToEntity(movieDetails);
 
     return movie;
   }
