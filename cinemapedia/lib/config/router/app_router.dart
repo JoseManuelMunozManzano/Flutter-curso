@@ -19,6 +19,11 @@ final appRouter = GoRouter(
             // Siempre deberia venir un id, pero se indica qué pasa si no viene, por si acaso.
             final movieId = state.pathParameters['id'] ?? 'no-id';
             
+            // No va a ser el navegador el que determine si estoy cargando la película, si la tengo
+            // en memoria...
+            // El route SOLO SE ENCARGA de la navegación.
+            // Por tanto, para esa gestión creamos de nuevo un datasource y un repositorio.
+
             return MovieScreen(movieId: movieId);
           },
         ),

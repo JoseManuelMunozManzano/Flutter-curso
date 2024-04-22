@@ -285,6 +285,16 @@ En la carpeta `presentation/screens/movies` creamos el screen `movie_screen.dart
 
 En la carpeta `config` he creado la carpeta `scroll` y dentro he creado el archivo `custom_scroll_behavior.dart`.
 
+## Obtener película por ID - Datasource
+
+https://api.themoviedb.org/3/movie/505642?api_key=myapi&language=es-ES
+
+Arriba vemos la petición que se puede hacer en Postman para obtener los datos de esa película.
+
+Los datos obtenidos no se parecen a lo que tenemos hasta ahora. Tenemos, por tanto, que crear un nuevo método en el datasource, un nuevo método en nuestro repository y un nuevo modelo específico de moviedb (porque es la respuesta que viene de TheMovieDB) para mapear los datos y que me servirá para implementar el mapper de esa respuesta a mi objeto personalizado (entity) `movie.dart`.
+
+En la carpeta `infrastructure/models/moviedb` creamos el modelo `movie_details.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
