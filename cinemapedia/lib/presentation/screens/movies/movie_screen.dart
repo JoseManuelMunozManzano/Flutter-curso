@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MovieScreen extends StatelessWidget {
+class MovieScreen extends StatefulWidget {
 
   static const name = 'movie-screen';
 
@@ -18,10 +18,26 @@ class MovieScreen extends StatelessWidget {
   });
 
   @override
+  State<MovieScreen> createState() => _MovieScreenState();
+}
+
+class _MovieScreenState extends State<MovieScreen> {
+
+  // Para saber cuando estoy cargando y cuando acabé de cargar.
+  // Vamos a manejar una caché local para mostrar un loading y ser más eficientes a la hora de
+  // no volver a hacer una petición para cargar películas que ya hemos cargado antes.
+  @override
+  void initState() {
+    super.initState();
+    // Recordar que nuestros widgets no llaman a las implementaciones (repositorio)
+    // Nuestro widgets llaman providers y estos últimos son los que llaman a las implementaciones.
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MovieID: $movieId'),
+        title: Text('MovieID: ${widget.movieId}'),
       ),
     );
   }

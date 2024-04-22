@@ -301,6 +301,12 @@ Como se ha dicho, una vez tenemos nuestro modelo, ahora creamos un mapper para m
 
 Usamos el mismo fuente de mappers, es decir, `infrastructure/mappers/movie_mapper.dart` y creamos un nuevo método estático.
 
+## Movie Details - Caché Local
+
+Para manejar la información de MovieDetails desde la data a la UI creamos un nuevo provider.
+
+En la carpeta `presentation/providers/movies` creamos el provider `movie_info_provider.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
