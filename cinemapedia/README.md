@@ -307,6 +307,8 @@ Para manejar la información de MovieDetails desde la data a la UI creamos un nu
 
 En la carpeta `presentation/providers/movies` creamos el provider `movie_info_provider.dart`.
 
+## Diseño de la pantalla de película
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
