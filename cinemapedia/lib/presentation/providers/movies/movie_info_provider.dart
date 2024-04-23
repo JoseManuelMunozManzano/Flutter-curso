@@ -34,7 +34,7 @@ class MovieMapNotifier extends StateNotifier<Map<String, Movie>> {
 
   Future<void> loadMovie(String movieId) async {
 
-    // Si ya tengo cargada la película en mi state no hago nada.
+    // Si ya tengo cargada la película en mi state no hago nada (caché).
     if (state[movieId] != null) return;
 
     // Recordar que si la movie no existe va a lanzar una excepción que podríamos manejar aquí.

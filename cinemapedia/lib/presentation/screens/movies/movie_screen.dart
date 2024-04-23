@@ -1,6 +1,11 @@
+import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MovieScreen extends StatefulWidget {
+// Cambiamos el StatefulWidget y, más abajo, _MovieScreenState y State<MovieScreen>
+// por la representación de Riverpod que nos permita tomar la referencia de nuestro provider.
+class MovieScreen extends ConsumerStatefulWidget {
 
   static const name = 'movie-screen';
 
@@ -18,10 +23,10 @@ class MovieScreen extends StatefulWidget {
   });
 
   @override
-  State<MovieScreen> createState() => _MovieScreenState();
+  MovieScreenState createState() => MovieScreenState();
 }
 
-class _MovieScreenState extends State<MovieScreen> {
+class MovieScreenState extends ConsumerState<MovieScreen> {
 
   // Para saber cuando estoy cargando y cuando acabé de cargar.
   // Vamos a manejar una caché local para mostrar un loading y ser más eficientes a la hora de
@@ -31,10 +36,25 @@ class _MovieScreenState extends State<MovieScreen> {
     super.initState();
     // Recordar que nuestros widgets no llaman a las implementaciones (repositorio)
     // Nuestro widgets llaman providers y estos últimos son los que llaman a las implementaciones.
+    //
+    // Y como estamos dentro de un ConsumerState, tenemos acceso a ref.
+    // Si fuera un StatelessWidget tendríamos acceso a ref solo en el método build()
+    ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
   }
 
   @override
   Widget build(BuildContext context) {
+
+    // Aquí sabemos cuando la película existe y cuando no. Cuando no existe puedo mostrar un loading.
+    final Movie? movie = ref.watch(movieInfoProvider)[widget.movieId];
+
+    // Si movie es null sabemos que estamos haciendo la petición http.
+    if (movie == null) {
+      // Envolvemos en un Scaffold porque si no la pantalla se ve negra durante un segundito.
+      return const Scaffold(body: Center(child: CircularProgressIndicator(strokeWidth: 2)));
+    }
+
+    // A partir de aquí siempre tenemos una película.
     return Scaffold(
       appBar: AppBar(
         title: Text('MovieID: ${widget.movieId}'),

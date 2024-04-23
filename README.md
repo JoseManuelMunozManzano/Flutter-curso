@@ -52,6 +52,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - HumanFormats - Números cortos: https://pub.dev/packages/intl
 
+- Manejo de errores: https://docs.flutter.dev/testing/errors, https://docs.flutter.dev/cookbook/maintenance/error-reporting
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations
