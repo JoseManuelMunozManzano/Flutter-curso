@@ -129,7 +129,7 @@ Hablamos de implementaciones cuando creamos clases que implementan las reglas de
   - `repositories` es similar a los datasources, con la diferencia de que nosotros llamamos al repositorio para acceder al datasource. Un repositorio envuelve al datasource, de forma que podemos cambiar el datasource, pero el repositorio debería ser el mismo. Aquí solo tenemos la parte abstracta
 - `infrastructure` también llamada data
   - `datasources` es donde están las implementaciones de nuestros datasources. Cada archivo aquí situado debería hacer solo una tarea
-  - `mappers` donde, dada la data recibida de una manera, digamos a través de una API, se transforma a la información como la vamos a necesitar en otras entidades. Si cambia la API, solo tendré que cambiar el mapper
+  - `mappers` donde, dada la data recibida de una manera, digamos a través de una API, se transforma a la información como la vamos a necesitar en otras entidades. Si cambia la API, solo tendré que cambiar el mapper. Usualmente el nombre de los archivos que se crean aquí son iguales a los nombres de las entidades que usamos en la aplicación.
   - `models` nos sirve para tipar una respuesta HTTP, evitando tener que usar la notación objeto["campo"], sino objeto.campo, facilitando el trabajo con el mapper
   - `repositories` es donde tenemos la implementación del repositorio
 - `presentation`
@@ -322,6 +322,10 @@ En la carpeta `domain/repositories` creamos la fuente de datos `actors_repositor
 Empezando con las implementaciones, creamos:
 
 En la carpeta `infrastructure/models/moviedb` creamos el modelo `credits_response.dart` usando Postman para obtener la data y quicktype.io para obtener el modelo.
+
+En la carpeta `infrastructure/mappers` creamos el mapper `actor_mapper.dart`.
+
+En la carpeta `infrastructure/datasource` creamos la fuente de datos `actor_moviedb_datasource.dart`.
 
 ## Testing
 
