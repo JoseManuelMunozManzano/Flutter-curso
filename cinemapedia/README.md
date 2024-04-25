@@ -307,7 +307,21 @@ Para manejar la información de MovieDetails desde la data a la UI creamos un nu
 
 En la carpeta `presentation/providers/movies` creamos el provider `movie_info_provider.dart`.
 
-## Diseño de la pantalla de película
+## Actores de la película
+
+Teniendo en cuenta el concepto de responsabilidad única, vamos a crear un provider idéntico a `movie_info_provider.dart` que solo se encargue de manejar los actores. Buscamos providers pequeños fáciles de mantener.
+
+Igual para entity, datasource y repository. Empezamos:
+
+En la carpeta `domain/entities` creamos la entity `actor.dart`.
+
+En la carpeta `domain/datasources` creamos la fuente de datos `actors_datasource.dart`.
+
+En la carpeta `domain/repositories` creamos la fuente de datos `actors_repository.dart`.
+
+Empezando con las implementaciones, creamos:
+
+En la carpeta `infrastructure/models/moviedb` creamos el modelo `credits_response.dart` usando Postman para obtener la data y quicktype.io para obtener el modelo.
 
 ## Testing
 
