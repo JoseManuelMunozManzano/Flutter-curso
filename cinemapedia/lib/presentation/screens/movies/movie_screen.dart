@@ -40,6 +40,8 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
     // Y como estamos dentro de un ConsumerState, tenemos acceso a ref.
     // Si fuera un StatelessWidget tendríamos acceso a ref solo en el método build()
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
+
+    ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
   }
 
   @override

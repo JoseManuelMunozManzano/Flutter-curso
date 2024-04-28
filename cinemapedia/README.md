@@ -333,6 +333,12 @@ En la capa de presentation creamos:
 
 En la carpeta `presentation/providers` creamos la carpeta `actors` y dentro los providers `actors_repository_provider.dart` y `actors_by_movie_provider.dart`.
 
+## Probar obtención de actores
+
+Esta prueba la hacemos en `presentation/screens/movies/movie_screen.dart` donde hacemos la petición a movieInfoProvider.notifier y hemos duplicado esa sentencia. Luego ponemos un breakpoint en algún punto que nos interese, en este caso la función del provider `loadActors()` y vemos los valores que carga.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
+
+Para obtener los actores, se puede ejecutar en Postman este `GET` con la siguiente rut: `https://api.themoviedb.org/3/movie/934632/credits?api_key=my_key&language=es-ES`
