@@ -136,12 +136,73 @@ class _MovieDetails extends StatelessWidget {
           ),
         ),
 
-        // TODO: Mostrar actores ListView
+        _ActorByMovie(movieId: movie.id.toString()),
 
         // Nos aseguramos que la persona tiene el espacio suficiente para que la persona
         // pueda hacer scroll.
-        const SizedBox(height: 100)
+        const SizedBox(height: 50)
       ],
+    );
+  }
+}
+
+class _ActorByMovie extends ConsumerWidget {
+
+  final String movieId;
+
+  const _ActorByMovie({required this.movieId});
+
+  @override
+  Widget build(BuildContext context, ref) {
+    // Tenemos que estar pendientes de cuando tenemos los actores.
+    final actorsByMovie = ref.watch(actorsByMovieProvider);
+    
+    if (actorsByMovie[movieId] == null) {
+      return const CircularProgressIndicator(strokeWidth: 2);
+    }
+
+    final actors = actorsByMovie[movieId]!; // Aquí siempre tenemos los actores
+
+    return SizedBox(
+      height: 300,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: actors.length,
+        itemBuilder: (context, index) {
+          final actor = actors[index];
+
+          return Container(
+            padding: const EdgeInsets.all(8.0),
+            width: 135,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                // Actor Photo
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    actor.profilePath,
+                    height: 180,
+                    width: 135,
+                    fit: BoxFit.cover
+                  )
+                ),
+
+                const SizedBox(height: 5),
+
+                // Nombre
+                Text(actor.name, maxLines: 2),
+                Text(
+                  actor.character ?? '',
+                  maxLines: 2,
+                  style: const TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)
+                ),
+              ],
+            )
+          );
+        },
+      ),
     );
   }
 }
@@ -168,11 +229,12 @@ class _CustomSliverAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
           // centerTitle: false,
           titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          title: Text(
-            movie.title,
-            style: const TextStyle(fontSize: 20),
-            textAlign: TextAlign.start,
-          ),
+          // Quitamos esta visualización del título porque no me acaba de gustar como queda.
+          // title: Text(
+          //   movie.title,
+          //   style: const TextStyle(fontSize: 20),
+          //   textAlign: TextAlign.start,
+          // ),
           background: Stack(
             children: [
               SizedBox.expand(

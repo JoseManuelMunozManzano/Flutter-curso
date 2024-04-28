@@ -337,6 +337,10 @@ En la carpeta `presentation/providers` creamos la carpeta `actors` y dentro los 
 
 Esta prueba la hacemos en `presentation/screens/movies/movie_screen.dart` donde hacemos la petición a movieInfoProvider.notifier y hemos duplicado esa sentencia. Luego ponemos un breakpoint en algún punto que nos interese, en este caso la función del provider `loadActors()` y vemos los valores que carga.
 
+## Mostrar los actores de la película
+
+Lo hacemos en `presentation/screens/movies/movie_screen.dart` donde creamos un nuevo ConsumerWidget `_ActorsByMovie` para ello.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
