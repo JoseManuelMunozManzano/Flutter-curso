@@ -327,6 +327,12 @@ En la carpeta `infrastructure/mappers` creamos el mapper `actor_mapper.dart`.
 
 En la carpeta `infrastructure/datasource` creamos la fuente de datos `actor_moviedb_datasource.dart`.
 
+En la carpeta `infrastructure/repositories` creamos el repositorio `actor_repository_impl.dart`.
+
+En la capa de presentation creamos:
+
+En la carpeta `presentation/providers` creamos la carpeta `actors` y dentro los providers `actors_repository_provider.dart` y `actors_by_movie_provider.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
