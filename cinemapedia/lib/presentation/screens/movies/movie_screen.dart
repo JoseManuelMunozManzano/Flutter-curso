@@ -1,7 +1,10 @@
-import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:animate_do/animate_do.dart';
+
+import 'package:cinemapedia/domain/entities/movie.dart';
+
+import 'package:cinemapedia/presentation/providers/providers.dart';
 
 // Cambiamos el StatefulWidget y, más abajo, _MovieScreenState y State<MovieScreen>
 // por la representación de Riverpod que nos permita tomar la referencia de nuestro provider.
@@ -179,14 +182,16 @@ class _ActorByMovie extends ConsumerWidget {
               children: [
 
                 // Actor Photo
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    actor.profilePath,
-                    height: 180,
-                    width: 135,
-                    fit: BoxFit.cover
-                  )
+                FadeInRight(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.network(
+                      actor.profilePath,
+                      height: 180,
+                      width: 135,
+                      fit: BoxFit.cover
+                    )
+                  ),
                 ),
 
                 const SizedBox(height: 5),
@@ -241,6 +246,12 @@ class _CustomSliverAppBar extends StatelessWidget {
                 child: Image.network(
                   movie.posterPath,
                   fit: BoxFit.cover,
+                  // Por temas estéticos, ya que al cargar la imagen aparece como un punto blanco y luego 
+                  // aparece muy bruscamente.
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress != null) return const SizedBox(); // Para que no se vea nada (negro)
+                    return FadeIn(child: child); // Regresamos la imagen más suavemente, del negro al color.
+                  },
                 ),
               ),
 

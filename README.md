@@ -1448,7 +1448,20 @@ Nos permiten tener Widgets que, sin este Widget, debordan la pantalla. Por ejemp
 
 Son widgets especiales para controlar comportamientos del scrollView.
 
+Por ejemplo, cuando se pulsa hacia arriba con el dedo y una imagen se hace más pequeña y de debajo de la pantalla aparece más información.
+
 Necesitan trabajar con un CustomScrollView
+
+## Truco para pasar de negro a una imagen suavemente
+
+Ver proyecto `cinemapedia`, fuente `movie_screen.dart`, clase `_CustomSliverAppBar`.
+
+```
+loadingBuilder: (context, child, loadingProgress) {
+  if (loadingProgress != null) return const SizedBox(); // Para que no se vea nada (negro)
+  return FadeIn(child: child); // Regresamos la imagen más suavemente, del negro al color.
+},
+```
 
 ## Temario
 
