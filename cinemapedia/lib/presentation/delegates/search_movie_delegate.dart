@@ -2,8 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 
+// Nos definimos el tipo de función específica.
+// Cualquier implementación que cumpla esta firma nos vale para buscar películas.
+typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
+
 // Vamos a devolver la Movie completa, pero también podríamos devolver solo el id.
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
+
+  final SearchMoviesCallback searchMovies;
+
+  SearchMovieDelegate({
+    required this.searchMovies
+  });
 
   // Implementar esta función es opcional
   // Sirve para cambiar el texto Search por el deseado
@@ -56,9 +66,33 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   }
 
   // Mientras la persona va escribiendo, qué queremos hacer
+  // No queremos estar disparando peticiones HTTP cada vez que una persona toca una tecla.
+  // Esto lo vamos a controlar después con un Debounce, pero por ahora vamos a hacer la forma más básica.
+  //
+  // Técnicamente, siempre que estemos dentro de un build podríamos usar un gestor de estados para construir y disparar
+  // la construcción de este Widget de manera automática cuando cambie un estado, pero esto se va a estar disparando
+  // por cada tecla.
+  //
+  // Forma básica.
+  // Así que realmente, lo único que necesito es ejecutar una función (arriba) que va a hacer la búsqueda de películas
+  // usando nuestro movieRepositoryProvider que devuelve nuestro MovieRepositoryImpl.
   @override
   Widget buildSuggestions(BuildContext context) {
-    return const Text('buildSuggestions');
+    return FutureBuilder(
+      future: searchMovies(query),
+      builder: (context, snapshot) {
+
+        final movies = snapshot.data ?? [];
+
+        return ListView.builder(
+          itemCount: movies.length,
+          itemBuilder: (context, index) {
+            final movie = movies[index];
+            return ListTile(title: Text(movie.title));
+          },
+        );
+      }
+    );
   }
   
 }
