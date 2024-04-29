@@ -375,6 +375,18 @@ En la carpeta `infrastructure/datasources` vamos a usar nuestra implementación 
 
 En la carpeta `infrastructure/repositories` vamos a usar nuestra implementación del repository ya existente `movie_repository_impl.dart` y añadimos la implementación de nuestra nueva función de búsqueda.
 
+## SearchDelegate
+
+Vamos a mostrar una búsqueda.
+
+Toda la funcionalidad de búsqueda ya la tiene Flutter por defecto.
+
+En la carpeta `presentation/widgets/shared` vamos a usar nuestro fichero ya existente `custom_appbar.dart` que es donde tenemos el icono de búsqueda, y vamos a llamar a una función que ya viene en Flutter llamada `showSearch()`.
+
+Dicha función necesita, además del context, un delegate.
+
+En la carpeta `presentation` creamos la carpeta `delegates` y dentro el archivo `search_movie_delegate.dart`, cuya clase va a extender de `SearchDelegate`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
