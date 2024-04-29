@@ -357,6 +357,24 @@ Esta prueba la hacemos en `presentation/screens/movies/movie_screen.dart` donde 
 
 Lo hacemos en `presentation/screens/movies/movie_screen.dart` donde creamos un nuevo ConsumerWidget `_ActorsByMovie` para ello.
 
+## SearchMovies - Datasource y Repository
+
+Podemos empezar a trabajar por la interfaz de usuario o por la parte de la data, pero al final la idea es tenerlo todo bien estructurado.
+
+Nosotros vamos a empezar por las reglas de negocio.
+
+Vamos a crear nuestro datasource y nuestro repository.
+
+En la carpeta `domain/datasources` vamos a usar nuestro datasource ya existente `movies_datasource.dart` y añadimos una nueva función de búsqueda.
+
+En la carpeta `domain/repositories` vamos a usar nuestro repository ya existente `movies_repository.dart` y añadimos una nueva función de búsqueda.
+
+Vamos ahora a nuestra infraestructura.
+
+En la carpeta `infrastructure/datasources` vamos a usar nuestra implementación del datasource ya existente `moviedb_datasource.dart` y añadimos la implementación de nuestra nueva función de búsqueda.
+
+En la carpeta `infrastructure/repositories` vamos a usar nuestra implementación del repository ya existente `movie_repository_impl.dart` y añadimos la implementación de nuestra nueva función de búsqueda.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
