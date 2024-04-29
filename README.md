@@ -54,6 +54,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Manejo de errores: https://docs.flutter.dev/testing/errors, https://docs.flutter.dev/cookbook/maintenance/error-reporting
 
+- Clean Architecture con GetX: https://dev.to/ahmaddarwesh/flutter-getx-clean-architecture-4ppk
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations

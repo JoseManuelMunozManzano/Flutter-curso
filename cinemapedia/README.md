@@ -49,6 +49,22 @@ Esta tercera sección está dedicada al diseño de la pantalla de película de f
 
 Esto significa que tenemos que volver a trabajar una nueva entidad, datasources, repositorios y demás para mantener separadas las responsabilidades.
 
+Esta cuarta sección tiene por objetivo aprender a realizar búsquedas y trabajar con el SearchDelegate.
+
+Puntualmente veremos:
+
+- SearchDelegate
+- Datasources
+- Repositorios
+- Búsquedas contra TheMovieDB
+- Debouncer
+- Streams
+- Builders
+- DRY
+- Providers
+
+En esta sección construiremos un motor de búsqueda completo y robusto para que nuestros usuarios puedan buscar sus películas ahí y preservar búsquedas anteriores para mejorar el rendimiento del mismo.
+
 ## Diagrama
 
 ![alt Diagrama](../Images/06_cinemapedia_diagram.png)
@@ -345,4 +361,6 @@ Lo hacemos en `presentation/screens/movies/movie_screen.dart` donde creamos un n
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
 
-Para obtener los actores, se puede ejecutar en Postman este `GET` con la siguiente rut: `https://api.themoviedb.org/3/movie/934632/credits?api_key=my_key&language=es-ES`
+Para obtener los actores, se puede ejecutar en Postman este `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/934632/credits?api_key=my_key&language=es-ES`
+
+Para realizar búsquedas de películas, se puede ejecutar en Postman este `GET` con la siguiente ruta: `https://api.themoviedb.org/3/search/movie?query=batman&api_key=my_key&language=es-ES`
