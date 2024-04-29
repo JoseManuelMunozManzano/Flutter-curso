@@ -45,6 +45,6 @@ class MovieMapper {
       title: moviedb.title,
       video: moviedb.video,
       voteAverage: moviedb.voteAverage,
-      voteCount: moviedb.voteCount    
+      voteCount: moviedb.voteCount
   );
 }
