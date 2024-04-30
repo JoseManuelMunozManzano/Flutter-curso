@@ -11,9 +11,9 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 
 // Vamos a devolver la Movie completa, pero también podríamos devolver solo el id.
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
-
   final SearchMoviesCallback searchMovies;
-  List<Movie> initialMovies;    // Se quita el final para que nos funcione buildResults
+  List<Movie>
+      initialMovies; // Se quita el final para que nos funcione buildResults
 
   // La idea es que solo cuando mi stream personalizado emita valores, rendericemos el contenido en buildSuggestions.
   // Y el stream emitirá valores solo cuando la persona deja de escribir.
@@ -21,24 +21,28 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   // Sin indicarlo, solo puede tener un listener. Por defecto y solo por si acaso, es mejor indicar broadcast siempre.
   StreamController<List<Movie>> debouncedMovies = StreamController.broadcast();
   // Timer es como el setTimeout de JavaScript. Se puede limpiar y cancelar.
-  Timer? _debounceTimer;  // Opcional porque no lo definimos hasta que no lo estemos utilizando.
+  Timer? _debounceTimer; // Opcional porque no lo definimos hasta que no lo estemos utilizando.
 
-  SearchMovieDelegate({
-    required this.initialMovies,
-    required this.searchMovies
-  }):super(
-    searchFieldLabel: 'Buscar películas',
-    //textInputAction: TextInputAction.done // En el teclado del móvil aparecerá done en vez de search
-  );
+  StreamController<bool> isLoadingStream = StreamController.broadcast();
+
+  SearchMovieDelegate({required this.initialMovies, required this.searchMovies})
+      : super(
+          searchFieldLabel: 'Buscar películas',
+          //textInputAction: TextInputAction.done // En el teclado del móvil aparecerá done en vez de search
+        );
 
   // Para limpiar los streams y el timer cuando se cierra el delegate
   void clearStreams() {
     debouncedMovies.close();
     _debounceTimer?.cancel();
+    isLoadingStream.close();
   }
 
   // Función que emite el resultado de las películas
   void _onQueryChanged(String query) {
+
+    isLoadingStream.add(true);
+
     if (_debounceTimer?.isActive ?? false) _debounceTimer!.cancel();
 
     _debounceTimer = Timer(const Duration(milliseconds: 500), () async {
@@ -54,7 +58,27 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
       initialMovies = movies;
 
       debouncedMovies.add(movies);
+      isLoadingStream.add(false);
     });
+  }
+
+  // Aplicando DRY
+  Widget buildResultsAndSuggestions() {
+    return StreamBuilder(
+        initialData: initialMovies,
+        stream: debouncedMovies.stream,
+        builder: (context, snapshot) {
+          final movies = snapshot.data ?? [];
+
+          return ListView.builder(
+              itemCount: movies.length,
+              itemBuilder: (context, index) => _MovieItem(
+                  movie: movies[index],
+                  onMovieSelected: (context, movie) {
+                    clearStreams();
+                    close(context, movie);
+                  }));
+        });
   }
 
   // Implementar esta función es opcional
@@ -77,15 +101,32 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     // print('query: $query');
 
     return [
-      // Se puede controlar si hay texto en la caja de texto con este if...
-      // if (query.isNotEmpty)
-        FadeIn(
-          animate: query.isNotEmpty,  // ... o en esta propiedad de FadeIn
-          // duration: const Duration(milliseconds: 200),
-          child: IconButton(
-            onPressed: () => query = '',
-            icon: const Icon(Icons.clear)
-          ),
+
+        StreamBuilder(
+          initialData: false,
+          stream: isLoadingStream.stream,
+          builder: (context, snapshot) {
+            if (snapshot.data ?? false) {
+              return SpinPerfect(
+                duration: const Duration(seconds: 2),
+                spins: 10,
+                infinite: true,
+                child: IconButton(
+                  onPressed: () => query = '',
+                  icon: const Icon(Icons.refresh_rounded)
+                ),
+              );
+            }
+
+            // Se puede controlar si hay texto en la caja de texto con este if...
+            // if (query.isNotEmpty)
+            return FadeIn(
+              animate: query.isNotEmpty, // ... o en esta propiedad de FadeIn
+              // duration: const Duration(milliseconds: 200),
+              child: IconButton(
+                  onPressed: () => query = '', icon: const Icon(Icons.clear)),
+            );
+          },
         )
     ];
   }
@@ -100,12 +141,11 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        clearStreams();
-        close(context, null);
-      },
-      icon: const Icon(Icons.arrow_back_ios_new_rounded)
-    );
+        onPressed: () {
+          clearStreams();
+          close(context, null);
+        },
+        icon: const Icon(Icons.arrow_back_ios_new_rounded));
   }
 
   // Los resultados que van a aparecer cuando la persona pulse Intro
@@ -120,29 +160,11 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   // Lo que se ha hecho es que initialMovies ya no sea final y siempre va a tener data, que es
   // la que mostramos en vez de esperar a la emisión del stream.
   // Si se pulsa Intro muy rápido, tendremos la initialData y luego la respuesta del stream.
+  //
+  // Como al final ha quedado igual que buildSuggestions se ha hecho un método fuera al que llamamos.
   @override
   Widget buildResults(BuildContext context) {
-
-    // _onQueryChanged(query);
-
-    return StreamBuilder(
-      initialData: initialMovies,
-      stream: debouncedMovies.stream,
-      builder: (context, snapshot) {
-
-        final movies = snapshot.data ?? [];
-        return ListView.builder(
-          itemCount: movies.length,
-          itemBuilder: (context, index) => _MovieItem(
-            movie: movies[index],
-            onMovieSelected: (context, movie) {
-              clearStreams();
-              close(context, movie);
-            }
-          )
-        );
-      }
-    );
+    return buildResultsAndSuggestions();
   }
 
   // Mientras la persona va escribiendo, qué queremos hacer
@@ -159,30 +181,13 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   //
   // Ahora si, sustituimos nuestro FutureBuilder por un StreamBuilder para hacer el debounce.
   // Y se añade la función _onQueryChanged()
+  //
+  // Como al final ha quedado igual que buildResults se ha hecho un método fuera al que llamamos.
   @override
   Widget buildSuggestions(BuildContext context) {
-
     _onQueryChanged(query);
 
-    return StreamBuilder(
-      initialData: initialMovies,
-      stream: debouncedMovies.stream,
-      builder: (context, snapshot) {
-        //! print('Realizando petición');
-
-        final movies = snapshot.data ?? [];
-
-        return ListView.builder(
-            itemCount: movies.length,
-            itemBuilder: (context, index) => _MovieItem(
-                  movie: movies[index],
-                  onMovieSelected: (context, movie) {
-                    clearStreams();
-                    close(context, movie);
-                  }
-                ));
-      }
-    );
+    return buildResultsAndSuggestions();
 
     // return FutureBuilder(
     //   future: searchMovies(query),
@@ -205,7 +210,6 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 }
 
 class _MovieItem extends StatelessWidget {
-
   final Movie movie;
   final Function onMovieSelected;
 
@@ -216,7 +220,6 @@ class _MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final textStyles = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
@@ -224,25 +227,24 @@ class _MovieItem extends StatelessWidget {
       onTap: () {
         onMovieSelected(context, movie);
       },
-
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
           children: [
             // Image
             SizedBox(
-              width: size.width * 0.2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  movie.posterPath,
-                  loadingBuilder: (context, child, loadingProgress) => FadeIn(child: child),
-                ),
-              )
-            ),
-      
+                width: size.width * 0.2,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    movie.posterPath,
+                    loadingBuilder: (context, child, loadingProgress) =>
+                        FadeIn(child: child),
+                  ),
+                )),
+
             const SizedBox(width: 10),
-      
+
             // Description
             SizedBox(
               width: size.width * 0.7,
@@ -250,27 +252,27 @@ class _MovieItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(movie.title, style: textStyles.titleMedium),
-      
                   movie.overview.length > 100
-                    ? Text('${movie.overview.substring(0, 100)}...')
-                    : Text(movie.overview),
-      
-                Row(
-                  children: [
-                    Icon(Icons.star_half_rounded, color: Colors.yellow.shade800),
-                    const SizedBox(width: 5),
-                    Text(
-                      HumanFormats.number(movie.voteAverage, 1),
-                      style: textStyles.bodyMedium!.copyWith(color: Colors.yellow.shade900),
-                    )
-                  ],
-                )
+                      ? Text('${movie.overview.substring(0, 100)}...')
+                      : Text(movie.overview),
+                  Row(
+                    children: [
+                      Icon(Icons.star_half_rounded,
+                          color: Colors.yellow.shade800),
+                      const SizedBox(width: 5),
+                      Text(
+                        HumanFormats.number(movie.voteAverage, 1),
+                        style: textStyles.bodyMedium!
+                            .copyWith(color: Colors.yellow.shade900),
+                      )
+                    ],
+                  )
                 ],
               ),
             )
           ],
         ),
       ),
-    ); 
+    );
   }
 }
