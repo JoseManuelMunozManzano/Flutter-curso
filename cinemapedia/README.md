@@ -395,6 +395,12 @@ Lo normal es esperar a que el usuario deje de escribir durante un periodo de tie
 
 Esto es porque su conexión a Internet puede ser limitada, o su plan de datos no ser ilimitado, y además va a mejorar su experiencia.
 
+## Search Movies Providers
+
+Hacemos este provider para poder mantener el texto de la película que se buscó aun cuando salimos a la pantalla principal, es decir, si introducimos el texto de una película y salimos a la pantalla principal, si luego pulsamos de nuevo en buscar una película, mantiene el texto de la película anterior.
+
+En la carpeta `presentation/providers` creamos la carpeta `search` y dentro el provider `search_movies_provider.dart`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
