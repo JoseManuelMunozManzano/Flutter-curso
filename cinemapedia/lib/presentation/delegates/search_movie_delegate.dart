@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -12,9 +14,28 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   final SearchMoviesCallback searchMovies;
 
+  // La idea es que solo cuando mi stream personalizado emita valores, rendericemos el contenido en buildSuggestions.
+  // Y el stream emitirá valores solo cuando la persona deja de escribir.
+  // Se indica .broadcast() porque puede haber muchos lugares donde se esté escuchando el stream.
+  // Sin indicarlo, solo puede tener un listener. Por defecto y solo por si acaso, es mejor indicar broadcast siempre.
+  StreamController<List<Movie>> debouncedMovies = StreamController.broadcast();
+  // Timer es como el setTimeout de JavaScript. Se puede limpiar y cancelar.
+  Timer? _debounceTimer;  // Opcional porque no lo definimos hasta que no lo estemos utilizando.
+
   SearchMovieDelegate({
     required this.searchMovies
   });
+
+  // Función que emite el resultado de las películas
+  void _onQueryChanged(String query) {
+    print('Query String cambió');
+
+    if (_debounceTimer?.isActive ?? false) _debounceTimer!.cancel();
+
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
+      // TODO: Buscar películas y emitir al stream
+    });
+  }
 
   // Implementar esta función es opcional
   // Sirve para cambiar el texto Search por el deseado
@@ -79,23 +100,48 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   // Forma básica.
   // Así que realmente, lo único que necesito es ejecutar una función (arriba) que va a hacer la búsqueda de películas
   // usando nuestro movieRepositoryProvider que devuelve nuestro MovieRepositoryImpl.
+  //
+  // Ahora si, sustituimos nuestro FutureBuilder por un StreamBuilder para hacer el debounce.
+  // Y se añade la función _onQueryChanged()
   @override
   Widget buildSuggestions(BuildContext context) {
-    return FutureBuilder(
-      future: searchMovies(query),
+
+    _onQueryChanged(query);
+
+    return StreamBuilder(
+      stream: debouncedMovies.stream,
       builder: (context, snapshot) {
+        //! print('Realizando petición');
 
         final movies = snapshot.data ?? [];
 
         return ListView.builder(
-          itemCount: movies.length,
-          itemBuilder: (context, index) => _MovieItem(
-            movie: movies[index],
-            onMovieSelected: close, // Mandamos la ref. a la función close para poder usarla en nuestro Widget
-          )
-        );
+            itemCount: movies.length,
+            itemBuilder: (context, index) => _MovieItem(
+                  movie: movies[index],
+                  onMovieSelected:
+                      close, // Mandamos la ref. a la función close para poder usarla en nuestro Widget
+                ));
       }
     );
+
+    // return FutureBuilder(
+    //   future: searchMovies(query),
+    //   builder: (context, snapshot) {
+
+    //     //! print('Realizando petición');
+
+    //     final movies = snapshot.data ?? [];
+
+    //     return ListView.builder(
+    //       itemCount: movies.length,
+    //       itemBuilder: (context, index) => _MovieItem(
+    //         movie: movies[index],
+    //         onMovieSelected: close, // Mandamos la ref. a la función close para poder usarla en nuestro Widget
+    //       )
+    //     );
+    //   }
+    // );
   }
 }
 

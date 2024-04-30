@@ -387,6 +387,14 @@ Dicha función necesita, además del context, un delegate.
 
 En la carpeta `presentation` creamos la carpeta `delegates` y dentro el archivo `search_movie_delegate.dart`, cuya clase va a extender de `SearchDelegate`.
 
+## Debounce Manual
+
+En la búsqueda, no es conveniente que cada vez que se pulsa una tecla, haga la petición de búsqueda.
+
+Lo normal es esperar a que el usuario deje de escribir durante un periodo de tiempo para realizar la petición.
+
+Esto es porque su conexión a Internet puede ser limitada, o su plan de datos no ser ilimitado, y además va a mejorar su experiencia.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
