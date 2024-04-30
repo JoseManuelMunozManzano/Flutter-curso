@@ -13,6 +13,7 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   final SearchMoviesCallback searchMovies;
+  final List<Movie> initialMovies;
 
   // La idea es que solo cuando mi stream personalizado emita valores, rendericemos el contenido en buildSuggestions.
   // Y el stream emitirá valores solo cuando la persona deja de escribir.
@@ -23,6 +24,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   Timer? _debounceTimer;  // Opcional porque no lo definimos hasta que no lo estemos utilizando.
 
   SearchMovieDelegate({
+    required this.initialMovies,
     required this.searchMovies
   });
 
@@ -37,10 +39,10 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     if (_debounceTimer?.isActive ?? false) _debounceTimer!.cancel();
 
     _debounceTimer = Timer(const Duration(milliseconds: 500), () async {
-      if (query.isEmpty) {
-        debouncedMovies.add([]);
-        return;
-      }
+      // if (query.isEmpty) {
+      //   debouncedMovies.add([]);
+      //   return;
+      // }
 
       final movies = await searchMovies(query);
       debouncedMovies.add(movies);
@@ -122,6 +124,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     _onQueryChanged(query);
 
     return StreamBuilder(
+      initialData: initialMovies,
       stream: debouncedMovies.stream,
       builder: (context, snapshot) {
         //! print('Realizando petición');

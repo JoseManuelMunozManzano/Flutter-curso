@@ -401,6 +401,8 @@ Hacemos este provider para poder mantener el texto de la película que se buscó
 
 En la carpeta `presentation/providers` creamos la carpeta `search` y dentro el provider `search_movies_provider.dart`.
 
+También vamos a tener un estado para mantener las películas que ya se buscaron en memoria y, al volver a la búsqueda, no tener que volver a realizar la petición http.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
