@@ -13,7 +13,7 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   final SearchMoviesCallback searchMovies;
-  final List<Movie> initialMovies;
+  List<Movie> initialMovies;    // Se quita el final para que nos funcione buildResults
 
   // La idea es que solo cuando mi stream personalizado emita valores, rendericemos el contenido en buildSuggestions.
   // Y el stream emitirá valores solo cuando la persona deja de escribir.
@@ -26,7 +26,10 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   SearchMovieDelegate({
     required this.initialMovies,
     required this.searchMovies
-  });
+  }):super(
+    searchFieldLabel: 'Buscar películas',
+    //textInputAction: TextInputAction.done // En el teclado del móvil aparecerá done en vez de search
+  );
 
   // Para limpiar los streams y el timer cuando se cierra el delegate
   void clearStreams() {
@@ -45,14 +48,21 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
       // }
 
       final movies = await searchMovies(query);
+
+      // Para que nos funcione el buildResults
+      // Ahora initialMovies siempre va a tener data.
+      initialMovies = movies;
+
       debouncedMovies.add(movies);
     });
   }
 
   // Implementar esta función es opcional
   // Sirve para cambiar el texto Search por el deseado
-  @override
-  String get searchFieldLabel => 'Buscar película';
+  // También se puede hacer en el constructor
+  //
+  // @override
+  // String get searchFieldLabel => 'Buscar película';
 
   // Implementar estas 4 funciones es obligatorio.
 
@@ -99,9 +109,40 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   }
 
   // Los resultados que van a aparecer cuando la persona pulse Intro
+  //
+  // Como lo hacemos con un stream tenemos un problema, y es que si escribo Batman y espero un par de
+  // segundos y pulso Intro, no sale nada. Esto es porque el stream ya se ha leido y se ha limpiado.
+  // Si escribo Batman y rápidamente pulso Intro ahí si funciona.
+  //
+  // Una forma muy sencilla de resolver este problema es volver a ejecutar el _onQueryChanged(),
+  // pero esto ejecuta la petición dos veces, una por el buildSuggestion y otra al pulsar Intro.
+  //
+  // Lo que se ha hecho es que initialMovies ya no sea final y siempre va a tener data, que es
+  // la que mostramos en vez de esperar a la emisión del stream.
+  // Si se pulsa Intro muy rápido, tendremos la initialData y luego la respuesta del stream.
   @override
   Widget buildResults(BuildContext context) {
-    return const Text('buildResults');
+
+    // _onQueryChanged(query);
+
+    return StreamBuilder(
+      initialData: initialMovies,
+      stream: debouncedMovies.stream,
+      builder: (context, snapshot) {
+
+        final movies = snapshot.data ?? [];
+        return ListView.builder(
+          itemCount: movies.length,
+          itemBuilder: (context, index) => _MovieItem(
+            movie: movies[index],
+            onMovieSelected: (context, movie) {
+              clearStreams();
+              close(context, movie);
+            }
+          )
+        );
+      }
+    );
   }
 
   // Mientras la persona va escribiendo, qué queremos hacer
