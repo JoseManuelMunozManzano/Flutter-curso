@@ -65,6 +65,17 @@ Puntualmente veremos:
 
 En esta sección construiremos un motor de búsqueda completo y robusto para que nuestros usuarios puedan buscar sus películas ahí y preservar búsquedas anteriores para mejorar el rendimiento del mismo.
 
+Esta quinta sección tiene por objetivos puntuales:
+
+- Navegación entre tabs
+- Preservar estado
+- Go_Router
+  - Redirect
+  - ShellRoute
+  - SubShellRoutes
+
+Es una sección que tiene dos códigos fuente, el primero cuenta con la implementación recomendada de GoRouter y la segunda es la solución que hice para mantener el estado, que a muchas personas les parece más fácil que la misma solución oficial.
+
 ## Diagrama
 
 ![alt Diagrama](../Images/06_cinemapedia_diagram.png)
