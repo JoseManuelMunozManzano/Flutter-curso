@@ -428,6 +428,15 @@ También nos creamos en `views` un archivo de barril `views.dart`.
 
 go_router nos va a indicar cual es la vista que voy a recibir para poder mostrarla en `home_screen.dart`. Por tanto, dicho fuente va a requerir esa propiedad.
 
+## ShellRoute - GoRouter
+
+Documentación:
+
+- https://pub.dev/documentation/go_router/latest/topics/Configuration-topic.html (ver aquí la parte Nested Navigation)
+- https://pub.dev/documentation/go_router/latest/go_router/ShellRoute-class.html
+
+Un ShellRoute en un route especial que recibe un Widget hijo.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
