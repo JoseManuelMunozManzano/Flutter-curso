@@ -414,6 +414,20 @@ En la carpeta `presentation/providers` creamos la carpeta `search` y dentro el p
 
 También vamos a tener un estado para mantener las películas que ya se buscaron en memoria y, al volver a la búsqueda, no tener que volver a realizar la petición http.
 
+## Preparación de vistas
+
+Ya tenemos una vista creada, nuestro `_HomeView` en el fuente `home_screen.dart`.
+
+Si pulsamos en el botón `Favoritos` debería de mostrarse una nueva página parcial (que está dentro de otro Widget padre y tiene su Scaffold) y que es conocida como un `View`. Es parecida a un `screen` solo que es parcial. Hay otros desarrolladores que no implementan las vistas y las dejan como screens porque técnicamente una vista es un screen, incluso pueden tener un Scaffold. Es más un concepto, una terminología lo que separa a las vistas de los screens.
+
+Al final, lo que queremos es tener tres vistas, `HomeView` (nuestro inicio y que ya estaba listo y que cogemos de home_screen.dart), `CategoriesView` y `FavoritesView` para cambiar entre diferentes pantallas.
+
+En la carpeta `presentation` creamos otra carpeta `views` y dentro otra carpeta `home_views` donde creamos las views `favorites_view.dart`, `home_views.dart` que contiene el código que estaba en `home_screen.dart`.
+
+También nos creamos en `views` un archivo de barril `views.dart`.
+
+go_router nos va a indicar cual es la vista que voy a recibir para poder mostrarla en `home_screen.dart`. Por tanto, dicho fuente va a requerir esa propiedad.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
