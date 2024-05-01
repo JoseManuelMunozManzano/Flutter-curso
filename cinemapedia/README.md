@@ -437,6 +437,30 @@ Documentación:
 
 Un ShellRoute en un route especial que recibe un Widget hijo.
 
+## StatefulShellRoute - GoRouter
+
+Ya se puede mantener el estado en GoRouter.
+
+Tenemos que modificar nuestro `app_router.dart`.
+
+1. Lo primero, es reemplazar nuestro ShellRoute() por un StatefulShellRoute.indexedStack()
+2. Luego, cambiar el parámetro de routes: [] por branches[]
+3. Ahora cada ruta la envolvemos en un widget llamado StatefulShellBranch()
+
+Ahora, debemos de modificar a nuestro `HomeScreen()` widget.
+
+1. Cambien el tipo de child de un Widget a StatefulNavigationShell (lo importan de go_router)
+
+Por último, en el componente de `CustomBottomNavigationBar`, deben de hacer estos cambios:
+
+1. Recibir el currentChild desde el widget `home_screen` como una prop. Esta prop debe de ser de tipo StatefulNavigationShell
+2. Asignar el currentIndex del BottomNavigationBar a "nombre_de_la_prop.currentIndex" en mi caso "currentChild.currentIndex"
+3. Al onTap, asignarle "nombre_de_la_prop.goBranch(idx)" en mi caso onTap: (idx) => currentChild.goBranch(idx)
+
+...y ya! Sólo no olviden pasarle la prop a su
+
+CustomBottomNavigationBar desde el home_screen y reiniciar su aplicación.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
