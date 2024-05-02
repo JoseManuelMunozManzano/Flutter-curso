@@ -76,6 +76,18 @@ Esta quinta sección tiene por objetivos puntuales:
 
 Es una sección que tiene dos códigos fuente, el primero cuenta con la implementación recomendada de GoRouter y la segunda es la solución que hice para mantener el estado, que a muchas personas les parece más fácil que la misma solución oficial.
 
+Esta sexta sección es muy importante para trabajar con bases de datos locales, principalmente trabajaremos con Isar database, la cual es muy poderosa y fácil de configurar.
+
+Pero la idea principal es considerar la base de datos como cualquier otra fuente de datos, como cualquier otro datasource.
+
+Puntualmente veremos:
+
+- Realizar queries
+- Almacenar en base de datos
+- Leer, insertar y borrar
+- FutureProvider de Riverpod
+- Y otras cosas relacionadas a su uso.
+
 ## Diagrama
 
 ![alt Diagrama](../Images/06_cinemapedia_diagram.png)
