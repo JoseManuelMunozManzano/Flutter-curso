@@ -56,6 +56,15 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Clean Architecture con GetX: https://dev.to/ahmaddarwesh/flutter-getx-clean-architecture-4ppk
 
+- Local Databases
+  - Isar. Muy poderoso y recomendado. Funciona en la web con IndexedDB. Es NoSQL, los objetos acaban siendo grabados como mapas (key-value pair): https://isar.dev/es/
+  - HiveDB. Muy sencillote. Funciona en la web con IndexedDB. Es NoSQL, los objetos acaban siendo grabados como mapas (key-value pair): https://docs.hivedb.dev/#/
+  - SQLite. Hay que crear mucho código y, algo bueno, genera un fichero con el contenido de la BBDD en el dispositivo. Como malo, no funciona en el navegador Web. Es una BBDD relacional tradicional: https://docs.flutter.dev/cookbook/persistence/sqlite
+- Databases en la nube
+  - Firebase. También tiene una opción para trabajar en local: https://firebase.google.com/docs/flutter/setup?platform=ios&hl=es
+- Información local
+  - Shared Preferences. No es BBDD local, pero si información local: https://pub.dev/packages/shared_preferences
+
 ## Recursos gratuitos
 
 https://undraw.co/illustrations
