@@ -9,7 +9,12 @@ final appRouter = GoRouter(
       path: '/home/:page', // En esta ruta recibimos que screen o view queremos ver
       name: HomeScreen.name,
       builder: (context, state) {
-        final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
+        int pageIndex = int.parse(state.pathParameters['page'] ?? '0');
+        
+        // Para web, donde el usuario puede indicar la page, tenemos que validar que
+        // se indica una page que exista (tenemos ahora mismo de 0 a 2)
+        if (pageIndex > 2 || pageIndex < 0) pageIndex = 0;
+
         return HomeScreen(pageIndex: pageIndex);
       },
       // Para poder regresar a la ruta principal cuando se hace deep linking, hay que definir
@@ -33,6 +38,12 @@ final appRouter = GoRouter(
         ),
       ]
     ),
+
+
+    GoRoute(
+      path: '/',
+      redirect: (_ , __) => '/home/0',
+    )
 
   ]
 );

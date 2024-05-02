@@ -440,6 +440,22 @@ NOTA: Hay incluso otra forma de hacer todo esto, usando Provider
 
 ![alt Usando_Provider](../Images/07_pageIndexProvider.png)
 
+## Funcionamiento del bottom navigation bar
+
+Dado nuestro `home_screen.dart` donde ya sabemos la opción del tab, solo tenemos que pasarla a `custom_bottom_navigation.dart`.
+
+## Resolver la navegación
+
+Tal y como está ahora la app, si pulsamos en una película nos lleva a una ruta que no existe. Si además ahora pulsamos para volver a Home, esa ruta tampoco existe. Esto es porque en `app_router.dart` se modificó en el GoRoute el path y ya no apunta a '/'.
+
+Para solucionar el problema de volver al Home, tras esa configuración del router, creamos otro GoRoute, con la idea de hacer un redirect cuando tenemos que ir a la ruta '/'.
+
+Para solucionar el acceso a una película, tocamos `movie_horizontal_listview.dart` en la ruta indicada en el GestureDetector.
+
+También tenemos que cambiar el path en nuestro `custom_appbar.dart`, en el showSearch para, en el tema de las búsquedas, poder acceder a una película.
+
+No olvidar que la solución oficial con StatefulShellRoute se puede ver en la rama `go-router-oficial`.
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
