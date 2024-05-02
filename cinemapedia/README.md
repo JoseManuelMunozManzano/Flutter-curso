@@ -430,6 +430,16 @@ En la rama main hacemos las vistas de otra forma, también preservando el estado
 
 Lo que hacemos es que no recibimos en nuestra página principal el Widget que hay que mostrar, porque queremos preservar el estado. Y como hacemos para preservar el estado es el objetivo de esta parte que viene.
 
+## Configuración del router
+
+Cambiamos `app_router.dart`, su initialLocaltion y su path para que nos venga la view o screen que queremos mostrar. Para ello también modificamos `home_screen.dart`.
+
+Para hacer el cambio del listado de Widgets usamos un Widget que sirve para preservar el estado, llamado `IndexedStack`.
+
+NOTA: Hay incluso otra forma de hacer todo esto, usando Provider
+
+![alt Usando_Provider](../Images/07_pageIndexProvider.png)
+
 ## Testing
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.

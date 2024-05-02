@@ -11,13 +11,25 @@ class HomeScreen extends StatelessWidget {
   // En esta ocasión usamos guión medio.
   static const name = 'home-screen';
 
-  const HomeScreen({super.key});
+  // Indica que opción del tab (CustomBottomNavigation) y que view queremos mostrar.
+  final int pageIndex;
+
+  const HomeScreen({super.key, required this.pageIndex});
+
+  final viewRoutes = const <Widget>[
+    HomeView(),
+    SizedBox(), // <-- Categorias View
+    FavoritesView()
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HomeView(),
-      bottomNavigationBar: CustomBottomNavigation(),
+    return Scaffold(
+      body: IndexedStack(
+        index: pageIndex,
+        children: viewRoutes,
+      ),
+      bottomNavigationBar: const CustomBottomNavigation(),
     );
   }
 }

@@ -3,11 +3,15 @@ import 'package:go_router/go_router.dart';
 import 'package:cinemapedia/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
+  initialLocation: '/home/0', // El 0 se refiere a Inicio, 1 es Categorias y 2 es Favoritos
   routes: [
     GoRoute(
-      path: '/',
+      path: '/home/:page', // En esta ruta recibimos que screen o view queremos ver
       name: HomeScreen.name,
-      builder: (context, state) => const HomeScreen(),
+      builder: (context, state) {
+        final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
+        return HomeScreen(pageIndex: pageIndex);
+      },
       // Para poder regresar a la ruta principal cuando se hace deep linking, hay que definir
       // las rutas hijas de esta ruta.
       routes: [
