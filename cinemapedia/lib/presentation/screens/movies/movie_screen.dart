@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -9,7 +10,6 @@ import 'package:cinemapedia/presentation/providers/providers.dart';
 // Cambiamos el StatefulWidget y, más abajo, _MovieScreenState y State<MovieScreen>
 // por la representación de Riverpod que nos permita tomar la referencia de nuestro provider.
 class MovieScreen extends ConsumerStatefulWidget {
-
   static const name = 'movie-screen';
 
   // Lo hacemos de esta manera en vez de estar esperando que me manden un objeto de tipo Movie
@@ -20,17 +20,13 @@ class MovieScreen extends ConsumerStatefulWidget {
   // que aparece en la url (si se hace desde Web)
   final String movieId;
 
-  const MovieScreen({
-    super.key,
-    required this.movieId
-  });
+  const MovieScreen({super.key, required this.movieId});
 
   @override
   MovieScreenState createState() => MovieScreenState();
 }
 
 class MovieScreenState extends ConsumerState<MovieScreen> {
-
   // Para saber cuando estoy cargando y cuando acabé de cargar.
   // Vamos a manejar una caché local para mostrar un loading y ser más eficientes a la hora de
   // no volver a hacer una petición para cargar películas que ya hemos cargado antes.
@@ -49,35 +45,33 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     // Aquí sabemos cuando la película existe y cuando no. Cuando no existe puedo mostrar un loading.
     final Movie? movie = ref.watch(movieInfoProvider)[widget.movieId];
 
     // Si movie es null sabemos que estamos haciendo la petición http.
     if (movie == null) {
       // Envolvemos en un Scaffold porque si no la pantalla se ve negra durante un segundito.
-      return const Scaffold(body: Center(child: CircularProgressIndicator(strokeWidth: 2)));
+      return const Scaffold(
+          body: Center(child: CircularProgressIndicator(strokeWidth: 2)));
     }
 
     // A partir de aquí siempre tenemos una película.
     return Scaffold(
-      // Usamos CustomScrollView porque quiero trabajar con slivers
-      body: CustomScrollView(
-        physics: const ClampingScrollPhysics(), // Evitamos el rebote de IOs
-        slivers: [
-          _CustomSliverAppBar(movie: movie),
-          SliverList(delegate: SliverChildBuilderDelegate(
-            (context, index) => _MovieDetails(movie: movie),
-            childCount: 1
-          ))
-        ],
-      )
-    );
+        // Usamos CustomScrollView porque quiero trabajar con slivers
+        body: CustomScrollView(
+      physics: const ClampingScrollPhysics(), // Evitamos el rebote de IOs
+      slivers: [
+        _CustomSliverAppBar(movie: movie),
+        SliverList(
+            delegate: SliverChildBuilderDelegate(
+                (context, index) => _MovieDetails(movie: movie),
+                childCount: 1))
+      ],
+    ));
   }
 }
 
 class _MovieDetails extends StatelessWidget {
-
   final Movie movie;
 
   const _MovieDetails({required this.movie});
@@ -95,7 +89,6 @@ class _MovieDetails extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               // Imagen
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -129,12 +122,13 @@ class _MovieDetails extends StatelessWidget {
           child: Wrap(
             children: [
               ...movie.genreIds.map((gender) => Container(
-                margin: const EdgeInsets.only(right: 10),
-                child: Chip(
-                  label: Text(gender),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                ),
-              ))
+                    margin: const EdgeInsets.only(right: 10),
+                    child: Chip(
+                      label: Text(gender),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                  ))
             ],
           ),
         ),
@@ -150,7 +144,6 @@ class _MovieDetails extends StatelessWidget {
 }
 
 class _ActorByMovie extends ConsumerWidget {
-
   final String movieId;
 
   const _ActorByMovie({required this.movieId});
@@ -159,7 +152,7 @@ class _ActorByMovie extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     // Tenemos que estar pendientes de cuando tenemos los actores.
     final actorsByMovie = ref.watch(actorsByMovieProvider);
-    
+
     if (actorsByMovie[movieId] == null) {
       return const CircularProgressIndicator(strokeWidth: 2);
     }
@@ -175,37 +168,30 @@ class _ActorByMovie extends ConsumerWidget {
           final actor = actors[index];
 
           return Container(
-            padding: const EdgeInsets.all(8.0),
-            width: 135,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
-                // Actor Photo
-                FadeInRight(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.network(
-                      actor.profilePath,
-                      height: 180,
-                      width: 135,
-                      fit: BoxFit.cover
-                    )
+              padding: const EdgeInsets.all(8.0),
+              width: 135,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Actor Photo
+                  FadeInRight(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(actor.profilePath,
+                            height: 180, width: 135, fit: BoxFit.cover)),
                   ),
-                ),
 
-                const SizedBox(height: 5),
+                  const SizedBox(height: 5),
 
-                // Nombre
-                Text(actor.name, maxLines: 2),
-                Text(
-                  actor.character ?? '',
-                  maxLines: 2,
-                  style: const TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)
-                ),
-              ],
-            )
-          );
+                  // Nombre
+                  Text(actor.name, maxLines: 2),
+                  Text(actor.character ?? '',
+                      maxLines: 2,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis)),
+                ],
+              ));
         },
       ),
     );
@@ -214,16 +200,12 @@ class _ActorByMovie extends ConsumerWidget {
 
 // AppBar personalizado que va a realizar la modificación personalizada de nuestro Sliver.
 class _CustomSliverAppBar extends StatelessWidget {
-
   final Movie movie;
 
-  const _CustomSliverAppBar({
-    required this.movie
-  });
+  const _CustomSliverAppBar({required this.movie});
 
   @override
   Widget build(BuildContext context) {
-
     // Las dimensiones del dispositivo físico.
     final size = MediaQuery.of(context).size;
 
@@ -231,63 +213,95 @@ class _CustomSliverAppBar extends StatelessWidget {
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
+      actions: [
+        IconButton(
+          // TODO: Realizar el toggle
+          onPressed: () {},
+          icon: const Icon(Icons.favorite_border),
+          // icon: const Icon(Icons.favorite_rounded, color: Colors.red)
+        )
+      ],
       flexibleSpace: FlexibleSpaceBar(
-          // centerTitle: false,
-          titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          // Quitamos esta visualización del título porque no me acaba de gustar como queda.
-          // title: Text(
-          //   movie.title,
-          //   style: const TextStyle(fontSize: 20),
-          //   textAlign: TextAlign.start,
-          // ),
-          background: Stack(
-            children: [
-              SizedBox.expand(
-                child: Image.network(
-                  movie.posterPath,
-                  fit: BoxFit.cover,
-                  // Por temas estéticos, ya que al cargar la imagen aparece como un punto blanco y luego 
-                  // aparece muy bruscamente.
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress != null) return const SizedBox(); // Para que no se vea nada (negro)
-                    return FadeIn(child: child); // Regresamos la imagen más suavemente, del negro al color.
-                  },
-                ),
+        // centerTitle: false,
+        titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        // Quitamos esta visualización del título porque no me acaba de gustar como queda.
+        // title: Text(
+        //   movie.title,
+        //   style: const TextStyle(fontSize: 20),
+        //   textAlign: TextAlign.start,
+        // ),
+        background: Stack(
+          children: [
+            SizedBox.expand(
+              child: Image.network(
+                movie.posterPath,
+                fit: BoxFit.cover,
+                // Por temas estéticos, ya que al cargar la imagen aparece como un punto blanco y luego
+                // aparece muy bruscamente.
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress != null) {
+                    return const SizedBox(); // Para que no se vea nada (negro)
+                  }
+                  return FadeIn(
+                      child:
+                          child); // Regresamos la imagen más suavemente, del negro al color.
+                },
               ),
+            ),
 
-              const SizedBox.expand(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0.7, 1.0],
-                      colors: [
-                        Colors.transparent,
-                        Colors.black87
-                      ]
-                    )
-                  )
-                ),
-              ),
+            const _CustomGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.0, 0.2],
+              colors: [Colors.black54, Colors.transparent],
+            ),
 
-              const SizedBox.expand(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      stops: [0.0, 0.3],
-                      colors: [
-                        Colors.black87,
-                        Colors.transparent,
-                      ]
-                    )
-                  )
-                ),
-              )
-            ],
-          ),
+            const _CustomGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.8, 1.0],
+              colors: [Colors.transparent, Colors.black54],
+            ),
+
+            const _CustomGradient(
+              begin: Alignment.topLeft,
+              stops: [0.0, 0.3],
+              colors: [Colors.black87, Colors.transparent]
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class _CustomGradient extends StatelessWidget {
+
+  final AlignmentGeometry begin;
+  final AlignmentGeometry end;
+  final List<double> stops;
+  final List<Color> colors;
+
+  const _CustomGradient({
+    this.begin = Alignment.centerLeft,
+    this.end = Alignment.centerRight,
+    required this.stops,
+    required this.colors
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: begin,
+            end: end,
+            stops: stops,
+            colors: colors
+          )
+        )
+      )
     );
   }
 }
