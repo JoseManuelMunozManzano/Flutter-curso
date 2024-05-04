@@ -514,13 +514,13 @@ Creación de implementaciones:
 - En la carpeta `infrastructure/datasources` creamos la implementación `isar_datasource.dart`.
 - En la carpeta `infrastructure/repositories` creamos la implementación `local_storage_repository_impl.dart`.
 
-### Crear/Devolver instancia de Isar
+### Crear/Devolver instancia de Isar e implementar métodos
 
 https://isar.dev/es/queries.html
 
 Como vamos a crear la instancia de nuestra BD, ISAR nos pider de manera obligatoria el PATH donde almacenaremos la base de datos, cosa que antes no pedía. Tenemos que instalar el paquete `path_provider` usando `Pubspec Assist: Add/update dependencies`.
 
-Una vez hecho esto, la forma de trabajar con Isar es hacer referencia a nuestra BD, luego a nuestro esquema y luego empezamos a hacer querys.
+Una vez hecho esto, la forma de trabajar con Isar es: isar + esquema + querys que queremos hacer
 
 Ejemplo: `isar.movies.findAll();`
 

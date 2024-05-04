@@ -31,20 +31,54 @@ class IsarDatasource extends LocalStorageDatasource {
   }
 
   @override
-  Future<bool> isMovieFavorite(int movieId) {
-    // TODO: implement isMovieFavorite
-    throw UnimplementedError();
+  Future<bool> isMovieFavorite(int movieId) async {
+    // Esperamos que nuestra BD esté lista.
+    final isar = await db;
+
+    // Siempre se sigue la fórmula siguiente: isar + esquema + lo que queremos hacer
+    final Movie? isFavoriteMovie = await isar.movies
+        .filter()
+        .idEqualTo(movieId)
+        .findFirst();
+    
+    // Si tiene valor lo devuelve y si es null devuelve false.
+    return isFavoriteMovie != null;
   }
 
   @override
-  Future<List<Movie>> loadMovies({int limit = 10, offset = 0}) {
-    // TODO: implement loadMovies
-    throw UnimplementedError();
+  Future<List<Movie>> loadMovies({int limit = 10, offset = 0}) async {
+    // Esperamos que nuestra BD esté lista.
+    final isar = await db;
+
+    // Implementada la paginación con los valores que me manden.
+    // No es el objetivo del Isar Datasource saber en qué página estoy. Su objetivo
+    // es, dado lo que me mandan, devolver la data.
+    return isar.movies.where()
+      .offset(offset)
+      .limit(limit)
+      .findAll();
   }
 
   @override
-  Future<void> toggleFavorite(Movie movie) {
-    // TODO: implement toggleFavorite
-    throw UnimplementedError();
+  Future<void> toggleFavorite(Movie movie) async {
+
+    // Esperamos que nuestra BD esté lista.
+    final isar = await db;
+
+    final favoriteMovie = await isar.movies
+      .filter()
+      .idEqualTo(movie.id)
+      .findFirst();
+    
+    // Hacemos una transacción, borrar o insertar
+    if (favoriteMovie != null) {
+      // Borrar
+      // En este punto, tengo el id de Isar.
+      isar.writeTxnSync(() => isar.movies.deleteSync(favoriteMovie.isarId!));
+      return;
+    }
+
+    // Insertar
+    isar.writeTxnSync(() => isar.movies.putSync(movie));
   }
 }
