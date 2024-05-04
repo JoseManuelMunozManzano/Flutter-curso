@@ -500,7 +500,19 @@ Este comando verifica los archivos que estén decorados y tengan un archivo con 
 
 Si vamos a `domain/entities` veremos que ha generado un archivo `movie.g.dart`. Este archivo no hay que tocarlo para nada, y contiene métodos para escrbir en BD, leer de BD... y crea nuestro esquema, que es una representación de la entidad y nos va a permitir usar métodos como findById(), sort(), paginación...
 
+### Repositorios y Datasources
+
 Vamos a implementar toda la parte del acceso a Isar en un datasource. La idea es que, si el día de mañana queremos cambiar Isar por Hive o por SQLite, solo va a ser necesario crearse una nueva implementación de ese datasource, sin afectar a ninguna otra parte de nuestra app.
+
+Creación de clases abstractas:
+
+- En la carpeta `domain/datasources` creamos el datasource `local_storage_datasource.dart`.
+- En la carpeta `domain/repositories` creamos el repositorio `local_storage_repository.dart`.
+
+Creación de implementaciones:
+
+- En la carpeta `infrastructure/datasources` creamos la implementación `isar_datasource.dart`.
+- En la carpeta `infrastructure/repositories` creamos la implementación `local_storage_repository_impl.dart`.
 
 ## Testing
 
