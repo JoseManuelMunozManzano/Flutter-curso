@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:isar/isar.dart';
 
 import 'package:cinemapedia/domain/entities/movie.dart';
 
@@ -199,13 +199,14 @@ class _ActorByMovie extends ConsumerWidget {
 }
 
 // AppBar personalizado que va a realizar la modificación personalizada de nuestro Sliver.
-class _CustomSliverAppBar extends StatelessWidget {
+// Hemos cambiado de StatelessWidget a ConsumerWidget para poder hacer uso de ref
+class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
 
   const _CustomSliverAppBar({required this.movie});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // Las dimensiones del dispositivo físico.
     final size = MediaQuery.of(context).size;
 
@@ -215,8 +216,9 @@ class _CustomSliverAppBar extends StatelessWidget {
       foregroundColor: Colors.white,
       actions: [
         IconButton(
-          // TODO: Realizar el toggle
-          onPressed: () {},
+          onPressed: () {
+            ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
+          },
           icon: const Icon(Icons.favorite_border),
           // icon: const Icon(Icons.favorite_rounded, color: Colors.red)
         )

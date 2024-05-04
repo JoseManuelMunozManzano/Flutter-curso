@@ -524,6 +524,16 @@ Una vez hecho esto, la forma de trabajar con Isar es: isar + esquema + querys qu
 
 Ejemplo: `isar.movies.findAll();`
 
+### Provider y grabación en la BD
+
+Cuando toquemos el botón del corazón queremos llamar a `infrastructure/datasources/local_storage_repository_impl.dart`, método `toggleFavorite()` para que inserte en BD.
+
+Isar nos va a ofrecer, en la pestaña `Debug Console` de VSCode un enlace para ver si es cierto o no que se ha insertado.
+
+En la carpeta `presentation/providers` creamos una carpeta `storage` y dentro un nuevo provider `local_storage_provider.dart`.
+
+A este provider le mandamos la implementación de nuestro repository y la implementación de nuestro datasource.
+
 ## Testing
 
 1. Copiar el fichero .env.template y renombrarlo a .env
