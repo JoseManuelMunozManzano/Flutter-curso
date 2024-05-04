@@ -468,7 +468,45 @@ También tenemos que cambiar el path en nuestro `custom_appbar.dart`, en el show
 
 No olvidar que la solución oficial con StatefulShellRoute se puede ver en la rama `go-router-oficial`.
 
+## Isar Database
+
+La idea de tener una BD local es que esa información se aloje en el dispositivo, en vez de tener que desarrollar un backend en el que además tendríamos que desarrollar la autenticación de usuarios, pagar por el alojamiento de datos y del backend...
+
+Además estando la información en el dispositivo, evitamos que la información del cliente pueda ser robada, o que, salvo que el usuario de el consentimiento, la información no salga de su dispositivo...
+
+Otra idea es que, en caso de no tener Internet, se puede utilizar una BD en local para ir guardando cosas y, cuando volvamos a tener Internet, que estas transacciones pendientes que se postearon se suban a un backend.
+
+Para este curso vamos a estar trabajando con Isar, una BD local no relacional y muy poderosa, y su forma de ver la data es muy conveniente.
+
+https://isar.dev/es/tutorials/quickstart.html
+
+Para realizar la configuración tenemos que instalar dos dependencias:
+
+```
+- Con Pubspec Assist: Add/update dependencies
+isar, isar_flutter_libs
+
+- Con Pubspec Assist: Add/update dev dependencies
+isar_generator, build_runner
+```
+
+Una vez hemos añadido la anotación @coleccion y el campo Id de Isar, y hemos indicado que se genere un archivo `movie.g.dart` en nuestra entity `movie.dart` ejecutamos el generador de código para Flutter:
+
+```
+flutter pub run build_runner build
+```
+
+Este comando verifica los archivos que estén decorados y tengan un archivo con el `.g`.
+
+Si vamos a `domain/entities` veremos que ha generado un archivo `movie.g.dart`. Este archivo no hay que tocarlo para nada, y contiene métodos para escrbir en BD, leer de BD... y crea nuestro esquema, que es una representación de la entidad y nos va a permitir usar métodos como findById(), sort(), paginación...
+
+Vamos a implementar toda la parte del acceso a Isar en un datasource. La idea es que, si el día de mañana queremos cambiar Isar por Hive o por SQLite, solo va a ser necesario crearse una nueva implementación de ese datasource, sin afectar a ninguna otra parte de nuestra app.
+
 ## Testing
+
+1. Copiar el fichero .env.template y renombrarlo a .env
+2. Cambiar las variables de entorno (The MovieDB)
+3. Cambios en la entidad, hay que ejecutar el comando: `flutter pub run build_runner build`
 
 En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/550?api_key=my_key&language=es-ES&page=4` donde `my_key` es la clave de la cuenta de TMDB para confirmar que nuestra key funciona correctamente.
 

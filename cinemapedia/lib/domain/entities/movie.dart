@@ -1,4 +1,14 @@
+import 'package:isar/isar.dart';
+
+// Este archivo se va a generar de manera automática gracias a Isar.
+part 'movie.g.dart';
+
+// Tanto la anotación @collection como el Id son para el funcionamiento de Isar (BD local)
+@collection
 class Movie {
+
+  Id? isarId; 
+
   final bool adult;
   final String backdropPath;
   final List<String> genreIds;
