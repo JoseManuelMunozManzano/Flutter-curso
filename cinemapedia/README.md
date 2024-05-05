@@ -563,6 +563,18 @@ Este provider es de un tipo nuevo no visto hasta ahora en el curso. Es un `Futur
 
 - https://riverpod.dev/docs/providers/future_provider
 
+## Favorite MoviesProvider
+
+Ya tenemos en la BD las películas favoritas, pero ahora, para mostrarlas al pulsar en el botón Favoritos, tenemos que hacer algo.
+
+Una forma de mostrar esas películas es crear una lista infinita (infinite scroll), basado en el repositorio que estará llamando al método `loadMovies()` del fuente `isar_datasource.dart`.
+
+Además vamos a necesitar, estando en la lista de favoritos, su estado para poder redibujarla cuando sea necesario.
+
+Vamos a crear un nuevo provider para esto.
+
+En la carpeta `storage` creamos el provider `favorite_movies_provider.dart`
+
 ## Testing
 
 1. Copiar el fichero .env.template y renombrarlo a .env
