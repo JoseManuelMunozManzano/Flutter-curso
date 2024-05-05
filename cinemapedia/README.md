@@ -534,6 +534,35 @@ En la carpeta `presentation/providers` creamos una carpeta `storage` y dentro un
 
 A este provider le mandamos la implementación de nuestro repository y la implementación de nuestro datasource.
 
+## Future Provider - Family Modifier
+
+Vamos a utilizar conceptos de `Modifiers`. Tenemos dos, `.family` y `.autoDispose`, y ambos se pueden combinar.
+
+- https://riverpod.dev/docs/concepts/modifiers/family
+- https://riverpod.dev/docs/concepts/modifiers/auto_dispose
+
+El `.autoDispose` es que, si estamos usando un provider en una clase que extiende de ConsumerWidget, cuando cerramos y lo destruimos, si tenemos configurado el `.autoDispose`, lo deja en su estado inicial.
+
+Esto no está en el proyecto, es un ejemplo:
+
+```
+final localStorageRepositoryProvider = Provider.autoDispose((ref) => LocalStorageRepositoryImpl(IsarDatasource()));
+```
+
+El `.family` es un provider común y corriente que nos permite recibir un argumento.
+
+```
+final localStorageRepositoryProvider = Provider.family((ref, arg) => LocalStorageRepositoryImpl(IsarDatasource()));
+```
+
+Y, como hemos dicho, se pueden combinar: `Provider.family.autoDispose`
+
+Para marcar en rojo el corazón si una película está en la BD, lo que vamos a hacer es un pequeño provider que está en `movie_screen.dart`. Necesitamos recibir un valor booleano que indica si la película está o no en la BD.
+
+Este provider es de un tipo nuevo no visto hasta ahora en el curso. Es un `FutureProvider`, que nos sirve cuando tenemos tareas asíncronas que se tienen que resolver para obtener el resultado.
+
+- https://riverpod.dev/docs/providers/future_provider
+
 ## Testing
 
 1. Copiar el fichero .env.template y renombrarlo a .env

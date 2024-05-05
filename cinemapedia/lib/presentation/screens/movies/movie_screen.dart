@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:isar/isar.dart';
 
 import 'package:cinemapedia/domain/entities/movie.dart';
 
@@ -198,6 +197,14 @@ class _ActorByMovie extends ConsumerWidget {
   }
 }
 
+// Pequeño provider que implementa el modifier .family, recibiendo un entero para saber si
+// la película está en la BD y así marcar/desmarcar el corazón de rojo (devuelve un booleano)
+// NOTA: Usando el ref.invalidate (más abajo) ya me funcionaba sin necesidad de hacer el .autoDispose
+final isFavoriteProvider = FutureProvider.family.autoDispose((ref, int movieId) {
+  final localStorageRepository = ref.watch(localStorageRepositoryProvider);  
+  return localStorageRepository.isMovieFavorite(movieId);
+});
+
 // AppBar personalizado que va a realizar la modificación personalizada de nuestro Sliver.
 // Hemos cambiado de StatelessWidget a ConsumerWidget para poder hacer uso de ref
 class _CustomSliverAppBar extends ConsumerWidget {
@@ -207,6 +214,9 @@ class _CustomSliverAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id));
+
     // Las dimensiones del dispositivo físico.
     final size = MediaQuery.of(context).size;
 
@@ -219,7 +229,27 @@ class _CustomSliverAppBar extends ConsumerWidget {
           onPressed: () {
             ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
           },
-          icon: const Icon(Icons.favorite_border),
+          icon: isFavoriteFuture.when(
+            loading: () => const CircularProgressIndicator(strokeWidth: 3,),
+            data: (isFavorite) { 
+              
+              // Cuando apreto seguidamente el botón de favoritos este se traba y su estado final
+              // queda inverso a como deberia quedar, quiero decir, en mi isar inspector me aparece
+              // una pelicula marcada en true mientras que en el celular no.
+              // Eso soluciona este problema.
+              // Lo que hace es invalidar y volver el provider a su estado original (un future que no se ha resuelto)
+              // Por ejemplo, si fuera un contador y su valor inicial fuera el 0, regresa a 0.
+              ref.invalidate(isFavoriteProvider(movie.id));
+              
+              return isFavorite
+              ? const Icon(Icons.favorite_rounded, color: Colors.red)
+              : const Icon(Icons.favorite_border);
+            },
+            error: (_, __) => throw UnimplementedError(),
+          ),
+            
+          
+          // const Icon(Icons.favorite_border),
           // icon: const Icon(Icons.favorite_rounded, color: Colors.red)
         )
       ],
