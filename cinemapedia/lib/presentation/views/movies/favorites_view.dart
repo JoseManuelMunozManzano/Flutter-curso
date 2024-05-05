@@ -12,11 +12,28 @@ class FavoritesView extends ConsumerStatefulWidget {
 
 class FavoritesViewState extends ConsumerState<FavoritesView> {
 
+  // Como no vamos a cambiar el estado visualmente, es decir, no se redibuja,
+  // no hace falta llamar al setState.
+  bool isLastPage = false;
+  bool isLoading = false;
+
   @override
   void initState() {
     super.initState();
 
-    ref.read(favoriteMoviesProvider.notifier).loadNextPage();
+    loadNextPage();
+  }
+
+  void loadNextPage() async {
+    if (isLoading || isLastPage) return;
+    isLoading = true;
+
+    final movies = await ref.read(favoriteMoviesProvider.notifier).loadNextPage();
+    isLoading = false;
+    
+    if (movies.isEmpty) {
+      isLastPage = true;
+    }
   }
 
   @override
@@ -25,7 +42,10 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
     final favoriteMovies = ref.watch(favoriteMoviesProvider).values.toList();
 
     return Scaffold(
-      body: MovieMasonry(movies: favoriteMovies)
+      body: MovieMasonry(
+        loadNextPage: loadNextPage,
+        movies: favoriteMovies
+      )
     );
   }
 }
