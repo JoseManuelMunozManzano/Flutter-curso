@@ -226,21 +226,23 @@ class _CustomSliverAppBar extends ConsumerWidget {
       foregroundColor: Colors.white,
       actions: [
         IconButton(
-          onPressed: () {
-            ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
+          onPressed: () async {
+            // ref.read(localStorageRepositoryProvider).toggleFavorite(movie);
+            await ref.read(favoriteMoviesProvider.notifier).toggleFavorite(movie);
+
+            // Esperamos a que resuelva antes de invalidar el estado.
+            // Cuando apreto seguidamente el botón de favoritos este se traba y su estado final
+            // queda inverso a como deberia quedar, quiero decir, en mi isar inspector me aparece
+            // una pelicula marcada en true mientras que en el celular no.
+            // Eso soluciona este problema.
+            // Lo que hace es invalidar y volver el provider a su estado original (un future que no se ha resuelto)
+            // Por ejemplo, si fuera un contador y su valor inicial fuera el 0, regresa a 0.
+            ref.invalidate(isFavoriteProvider(movie.id));
+
           },
           icon: isFavoriteFuture.when(
             loading: () => const CircularProgressIndicator(strokeWidth: 3,),
-            data: (isFavorite) { 
-              
-              // Cuando apreto seguidamente el botón de favoritos este se traba y su estado final
-              // queda inverso a como deberia quedar, quiero decir, en mi isar inspector me aparece
-              // una pelicula marcada en true mientras que en el celular no.
-              // Eso soluciona este problema.
-              // Lo que hace es invalidar y volver el provider a su estado original (un future que no se ha resuelto)
-              // Por ejemplo, si fuera un contador y su valor inicial fuera el 0, regresa a 0.
-              ref.invalidate(isFavoriteProvider(movie.id));
-              
+            data: (isFavorite) {
               return isFavorite
               ? const Icon(Icons.favorite_rounded, color: Colors.red)
               : const Icon(Icons.favorite_border);

@@ -4,7 +4,8 @@ import 'package:cinemapedia/domain/repositories/local_storage_repository.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 
 // Provider que solo conoce películas favoritas. También me va a ayudar con la paginación infinita.
-final favoriteMoviesProvider = StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>((ref) {
+final favoriteMoviesProvider =
+    StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>((ref) {
   final localStorageRepository = ref.watch(localStorageRepositoryProvider);
   return StorageMoviesNotifier(localStorageRepository: localStorageRepository);
 });
@@ -18,21 +19,19 @@ final favoriteMoviesProvider = StateNotifierProvider<StorageMoviesNotifier, Map<
 */
 
 class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
-
   int page = 0;
   final LocalStorageRepository localStorageRepository;
 
-  StorageMoviesNotifier({
-    required this.localStorageRepository
-  }): super({});
+  StorageMoviesNotifier({required this.localStorageRepository}) : super({});
 
   // Cargar siguiente página
   Future<List<Movie>> loadNextPage() async {
-    final movies = await localStorageRepository.loadMovies(offset: page * 10);  // TODO: limit 20
+    final movies =
+        await localStorageRepository.loadMovies(offset: page * 10, limit: 20);
     page++;
 
     final tempMoviesMap = <int, Movie>{};
-    for(final movie in movies) {
+    for (final movie in movies) {
       tempMoviesMap[movie.id] = movie;
     }
 
@@ -41,4 +40,17 @@ class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
     return movies;
   }
 
+  Future<void> toggleFavorite(Movie movie) async {
+    final isMovieInFavorites =
+        await localStorageRepository.toggleFavorite(movie);
+
+    if (isMovieInFavorites) {
+      state = {...state, movie.id: movie};
+    } else {
+      state.remove(movie.id);
+      // Necesario para lanzar la renderización del widget, porque necesitamos un NUEVO OBJETO
+      // y en la sentencia anterior se está mutando.
+      state = {...state};
+    }
+  }
 }
