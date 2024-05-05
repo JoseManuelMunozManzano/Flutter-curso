@@ -575,6 +575,18 @@ Vamos a crear un nuevo provider para esto.
 
 En la carpeta `storage` creamos el provider `favorite_movies_provider.dart`
 
+## StaggeredGridView - MasonryGridView
+
+Vamos a hacer una lista tipo Pinterest con los posters de las películas.
+
+https://pub.dev/packages/flutter_staggered_grid_view
+
+La parte del título Masonry se refiere a cajas (posters de películas) que tienen diferentes tamaños pero que queda bien ordenado para que queden alineados todos los elementos.
+
+Instalamos el paquete `flutter_staggered_grid_view`.
+
+En la carpeta `presentation/widgets/movies` creamos el widget `movie_masonry.dart` y el widget `movie_poster_link.dart`.
+
 ## Testing
 
 1. Copiar el fichero .env.template y renombrarlo a .env
