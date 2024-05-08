@@ -4,7 +4,7 @@ En esta sección vamos a hablar de dos gestores de estado nuevos: Flutter_Bloc y
 
 Vamos a implementar algunos temas de formularios y el típico contador, usando ambos gestores de estado.
 
-Los Cubits se usan cuando tenemos un estado muy pequeño y no queremos crear tanto código para mantener un estado simple. Pero eso no significa que no se pueda usar en toda una app grande.
+Los Cubits se usan cuando tenemos un estado muy pequeño y no queremos crear tanto código para mantener un estado simple. Pero eso no significa que no se pueda usar en toda una app grande. Por cierto, los Cubits ya vienen con Bloc, no hay que instalar nada más.
 
 Cuando trabajemos los formularios lo vamos a hacer basado en Flutter_Bloc. De nuevo, el objetivo es separar ese state de nuestros Widgets. Hay muchas similitudes con Riverpod en cuanto a la forma en la que podemos leer el estado, como podemos obtener la instancia del Bloc.
 
@@ -61,3 +61,19 @@ Puedes encontrar más detalles en estos artículos:
 - Escribir y seleccionar Flutter: Select Device
 - Seleccionar el dispositivo iOS
 - Pulsar F5
+
+## Estructura inicial de la aplicación
+
+Creamos, dentro de la carpeta `lib` la carpeta `config` y dentro dos carpetas, `router` y `theme`.
+
+Dentro de la carpeta `theme` creamos el archivo `app_theme.dart`.
+
+Creamos, dentro de la carpeta `lib` la carpeta `presentation`, dentro la carpeta `screens` y dentro el screen `home_screen.dart` y el archivo de barril `screens.dart`.
+
+También, dentro de `screens` creamos el screen `cubit_counter_screen.dart`.
+
+Y de este último screen, cuando ya lo hemos codificado, creamos una copia y lo renombramos a `bloc_counter_screen.dart`.
+
+Dentro de la carpeta `router` creamos el archivo `app_router.dart` e instalamos, usando Pubspec Assist, el paquete `go_router`.
+
+También actualizamos nuestro fichero `main.dart` para añadir el theme y el router y eliminar nuestro body, porque ahora todo se basa en nuestro router.
