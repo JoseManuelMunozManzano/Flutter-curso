@@ -77,3 +77,19 @@ Y de este último screen, cuando ya lo hemos codificado, creamos una copia y lo 
 Dentro de la carpeta `router` creamos el archivo `app_router.dart` e instalamos, usando Pubspec Assist, el paquete `go_router`.
 
 También actualizamos nuestro fichero `main.dart` para añadir el theme y el router y eliminar nuestro body, porque ahora todo se basa en nuestro router.
+
+## Counter Cubit - Gestor de Estado
+
+Empezamos a trabajar con Cubit, un nuevo gestor de estado que viene incluido con Flutter_Bloc, siendo este un conjunto de Widgets específicos para trabajar la implementación de Bloc en Flutter, y siendo Bloc una forma de trabajar el estado de la aplicación separado en eventos, separado en estado y separado en una clase que controla los eventos y los estados.
+
+https://pub.dev/packages/flutter_bloc
+
+Instalamos el paquete `flutter_bloc` usando `Pubspec Assist`.
+
+Recordar que los gestores de estado siempre van en la capa de presentación.
+
+En la carpeta `presentation` creamos la carpeta `blocs`.
+
+Hay un plugin de VSCode que nos permite crear código para Cubit y para Bloc, se llama `bloc`. Sobre nuestra carpeta `blocs` pulsamos botón derecho y seleccionamos, sobre el final, `Cubit: New Cubit`. Como nombre indicamos `counter`. El plugin de VSCode nos crea una carpeta `cubit` y dentro un par de archivos, `counter_cubit.dart` y `counter_state.dart`.
+
+La carpeta `cubit` la renombramos a `counter_cubit`.
