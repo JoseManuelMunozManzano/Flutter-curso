@@ -93,3 +93,9 @@ En la carpeta `presentation` creamos la carpeta `blocs`.
 Hay un plugin de VSCode que nos permite crear código para Cubit y para Bloc, se llama `bloc`. Sobre nuestra carpeta `blocs` pulsamos botón derecho y seleccionamos, sobre el final, `Cubit: New Cubit`. Como nombre indicamos `counter`. El plugin de VSCode nos crea una carpeta `cubit` y dentro un par de archivos, `counter_cubit.dart` y `counter_state.dart`.
 
 La carpeta `cubit` la renombramos a `counter_cubit`.
+
+### Consumir y utilizar el CounterCubit
+
+Usar nuestra clase `CounterCubit` es literalmente lo mismo que usar el primer gestor de estado que vimos en el curso, `Provider`.
+
+Modificamos nuestro fuente `presentation/screens/cubit_counter_screen.dart` porque queremos tener acceso a ese state solo en la pantalla `CubitCounterScreen`.
