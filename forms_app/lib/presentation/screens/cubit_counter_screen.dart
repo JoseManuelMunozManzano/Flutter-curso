@@ -21,10 +21,12 @@ class _CubitCounterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // Hay 3 maneras de acceder a los valores del estado (la tercera se ve más adelante).
+    // Hay 3 maneras de acceder a los valores del estado
     // 1. Manera tradicional por la que se escuchan los cambios que tiene el state, parecido a Riverpod.
     // Con watch(), cada vez que se emita un nuevo estado se va a volver a redibujar.
-    final counterState = context.watch<CounterCubit>().state;
+    // Con Equatable evitamos que el watch redibuje cuando dos estados distintos tegan los mismos valores.
+    //
+    // final counterState = context.watch<CounterCubit>().state;
 
     void increaseCounterBy(BuildContext context, [int value = 1]) {
       context.read<CounterCubit>().increaseBy(value);
@@ -32,7 +34,13 @@ class _CubitCounterView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cubit Counter: ${counterState.transactionCount}'),
+        // 3. En vez de .watch(), donde solo necesito el cambio del state y en concreto estar
+        //    pendiente de un bloc, podemos usar select() de un Cubit. Podemos acceder a su stream.
+        title: context.select((CounterCubit value) {
+          return Text('Cubit Counter: ${value.state.transactionCount}');
+        }),
+        // Usado en conjunción con la manera 1
+        // Text('Cubit Counter: ${counterState.transactionCount}'),
         actions: [
           IconButton(
             onPressed: () => context.read<CounterCubit>().reset(),
@@ -45,9 +53,10 @@ class _CubitCounterView extends StatelessWidget {
       body: Center(child: BlocBuilder<CounterCubit, CounterState>(
         // Hay una manera de evitar tener que hacer estas condiciones (estas condiciones hacen
         // más eficiente el builder) si el estado no cambia.
+        // Es usando Equatable (ver counter_state.dart`
         // buildWhen: (previous, current) => current.counter != previous.counter,
         builder: (context, state) {
-          print('counter cambió');
+          // print('counter cambió');
           return Text('Counter value: ${state.counter}');
         },
       )),

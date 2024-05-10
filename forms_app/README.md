@@ -99,3 +99,21 @@ La carpeta `cubit` la renombramos a `counter_cubit`.
 Usar nuestra clase `CounterCubit` es literalmente lo mismo que usar el primer gestor de estado que vimos en el curso, `Provider`.
 
 Modificamos nuestro fuente `presentation/screens/cubit_counter_screen.dart` porque queremos tener acceso a ese state solo en la pantalla `CubitCounterScreen`.
+
+### Equatable
+
+Puede ser que el hecho de generar un nuevo estado, cuando ese nuevo estado sea igual al anterior, haga que se redibuje de nuevo el Widget, ya que el `.watch()` detecta un cambio de estado, aunque tenga los mismos valores que los anteriores.
+
+Vamos a instalar el paquete `equatable`. Para ello, usamos `Pubspec Assist`
+
+https://pub.dev/packages/equatable
+
+Equatable resuelve un problema muy común cuando tenemos objetos. No es lo mismo que un objeto tenga los mismos valores que otro a que las posiciones que ocupa en memoria sean las mismas.
+
+Una forma de trabajar con Equatable es extender nuestra clase de Equatable, y tenemos que implementar una lista de propiedades que son usadas para comparar. Ver `counter_state.dart`.
+
+Cuando incorporamos Equatable en nuestros estados, el mecanismo de comparación interno del flutter_bloc determina si un nuevo estado emitido es idéntico al estado anterior en términos de sus propiedades. Si los estados son idénticos, el cubit no emitirá una nueva notificación de cambio, lo que significa que las partes de la aplicación que escuchan ese cubit no serán notificadas del cambio y no se redibujarán. Esto puede llevar a situaciones donde dos cubits con el mismo tipo de estado compartan el mismo estado en un contexto específico, lo que puede requerir un manejo cuidadoso, especialmente cuando necesitamos trabajar con múltiples instancias del mismo cubit.
+
+En cambio, Riverpod puede manejar más fácilmente múltiples instancias de proveedores con diferentes nombres, lo que puede ser beneficioso en ciertos escenarios. Es importante tener en cuenta esta consideración al diseñar y organizar la aplicación con bloc.
+
+NOTA: Equatable se usa mucho, no solamente en conjunción con Bloc, sino para comparar objetos.

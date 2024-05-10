@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'counter_state.dart';
@@ -6,7 +7,7 @@ part 'counter_state.dart';
 // que es la instancia de nuestra clase CounterState
 class CounterCubit extends Cubit<CounterState> {
   // Damos un valor inicial para que no sea vea con valor 0.
-  CounterCubit() : super(CounterState(counter: 5));
+  CounterCubit() : super(const CounterState(counter: 5));
 
   // Podemos tener propiedades y métodos que no están enlazados al estado.
   // Podríamos, por ejemplo, recibir información de otro Cubit.
