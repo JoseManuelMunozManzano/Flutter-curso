@@ -13,12 +13,27 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   // lo que ocurre cuando este sea incrementado, esto es, emitimos un nuevo estado.
   CounterBloc() : super(const CounterState()) {
 
-    on<CounterIncreased>((event, emit) {
-      emit(state.copyWith(
-        counter: state.counter + event.valueToIncrease,
-        transactionCount: state.transactionCount + 1
-      ));
-    });
-    
+    // Esto se puede simplificar, porque es fácil que nuestro Bloc tenga muchos manejadores de eventos.
+    // Este código queda como ejemplo de como sería sin simplificar.
+    //
+    // on<CounterIncreased>((event, emit) {
+    //   emit(state.copyWith(
+    //     counter: state.counter + event.valueToIncrease,
+    //     transactionCount: state.transactionCount + 1
+    //   ));
+    // });
+
+    // Usando la simplificación para tener aquí menos código. Mandamos la referencia.
+    on<CounterIncreased>(_onCounterIncreased);
+
+  }
+
+  // Para hacer la simplificación, me creo aquí el manejador.
+  // Es privado porque no quiero que nadie pueda llamarlo.
+  void _onCounterIncreased(CounterIncreased event, Emitter<CounterState> emit) {
+    emit(state.copyWith(
+      counter: state.counter + event.valueToIncrease,
+      transactionCount: state.transactionCount + 1
+    ));
   }
 }
