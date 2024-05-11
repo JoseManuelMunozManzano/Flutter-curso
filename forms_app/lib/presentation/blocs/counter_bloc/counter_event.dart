@@ -14,3 +14,5 @@ class CounterIncreased extends CounterEvent {
 
   CounterIncreased(this.valueToIncrease);
 }
+
+class CounterReset extends CounterEvent {}

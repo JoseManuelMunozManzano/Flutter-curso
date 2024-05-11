@@ -135,3 +135,9 @@ Renombramos la carpeta `bloc` a `counter_bloc`.
 - counter_event.dart aparece porque para emitir nuevos estados, nos basamos en eventos. Es similar a la idea de Redux
 
 NOTA: Si ya tenemos instalado Equatable, automáticamente, en las clases, el generador de código lo configura para que nuestras clases extiendan de él.
+
+### Utilizar Counter Bloc
+
+Vamos a modificar nuestro screen `presentation/screens/bloc_counter_screen.dart`.
+
+El consumo es muy similar a Cubit, pero cuando queremos hacer un cambio en el state lo que tenemos que hacer es emitir un evento.
