@@ -24,11 +24,20 @@ class BlocCounterView extends StatelessWidget {
 
   void increaseCounterBy(BuildContext context, [int value = 1]) {
     // Con add() disparamos un evento.
-    context.read<CounterBloc>().add(CounterIncreased(value));
+    // Forma "normal" de llamar
+    //
+    // context.read<CounterBloc>().add(CounterIncreased(value));
+
+    // Pero, si hemos centralizado la creación de eventos en counter_bloc.dart, entonces llamamos así:
+    context.read<CounterBloc>().increaseBy(value);
   }
 
   void resetCounter(BuildContext context) {
-    context.read<CounterBloc>().add(CounterReset());
+    // Forma "normal" de llamar
+    // context.read<CounterBloc>().add(CounterReset());
+
+    // Pero, si hemos centralizado la creación de eventos en counter_bloc.dart, entonces llamamos así:
+    context.read<CounterBloc>().resetCounter();
   }
 
   @override

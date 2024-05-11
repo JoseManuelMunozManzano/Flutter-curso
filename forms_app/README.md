@@ -141,3 +141,15 @@ NOTA: Si ya tenemos instalado Equatable, automáticamente, en las clases, el gen
 Vamos a modificar nuestro screen `presentation/screens/bloc_counter_screen.dart`.
 
 El consumo es muy similar a Cubit, pero cuando queremos hacer un cambio en el state lo que tenemos que hacer es emitir un evento.
+
+### Disparar eventos dentro del BLoC
+
+Nos vamos al fuente `counter_bloc.dart`.
+
+En lugar de que nuestros Widgets disparen, o manden añadir los eventos (con add), vamos a crearnos dos métodos en `counter_bloc.dart` que hagan el `add()` de los eventos. Aunque hay un poco más de código, lo bueno es que centralizamos todo en nuestro BLoC.
+
+Esos métodos son los que llamaremos desde `bloc_counter_screen.dart`.
+
+Son formas similares de trabajar. En vez de hacer el `add()` en nuestro View, lo hacemos en nuestro BLoC.
+
+Lo bueno es que no tenemos que memorizar los eventos que tenemos que disparar.

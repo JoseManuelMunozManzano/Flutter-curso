@@ -43,4 +43,15 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       counter: 0
     ));
   }
+
+  // Para disparar eventos dentro del BLoC.
+  // La idea es centralizar la forma como vamos a incrementar CounterBloc.
+  void increaseBy([int value = 1]) {
+    // Puedo llamar directamente a add porque viene heredado dentro del BLoC
+    add(CounterIncreased(value));
+  }
+
+  void resetCounter() {
+    add(CounterReset());
+  }
 }
