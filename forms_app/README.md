@@ -80,6 +80,8 @@ También actualizamos nuestro fichero `main.dart` para añadir el theme y el rou
 
 ## Counter Cubit - Gestor de Estado
 
+Vamos a trabajar con nuestra screen `presentation/screens/cubit_counter_screen.dart`.
+
 Empezamos a trabajar con Cubit, un nuevo gestor de estado que viene incluido con Flutter_Bloc, siendo este un conjunto de Widgets específicos para trabajar la implementación de Bloc en Flutter, y siendo Bloc una forma de trabajar el estado de la aplicación separado en eventos, separado en estado y separado en una clase que controla los eventos y los estados.
 
 https://pub.dev/packages/flutter_bloc
@@ -117,3 +119,19 @@ Cuando incorporamos Equatable en nuestros estados, el mecanismo de comparación 
 En cambio, Riverpod puede manejar más fácilmente múltiples instancias de proveedores con diferentes nombres, lo que puede ser beneficioso en ciertos escenarios. Es importante tener en cuenta esta consideración al diseñar y organizar la aplicación con bloc.
 
 NOTA: Equatable se usa mucho, no solamente en conjunción con Bloc, sino para comparar objetos.
+
+## BLoC y Flutter BLoC
+
+Vamos a trabajar ahora con nuestra otra screen `presentation/screens/bloc_counter_screen.dart`.
+
+En la carpeta `presentation`, hacemos click derecho en la carpeta `blocs` y en el desplegable seleccionamos el generador `Bloc: New Bloc` y damos el nombre `counter`.
+
+Veremos que, dentro de la carpeta `blocs` se ha generado la carpeta `bloc` y dentro los archivos `counter_bloc.dart`, `counter_event.dart` y `counter_state.dart`.
+
+Renombramos la carpeta `bloc` a `counter_bloc`.
+
+- counter_bloc.dart es similar a counter_cubit.dart, es decir, maneja el state, pero veremos que este fluye de manera diferente
+- counter_state.dart es similar a counter_state.dart, es decir, como luce el estado propiamente del bloc
+- counter_event.dart aparece porque para emitir nuevos estados, nos basamos en eventos. Es similar a la idea de Redux
+
+NOTA: Si ya tenemos instalado Equatable, automáticamente, en las clases, el generador de código lo configura para que nuestras clases extiendan de él.
