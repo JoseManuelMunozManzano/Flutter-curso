@@ -175,3 +175,65 @@ En el fichero `config/router/app_router` añadimos la ruta que va a tener.
 Con la ruta, vamos a `presentation/screens/home_screen` añadimos el `ListTile` para acceder al formulario.
 
 Como hemos modificado el router, tenemos que hacer un `full restart` de la aplicación para poder entrar a ver la pantalla.
+
+### Consideraciones con inputs y scroll
+
+Manejo de formularios se refiere a poder capturar toda la información, validarla y mostrarle al usuario lo que salió bien y lo que salió mal.
+
+https://api.flutter.dev/flutter/widgets/Form-class.html
+
+https://api.flutter.dev/flutter/widgets/FormField-class.html
+
+No es complicado manejar formularios en Flutter. Necesitamos, como mínimo:
+
+- Un formulario, que conseguimos con el Widget `Form` al que hay que indicarle una `key` que lleva la referencia al estado del formulario. Cualquier Widget hijo del formulario, es parte del formulario
+- Un `TextFormField` que debe tener una función validadora. Si esa función regresa null es que todo ha ido bien. si regresa algún string entonces es que ha ocurrido un error
+- Para disparar la validación, con el típico botón Submit, tomamos el estado del formulario, de la key, y ejecuta el método `validate()`, que lo que hace es ir a todos los `TextFormField` hijos y ejecuta su función validadora.
+
+Lo vamos a hacer primero de la forma simple y luego lo vamos a escalar para que el resultado sea más robusto.
+
+Vamos a modificar nuestro screen `register_screen.dart`.
+
+```
+    // El Widget TextFormField se relaciona con un formulario, mientras que el TextField no.
+    // Cuando colocamos este Widget en pantalla, tenemos que tener en cuenta el teclado y la posición del Widget.
+    // Si vamos a colocar un input muy abajo, podemos trabajar con el Widget SafeArea, que se va a asegurar
+    // de mostrar ese Widget sin estorbos, ya sea el notch, controles de movimiento o lo que sea.
+    // Pero esto tiene otro problema serio, porque el Widget Column es inflexible, es decir, que si aparece el teclado
+    // y empuja para arriba el input, puede que choque contra otro Widget, y esto va a romper la app.
+    // Es por esto que, salvo que el input esté muy arriba, se recomienda envolver todo en un Widget que tenga algún
+    // tipo de scroll, ya sea un ListView o un Sliver, CustomChildScrollView...
+    // Pero idealmente, vamos a querer envolver el Widget Column en un SingleChildScrollView, lo que cambia la funcionalidad,
+    // pero nos permite hacer scroll.
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+
+              const FlutterLogo(size: 100,),
+
+              TextFormField(),
+              TextFormField(),
+              TextFormField(),
+              TextFormField(),
+
+              const SizedBox(height: 20),
+
+              FilledButton.tonalIcon(
+                onPressed: () {},
+                icon: const Icon(Icons.save),
+                label: const Text('Crear usuario'),
+              ),
+
+              // Espacio de gracia para que el usuario pueda hacer un poco de scroll.
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+```
