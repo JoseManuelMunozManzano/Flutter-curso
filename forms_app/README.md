@@ -276,3 +276,15 @@ En `register_state.dart` es donde vamos a validar nuestro formulario. `RegisterF
 Vamos a mandar llamar a los métodos de `register_cubit.dart` desde los inputs para actualizar el estado de mi Cubit, con la idea de tener en el Cubit la última información actualizada de cada campo.
 
 Por ahora no estamos realizando las validaciones.
+
+### Conectar cubit con el formulario
+
+Vamos a conectar nuestro cubit `register_cubit` con nuestro screen `register_screen`.
+
+En lugar de manejar simples Strings en `register_state.dart` lo quiero manejar como un objeto.
+
+Por ejemplo, tendremos un objeto personalizado username que tendrá su instrucción de validación, su instrucción de errores personalizados... con la idea de que, donde vayamos a utilizar este objeto personalizado, pueda utilizar el mismo tipo de dato y todos tendrán las mismas validaciones, controles y funcionamiento.
+
+Esto, a la larga, va a llevarnos a tener que crear unos inputs específicos para cada uno de los campos, que puede verse como más código, pero que a la larga será más reutilizable tanto en esta como otras aplicaciones.
+
+Este es otro camino para hacer lo que ya tenemos, que tampoco es que esté mal. Todo depende de qué necesitamos.

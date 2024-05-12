@@ -7,7 +7,7 @@ class RegisterCubit extends Cubit<RegisterFormState> {
   RegisterCubit() : super(const RegisterFormState());
 
   void onSubmit() {
-    print('Submit: $state');
+    print('Cubit Submit: $state');
   }
 
   // Nos definimos métodos para cuando cambien el username, email y password obtener los valores en el estado.

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:forms_app/presentation/blocs/register/register_cubit.dart';
 import 'package:forms_app/presentation/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -10,7 +12,12 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Nuevo Usuario'),
       ),
-      body: const _RegisterView()
+
+      // Envolvemos en un BlocProvider para poder usar nuestro Cubit.
+      body: BlocProvider(
+        create: (context) =>  RegisterCubit(),
+        child: const _RegisterView(),
+      )
     );
   }
 }
@@ -52,8 +59,7 @@ class _RegisterView extends StatelessWidget {
   }
 }
 
-// En principio no vamos a usar un gestor de estado para manejar el formulario. Solo vamos a necesitar
-// convertir este Widget a un StatefulWidget.
+// Aunque ya tenemos el estado fuera del componente, por ahora vamos a dejar este Widget como un StatefulWidget.
 class _RegisterForm extends StatefulWidget {
   const _RegisterForm();
 
@@ -66,12 +72,15 @@ class _RegisterFormState extends State<_RegisterForm> {
   // Este GlobalKey nos permite enlazar con el key del Widget Form. Así obtenemos el control
   // del formulario basado en este key (_formKey)
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String username = '';
-  String email = '';
-  String password = '';
 
   @override
   Widget build(BuildContext context) {
+
+    // Obtenemos la referencia al Cubit.
+    // Recordar que usando el watch(), cada vez que el estado cambia, va a volver a disparar
+    // el redibujo de este build.
+    final registerCubit = context.watch<RegisterCubit>();
+
     return Form(
       key: _formKey,
       child: Column(
@@ -80,7 +89,12 @@ class _RegisterFormState extends State<_RegisterForm> {
           CustomTextFormField(
             label: 'Nombre de usuario',
             // No usamos setState porque no queremos que se redibuje cuando el value cambia.
-            onChanged: (value) => username = value,
+            onChanged: (value) {
+              registerCubit.usernameChanged(value);
+              // Cada vez que el usuario escribe algo, vemos si valida cada uno de los campos.
+              // Se acabará haciendo de otra forma.
+              _formKey.currentState?.validate();
+            },
             validator: (value) {
               if (value == null || value.isEmpty) return 'Campo requerido';
               if (value.trim().isEmpty) return 'Campo requerido';
@@ -93,7 +107,10 @@ class _RegisterFormState extends State<_RegisterForm> {
 
           CustomTextFormField(
             label: 'Correo electrónico',
-            onChanged: (value) => email = value,
+            onChanged: (value) {
+              registerCubit.emailChanged(value);
+              _formKey.currentState?.validate();
+            },
             validator: (value) {
               if (value == null || value.isEmpty) return 'Campo requerido';
               if (value.trim().isEmpty) return 'Campo requerido';
@@ -111,7 +128,10 @@ class _RegisterFormState extends State<_RegisterForm> {
           CustomTextFormField(
             label: 'Contraseña',
             obscureText: true,
-            onChanged: (value) => password = value,
+            onChanged: (value) {
+              registerCubit.passwordChanged(value);
+              _formKey.currentState?.validate();
+            },
             validator: (value) {
               if (value == null || value.isEmpty) return 'Campo requerido';
               if (value.trim().isEmpty) return 'Campo requerido';
@@ -132,7 +152,7 @@ class _RegisterFormState extends State<_RegisterForm> {
               // Cuando todos los validators son correctos, se obtiene el valor.
               // Aquí podría llamarse un gestor de estado, un provider... que tomara la data
               // y mandara llamar la función que hace el POST.
-              print('$username, $email, $password');
+              registerCubit.onSubmit();
             },
             icon: const Icon(Icons.save),
             label: const Text('Crear usuario'),
