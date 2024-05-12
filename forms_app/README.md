@@ -256,35 +256,3 @@ Transformamos en nuestro screen `register_screen`, en concreto el Widget `_Regis
 Vemos que los validators llevan mucho trabajo.
 
 Vamos a ver como delegar el control del formulario a un gestor de estado.
-
-### Register Form Cubit
-
-Sería bueno que, conforme escribimos en nuestros inputs, se fueran quitando las validaciones que no se cumplen de manera automática, sin tener que tocar el botón `Crear usuario`.
-
-Incluso, por ejemplo, podríamos querer bloquear el botón mientras hubiera errores en las validaciones.
-
-Necesitamos manejar el estado con un gestor de estado, y vamos a usar Cubit, ya que el registro es algo pequeño, aunque se podría hacer perfectamente con Flutter Bloc o incluso una combinación de ambos.
-
-En la carpeta `presentation/blocs` pulsamos botón derecho y seleccionamos `Bloc: New Cubit` y le damos el nombre `register`.
-
-Esto genera una carpeta `cubit` que renombramos a `register`, y dentro crea dos fuentes, `register_cubit.dart` y `register_state.dart`.
-
-Otra forma posible de estructurar nuestras carpetas de Cubit sería, por pantallas, por ejemplo, `presentation/blocs/forms/register`. O, en nuestra estructura Domain Driven Design, también podemos crear por features, por ejemplo, crear las capas de dominio, infraestructura y presentación para la autenticación, dominio, infraestructura y presentación para productos... Hay muchas formas de hacerlo y debemos elegir la que mejor se adapta a nuestras necesidades.
-
-En `register_state.dart` es donde vamos a validar nuestro formulario. `RegisterFormState` es nuestro estado del formulario. Podemos usarlo para saber cuando habilitar/deshabilitar el botón `Crear usuario` y cuando un campo pasa de ser válido a inválido.
-
-Vamos a mandar llamar a los métodos de `register_cubit.dart` desde los inputs para actualizar el estado de mi Cubit, con la idea de tener en el Cubit la última información actualizada de cada campo.
-
-Por ahora no estamos realizando las validaciones.
-
-### Conectar cubit con el formulario
-
-Vamos a conectar nuestro cubit `register_cubit` con nuestro screen `register_screen`.
-
-En lugar de manejar simples Strings en `register_state.dart` lo quiero manejar como un objeto.
-
-Por ejemplo, tendremos un objeto personalizado username que tendrá su instrucción de validación, su instrucción de errores personalizados... con la idea de que, donde vayamos a utilizar este objeto personalizado, pueda utilizar el mismo tipo de dato y todos tendrán las mismas validaciones, controles y funcionamiento.
-
-Esto, a la larga, va a llevarnos a tener que crear unos inputs específicos para cada uno de los campos, que puede verse como más código, pero que a la larga será más reutilizable tanto en esta como otras aplicaciones.
-
-Este es otro camino para hacer lo que ya tenemos, que tampoco es que esté mal. Todo depende de qué necesitamos.
