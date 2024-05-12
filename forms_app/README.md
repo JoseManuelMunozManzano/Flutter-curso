@@ -243,3 +243,16 @@ Vamos a modificar nuestro screen `register_screen.dart`.
 Vamos a crear un Widget personalizado para manejar el input en la screen `register_screen.dart`.
 
 Como en TextFormField va a requerir ciertas configuraciones, vamos a crear un nuevo Widget. En la carpeta `presentation` creamos la carpeta `widgets` y dentro creamos un archivo de barril `widgets.dart` y otra carpeta `inputs`, y dentro creamos el widget `custom_text_form_field.dart`.
+
+### Formulario tradicional
+
+Aunque no lo usamos en esta clase, paso información para hacer listas desplegables:
+
+- https://api.flutter.dev/flutter/material/DropdownButton-class.html
+- https://datogedon.com/sdks/flutter/flutter-dropdown-como-crear-una-lista-desplegable-dropdownbuttonformfield/
+
+Transformamos en nuestro screen `register_screen`, en concreto el Widget `_RegisterForm` a un StatefulWidget.
+
+Vemos que los validators llevan mucho trabajo.
+
+Vamos a ver como delegar el control del formulario a un gestor de estado.

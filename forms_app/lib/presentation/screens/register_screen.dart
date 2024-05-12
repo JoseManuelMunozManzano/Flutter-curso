@@ -52,36 +52,88 @@ class _RegisterView extends StatelessWidget {
   }
 }
 
-class _RegisterForm extends StatelessWidget {
+// En principio no vamos a usar un gestor de estado para manejar el formulario. Solo vamos a necesitar
+// convertir este Widget a un StatefulWidget.
+class _RegisterForm extends StatefulWidget {
   const _RegisterForm();
+
+  @override
+  State<_RegisterForm> createState() => _RegisterFormState();
+}
+
+class _RegisterFormState extends State<_RegisterForm> {
+
+  // Este GlobalKey nos permite enlazar con el key del Widget Form. Así obtenemos el control
+  // del formulario basado en este key (_formKey)
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String username = '';
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
 
-          const CustomTextFormField(
+          CustomTextFormField(
             label: 'Nombre de usuario',
+            // No usamos setState porque no queremos que se redibuje cuando el value cambia.
+            onChanged: (value) => username = value,
+            validator: (value) {
+              if (value == null || value.isEmpty) return 'Campo requerido';
+              if (value.trim().isEmpty) return 'Campo requerido';
+              if (value.length < 6) return 'Más de 6 letras';
+              return null;
+            },
           ),
 
           const SizedBox(height: 10),
 
-          const CustomTextFormField(
+          CustomTextFormField(
             label: 'Correo electrónico',
+            onChanged: (value) => email = value,
+            validator: (value) {
+              if (value == null || value.isEmpty) return 'Campo requerido';
+              if (value.trim().isEmpty) return 'Campo requerido';
+
+              final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
+              if (!emailRegExp.hasMatch(value)) return 'No tiene formato de correo';
+
+              return null;
+            },
           ),
 
           const SizedBox(height: 10),
 
-          const CustomTextFormField(
+          CustomTextFormField(
             label: 'Contraseña',
             obscureText: true,
+            onChanged: (value) => password = value,
+            validator: (value) {
+              if (value == null || value.isEmpty) return 'Campo requerido';
+              if (value.trim().isEmpty) return 'Campo requerido';
+              if (value.length < 6) return 'Más de 6 letras';
+              return null;
+            },
           ),
 
           const SizedBox(height: 20),
 
           FilledButton.tonalIcon(
-            onPressed: () {},
+            onPressed: () {
+
+              // Aquí ejecutamos los distintos validator de los CustomTextFormField.
+              final isValid = _formKey.currentState!.validate();
+              if (!isValid) return;
+
+              // Cuando todos los validators son correctos, se obtiene el valor.
+              // Aquí podría llamarse un gestor de estado, un provider... que tomara la data
+              // y mandara llamar la función que hace el POST.
+              print('$username, $email, $password');
+            },
             icon: const Icon(Icons.save),
             label: const Text('Crear usuario'),
           ),
