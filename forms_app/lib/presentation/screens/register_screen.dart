@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forms_app/presentation/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -29,35 +30,63 @@ class _RegisterView extends StatelessWidget {
     // tipo de scroll, ya sea un ListView o un Sliver, CustomChildScrollView...
     // Pero idealmente, vamos a querer envolver el Widget Column en un SingleChildScrollView, lo que cambia la funcionalidad,
     // pero nos permite hacer scroll.
-    return SafeArea(
+    return const SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
 
-              const FlutterLogo(size: 100,),
+              FlutterLogo(size: 100,),
 
-              TextFormField(),
-              TextFormField(),
-              TextFormField(),
-              TextFormField(),
-
-              const SizedBox(height: 20),
-
-              FilledButton.tonalIcon(
-                onPressed: () {},
-                icon: const Icon(Icons.save),
-                label: const Text('Crear usuario'),
-              ),
+              _RegisterForm(),
 
               // Espacio de gracia para que el usuario pueda hacer un poco de scroll.
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _RegisterForm extends StatelessWidget {
+  const _RegisterForm();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+
+          const CustomTextFormField(
+            label: 'Nombre de usuario',
+          ),
+
+          const SizedBox(height: 10),
+
+          const CustomTextFormField(
+            label: 'Correo electrónico',
+          ),
+
+          const SizedBox(height: 10),
+
+          const CustomTextFormField(
+            label: 'Contraseña',
+            obscureText: true,
+          ),
+
+          const SizedBox(height: 20),
+
+          FilledButton.tonalIcon(
+            onPressed: () {},
+            icon: const Icon(Icons.save),
+            label: const Text('Crear usuario'),
+          ),
+        ],
+      )
     );
   }
 }

@@ -237,3 +237,9 @@ Vamos a modificar nuestro screen `register_screen.dart`.
       ),
     );
 ```
+
+### Diseño del campo de texto
+
+Vamos a crear un Widget personalizado para manejar el input en la screen `register_screen.dart`.
+
+Como en TextFormField va a requerir ciertas configuraciones, vamos a crear un nuevo Widget. En la carpeta `presentation` creamos la carpeta `widgets` y dentro creamos un archivo de barril `widgets.dart` y otra carpeta `inputs`, y dentro creamos el widget `custom_text_form_field.dart`.
