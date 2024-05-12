@@ -1495,4 +1495,5 @@ loadingBuilder: (context, child, loadingProgress) {
 - cinemapedia2
   - Es una nueva versión hecha directamente por el profesor. Aquí lo importante es estudiar su código y saber como lo ha hecho
 - forms_app
-  - Vamos a mostrar como funcionan dos nuevos gestores de estado (Flutter_Bloc y Cubits) implementando el típico contador con cada uno de ellos.
+  - Vamos a mostrar como funcionan dos nuevos gestores de estado (Flutter_Bloc y Cubits) implementando el típico contador con cada uno de ellos
+  - Se incluye también manejo de formularios

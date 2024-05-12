@@ -1,4 +1,4 @@
-# BLoC (Business Logic Component) - Flutter_Bloc y Cubits
+# BLoC (Business Logic Component) - Flutter_Bloc y Cubits. Manejo de formularios
 
 En esta sección vamos a hablar de dos gestores de estado nuevos: Flutter_Bloc y Cubits.
 
@@ -22,6 +22,16 @@ Esta sección tiene por objetivo aprender lo siguiente:
 - Estado
 
 La idea de aprender un nuevo gestor de estado, es para que puedan tener experiencia con diferentes gestores para que logren determinar cuál es el que mejor se adapta a su estilo de programación, Flutter_Bloc es bien robusto y a la vez puede verse como con mucho archivo adicional, pero a la larga, lo hace fácil de probar, revertir y mantener.
+
+En esta nueva sección vamos a tratar también el manejo de formularios, aunque hay muchas consideraciones, les mostraré 3 aproximaciones que les pueden servir, recuerden, no hay ninguna mejor, simplemente diferentes formas que pueden ser convenientes para ustedes pero para otros no.
+
+Puntualmente veremos:
+
+- Tradicionales Stateful (Forms, TextFormField + Keys)
+- Con gestor de estado
+- Con gestor de estado + Data Input fields personalizados
+
+También veremos sus validaciones y obtener la data y estado en todo momento del formulario.
 
 ## Documentación
 
@@ -153,3 +163,15 @@ Esos métodos son los que llamaremos desde `bloc_counter_screen.dart`.
 Son formas similares de trabajar. En vez de hacer el `add()` en nuestro View, lo hacemos en nuestro BLoC.
 
 Lo bueno es que no tenemos que memorizar los eventos que tenemos que disparar.
+
+## Manejo de formularios
+
+Vamos a ver diferentes estrategias para trabajar con formularios, cada una con sus pros y sus contras.
+
+En la carpeta `presentation/screens/` creamos la screen `register_screen.dart`.
+
+En el fichero `config/router/app_router` añadimos la ruta que va a tener.
+
+Con la ruta, vamos a `presentation/screens/home_screen` añadimos el `ListTile` para acceder al formulario.
+
+Como hemos modificado el router, tenemos que hacer un `full restart` de la aplicación para poder entrar a ver la pantalla.
