@@ -330,3 +330,11 @@ Ahora tocamos `register_screen.dart` y comentamos la variable `isValid`, ya que 
 En la carpeta `infrastructure/inputs` creamos el input `password.dart`.
 
 Modificamos `register_state.dart` y `register_cubit.dart`.
+
+### Formz - Mostrar errores en pantalla
+
+Tenemos que modificar `register_screen.dart`, sobre todo eliminando cosas, como `_formKey`, que ya no nos hace falta porque no vamos a delegar la funcionalidad `validator` del formulario para saber si este es válido o no, ya que lo sabemos por el gestor de estados.
+
+Tras los cambios, `_RegisterForm` ya no tiene por qué ser un StatefulWidget. Si nos posicionamos sobre `StatefulWidget` y pulsamos `Cmd+.` la ayuda de VSCode nos indica que lo convirtamos a `StatelessWidget`. Esto va a funcionar porque en el Widget no aparece ninguna propiedad del estado.
+
+Modificamos también, en `register_cubit.dart` el procedimiento `onSubmit()` para que indique que el valor de un formulario ya no es pure, pasando a un estado nuevo.

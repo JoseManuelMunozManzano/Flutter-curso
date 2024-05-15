@@ -59,19 +59,8 @@ class _RegisterView extends StatelessWidget {
   }
 }
 
-// Aunque ya tenemos el estado fuera del componente, por ahora vamos a dejar este Widget como un StatefulWidget.
-class _RegisterForm extends StatefulWidget {
+class _RegisterForm extends StatelessWidget {
   const _RegisterForm();
-
-  @override
-  State<_RegisterForm> createState() => _RegisterFormState();
-}
-
-class _RegisterFormState extends State<_RegisterForm> {
-
-  // Este GlobalKey nos permite enlazar con el key del Widget Form. Así obtenemos el control
-  // del formulario basado en este key (_formKey)
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,27 +69,28 @@ class _RegisterFormState extends State<_RegisterForm> {
     // Recordar que usando el watch(), cada vez que el estado cambia, va a volver a disparar
     // el redibujo de este build.
     final registerCubit = context.watch<RegisterCubit>();
+    final username = registerCubit.state.username;
+    final password = registerCubit.state.password;
 
     return Form(
-      key: _formKey,
       child: Column(
         children: [
 
           CustomTextFormField(
             label: 'Nombre de usuario',
             // No usamos setState porque no queremos que se redibuje cuando el value cambia.
-            onChanged: (value) {
-              registerCubit.usernameChanged(value);
-              // Cada vez que el usuario escribe algo, vemos si valida cada uno de los campos.
-              // Se acabará haciendo de otra forma.
-              _formKey.currentState?.validate();
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) return 'Campo requerido';
-              if (value.trim().isEmpty) return 'Campo requerido';
-              if (value.length < 6) return 'Más de 6 letras';
-              return null;
-            },
+            onChanged: registerCubit.usernameChanged,
+            // Luego vamos a ver otra forma para no tener que codificar aquí los mensajes de error.
+            // Si no indicamos el username.isPure, el problema es que valida antes de empezar a informar nada.
+            // También podemos tener un estado que indique que se ha posteado una vez y entonces empezar
+            // a indicar errores.
+            // También vemos en el funcionamiento actual que, si pulsamos Crear usuario sin tocar nada,
+            // no aparecen errores. El motivo es que no ha cambiado el estado.
+            // Necesitamos hacer un procedimiento o algo en el lado del Cubit que indique que el usarname ya
+            // no es pure.
+            errorMessage: username.isPure || username.isValid
+              ? null
+              : 'Usuario no válido'
           ),
 
           const SizedBox(height: 10),
@@ -109,7 +99,6 @@ class _RegisterFormState extends State<_RegisterForm> {
             label: 'Correo electrónico',
             onChanged: (value) {
               registerCubit.emailChanged(value);
-              _formKey.currentState?.validate();
             },
             validator: (value) {
               if (value == null || value.isEmpty) return 'Campo requerido';
@@ -130,7 +119,6 @@ class _RegisterFormState extends State<_RegisterForm> {
             obscureText: true,
             onChanged: (value) {
               registerCubit.passwordChanged(value);
-              _formKey.currentState?.validate();
             },
             validator: (value) {
               if (value == null || value.isEmpty) return 'Campo requerido';
@@ -144,13 +132,8 @@ class _RegisterFormState extends State<_RegisterForm> {
 
           FilledButton.tonalIcon(
             onPressed: () {
-
-              // Aquí ejecutamos los distintos validator de los CustomTextFormField.
-              // Esto lo acabaremos borrando porque lo acabará haciendo mi estado.
+              // Vamos a permitir pulsar siempre el botón.
               //
-              // final isValid = _formKey.currentState!.validate();
-              // if (!isValid) return;
-
               // Cuando todos los validators son correctos, se obtiene el valor.
               // Aquí podría llamarse un gestor de estado, un provider... que tomara la data
               // y mandara llamar la función que hace el POST.
