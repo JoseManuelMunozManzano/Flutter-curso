@@ -288,3 +288,29 @@ Por ejemplo, tendremos un objeto personalizado username que tendrá su instrucci
 Esto, a la larga, va a llevarnos a tener que crear unos inputs específicos para cada uno de los campos, que puede verse como más código, pero que a la larga será más reutilizable tanto en esta como otras aplicaciones.
 
 Este es otro camino para hacer lo que ya tenemos, que tampoco es que esté mal. Todo depende de qué necesitamos.
+
+### Formz - Crear inputs individuales
+
+Documentación: https://pub.dev/packages/formz
+
+El paquete Formz es una alternativa interesante que puede ayudarnos a abstraer aún más las validaciones. Algunas de las ventajas de usar Formz son:
+
+- Reutilización de código: Formz nos permite definir modelos de formulario que encapsulan la lógica de validación, lo que facilita su reutilización en diferentes partes de la aplicación
+- Manejo de estado: Formz se encarga del manejo del estado del formulario, lo que simplifica la lógica de nuestros widgets
+- Validaciones complejas: Formz nos permite definir validaciones complejas de una manera más concisa y legible que si las implementáramos manualmente
+
+La principal desventaja de usar Formz es que agrega una capa de abstracción adicional, lo que puede hacer que el código sea más difícil de entender para desarrolladores que no estén familiarizados con la librería. Sin embargo, si la aplicación tiene formularios complejos y necesitamos una solución robusta para manejar las validaciones, Formz puede ser una opción muy útil.
+
+Lo que se termina creando es un tipo de dato especial, un `input`, que no deja de ser una clase en la que:
+
+- Se establece su valor inicial
+- Tiene una forma de establecer un valor
+- Un método de validación que regresa un tipo de error personalizado para ese input
+
+Instalación usando Pubspec Assist, del paquete `formz`.
+
+Dentro de `lib` nos creamos la carpeta `infrastructure`, dentro la carpeta `inputs` y dentro el archivo de validación `username.dart` y el archivo de barril `inputs.dart`.
+
+Vamos a la ruta indicada en la documentación y copiamos el ejemplo que aparece en `username.dart`, para no empezar desde cero.
+
+La idea es que vamos a cambiar, en `register_state.dart`, el tipo de dato String del campo `username` a uno de tipo `Username`.
