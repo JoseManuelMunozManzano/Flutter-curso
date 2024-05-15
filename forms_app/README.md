@@ -324,3 +324,9 @@ Y también tendremos que modificar `register_cubit.dart` para corregir los error
 Con esto ya tenemos todo conectado.
 
 Ahora tocamos `register_screen.dart` y comentamos la variable `isValid`, ya que la hemos añadido a `register_state.dart` y lo va a acabar manejando mi estado, al igual que las validaciones que se encuentran en `register_screen.dart`. Con esto, toda la parte de construcción del formulario va a quedar muy sencillo de leer.
+
+### Formz - Password Custom Input
+
+En la carpeta `infrastructure/inputs` creamos el input `password.dart`.
+
+Modificamos `register_state.dart` y `register_cubit.dart`.

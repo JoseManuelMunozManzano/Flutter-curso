@@ -18,7 +18,7 @@ class RegisterCubit extends Cubit<RegisterFormState> {
 
     // Cuando el valor cambia, basado en Formz, podemos validar si el formulario es válido.
     // Pasamos un array con todos los inputs que tengamos definidos.
-    emit(state.copyWith(username: username, isValid: Formz.validate([username])));
+    emit(state.copyWith(username: username, isValid: Formz.validate([username, state.password])));
   }
 
   void emailChanged(String value) {
@@ -26,7 +26,9 @@ class RegisterCubit extends Cubit<RegisterFormState> {
   }
 
   void passwordChanged(String value) {
-    emit(state.copyWith(password: value));
+    final password = Password.dirty(value);
+
+    emit(state.copyWith(password: password, isValid: Formz.validate([password, state.username])));
   }
 
 }
