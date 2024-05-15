@@ -146,8 +146,10 @@ class _RegisterFormState extends State<_RegisterForm> {
             onPressed: () {
 
               // Aquí ejecutamos los distintos validator de los CustomTextFormField.
-              final isValid = _formKey.currentState!.validate();
-              if (!isValid) return;
+              // Esto lo acabaremos borrando porque lo acabará haciendo mi estado.
+              //
+              // final isValid = _formKey.currentState!.validate();
+              // if (!isValid) return;
 
               // Cuando todos los validators son correctos, se obtiene el valor.
               // Aquí podría llamarse un gestor de estado, un provider... que tomara la data

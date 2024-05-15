@@ -314,3 +314,13 @@ Dentro de `lib` nos creamos la carpeta `infrastructure`, dentro la carpeta `inpu
 Vamos a la ruta indicada en la documentación y copiamos el ejemplo que aparece en `username.dart`, para no empezar desde cero.
 
 La idea es que vamos a cambiar, en `register_state.dart`, el tipo de dato String del campo `username` a uno de tipo `Username`.
+
+### Formz - Usar los inputs personalizados
+
+Como se ha dicho antes, modificamos `register_state.dart`, campo `username` para que sea del nuevo tipo creado `Username`.
+
+Y también tendremos que modificar `register_cubit.dart` para corregir los errores que este cambio acarrea en el método `usernameChanged()`.
+
+Con esto ya tenemos todo conectado.
+
+Ahora tocamos `register_screen.dart` y comentamos la variable `isValid`, ya que la hemos añadido a `register_state.dart` y lo va a acabar manejando mi estado, al igual que las validaciones que se encuentran en `register_screen.dart`. Con esto, toda la parte de construcción del formulario va a quedar muy sencillo de leer.
