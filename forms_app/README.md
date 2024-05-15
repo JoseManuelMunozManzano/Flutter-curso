@@ -338,3 +338,11 @@ Tenemos que modificar `register_screen.dart`, sobre todo eliminando cosas, como 
 Tras los cambios, `_RegisterForm` ya no tiene por qué ser un StatefulWidget. Si nos posicionamos sobre `StatefulWidget` y pulsamos `Cmd+.` la ayuda de VSCode nos indica que lo convirtamos a `StatelessWidget`. Esto va a funcionar porque en el Widget no aparece ninguna propiedad del estado.
 
 Modificamos también, en `register_cubit.dart` el procedimiento `onSubmit()` para que indique que el valor de un formulario ya no es pure, pasando a un estado nuevo.
+
+### Formz - Centralizar los errores en el input
+
+Vamos a implementar un `getter` para poder obtener, en `register_screen.dart`, el `errorMessage` del input.
+
+Modificamos nuestros inputs `username.dart` y `password.dart` y nuestro screen `register_screen.dart`.
+
+Con esto, toda nuestra data del formulario está dentro de nuestro cubit `RegisterCubit`.

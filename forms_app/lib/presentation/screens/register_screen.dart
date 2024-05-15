@@ -80,17 +80,14 @@ class _RegisterForm extends StatelessWidget {
             label: 'Nombre de usuario',
             // No usamos setState porque no queremos que se redibuje cuando el value cambia.
             onChanged: registerCubit.usernameChanged,
-            // Luego vamos a ver otra forma para no tener que codificar aquí los mensajes de error.
             // Si no indicamos el username.isPure, el problema es que valida antes de empezar a informar nada.
-            // También podemos tener un estado que indique que se ha posteado una vez y entonces empezar
-            // a indicar errores.
+            // También podemos tener un estado, en el enum FormStatus, por ejemplo never_posted que indique
+            // que se ha posteado una vez (el estado cambia en onSubmit()) y entonces empezar a indicar errores.
             // También vemos en el funcionamiento actual que, si pulsamos Crear usuario sin tocar nada,
             // no aparecen errores. El motivo es que no ha cambiado el estado.
             // Necesitamos hacer un procedimiento o algo en el lado del Cubit que indique que el usarname ya
             // no es pure.
-            errorMessage: username.isPure || username.isValid
-              ? null
-              : 'Usuario no válido'
+            errorMessage: username.errorMessage,
           ),
 
           const SizedBox(height: 10),
@@ -115,17 +112,12 @@ class _RegisterForm extends StatelessWidget {
           const SizedBox(height: 10),
 
           CustomTextFormField(
+            // Recordar que el valor del input lo tenemos siempre en la propiedad value
+            // label: 'Contraseña ${password.value}',
             label: 'Contraseña',
             obscureText: true,
-            onChanged: (value) {
-              registerCubit.passwordChanged(value);
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) return 'Campo requerido';
-              if (value.trim().isEmpty) return 'Campo requerido';
-              if (value.length < 6) return 'Más de 6 letras';
-              return null;
-            },
+            onChanged: registerCubit.passwordChanged,
+            errorMessage: password.errorMessage,
           ),
 
           const SizedBox(height: 20),

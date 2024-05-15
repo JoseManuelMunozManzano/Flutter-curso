@@ -58,6 +58,10 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Clean Architecture con GetX: https://dev.to/ahmaddarwesh/flutter-getx-clean-architecture-4ppk
 
+- Internacionalización
+  - https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
+  - https://www.kodeco.com/books/real-world-flutter-by-tutorials/v1.0/chapters/9-internationalizing-localizing
+  - Si se usa el context para obtener traducciones, ocuparemos algún tipo de service locator para ello como get_it
 - Local Databases
   - Isar. Muy poderoso y recomendado. Funciona en la web con IndexedDB. Es NoSQL, los objetos acaban siendo grabados como mapas (key-value pair): https://isar.dev/es/
   - HiveDB. Muy sencillote. Funciona en la web con IndexedDB. Es NoSQL, los objetos acaban siendo grabados como mapas (key-value pair): https://docs.hivedb.dev/#/

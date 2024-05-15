@@ -15,6 +15,18 @@ class Username extends FormzInput<String, UsernameError> {
   // Definimos los parámetros como posicionales y obligatorios.
   const Username.dirty(super.value) : super.dirty();
 
+  // getter para obtener el errorMessage para el formulario.
+  String? get errorMessage {
+    if (isValid || isPure) return null;
+
+    // displayError es una propiedad que ya ofrece Formz
+    // Por ejemplo: username.displayError.toString() puede valer UsernameError.empty, UsernameError.length y null.
+    if (displayError == UsernameError.empty) return 'El campo es requerido';
+    if (displayError == UsernameError.length) return 'Mínimo 6 caracteres';
+
+    return null;
+  }
+
   // Override validator to handle validating a given input value.
   // Establecemos la forma como vamos a hacer nuestras validaciones.
   // Si devuelve null es porque pasa todas las validaciones. Es mejor dejarlo explícito.
