@@ -346,3 +346,13 @@ Vamos a implementar un `getter` para poder obtener, en `register_screen.dart`, e
 Modificamos nuestros inputs `username.dart` y `password.dart` y nuestro screen `register_screen.dart`.
 
 Con esto, toda nuestra data del formulario está dentro de nuestro cubit `RegisterCubit`.
+
+### Formz - Email Custom Input
+
+Vamos a hacer el input y centralizar los errores en él para el mail.
+
+Nos creamos en la carpeta `infrastructure/inputs` el input `email.dart`. Ver sobre todo como se hace para compartir la expresión regular en otras partes de la aplicación.
+
+Modificamos `register_state.dart` y `register_cubit.dart`.
+
+Modificamos `register_screen.dart`.
