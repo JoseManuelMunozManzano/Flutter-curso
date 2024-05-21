@@ -58,6 +58,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Clean Architecture con GetX: https://dev.to/ahmaddarwesh/flutter-getx-clean-architecture-4ppk
 
+- Notificaciones accionables: https://pub.dev/packages/awesome_notifications
+
 - Internacionalización
   - https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
   - https://www.kodeco.com/books/real-world-flutter-by-tutorials/v1.0/chapters/9-internationalizing-localizing
@@ -1501,3 +1503,4 @@ loadingBuilder: (context, child, loadingProgress) {
 - forms_app
   - Vamos a mostrar como funcionan dos nuevos gestores de estado (Flutter_Bloc y Cubits) implementando el típico contador con cada uno de ellos
   - Se incluye también manejo de formularios
+- push_app
