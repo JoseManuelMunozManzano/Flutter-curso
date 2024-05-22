@@ -62,6 +62,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - FlutterFire: https://firebase.flutter.dev/docs/messaging/notifications/
 
+- Paquete `permission_handler` para configurar cualquier permiso que necesite nuestra app: https://pub.dev/packages/permission_handler
+
 - Internacionalización
   - https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
   - https://www.kodeco.com/books/real-world-flutter-by-tutorials/v1.0/chapters/9-internationalizing-localizing
@@ -1482,6 +1484,18 @@ loadingBuilder: (context, child, loadingProgress) {
   if (loadingProgress != null) return const SizedBox(); // Para que no se vea nada (negro)
   return FadeIn(child: child); // Regresamos la imagen más suavemente, del negro al color.
 },
+```
+
+## Error al arrancar Android cuando empezamos con Notifications Push
+
+Si arrancamos el proyecto nos da un error indicando que, para usar las notificaciones push, necesitamos configurar lo siguiente en la ruta `/android/app/build.gradle` del proyecto:
+
+```
+  android {
+    defaultConfig {
+      minSdkVersion 19
+    }
+  }
 ```
 
 ## Temario
