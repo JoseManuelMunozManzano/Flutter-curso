@@ -70,3 +70,23 @@ Si arrancamos el proyecto nos da un error indicando que, para usar las notificac
 ```
 
 Pero igualmente nos falla el proyecto y no arranca. Esto es porque tenemos que configurar una instancia de Firebase.
+
+## Configurar proyecto de Firebase
+
+Para poder comenzar la configuración, lo primero es tener un proyecto en Firebase: `https://firebase.google.com/?hl=es-419`
+
+Nos interesa de Firebase sobre todo la parte de `Cloud Messaging (FCM)` que no tiene ningún coste.
+
+He creado el proyecto `flutter-projects`: `https://console.firebase.google.com/project/flutter-projects-29ae9/overview?hl=es-419`
+
+Si volvemos a `https://firebase.flutter.dev/docs/overview` veremos que nos pide instalar `firebase_core`. Nosotros lo vamos a configurar mediante el CLI, con el comando `flutterfile configure` que también aparece en esta documentación. Por tanto, lo primero es instalar el CLI. La forma más fácil de hacerlo es ir a `https://firebase.google.com/docs/cli?hl=es` y seguir los pasos, que básicamente consiste en ejecutar, uno después de otro, los siguiente comandos:
+
+- Abrir terminal
+- curl -sL https://firebase.tools | bash
+- Cerrar la terminal
+- Abrir otra terminal
+- firebase login
+
+Si necesitamos, podemos hacer `firebase logout` también.
+
+Cuando configuremos Firebase, aunque otras personas accedan a nuestra configuración, no van a poder mandar notificaciones push porque va a estar amarrado a un id de la aplicación.
