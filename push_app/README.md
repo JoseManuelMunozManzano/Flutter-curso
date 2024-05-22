@@ -38,3 +38,17 @@ Dentro de la carpeta `screen` creo el archivo `home_screen.dart`.
 Dentro de la carpeta `router` definimos nuestras rutas `app_router.dart`.
 
 Vamos a instalar un par de paquetes usando `Pubspec Assist`, separando con comas: equatable, flutter_bloc, go_router
+
+## Bloc y FlutterFire
+
+Vamos a hacer la configuración de nuestro Bloc para saber como va a fluir nuestra información.
+
+Vamos a usar FlutterFire, que es una implementación oficial de Firebase para Flutter.
+
+Documentación: https://firebase.flutter.dev/docs/messaging/notifications/
+
+Tal y como se indica aquí `https://firebase.flutter.dev/docs/messaging/overview`, empezamos las instalaciones.
+
+Por ahora solo vamos a instalar, por ahora, y usando `Pubspec Assist` el paquete `firebase_messaging`. Lo instalamos, sin hacer todavía ninguna configuración, porque en nuestro Bloc vamos a manejar una propiedad igual a un estado que me va a dar ese paquete, y así no hay que crear una enumeración personalizada.
+
+Dentro de la carpeta `presentation` creamos la carpeta `blocs`. En esa carpeta pulsamos click derecho y seleccionamos `Bloc: New Bloc` y le ponemos el nombre `notifications`. Renombramos la carpeta bloc nueva que aparece a notifications.

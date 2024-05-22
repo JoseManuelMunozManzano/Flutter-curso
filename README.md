@@ -60,6 +60,8 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 
 - Notificaciones accionables: https://pub.dev/packages/awesome_notifications
 
+- FlutterFire: https://firebase.flutter.dev/docs/messaging/notifications/
+
 - Internacionalización
   - https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
   - https://www.kodeco.com/books/real-world-flutter-by-tutorials/v1.0/chapters/9-internationalizing-localizing
