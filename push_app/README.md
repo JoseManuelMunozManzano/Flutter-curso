@@ -90,3 +90,45 @@ Si volvemos a `https://firebase.flutter.dev/docs/overview` veremos que nos pide 
 Si necesitamos, podemos hacer `firebase logout` también.
 
 Cuando configuremos Firebase, aunque otras personas accedan a nuestra configuración, no van a poder mandar notificaciones push porque va a estar amarrado a un id de la aplicación.
+
+## Cambiar id de la aplicación
+
+El identifier de la aplicación es lo que hace que dos aplicaciones con el mismo nombre sean distintas. Tenemos que cambiar ese id tanto en la carpeta de ios como en la de android, ya que, si ejecutamos el comando `dart pub global activate flutterfire_cli` que aparece en `https://firebase.flutter.dev/docs/overview/`, va a crear la configuración basada en el identificador que tiene nuestra aplicación, que, dada la forma en la que hemos creado el proyecto, es bastante genérico.
+
+Para Android, será `com.example.push_app`, es decir `com.example.` concatenado con el nombre que le hayamos dado al proyecto.
+
+Para IOs, será `com.example.pushApp`, es decir, `com.example` concatenado con el camel case del nombre del proyecto, sin guiones de ningún tipo.
+
+Si queremos publicar esto en la Apple Store o la Google Play Store, vamos a tener problemas, porque seguro que ese nombre ya existe.
+
+Busco, usando VSCode, todos los sitios donde aparezca ese nombre y lo cambio, para Android, por el nombre `com.jmmunozmanzano.push_app`. Además, ir a la ruta `android/app/src/main/kotlin/com` y sustituir el directorio `example` por `jmmunozmanzano`.
+
+Para IOS, se puede cambiar ejecutando el archivo `Runner.xcworkspace`. Se abrirá el programa `Xcode`, ir a TARGETS Runner, tab Signing & Capabilities, y cambiar, en Signing, el Bundle Identifier a `com.jmmunozmanzano.pushApp`. Si no está asignado, también indicamos el Team.
+
+Ahora ya si podemos hacer la configuración de Firebase. Tener en cuenta que Firebase va a amarrar nuestro bundle id o package identifier para configurarlo y permitir la comunicación de solo ese id con Firebase. Si se hiciera después, tendríamos que volver a configurar Firebase de nuevo.
+
+NOTAS:
+
+- Una mejor forma para crear el proyecto Flutter y así evitar todas las modificaciones de esta clase, es realizarlo con el CLI, en mi opinión es más sencillo. Aquí dejo un ejemplo:
+
+`flutter create --org com.jmmunoz push_app`
+
+Con ese comando, Flutter, al crear el proyecto, ya nos genera el ID correcto en cada uno de los archivos, por lo que no tendríamos que cambiarlo luego manualmente uno por uno.
+
+- Otra opción muy sencilla para evitar tener que renombrar el nombre del dominio es editar el archivo settings.json de la configuración de vscode y añadir la linea:
+
+`"dart.flutterCreateOrganization": "es.nombredeorganizacion",`
+
+Tal y como viene en la documentación de Flutter (https://dartcode.org/docs/settings/#dartfluttercreateorganization).
+
+¿Qué pasa con los que usamos un dispositivo físico?
+
+Si estás usando un dispositivo físico para probar tu aplicación, no hay ninguna interacción directa con el archivo AndroidManifest.xml. El archivo de manifiesto se utiliza principalmente para configurar aspectos como los permisos de la aplicación, las actividades principales, los servicios, etc. Por lo tanto, los cambios en este archivo no afectarán directamente la funcionalidad en un dispositivo físico.
+
+¿También tenemos que hacer el renombre?
+
+Por lo que sí, es necesario realizar los cambios que se indican para poder continuar.
+
+¿Afecta de alguna manera al dispositivo físico como que no lo encuentra?
+
+Realizar cambios en el archivo AndroidManifest.xml no debería afectar la capacidad de tu aplicación para ejecutarse en un dispositivo físico, a menos que realices cambios que impidan que la aplicación se ejecute correctamente debido a configuraciones incorrectas en el manifiesto. Por lo tanto, es importante revisar cuidadosamente los cambios que realices en el archivo de manifiesto para asegurarte de que no haya errores que puedan afectar el funcionamiento de la aplicación en un dispositivo físico.
