@@ -153,3 +153,41 @@ Ahora ya si que podemos hacer la configuración de Firebase con nuestra aplicaci
   - Seleccionamos las configuraciones que vamos a querer para este proyecto, en mi caso solo android e ios (se desmarcan los checks pulsando la barra espaciadora)
 
 Cuando terminemos, veremos que en la carpeta `lib` se ha creado un fuente `firebase_options.dart`. Este archivo se puede usar para hacer cualquier otra configuración, por si queremos más tarde usar storage, mensajería... Este mismo archivo se puede usar.
+
+## Inicializar la aplicación de Firebase en Flutter
+
+Antes de intentar levantar el proyecto, todavía nos hace falta realizar un par de pasos.
+
+Seguimos con los pasos de la web: `https://firebase.flutter.dev/docs/overview/`, aunque lo vamos a hacer un poco distinto para centralizarlo en nuestro Bloc.
+
+`WidgetsFlutterBinding.ensureInitialized();` Esta línea nos la llevamos a `main.dart`.
+
+```
+ await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+```
+
+Y esta parte la centralizamos en nuestro Bloc, en la carpeta `presentation/blocs`, archivo `notifications_bloc.dart`.
+
+Ya podemos levantar la aplicación.
+
+NOTA: Me ha dado un error ` Could not resolve all files for configuration ':app:debugRuntimeClasspath'.` que he solventado de la siguiente forma:
+En el archivo `android/app/build.gradle` he modificado la version Java de la 1.8 a la 17:
+
+```
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+```
+
+Pero además he borrado el sdk y lo he vuelto a bajar de nuevo. También he bajado una versión NDK en IntelliJ Idea.
+
+![alt NDK Version](../Images/08_NDK_Version.png)
+
+Una vez me ejecuta la aplicación, pulso el engranaje y cuando me pregunta por el permiso pulso `Allow`.

@@ -5,7 +5,14 @@ import 'package:push_app/config/router/app_router.dart';
 import 'package:push_app/config/theme/app_theme.dart';
 import 'package:push_app/presentation/blocs/notifications/notifications_bloc.dart';
 
-void main() {
+// Transformado a función asíncrona al haber añadido la parte de asegurar
+// que se ha inicializado nuestro FlutterBindding
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await NotificationsBloc.initializeFCM();
+
   runApp(
     // Este bloc irá en el nivel más alto de la app, porque en cualquier momento 
     // puedo recibir una notificación push, y quiero reaccionar basado en esa notificación,
