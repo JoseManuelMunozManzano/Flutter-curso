@@ -103,7 +103,7 @@ Si queremos publicar esto en la Apple Store o la Google Play Store, vamos a tene
 
 Busco, usando VSCode, todos los sitios donde aparezca ese nombre y lo cambio, para Android, por el nombre `com.jmmunozmanzano.push_app`. Además, ir a la ruta `android/app/src/main/kotlin/com` y sustituir el directorio `example` por `jmmunozmanzano`.
 
-Para IOS, se puede cambiar ejecutando el archivo `Runner.xcworkspace`. Se abrirá el programa `Xcode`, ir a TARGETS Runner, tab Signing & Capabilities, y cambiar, en Signing, el Bundle Identifier a `com.jmmunozmanzano.pushApp`. Si no está asignado, también indicamos el Team.
+Para IOS, se puede cambiar ejecutando el archivo `Runner.xcworkspace`. Se abrirá el programa `Xcode`, ir a TARGETS Runner, tab Signing & Capabilities, y cambiar, en Signing, el Bundle Identifier a `com.jmmunozmanzano.pushApp`. Si no está asignado, también indicamos el Team. Pero también se puede cambiar al igual que se ha hecho en Android, es decir, buscando en VSCode y cambiando a mano. Es posible que de esta última forma se evite algún problema al configurar Flutter con Firebase.
 
 Ahora ya si podemos hacer la configuración de Firebase. Tener en cuenta que Firebase va a amarrar nuestro bundle id o package identifier para configurarlo y permitir la comunicación de solo ese id con Firebase. Si se hiciera después, tendríamos que volver a configurar Firebase de nuevo.
 
@@ -132,3 +132,24 @@ Por lo que sí, es necesario realizar los cambios que se indican para poder cont
 ¿Afecta de alguna manera al dispositivo físico como que no lo encuentra?
 
 Realizar cambios en el archivo AndroidManifest.xml no debería afectar la capacidad de tu aplicación para ejecutarse en un dispositivo físico, a menos que realices cambios que impidan que la aplicación se ejecute correctamente debido a configuraciones incorrectas en el manifiesto. Por lo tanto, es importante revisar cuidadosamente los cambios que realices en el archivo de manifiesto para asegurarte de que no haya errores que puedan afectar el funcionamiento de la aplicación en un dispositivo físico.
+
+## Configurar Flutter con proyecto de Firebase
+
+Ahora ya si que podemos hacer la configuración de Firebase con nuestra aplicación de Flutter `https://firebase.flutter.dev/docs/overview/`.
+
+- En VSCode, usando Pubspec Assist, indicamos: `firebase_core`
+- Ejecutamos en el terminal, en la carpeta del proyecto: `dart pub global activate flutterfire_cli`
+
+  - Haced caso de este Warning, si sale:
+  - ```
+      Warning: Pub installs executables into $HOME/.pub-cache/bin, which is not on your path.
+      You can fix that by adding this to your shell's config file (.zshrc, .bashrc, .bash_profile, etc.):
+
+      export PATH="$PATH":"$HOME/.pub-cache/bin"
+    ```
+
+- Ejecutamos en el terminal, en la carpeta del proyecto: `flutterfire configure`
+  - Seleccionamos el proyecto que creamos antes en Firebase, en mi caso, el id del proyecto es `flutter-projects-29ae9`
+  - Seleccionamos las configuraciones que vamos a querer para este proyecto, en mi caso solo android e ios (se desmarcan los checks pulsando la barra espaciadora)
+
+Cuando terminemos, veremos que en la carpeta `lib` se ha creado un fuente `firebase_options.dart`. Este archivo se puede usar para hacer cualquier otra configuración, por si queremos más tarde usar storage, mensajería... Este mismo archivo se puede usar.
