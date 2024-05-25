@@ -17,10 +17,12 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
   print("Handling a background message: ${message.messageId}");
+
+  // Aquí podríamos guardar la notificación en una BD local como Isar.
 }
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
-  // Cogemos esta declarción de código de https://firebase.flutter.dev/docs/messaging/permissions
+  // Cogemos esta declaración de código de https://firebase.flutter.dev/docs/messaging/permissions
   // Permite escuchar y emitir mensajería a través de este objeto.
   //
   // Usualmente toda la mensajería ocurre en el lado del backend. Nuestras apps le mandan al
@@ -30,6 +32,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   NotificationsBloc() : super(const NotificationsState()) {
 
     on<NotificationStatusChanged>(_notificationStatusChanged);
+
+    on<NotificationReceived>(_onPushMessageReceived);
+
+    // Si usáramos una BD Isar, aquí podríamos cargar las notificaciones en el listado.
 
     // Llamamos después de crear todos los listeners.
     // Queremos que toda la lógica esté en los blocs, no en main.dart
@@ -52,7 +58,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   void _notificationStatusChanged(NotificationStatusChanged event, Emitter<NotificationsState> emit) {
     emit(
       state.copyWith(
-        status:  event.status
+        status: event.status
       )
     );
 
@@ -117,7 +123,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     );
 
     // El print acaba llamando al método toString() de PushMessage
-    print(notification);
+    // print(notification);
+
+    // Disparo el evento.
+    add(NotificationReceived(notification));
+  }
+  
+  void _onPushMessageReceived(NotificationReceived event, Emitter<NotificationsState> emit) {
+    emit(state.copyWith(notifications: [event.message,  ...state.notifications, ]));
   }
 
   void _onForegroundMessage() {

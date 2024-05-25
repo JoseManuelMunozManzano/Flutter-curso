@@ -6,7 +6,6 @@ class NotificationsState extends Equatable {
   // Este tipo viene de firebase_messaging.dart, que se importa en notifications_bloc.dart
   final AuthorizationStatus status;
 
-  // TODO: Crear mi modelo de notificaciones
   // Para poder manejar la data de una manera centralizada.
   final List<PushMessage> notifications;
 

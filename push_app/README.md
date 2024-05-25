@@ -204,8 +204,8 @@ Ya tenemos un espacio listo para eso, que está en `notifications_state.dart`, v
 
 Recordar que, como estamos en Bloc, para cambiar ese estado necesitamos disparar un evento. Para ello:
 
-- Creamos una nueva clase `NotificationStatusChanged` en `notifications_event.dart`
-- Creamos un evento para manejarlo (un handler) en `notifications_bloc.dart`. Es un método que llamo `_notificationStatusChanged()`
+- Creamos una nueva clase evento `NotificationStatusChanged` en `notifications_event.dart`
+- Creamos un listener para manejarlo (un handler) en `notifications_bloc.dart`. Es un método que llamo `_notificationStatusChanged()`
 - Disparamos el evento cuando estoy solicitando esos permisos. Los permisos los estoy solicitando desde el mismo bloc `notifications_bloc.dart` en el método `requestPermission()`
 - Recordar que, al cambiar el bloc, hay que hacer un full restart de la app para que se cojan los cambios
 - Ahora, al pulsar el engranaje, veremos que el mensaje cambia a `AuthorizationStatus.authorized`
@@ -320,3 +320,15 @@ Tenemos que realizar, desde Firebase, otro `Enviar mensaje de prueba`, y, como h
 Ejemplo:
 
 ![alt Ejemplo Mapeo](../Images/13_Ejemplo_Mapeo_Notificacion_Firebase.png)
+
+## Actualizar el estado con la nueva Notificación
+
+Tenemos que:
+
+- Creamos una nueva clase evento `NotificationReceived` en `notifications_event.dart`
+- Disparamos el evento `notifications_bloc.dart` en el método `_handleRemoteMessage()`
+- Creamos un listener para manejar el estado (un handler) en `notifications_bloc.dart`. Es un método que llamo `_onPushMessageReceived()`
+- Vigilamos el estado de las notificaciones para mostrarlas en `home_screen.dart`
+- Recordar que, al cambiar el bloc, hay que hacer un full restart de la app para que se cojan los cambios
+
+Para probar, tenemos que enviar, desde Firebase, otro `Enviar mensaje de prueba`, y deberá aparecer visualmente en nuestra app.
