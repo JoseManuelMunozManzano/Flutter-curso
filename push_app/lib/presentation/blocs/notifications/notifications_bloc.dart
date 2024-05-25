@@ -24,6 +24,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // Queremos que toda la lógica esté en los blocs, no en main.dart
     _initialStatusCheck();
 
+    // Listener para notificaciones en Foreground.
+    _onForegroundMessage();
+
   }
 
   // Es estático porque no necesito, ni voy a tener acceso al context en ese momento,
@@ -80,6 +83,27 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     print(token);
   }
 
+  // Foreground Message, es decir, cuando se está usando la aplicación.
+  void _handleRemoteMessage(RemoteMessage message) {
+    print('Got a message whilst in the foreground!');
+    print('Message data: ${message.data}');
+
+    if (message.notification == null) return;
+
+    print('Message also contained a notification: ${message.notification}');    
+  }
+
+  void _onForegroundMessage() {
+    // Cuando veamos un .listen es un stream.
+    // OJO. Los streams solo hay que inicializarlos una vez.
+    // No queremos limpiarlo nunca porque siempre vamos a estar atentos a que vengan notificaciones.
+    FirebaseMessaging.onMessage.listen(_handleRemoteMessage);
+
+    // Si quisiéramos limpiarlo:
+    // final listener = FirebaseMessaging.onMessage.listen(_handleRemoteMessage);
+    // listener.cancel();
+  }
+ 
   // Esto sería algo así como un método del Provider.
   // Lo vamos a mandar a llamar cuando tocamos el engrane de la pantalla.
   void requestPermission() async {

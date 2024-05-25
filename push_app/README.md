@@ -39,6 +39,8 @@ Dentro de la carpeta `router` definimos nuestras rutas `app_router.dart`.
 
 Vamos a instalar un par de paquetes usando `Pubspec Assist`, separando con comas: equatable, flutter_bloc, go_router
 
+IMPORTANTE: Para la parte de Firebase es necesario tener la versión de Java 17.
+
 ## Bloc y FlutterFire
 
 Vamos a hacer la configuración de nuestro Bloc para saber como va a fluir nuestra información.
@@ -233,3 +235,17 @@ Sería tan sencillo como en nuestra app de Flutter suscribirnos por defecto a un
 Así luego, ya sea desde una petición REST, o desde tu backend con el admin SDK de firebase, solo tendrías que indicar el topic all y ya enviarías la notificación a todos.
 
 Para esto puedes revisar: https://stackoverflow.com/q/38237559.
+
+## Escuchar mensajes push
+
+Ver documentación: https://firebase.flutter.dev/docs/messaging/usage#foreground-messages
+
+Para empezar, vamos a configurar nuestra app para escuchar mensajes cuando la app esté abierta (foreground messages).
+
+En `notifications_bloc.dart` creamos el método `_handleRemoteMessage()` que es un listener.
+
+Este listener lo vamos a poner a escuchar en el método `_onForegroundMessage()`.
+
+Un listener es un stream y solo hay que `inicializarlo una vez`. Lo inicializamos en el constructor.
+
+Hacemos un full restart de la aplicación y ya estamos listos para probarlo.
