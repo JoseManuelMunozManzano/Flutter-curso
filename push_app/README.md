@@ -191,3 +191,4 @@ Pero además he borrado el sdk y lo he vuelto a bajar de nuevo. También he baja
 ![alt NDK Version](../Images/08_NDK_Version.png)
 
 Una vez me ejecuta la aplicación, pulso el engranaje y cuando me pregunta por el permiso pulso `Allow`.
+12
