@@ -20,6 +20,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
     on<NotificationStatusChanged>(_notificationStatusChanged);
 
+    // Llamamos después de crear todos los listeners.
+    // Queremos que toda la lógica esté en los blocs, no en main.dart
+    _initialStatusCheck();
+
   }
 
   // Es estático porque no necesito, ni voy a tener acceso al context en ese momento,
@@ -37,6 +41,43 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
         status:  event.status
       )
     );
+
+    // Obtenemos el token
+    _getFCMToken();
+  }
+
+  void _initialStatusCheck() async {
+    // Notar que, a diferencia de en requestPermission, donde se pide el permiso,
+    // aquí solo se comprueba cual es el estado de los permisos.
+    final settings = await messaging.getNotificationSettings();
+
+    // Disparamos el evento.
+    // Esto es síncrono.
+    add(NotificationStatusChanged(settings.authorizationStatus));
+  }
+
+  // Si lo autorizamos, queremos obtener el token que va a tener esta instalación
+  // de la app. Con ese token podemos mandar notificaciones a ese cliente en particular.
+  // En BD, en el backend, sería algo así:
+  /*
+    jmm@gmail.com: [
+      token1
+      token2
+      token3
+    ]
+  */
+  // Porque un usuario puede tener varios dispositivos.
+  void _getFCMToken() async {
+
+    // Forma 1
+    // final settings = await messaging.getNotificationSettings();
+    // if (settings.authorizationStatus != AuthorizationStatus.authorized) return;
+
+    // Forma 2 usando nuestro state
+    if (state.status != AuthorizationStatus.authorized) return; 
+
+    final token = await messaging.getToken();
+    print(token);
   }
 
   // Esto sería algo así como un método del Provider.

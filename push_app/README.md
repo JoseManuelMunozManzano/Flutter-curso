@@ -209,3 +209,27 @@ Recordar que, como estamos en Bloc, para cambiar ese estado necesitamos disparar
 - Ahora, al pulsar el engranaje, veremos que el mensaje cambia a `AuthorizationStatus.authorized`
 
 El inconveniente es que, cada vez que recargo la app, no es capaz de determinar el estado authorized actual. Esto lo configuramos en el siguiente punto.
+
+## Token del dispositivo y determinar permiso actual
+
+Para determinar el permiso actual cada vez que arranque la app, nos creamos un método en `notifications_bloc.dart` llamado `_initialStatusCheck()`. Ahí obtenemos el estado del permiso.
+
+Si lo autorizamos, queremos obtener el token que va a tener esta instalación de la app. Con ese token podemos mandar notificaciones a ese cliente en particular. Lo obtenemos en el método `_getFCMToken()`.
+
+NOTAS:
+
+Podemos mandar una campaña a todos los usuarios sin el token, ¿cómo se puede hacer algo así?
+
+Para conseguir esta funcionalidad, podemos hacer uso de los topics.
+
+Estos básicamente son canales/salas a los que podemos suscribirnos a través de Flutter (mediante código, al igual que obtenemos el token) y luego enviar notificaciones a todos los dispositivos que se encuentren suscritos a ese topic, sin hacer uso de tokens.
+
+Puedes ver más de los topics: https://firebase.google.com/docs/cloud-messaging/android/topic-messaging?hl=es-419.
+
+Una vez conocemos qué son, podemos usar estos para conseguir la funcionalidad que deseas.
+
+Sería tan sencillo como en nuestra app de Flutter suscribirnos por defecto a un topic en todos los dispositivos (con el nombre "all" por ejemplo).
+
+Así luego, ya sea desde una petición REST, o desde tu backend con el admin SDK de firebase, solo tendrías que indicar el topic all y ya enviarías la notificación a todos.
+
+Para esto puedes revisar: https://stackoverflow.com/q/38237559.
