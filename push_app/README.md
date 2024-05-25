@@ -249,3 +249,37 @@ Este listener lo vamos a poner a escuchar en el método `_onForegroundMessage()`
 Un listener es un stream y solo hay que `inicializarlo una vez`. Lo inicializamos en el constructor.
 
 Hacemos un full restart de la aplicación y ya estamos listos para probarlo.
+
+## Recibir nuestra primera notificación Push
+
+A lo largo de este curso vamos a enviar notificaciones Push desde:
+
+- La aplicación de Firebase
+- Consola
+- Postman, que a través de un RESTFul Api endpoint mande la notificación al Front
+
+Empezamos enviando notificaciones desde Firebase.
+
+- Vamos a nuestro proyecto, a messaging: `https://console.firebase.google.com/project/flutter-projects-29ae9/messaging/onboarding?hl=es-419`
+- Pulsamos en `Crear la primera campaña`
+- Seleccionamos el que indica `Mensajes de Firebase Notifications` y pulsamos `Crear`
+- Rellenamos el formulario que aparece y pulsamos Siguiente
+  ![alt Formulario](../Images/09_Formulario_Notificacion_Firebase.png)
+- En Orientación seleccionamos solo la parte de android porque ios no está configurado. Pulsamos siguiente
+- En Programación seleccionamos `Ahora` y pulsamos siguiente
+- En Opciones Adicionales indicamos lo que queramos y pulsamos `Guardar como borrador`
+  - Se suele usar mucho el indicar un `type` para indicar el tipo de notificación. Todo esto es opcional
+    ![alt Opciones Adicionales](../Images/10_Notificaciones_Opcional_Adicionales_Firebase.png)
+- Una vez tenemos el borrador, la editamos y pulsamos en el botón `Enviar mensaje de prueba`
+- Cuando nos diga que indiquemos el token de registro de FCM, en VSCode, vamos a la DEBUG CONSOLE y lo deberíamos de tener, ya que en la app hemos hecho un print de ella. Pulsamos el icono para incluirlo y pulsamos `Probar`
+- En un debug que he puesto, esto es lo que aparece
+  ![alt Info](../Images/11_Debug_Notification.png)
+- Dejo que termine la ejecución
+- Ahora, en el Android Emulator, dejo en segundo plano la app
+- Vuelvo a `Enviar mensaje de prueba`
+- Me debe saltar la notificación en el emulador. En la parte de arriba a la izquierda veré una F (de Flutter) y pulso con el ratón y la despliego hacia abajo. Veré la anotación de esta forma:
+  ![alt Ejemplo Notificacion](../Images/12_Ejemplo_Notificacion_Firebase.png)
+
+El comportamiento por defecto de una notificación push es abrir la aplicación, pero también se puede hacer que la notificación reaccione (lo vamos a ver en el curso) y naveguemos a otra pantalla, la guardemos en el dispositivo físico...
+
+Nos falta la configuración Messaging Background Handler y cuando la aplicación está terminada.
