@@ -302,3 +302,21 @@ Debido a que el handler corre de manera aislada por fuera del contexto de la apl
 Si se puede grabar en alguna BD local o ciertas operaciones con plugins. Tenemos máximo 30 sg para realizar este proceso, si no, el dispositivo automáticamente mata el proceso. Por tanto, el procesamiento de la notificación push tiene que ser super rápida.
 
 Pegamos el código de la URL en `notifications_bloc.dart`, método `firebaseMessagingBackgroundHandler` pero, como hemos dicho, fuera de la clase, para tener todo centralizado.
+
+## Entidad para el manejo de notificaciones
+
+Vamos a trabajar en `notifications_state.dart`, con la variable que creamos `final List<dynamic> notifications;`
+
+En vez de grabar todo el `RemoteMessage`, vamos a crear un adaptador para que las notificaciones, cuando las reciba, siempre sean manejadas de la misma manera, independientemente de que la notificación sea de Android o IOs.
+
+En la carpeta `lib` creamos una carpeta `domain`, dentro otra carpeta `entities` y dentro un archivo `push_message.dart`.
+
+Una vez creado, ya podemos cambiar el dynamic de la variable notifications por el nuevo tipo `PushMessage` creado.
+
+Con esta entidad `PushMessage`, vamos a `notificacions_bloc.dart`, al método `_handleRemoteMessage` y vamos a mapear el message a nuestro PushMessage.
+
+Tenemos que realizar, desde Firebase, otro `Enviar mensaje de prueba`, y, como hemos puesto un print(), el resultado de nuestro mapeo podemos verlo en VSCode, pestaña DEBUG CONSOLE.
+
+Ejemplo:
+
+![alt Ejemplo Mapeo](../Images/13_Ejemplo_Mapeo_Notificacion_Firebase.png)

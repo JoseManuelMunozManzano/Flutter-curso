@@ -8,8 +8,7 @@ class NotificationsState extends Equatable {
 
   // TODO: Crear mi modelo de notificaciones
   // Para poder manejar la data de una manera centralizada.
-  // El dynamic lo vamos a cambiar.
-  final List<dynamic> notifications;
+  final List<PushMessage> notifications;
 
   const NotificationsState({
     this.status = AuthorizationStatus.notDetermined,
@@ -18,7 +17,7 @@ class NotificationsState extends Equatable {
 
   NotificationsState copyWith({
     AuthorizationStatus? status,
-    List<dynamic>? notifications,
+    List<PushMessage>? notifications,
   }) => NotificationsState(
     status: status ?? this.status,
     notifications: notifications ?? this.notifications

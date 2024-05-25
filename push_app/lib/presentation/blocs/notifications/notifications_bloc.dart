@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import 'package:push_app/domain/entities/push_message.dart';
 import 'package:push_app/firebase_options.dart';
 
 part 'notifications_event.dart';
@@ -93,12 +96,28 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   // Foreground Message, es decir, cuando se está usando la aplicación.
   void _handleRemoteMessage(RemoteMessage message) {
-    print('Got a message whilst in the foreground!');
-    print('Message data: ${message.data}');
-
     if (message.notification == null) return;
 
-    print('Message also contained a notification: ${message.notification}');    
+    // Mapeamos a nuestra entidad PushMessage.
+    final notification = PushMessage(
+      // El messageId viene muy sucio e incluso es opcional. Quito los dos puntos y el porcentaje porque
+      // pueden romper mi sistema de go_router.
+      messageId: message.messageId
+        ?.replaceAll(':', '').replaceAll('%', '')
+        ?? '',
+      // Se que la notificación viene, de ahí el !, pero title puede venir vacío
+      title: message.notification!.title ?? '',
+      body: message.notification!.body ?? '',
+      sentDate: message.sentTime ?? DateTime.now(),
+      data: message.data,
+      // La imagen es opcional por plataforma, así que tengo que saber si es Ios o Android.
+      imageUrl: Platform.isAndroid
+        ? message.notification!.android?.imageUrl
+        : message.notification!.apple?.imageUrl
+    );
+
+    // El print acaba llamando al método toString() de PushMessage
+    print(notification);
   }
 
   void _onForegroundMessage() {
