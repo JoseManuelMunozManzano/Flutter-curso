@@ -283,3 +283,22 @@ Empezamos enviando notificaciones desde Firebase.
 El comportamiento por defecto de una notificación push es abrir la aplicación, pero también se puede hacer que la notificación reaccione (lo vamos a ver en el curso) y naveguemos a otra pantalla, la guardemos en el dispositivo físico...
 
 Nos falta la configuración Messaging Background Handler y cuando la aplicación está terminada.
+
+## Notificaciones cuando la app está terminada
+
+Hay que añadir una configuración para poder recibir una notificación cuando la app está terminada.
+
+Ver la documentación: https://firebase.flutter.dev/docs/messaging/usage/#background-messages
+
+En la url se indica claramente:
+
+There are a few things to keep in mind about your background message handler:
+
+- It must not be an anonymous function.
+- It must be a top-level function (e.g. not a class method which requires initialization).
+
+Debido a que el handler corre de manera aislada por fuera del contexto de la aplicación, no es posible hacer actualizaciones del state ni del UI que impacten esa lógica.
+
+Si se puede grabar en alguna BD local o ciertas operaciones con plugins. Tenemos máximo 30 sg para realizar este proceso, si no, el dispositivo automáticamente mata el proceso. Por tanto, el procesamiento de la notificación push tiene que ser super rápida.
+
+Pegamos el código de la URL en `notifications_bloc.dart`, método `firebaseMessagingBackgroundHandler` pero, como hemos dicho, fuera de la clase, para tener todo centralizado.
