@@ -186,10 +186,26 @@ En el archivo `android/app/build.gradle` he modificado la version Java de la 1.8
     }
 ```
 
-Y he puesto mi versión de Java a la 17: `jenv global temurin64-17.0.10`.
+He puesto mi versión de Java a la 17: `jenv global temurin64-17.0.10` y he tenido que reiniciar mi máquina para que lo coja bien.
 
 Pero además he borrado el sdk y lo he vuelto a bajar de nuevo. También he bajado una versión NDK en IntelliJ Idea.
 
 ![alt NDK Version](../Images/08_NDK_Version.png)
 
 Una vez me ejecuta la aplicación, pulso el engranaje y cuando me pregunta por el permiso pulso `Allow`.
+
+## Actualizar el estado acorde a los permisos
+
+El status que aparece en `notifications_bloc.dart`, en el método `requestPermission()`, cuando indico `settings.authorizationStatus` lo quiero almacenar en mi estado.
+
+Ya tenemos un espacio listo para eso, que está en `notifications_state.dart`, variable `status` que es el mismo status de Firebase que quiero manejar, aunque también podríamos crear un estado propio basado en una enumeración personalizada, y en ese caso haría falta un mapper...
+
+Recordar que, como estamos en Bloc, para cambiar ese estado necesitamos disparar un evento. Para ello:
+
+- Creamos una nueva clase `NotificationStatusChanged` en `notifications_event.dart`
+- Creamos un evento para manejarlo (un handler) en `notifications_bloc.dart`. Es un método que llamo `_notificationStatusChanged()`
+- Disparamos el evento cuando estoy solicitando esos permisos. Los permisos los estoy solicitando desde el mismo bloc `notifications_bloc.dart` en el método `requestPermission()`
+- Recordar que, al cambiar el bloc, hay que hacer un full restart de la app para que se cojan los cambios
+- Ahora, al pulsar el engranaje, veremos que el mensaje cambia a `AuthorizationStatus.authorized`
+
+El inconveniente es que, cada vez que recargo la app, no es capaz de determinar el estado authorized actual. Esto lo configuramos en el siguiente punto.
