@@ -186,9 +186,10 @@ En el archivo `android/app/build.gradle` he modificado la version Java de la 1.8
     }
 ```
 
+Y he puesto mi versión de Java a la 17: `jenv global temurin64-17.0.10`.
+
 Pero además he borrado el sdk y lo he vuelto a bajar de nuevo. También he bajado una versión NDK en IntelliJ Idea.
 
 ![alt NDK Version](../Images/08_NDK_Version.png)
 
 Una vez me ejecuta la aplicación, pulso el engranaje y cuando me pregunta por el permiso pulso `Allow`.
-12
