@@ -344,3 +344,13 @@ Como esperamos recibir un id pero luego trabajamos con un StatelessWidget privad
 Lo hacemos en el bloc porque es algo que espero reutilizar en un futuro.
 
 En `notifications_bloc.dart` creo el método `getMessageById()`.
+
+## Navegar a la segunda pantalla
+
+Vamos a navegar a esta segunda pantalla que acabamos de crear.
+
+En nuestro router `config/router/app_router.dart` nos creamos una nueva ruta.
+
+En nuestro screen `presentation/screens/home_screen.dart` añadimos la llamada a esta nueva ruta cuando alquien pulse en el elemento de la lista.
+
+Para probar todo esto, en la web de Firebase, en nuestro proyecto, enviamos otro mensaje de prueba. Cuando lo recibamos en el móvil y se vea en la lista de elementos, pulsamos sobre él y se abrirá la segunda pantalla donde se mostrará su detalle.
