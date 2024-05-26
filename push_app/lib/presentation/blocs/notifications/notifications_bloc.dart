@@ -101,7 +101,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   // Foreground Message, es decir, cuando se está usando la aplicación.
-  void _handleRemoteMessage(RemoteMessage message) {
+  // Lo hemos hecho público.
+  void handleRemoteMessage(RemoteMessage message) {
     if (message.notification == null) return;
 
     // Mapeamos a nuestra entidad PushMessage.
@@ -137,7 +138,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // Cuando veamos un .listen es un stream.
     // OJO. Los streams solo hay que inicializarlos una vez.
     // No queremos limpiarlo nunca porque siempre vamos a estar atentos a que vengan notificaciones.
-    FirebaseMessaging.onMessage.listen(_handleRemoteMessage);
+    FirebaseMessaging.onMessage.listen(handleRemoteMessage);
 
     // Si quisiéramos limpiarlo:
     // final listener = FirebaseMessaging.onMessage.listen(_handleRemoteMessage);

@@ -354,3 +354,15 @@ En nuestro router `config/router/app_router.dart` nos creamos una nueva ruta.
 En nuestro screen `presentation/screens/home_screen.dart` añadimos la llamada a esta nueva ruta cuando alquien pulse en el elemento de la lista.
 
 Para probar todo esto, en la web de Firebase, en nuestro proyecto, enviamos otro mensaje de prueba. Cuando lo recibamos en el móvil y se vea en la lista de elementos, pulsamos sobre él y se abrirá la segunda pantalla donde se mostrará su detalle.
+
+## Manejar interacciones con las notificaciones
+
+Queremos hacer la siguiente feature:
+
+Estando la app en segundo plano, queremos mandar una notificación desde Firebase. Cuando nos llegue al móvil, pulsaremos el icono de entrada de notificación, se abrirá la app e irá automáticamente al detalle (la segunda pantalla)
+
+Para hacer esto, primero tenemos que mirar la documentación de Firebase: https://firebase.flutter.dev/docs/messaging/notifications#handling-interaction
+
+En `main.dart` creamos un nuevo StatefulWidget `HandleNotificationInteractions`.
+
+Notar que en `notificacions_bloc.dart` hemos hecho público el método `handleRemoteMessage()` para poder añadir a nuestra lista de elementos la notificación.
