@@ -332,3 +332,15 @@ Tenemos que:
 - Recordar que, al cambiar el bloc, hay que hacer un full restart de la app para que se cojan los cambios
 
 Para probar, tenemos que enviar, desde Firebase, otro `Enviar mensaje de prueba`, y deberá aparecer visualmente en nuestra app.
+
+## Segunda pantalla - Información de la notificación
+
+Vamos a hacer una segunda pantalla a la que navegaremos y donde mostraremos los datos de la notificación.
+
+En la carpeta `presentation/screens` creamos una nueva screen `details_screen.dart`.
+
+Como esperamos recibir un id pero luego trabajamos con un StatelessWidget privado que necesita todo el PushMessage, nos creamos en el bloc una función para que, dado un id, recuperar de la lista de notificaciones todo el PushMessage.
+
+Lo hacemos en el bloc porque es algo que espero reutilizar en un futuro.
+
+En `notifications_bloc.dart` creo el método `getMessageById()`.

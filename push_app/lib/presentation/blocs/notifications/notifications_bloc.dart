@@ -161,4 +161,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // Disparamos el evento
     add(NotificationStatusChanged(settings.authorizationStatus));
   }
+
+  PushMessage? getMessageById(String pushMessageId) {
+    // En Dart no existe algo nativo que regresa null o el elemento que queremos.
+    // Se hace en 2 fases.
+    final exist = state.notifications.any((element) => element.messageId == pushMessageId);
+
+    if (!exist) return null;
+  
+    return state.notifications.firstWhere((element) => element.messageId == pushMessageId);
+  }
 }
