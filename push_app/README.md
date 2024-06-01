@@ -422,3 +422,74 @@ Con esto ya podemos levantar el servidor: `node app` y dejarlo ejecutando el pro
 Nos vamos a Postman y hacemos una petición GET a `localhost:3000` y presionamos `Send`. Esto debe generarnos el Bearer Token. La duración de este Bearer Token es de una media hora. Luego habrá que generar otro de la misma forma que se ha explicado aquí.
 
 Documentacion de como se realiza con server en NestJS: https://blog.logrocket.com/implement-in-app-notifications-nestjs-mysql-firebase
+
+### Rest - Forma recomendada
+
+En Postman, copiamos el Bearer Token y abrimos otra pestaña para realizar otra petición POST a: `https://fcm.googleapis.com/v1/projects/flutter-projects-29ae9/messages:send`
+
+El proyecto lo he cogido de Firebase, de la configuración del proyecto:
+
+![alt Id Proyecto](../Images/15_Id_Proyecto.png)
+
+En la pestaña `Authorization` de Postman seleccionamos `Bearer token` y pegamos el bearer token obtenido del otro endpoint.
+
+En la pestaña `Body` seleccionamos `raw` y `JSON` y pegamos el mensaje que aparece en `https://firebase.flutter.dev/docs/messaging/notifications#via-rest`
+
+```
+{
+   "message":{
+      "token":"token_1",
+      "data":{
+        "hola":"mundo",
+        "hello":"world"
+      },
+      "notification":{
+        "title":"FCM Message",
+        "body":"This is an FCM notification message!"
+      },
+     "android":{
+       "notification":{
+         "image":"https://i.pinimg.com/originals/12/44/0e/12440ea4081a788cdbb98811944d5b5c.jpg"
+       }
+     },
+     "apns":{
+       "payload":{
+         "aps":{
+           "mutable-content":1
+         }
+       },
+       "fcm_options": {
+         "image":"https://i.pinimg.com/originals/12/44/0e/12440ea4081a788cdbb98811944d5b5c.jpg"
+       }
+     }
+   }
+}
+```
+
+El token que tenemos que indicar es el que aparece en VSCode, en `Debug Console` de nuesta app de Flutter, que debe estar ejecutándose.
+
+Con todo esto, pulsamos `Send`.
+
+En nuestra app de Flutter veremos la notificación:
+
+![alt Resultado](../Images/16_Result.png)
+
+Para mandar imágenes, seguimos la documentación: `https://firebase.google.com/docs/cloud-messaging/send-message#example-notification-message-image`.
+
+Con esto, ya podemos mandar notificaciones push desde nuestro propio RESTFul API endpoint.
+
+**_NOTA: En la vida real, lo más fácil es usar el SDK de Firebase, ya que es la forma más sencilla. `https://firebase.flutter.dev/docs/messaging/notifications#via-admin-sdks`_**
+
+_PREGUNTAS_
+
+¿Es necesario usar Node para enviar la notificación? ¿No se puede hacer directamente con Flutter?
+
+Si lo que quieres es lanzar notificaciones desde el propio Flutter cuando la app está abierta, puedes usar local notifications: https://pub.dev/packages/flutter_local_notifications (lo vemos en la siguiente sección)
+
+Ahora, si lo que quieres son push notifications como estamos haciendo en la sección, ahí NO vamos a lanzar las notificaciones directamente desde Flutter, ya que la información que requerimos para realizar esto no debería de estar en el lado del cliente.
+
+Podemos usar una petición REST justo como vemos en el video y no requeriríamos de node realmente, podrías usar postman o cualquier otro software para realizar peticiones.
+
+Si necesitas/quieres automatizar estas peticiones, perfectamente puedes usar node en caso de que necesites un backend y cierta complejidad, pero un script en sh que envíe una petición al servicio rest y esté automatizado para ejecutarse cada X serviría también.
+
+Puede que conozcas otro lenguaje para construir un backend, ya sea PHP, Java, Python u otro, realmente también te serviría para esto.
