@@ -374,3 +374,27 @@ Para hacer esto, primero tenemos que mirar la documentación de Firebase: https:
 En `main.dart` creamos un nuevo StatefulWidget `HandleNotificationInteractions`.
 
 Notar que en `notificacions_bloc.dart` hemos hecho público el método `handleRemoteMessage()` para poder añadir a nuestra lista de elementos la notificación.
+
+## Enviar notificaciones desde una REST API
+
+El objetivo de esta nueva sección es enviar notificaciones desde un RESTFul API endpoint.
+
+Vamos a usar Postman.
+
+Para realizar el procedimiento hay dos formas recomendadas:
+
+- Hacerlo via Admin SDK, instalando Firebase en el servidor: https://firebase.flutter.dev/docs/messaging/notifications#via-admin-sdks
+- Si no queremos instalar Firebase en el servidor, y solo queremos hacer un llamado de un RESTFul API tradicional, podemos hacerlo de esta forma: https://firebase.flutter.dev/docs/messaging/notifications#via-rest
+  - Hace falta generar desde Firebase un Bearer Token
+  - Esta forma es la que vamos a ver
+
+### Rest - Forma simple - No recomendada
+
+Antes de ver la forma recomendada, vamos a ver una forma muy sencilla a la que Firebase todavía da soporte, pero que NO es recomendada. Tampoco sirve para enviar imágenes.
+
+NO SE RECOMIENDA USAR ESTA FORMA EN PRODUCCIÓN
+
+- Ver este gist `https://gist.github.com/Klerith/9c80c0dedc1341e24173628ebf0f0aaf` donde aparece un endpoint POST que es muy probable que un día deje de funcionar: `https://fcm.googleapis.com/fcm/send`
+- Nos vamos a Postman y creamos este endpoint, enviando como body lo indicado en el gist. El token del cliente lo cogemos de nuestro `Debug Console`
+- El key que nos pide lo obtenemos de nuestra cuenta de Firebase, en la configuración del proyecto `flutter-projects` y la pestaña de `Cloud Messaging`. Tendremos que habilitar donde indica `API de Cloud Messaging (heredada)`
+- Copiamos la clave del servidor y la llevamos a Postman, en los headers, con key `Authorization` y value la clave del servidor copiada
