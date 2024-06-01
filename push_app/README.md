@@ -18,6 +18,14 @@ Puntualmente veremos:
 
 Es una sección muy completa sobre el manejo de las notificaciones push.
 
+En la nueva sección, vamos a enviar notificaciones desde una Rest API.
+
+El objetivo de esta sección es simple:
+
+Crear un backend rápido para obtener el Bearer token de Firebase, y con eso, poder probar el Restful API de la forma recomendada de Firebase.
+
+También les explicaré una forma simple, pero ya no es la recomendada.
+
 ## Inicio de aplicación
 
 - Pulsamos `Cmd+Shift+P` y seleccionamos `Flutter: New Project`
