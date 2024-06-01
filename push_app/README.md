@@ -398,3 +398,27 @@ NO SE RECOMIENDA USAR ESTA FORMA EN PRODUCCIÓN
 - Nos vamos a Postman y creamos este endpoint, enviando como body lo indicado en el gist. El token del cliente lo cogemos de nuestro `Debug Console`
 - El key que nos pide lo obtenemos de nuestra cuenta de Firebase, en la configuración del proyecto `flutter-projects` y la pestaña de `Cloud Messaging`. Tendremos que habilitar donde indica `API de Cloud Messaging (heredada)`
 - Copiamos la clave del servidor y la llevamos a Postman, en los headers, con key `Authorization` y value la clave del servidor copiada
+
+### Servidor para obtener Bearer Token
+
+Ahora si vamos a usar la segunda forma recomendada por Firebase para enviar notificaciones, que es usando el propio servicio de Firebase Cloud Messaging.
+
+Vemos que el único problema es que pide un Bearer Token y vamos a crearnos nuestro propio servidor para obtener ese Bearer Token para nuestro proyecto. Hace falta un server porque Flutter es parte Front y podría crearse una ingeniería inversa que obtuviera ese Bearer Token.
+
+Acceder al enlace siguiente: https://github.com/Klerith/firebase-get-bearer-token
+
+Es una aplicación de Node muy sencilla. La descargamos y la dejamos junto a todos los proyectos con nombre `firebase-get-bearer-token`. La abrimos en otra instancia de VSCode y seguimos el archivo README.md.
+
+Para generar la configuración del archivo `firebase-admin.json` ir a `https://firebase.google.com/docs/cloud-messaging/auth-server` donde se indica ir a nuestro proyecto, aquí:
+
+![alt Generar Nueva Clave Privada](../Images/14_Generar_Nueva_Clave_Privada.png)
+
+Esto nos genera un nuevo archivo que nos llevamos al proyecto `firebase-get-bearer-token` y lo renombramos a `firebase-admin.json`, tal y como indica nuestro fichero `app.js`
+
+NOTA: Recordar NO subir a GIT ese fichero!!!!
+
+Con esto ya podemos levantar el servidor: `node app` y dejarlo ejecutando el proyecto.
+
+Nos vamos a Postman y hacemos una petición GET a `localhost:3000` y presionamos `Send`. Esto debe generarnos el Bearer Token. La duración de este Bearer Token es de una media hora. Luego habrá que generar otro de la misma forma que se ha explicado aquí.
+
+Documentacion de como se realiza con server en NestJS: https://blog.logrocket.com/implement-in-app-notifications-nestjs-mysql-firebase

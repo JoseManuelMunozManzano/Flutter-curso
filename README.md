@@ -1520,3 +1520,4 @@ Si arrancamos el proyecto nos da un error indicando que, para usar las notificac
   - Vamos a mostrar como funcionan dos nuevos gestores de estado (Flutter_Bloc y Cubits) implementando el típico contador con cada uno de ellos
   - Se incluye también manejo de formularios
 - push_app
+  - Usa el proyecto `firebase-get-bearer-token`, que es un programa de Node para obtener un Bearer Token y así poder enviar notificaciones desde un REST API.
