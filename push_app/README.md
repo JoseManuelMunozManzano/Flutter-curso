@@ -18,13 +18,35 @@ Puntualmente veremos:
 
 Es una sección muy completa sobre el manejo de las notificaciones push.
 
-En la nueva sección, vamos a enviar notificaciones desde una Rest API.
+**Seccion Notificaciones desde Rest API**
+Vamos a enviar notificaciones desde una Rest API.
 
 El objetivo de esta sección es simple:
 
 Crear un backend rápido para obtener el Bearer token de Firebase, y con eso, poder probar el Restful API de la forma recomendada de Firebase.
 
 También les explicaré una forma simple, pero ya no es la recomendada.
+
+**Local Notifications**
+
+Vamos a añadir a esta app las local notifications para Android.
+
+La diferencia entre las Push Notifications y las Local Notifications es que las primeras son disparadas por entes externos, como nuestro backend al hacer un POST, pero nuestra aplicación de backend no sabe donde van a caer esas notificaciones push y nosotros como usuarios tampoco sabemos cuando van a suceder.
+
+Con las Local Notifications, como estamos en nuestra app móvil, sabemos exactamente el punto en el tiempo en el que esa notificación va a caer.
+
+Uno de los casos más comunes de las local notifications es en juegos donde se indica que, pasados 25 minutos, se va a desbloquear un cofre. Puedes pagar si quieres, o te esperas los 25 minutos. El usuario se sale de la app, pero la local notification ya fue programada y, cuando pase este tiempo, se lanza la local notification indicando que el cofre está desbloqueado.
+
+En nuestra app, lo que vamos a hacer es, si recibimos una local notification y la app está abierta, se va a mostrar la notificación físicamente en pantalla, y vamos a programar una acción para ver su detalle.
+
+Puntualmente aprenderemos:
+
+- Mezclar Push + Local Notifications
+- Reaccionar cuando se tocan las local notifications
+- Sonidos e iconos personalizados
+- Aprender a evitar las dependencias ocultas.
+
+Esta sección es importante si deseas aprender a utilizar el paquete de Local Notifications, el cual es muy completo y aquí tienen una pincelada de lo que puede hacer.
 
 ## Inicio de aplicación
 
@@ -493,3 +515,9 @@ Podemos usar una petición REST justo como vemos en el video y no requeriríamos
 Si necesitas/quieres automatizar estas peticiones, perfectamente puedes usar node en caso de que necesites un backend y cierta complejidad, pero un script en sh que envíe una petición al servicio rest y esté automatizado para ejecutarse cada X serviría también.
 
 Puede que conozcas otro lenguaje para construir un backend, ya sea PHP, Java, Python u otro, realmente también te serviría para esto.
+
+## Local Notifications
+
+Vamos a hacer todo, por ahora, solo para Android.
+
+NO hace falta ejecutar el backend ni haría falta tener configuradas las push notifications.
