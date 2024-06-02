@@ -575,3 +575,19 @@ Para poder hacer Full-screen intent notifications, añadimos en el fichero `Andr
 Y también en el mismo fichero, `<uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />`
 
 Una vez hecho todo esto, paramos la app y la volvemos a ejecutar.
+
+### Configuración - LocalNotifications
+
+Tenemos que personalizar y terminar de configurar como queremos las interacciones.
+
+Esto lo hacemos en `config/local_notifications/local_notifications.dart` para tener centralizado todo lo que tiene que ver con los Local Notifications.
+
+Se ha cogido lo mínimo para que funcione de aquí: `https://pub.dev/packages/flutter_local_notifications/example`
+
+Y lo llamamos desde nuestro `main.dart`.
+
+Bajamos por completo la app y la volvemos a ejecutar.
+
+Nos vamos a Firebase y enviamos un mensaje de prueba `https://console.firebase.google.com/project/flutter-projects-29ae9/notification/compose?hl=es&campaignId=195119692805858575`
+
+Obviamente, no esperamos que salte la local notification (si la push notification), pero vemos que no se ha roto nada.
