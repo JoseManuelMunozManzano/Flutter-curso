@@ -623,3 +623,15 @@ Esto también hace que tengamos que modificar `main.dart` mandando las referenci
 Esto hace que sea más fácil cambiar la clase LocalNotifications sin tener que cambiar la clase NotificationsBloc.
 
 Para probar que todo sigue funcionando, accedemos a nuestro proyecto de Firebase y lanzamos un mensaje de prueba: `https://console.firebase.google.com/project/flutter-projects-29ae9/notification/compose?hl=es&campaignId=195119692805858575`
+
+### Reaccionar al tocar una Local Notification
+
+Vamos a reaccionar si tocamos la Local Notification para acceder a nuestra pantalla de detalle.
+
+Modificamos el fuente `local_notifications.dart`.
+
+Y para el payload, vamos a modificar `notifications_bloc.dart`, en concreto la propiedad `data`.
+
+Para probar que todo sigue funcionando, accedemos a nuestro proyecto de Firebase y lanzamos un mensaje de prueba: `https://console.firebase.google.com/project/flutter-projects-29ae9/notification/compose?hl=es&campaignId=195119692805858575`
+
+Y tocando la local notification veremos que nos lleva a la pantalla de detalle.

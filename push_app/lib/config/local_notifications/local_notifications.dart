@@ -1,4 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:push_app/config/router/app_router.dart';
 
 
 class LocalNotifications {
@@ -31,8 +32,7 @@ class LocalNotifications {
 
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      // TODO
-      // onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse
+      onDidReceiveNotificationResponse: onDidReceiveNotificationResponse
     );
   }
   
@@ -64,5 +64,15 @@ class LocalNotifications {
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
     flutterLocalNotificationsPlugin.show(id, title, body, notificationDetails, payload: data);
+  }
+
+  // Lo creo static para no tener que crear una instancia y que solo tenga que mandar
+  // la referencia de esta función.
+  static void onDidReceiveNotificationResponse(NotificationResponse response) {
+    // Aquí podemos hacer lo que necesitemos con el payload.
+
+    // Esto también genera una dependencia oculta. También podríamos mandar la función
+    // como hemos hecho antes para evitar las dependencias ocultas.
+    appRouter.push('/push-details/${response.payload}');
   }
 }
