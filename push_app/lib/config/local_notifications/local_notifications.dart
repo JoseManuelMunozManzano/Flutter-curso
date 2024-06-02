@@ -35,4 +35,34 @@ class LocalNotifications {
       // onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse
     );
   }
+  
+  static void showLocalNotification({
+    // Aquí no hay nada con el id porque el método es estático. Lo hago en notifications_bloc.dart
+    required int id,
+    String? title,
+    String? body,
+    String? data,
+  }) {
+
+    const androidDetails = AndroidNotificationDetails(
+      'channelId',
+      'channelName',
+      playSound: true,
+      // El archivo de audio que me he bajado de la clase, hay que depositarlo en la ruta: 
+      // `android/app/src/main/res/` y dentro me creo la carpeta `raw`
+      // y dentro colocamos el archivo de audio.
+      sound: RawResourceAndroidNotificationSound('notification'),
+      importance: Importance.max,
+      priority: Priority.high
+    );
+
+    const notificationDetails = NotificationDetails(
+      android: androidDetails,
+      // TODO: iOs
+    );
+
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    flutterLocalNotificationsPlugin.show(id, title, body, notificationDetails, payload: data);
+  }
 }

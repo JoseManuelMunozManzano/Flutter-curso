@@ -591,3 +591,21 @@ Bajamos por completo la app y la volvemos a ejecutar.
 Nos vamos a Firebase y enviamos un mensaje de prueba `https://console.firebase.google.com/project/flutter-projects-29ae9/notification/compose?hl=es&campaignId=195119692805858575`
 
 Obviamente, no esperamos que salte la local notification (si la push notification), pero vemos que no se ha roto nada.
+
+### Mostrar la LocalNotification
+
+Esto lo hacemos en `config/local_notifications/local_notifications.dart`.
+
+El archivo de audio que me he bajado de la clase, hay que depositarlo en la ruta: `android/app/src/main/res/` y dentro me creo la carpeta `raw` y dentro colocamos el archivo de audio.
+
+De nuevo, como he hecho un cambio en los archivos de Android, hay que bajar totalmente la app y volver a subirla.
+
+El método creado `showLocalNotification()` lo mando llamar desde nuestro bloc `notifications_bloc.dart`.
+
+Nos vamos a Firebase y enviamos un mensaje de prueba `https://console.firebase.google.com/project/flutter-projects-29ae9/notification/compose?hl=es&campaignId=195119692805858575`
+
+Veremos como cae la Local Notification.
+
+![alt Ejemplo de Local Notification](../Images/17_Local_Notification_Example.png)
+
+Y, si tenemos la app ejecutándose en segundo plano y volvemos a pedir un mensaje de prueba, si pulsamos sobre ese mensaje de prueba, se abrirá la app.

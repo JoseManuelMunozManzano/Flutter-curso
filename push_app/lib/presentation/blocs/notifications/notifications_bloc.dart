@@ -30,6 +30,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   // backend, y este sabe a quien mandarle la notificación.
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  // Para hacer variar nuestra id de la local notification
+  int pushNumberId = 0;
+
   NotificationsBloc() : super(const NotificationsState()) {
 
     on<NotificationStatusChanged>(_notificationStatusChanged);
@@ -122,10 +125,20 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       imageUrl: Platform.isAndroid
         ? message.notification!.android?.imageUrl
         : message.notification!.apple?.imageUrl
-    );
+    );    
 
     // El print acaba llamando al método toString() de PushMessage
     // print(notification);
+
+    // Mando llamar a mi local notification.
+    // Esto lo vamos a cambiar para seguir principios SOLID.
+    // En concreto, inyectaremos esta clase.
+    LocalNotifications.showLocalNotification(
+      id: ++pushNumberId,
+      body: notification.body,
+      data: notification.data.toString(),
+      title: notification.title
+    );
 
     // Disparo el evento.
     add(NotificationReceived(notification));
@@ -162,6 +175,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
     // Solicitar permiso a las local notifications.
     // Técnicamente no es necesario porque ya se hizo en el paso de arriba, pero por si acaso.
+    // Esto lo vamos a cambiar para seguir principios SOLID.
+    // En concreto, inyectaremos esta clase.
     await LocalNotifications.requestPermissionLocalNotifications();
 
     // Disparamos el evento
