@@ -521,3 +521,57 @@ Puede que conozcas otro lenguaje para construir un backend, ya sea PHP, Java, Py
 Vamos a hacer todo, por ahora, solo para Android.
 
 NO hace falta ejecutar el backend ni haría falta tener configuradas las push notifications.
+
+### Local Notifications - Android
+
+Usando `Pubspec Assist`, vamos a instalar el paquete `flutter_local_notifications`.
+
+Indicar que desde el mismo Firebase recomiendan usar este paquete. Ver `https://firebase.flutter.dev/docs/messaging/notifications#notification-channels`.
+
+Esta es la documentación del paquete: `https://pub.dev/packages/flutter_local_notifications`, donde es importante sobre todo la parte de `Caveats and limitations`.
+
+En la pestaña `Example` hay un ejemplo donde se muestra todo lo que puede hacer el paquete.
+
+Pulsamos en la parte de la configuración, `Android Setup`.
+
+No se va a usar la parte de `desugaring`, que son la notificaciones programadas (scheduled notifications) para dentro de x tiempo.
+
+Lo que si hacemos es actualizar, en el archivo `android/app/build.gradle` lo siguiente:
+
+```
+android {
+    compileSdk 34
+    ...
+}
+```
+
+Notar que el paquete va evolucionando y que el número 34 luego será otro, por lo que hay que acceder a la documentación.
+
+Para las local notifications hay que indicar permisos, y tener en cuenta que es posible que tengamos que tocar el archivo `AndroidManifest.xml`.
+
+El código para pedir permisos sería este:
+
+```
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+    AndroidFlutterLocalNotificationsPlugin>().requestNotificationsPermission();
+```
+
+De nuevo, esto puede cambiar en un futuro, así que no confiar en esto e ir a la documentación.
+
+En la carpeta `config` nos creamos una nueva carpeta `local_notifications` y dentro el fuente `local_notifications.dart` y nos creamos una función `requestPermissionLocalNotifications()` y pegamos el código arriba indicado.
+
+Y luego, en nuestro bloc `presentation/blocs/notifications/notifications_bloc.dart`, en el método `requestPermission()` hacemos la llamada a ese método.
+
+Para poder hacer Full-screen intent notifications, añadimos en el fichero `AndroidManifest.xml`:
+
+```
+<activity
+    android:showWhenLocked="true"
+    android:turnScreenOn="true">
+```
+
+Y también en el mismo fichero, `<uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />`
+
+Una vez hecho todo esto, paramos la app y la volvemos a ejecutar.
