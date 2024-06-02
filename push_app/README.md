@@ -609,3 +609,17 @@ Veremos como cae la Local Notification.
 ![alt Ejemplo de Local Notification](../Images/17_Local_Notification_Example.png)
 
 Y, si tenemos la app ejecutándose en segundo plano y volvemos a pedir un mensaje de prueba, si pulsamos sobre ese mensaje de prueba, se abrirá la app.
+
+### Evitar dependencias ocultas
+
+Para seguir los principios SOLID, vamos a cambiar la forma en la que utilizamos la clase LocalNotifications en `notifications_bloc.dart`.
+
+Hasta ahora, lo que tenemos es una dependencia oculta. Es oculta porque leyendo el nombre de la clase `NotificationsBloc`, leyendo de qué extiende, leyendo los atributos y el constructor, no soy capaz de encontrar por ningún lado una referencia a la clase LocalNotifications.
+
+Para resolver este dependencia oculta, hacemos uso de las properties que vamos a recibir cuando creamos la instancia del Bloc, es decir, inyectar la dependencia.
+
+Esto también hace que tengamos que modificar `main.dart` mandando las referencias de las funciones.
+
+Esto hace que sea más fácil cambiar la clase LocalNotifications sin tener que cambiar la clase NotificationsBloc.
+
+Para probar que todo sigue funcionando, accedemos a nuestro proyecto de Firebase y lanzamos un mensaje de prueba: `https://console.firebase.google.com/project/flutter-projects-29ae9/notification/compose?hl=es&campaignId=195119692805858575`

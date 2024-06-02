@@ -22,7 +22,13 @@ void main() async {
       // puedo recibir una notificación push, y quiero reaccionar basado en esa notificación,
       // ya sea navegar a una pantalla en particular o leer la notificación, o almacenarla...
       MultiBlocProvider(
-          providers: [BlocProvider(create: (_) => NotificationsBloc())],
+          providers: [
+            BlocProvider(create: (_) => NotificationsBloc(
+              // Solo mandamos referencia, no queremos ejecutar la función
+              requestLocalNotificationPermissions: LocalNotifications.requestPermissionLocalNotifications,
+              showLocalNotification: LocalNotifications.showLocalNotification
+            ))
+          ],
           child: const MainApp()));
 }
 

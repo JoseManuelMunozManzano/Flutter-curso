@@ -1,10 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:push_app/config/local_notifications/local_notifications.dart';
 
 import 'package:push_app/domain/entities/push_message.dart';
 import 'package:push_app/firebase_options.dart';
@@ -30,10 +30,22 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   // backend, y este sabe a quien mandarle la notificación.
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  // Esta propiedad es una función que no recibe ningún argumento y devuelve un Future que no retorna nada.
+  // Es opcional porque puede que no querramos tener Local Notifications
+  // Me sirve para evitar tener una dependencia oculta.
+  final Future<void> Function()? requestLocalNotificationPermissions;
+
+  // Mi otra propiedad para evitar una dependencia oculta.
+  // Como esto se ve bastante código, se puede crear un typedef arriba, encima de la clase.
+  final void Function({required int id, String? title, String? body, String? data})? showLocalNotification;
+
   // Para hacer variar nuestra id de la local notification
   int pushNumberId = 0;
 
-  NotificationsBloc() : super(const NotificationsState()) {
+  NotificationsBloc({
+    this.requestLocalNotificationPermissions,
+    this.showLocalNotification
+  }) : super(const NotificationsState()) {
 
     on<NotificationStatusChanged>(_notificationStatusChanged);
 
@@ -131,14 +143,15 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // print(notification);
 
     // Mando llamar a mi local notification.
-    // Esto lo vamos a cambiar para seguir principios SOLID.
-    // En concreto, inyectaremos esta clase.
-    LocalNotifications.showLocalNotification(
-      id: ++pushNumberId,
-      body: notification.body,
-      data: notification.data.toString(),
-      title: notification.title
-    );
+    // Siguiendo principios SOLID, evitando dependencia oculta.
+    if (showLocalNotification != null) {
+      showLocalNotification!(
+        id: ++pushNumberId,
+        body: notification.body,
+        data: notification.data.toString(),
+        title: notification.title
+      );
+    }
 
     // Disparo el evento.
     add(NotificationReceived(notification));
@@ -175,9 +188,12 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
     // Solicitar permiso a las local notifications.
     // Técnicamente no es necesario porque ya se hizo en el paso de arriba, pero por si acaso.
-    // Esto lo vamos a cambiar para seguir principios SOLID.
-    // En concreto, inyectaremos esta clase.
-    await LocalNotifications.requestPermissionLocalNotifications();
+    // Siguiendo principios SOLID, evitando dependencia oculta.
+    if (requestLocalNotificationPermissions != null) {
+      await requestLocalNotificationPermissions!();
+      // Esta era la dependencia oculta.
+      // await LocalNotifications.requestPermissionLocalNotifications();
+    }
 
     // Disparamos el evento
     add(NotificationStatusChanged(settings.authorizationStatus));
