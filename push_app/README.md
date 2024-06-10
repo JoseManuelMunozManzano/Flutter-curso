@@ -48,6 +48,28 @@ Puntualmente aprenderemos:
 
 Esta sección es importante si deseas aprender a utilizar el paquete de Local Notifications, el cual es muy completo y aquí tienen una pincelada de lo que puede hacer.
 
+**IOS - Push + Local Notifications**
+
+El objetivo global de la sección es mostrar las Push y Local Notifications en IOS.
+
+Puntualmente veremos:
+
+- Aprovisionamiento
+- Credenciales y perfiles
+- Dispositivo físico
+- Conectar APNs (Apple push notification service) con FCM
+- Recomendaciones y generalidades del proceso
+- Interactuar con las notificaciones
+- Imágenes en las notificaciones
+
+Es una sección bastante cargada de configuraciones, por lo que está dividida en pequeñas clases para que no se sienta abrumador todo lo que tenemos que hacer.
+
+Todo lo que se haga se debe probar en un dispositivo físico porque no funciona en un simulador.
+
+Importante: Hace falta pagar la cuenta de developer de Apple.
+
+Por este motivo, no voy a hacer esta sección. Si en un futuro me hago desarrollador Apple, la haré y la documentaré.
+
 ## Inicio de aplicación
 
 - Pulsamos `Cmd+Shift+P` y seleccionamos `Flutter: New Project`
