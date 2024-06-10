@@ -70,6 +70,8 @@ Importante: Hace falta pagar la cuenta de developer de Apple.
 
 Por este motivo, no voy a hacer esta sección. Si en un futuro me hago desarrollador Apple, la haré y la documentaré.
 
+https://firebase.flutter.dev/docs/messaging/apple-integration/
+
 ## Inicio de aplicación
 
 - Pulsamos `Cmd+Shift+P` y seleccionamos `Flutter: New Project`
