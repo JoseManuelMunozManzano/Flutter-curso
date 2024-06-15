@@ -39,6 +39,14 @@ Dentro de la carpeta `lib` vemos una segunda forma de trabajar. Tenemos la carpe
 
 Para el uso de Custom Painter ver: `https://www.youtube.com/watch?v=GpxkQegspCk`
 
+## Levantar el backend
+
+Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
+
+Si vemos ese proyecto, vemos que falta el `restart: always` en la parte de `nest-app`. Está hecho a conciencia para ir a Docker de vez en cuando a levantarlo.
+
+Probar con Postman (los scripts están en el proyecto `teslo-shop-backend`) que se puede hacer login.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

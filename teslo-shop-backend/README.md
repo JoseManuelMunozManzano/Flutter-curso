@@ -38,6 +38,12 @@ docker compose up -d
 
    También están disponibles los scripts de Postman.
 
+6. Si queremos echar abajo el servicio
+
+```
+docker compose down
+```
+
 # Extra
 
 Si desean saber más sobre docker y cómo se construyó esta imagen, esto es parte de mi curso de Nest y Docker:
