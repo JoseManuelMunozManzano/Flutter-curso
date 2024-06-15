@@ -47,6 +47,16 @@ Si vemos ese proyecto, vemos que falta el `restart: always` en la parte de `nest
 
 Probar con Postman (los scripts están en el proyecto `teslo-shop-backend`) que se puede hacer login.
 
+## Riverpod - Inputs y LoginState
+
+Vamos a dejar los inputs de una manera bien general para poder reutilizarlos. Por eso, en la carpeta `features/shared` creamos la carpeta `infrastructure` y dentro otro directorio llamado `inputs`. Dentro crearemos el archivo de barril `input.dart` y los archivos `email.dart` y `password.dart`.
+
+Hemos instalado, usando `Pubspec Assist` los paquetes: `formz, flutter_riverpod`.
+
+Ahora vamos a la parte de autenticación. En la carpeta `features/auth/presentation` creamos la carpeta `providers` ya que vamos a trabajar con Riverpod, que trabaja en base a providers. Vamos a hacer los pasos iniciales de como quiero trabajar el estado de login. Creamos el archivo provider `login_form_provider.dart` y el archivo de barril `providers.dart`.
+
+Ver: `https://pub.dev/packages/riverpod` y `https://riverpod.dev/docs/introduction/getting_started`
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
