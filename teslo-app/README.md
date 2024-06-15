@@ -67,6 +67,20 @@ Con esto, en el fuente `login_form_provider.dart`, solo escribiendo `stateNotifi
 
 Conectamos el Provider al formulario `features/auth/presentation/screens/login_screen.dart`.
 
+## Cambiar el estilo del error
+
+Corregimos como se ve el error en `features/shared/widgets/custom_text_form_field.dart`.
+
+## Riverpod - Inputs, RegisterState, RegisterForm Provider y Notifier y conectar formulario con Provider
+
+En el curso, esto se ha dejado como tarea. Consiste en hacer el provider para la creación de usuario.
+
+En la carpeta `features/shared/inputs` se crean los inputs `username.dart` y `repeat_password.dart`. Este último tiene en cuenta la contraseña que se indicó y la que se repite, para ver si son la misma.
+
+En la carpeta `features/auth/presentation/providers` creo el archivo provider `register_form_provider.dart`.
+
+Luego conectamos el Provider al formulario `features/auth/presentation/screens/register_screen.dart`
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
