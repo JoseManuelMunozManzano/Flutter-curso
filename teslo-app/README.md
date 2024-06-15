@@ -63,6 +63,10 @@ Nos hemos instalado en VSCode, siguiendo la documentación `https://riverpod.dev
 
 Con esto, en el fuente `login_form_provider.dart`, solo escribiendo `stateNotifier` se genera automáticamente un StateNotifier. Y, solo escribiendo `stateNotifierProvider` se genera el código del Notifier Provider automáticamente.
 
+## Conectar formulario con Provider
+
+Conectamos el Provider al formulario `features/auth/presentation/screens/login_screen.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

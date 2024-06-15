@@ -4,52 +4,19 @@ import 'package:teslo_shop/features/shared/shared.dart';
 
 // Indicar que hay desarrolladores que crean archivos independientes para cada uno de los pasos indicados aquí.
 
-//! 1 - State del provider
-// Hay gente que extiende de Equatable, porque es posible usarlo en Provider, para no redibujar
-// los cambios cuando los datos del objeto no cambian.
-class LoginFormState {
-
-  final bool isPosting;
-  final bool isFormPosted;
-  final bool isValid;
-  final Email email;
-  final Password password;
-
-  LoginFormState({
-    this.isPosting = false,
-    this.isFormPosted = false,
-    this.isValid = false,
-    this.email = const Email.pure(),
-    this.password = const Password.pure()
-  });
-
-  // Para crear nuevos estados basados en el estado actual
-  LoginFormState copyWith({
-    bool? isPosting,
-    bool? isFormPosted,
-    bool? isValid,
-    Email? email,
-    Password? password
-  }) => LoginFormState(
-    isPosting: isPosting ?? this.isPosting,
-    isFormPosted: isFormPosted ?? this.isFormPosted,
-    isValid: isValid ?? this.isValid,
-    email: email ?? this.email,
-    password: password ?? this.password,
-  );
-
-  @override
-  String toString() {
-    return '''
-  LoginFormState:
-    isPosting: $isPosting
-    isFormPosted: $isFormPosted
-    isValid: $isValid
-    email: $email
-    password: $password
-''';
-  }
-}
+//! 3 - StateNotifierProvider - consume afuera
+// Fuente creado con el snippet: stateNotifierProvider
+//
+// No es obligatorio, pero si recomendable usar `autoDispose`. Esto es porque cuando salgamos
+// de la pantalla de Login, por ejemplo al Ingresar y entremos a la app, el usuario trabajará y
+// luego puede que cierre sesión. Al volver a la pantalla de Login, si no indicamos autoDispose,
+// aparecerán datos informados. Es decir, autoDispose limpia los datos cuando salimos de la pantalla.
+//
+// Indicar que este paso se mueve arriba porque es al final lo que más se va a usar.
+final loginFormProvider =
+    StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
+  return LoginFormNotifier();
+}); 
 
 //! 2 - Como implementamos un notifier
 // Vamos a trabajar con ChangeNotifierProvider porque queremos dar la máxima flexibilidad a la manera
@@ -101,13 +68,49 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
   }
 }
 
-//! 3 - StateNotifierProvider - consume afuera
-// Fuente creado con el snippet: stateNotifierProvider
+//! 1 - State del provider
+// Hay gente que extiende de Equatable, porque es posible usarlo en Provider, para no redibujar
+// los cambios cuando los datos del objeto no cambian.
 //
-// No es obligatorio, pero si recomendable usar `autoDispose`. Esto es porque cuando salgamos
-// de la pantalla de Login, por ejemplo al Ingresar y entremos a la app, el usuario trabajará y
-// luego puede que cierre sesión. Al volver a la pantalla de Login, si no indicamos autoDispose,
-// aparecerán datos informados. Es decir, autoDispose limpia los datos cuando salimos de la pantalla.
-final LoginFormProvider = StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
-  return LoginFormNotifier();
-}); 
+// Indicar que este paso se mueve al final porque es lo que menos voy a usar.
+class LoginFormState {
+  final bool isPosting;
+  final bool isFormPosted;
+  final bool isValid;
+  final Email email;
+  final Password password;
+
+  LoginFormState(
+      {this.isPosting = false,
+      this.isFormPosted = false,
+      this.isValid = false,
+      this.email = const Email.pure(),
+      this.password = const Password.pure()});
+
+  // Para crear nuevos estados basados en el estado actual
+  LoginFormState copyWith(
+          {bool? isPosting,
+          bool? isFormPosted,
+          bool? isValid,
+          Email? email,
+          Password? password}) =>
+      LoginFormState(
+        isPosting: isPosting ?? this.isPosting,
+        isFormPosted: isFormPosted ?? this.isFormPosted,
+        isValid: isValid ?? this.isValid,
+        email: email ?? this.email,
+        password: password ?? this.password,
+      );
+
+  @override
+  String toString() {
+    return '''
+  LoginFormState:
+    isPosting: $isPosting
+    isFormPosted: $isFormPosted
+    isValid: $isValid
+    email: $email
+    password: $password
+''';
+  }
+}
