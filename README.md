@@ -1523,5 +1523,6 @@ Si arrancamos el proyecto nos da un error indicando que, para usar las notificac
   - Usa el proyecto `firebase-get-bearer-token`, que es un programa de Node para obtener un Bearer Token y así poder enviar notificaciones desde un REST API
   - Vamos a complementar esta app añadiendo a las push notifications, las local notifications
   - Seguimos completando esta app para añadir las push notifications y las local notifications en iOS (no hecho porque hay que pagar la cuenta de desarrollador)
-- backend-teslo-shop
-  - Backend de la aplicación que vamos a usar
+- teslo-app
+  - Vamos a hacer un mantenimiento de la BBDD de backend usando autenticación JWT entre otras cosas
+  - teslo-shop-backend: Backend de la aplicación que vamos a crear
