@@ -8,9 +8,9 @@ class AuthRepositoryImpl extends AuthRepository {
   // Como estamos seguros de que no va a cambiar el dataSource lo hacemos así.
   // Indicamos que si hay dataSource lo coja.
   // Si no hay la crea.
-  AuthRepositoryImpl(
+  AuthRepositoryImpl({
     AuthDataSource? dataSource
-  ) : dataSource = dataSource ?? AuthDataSourceImpl();
+  }) : dataSource = dataSource ?? AuthDataSourceImpl();
 
   @override
   Future<User> checkAuthStatus(String token) {

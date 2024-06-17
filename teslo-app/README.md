@@ -123,6 +123,12 @@ En la carpeta `lib/features/auth/infrastructure/mappers` creamos el mapper `user
 
 Para gestionar errores personalizados, creamos en `lib/features/auth/infrastructure` la carpeta `errors` y dentro el archivo `auth_errors.dart`.
 
+## Auth Provider
+
+Este Provider nos va a permitir mantener el estado de la autenticación de manera global.
+
+En `lib/features/auth/presentation/providers` creamos un nuevo provider `auth_provider.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
