@@ -115,6 +115,14 @@ En `infrastructure/repositories` creamos el archivo `auth_repository_impl.dart`.
 
 Por último, en `infrastructure` creamos el archivo de barril `infrastructure.dart`.
 
+## Implementación del AuthDataSource - Login
+
+Como necesitamos hacer peticiones http, usaremos el paquete `dio`. Lo instalamos con `Pubspec Assist`.
+
+En la carpeta `lib/features/auth/infrastructure/mappers` creamos el mapper `user_mapper.dart`.
+
+Para gestionar errores personalizados, creamos en `lib/features/auth/infrastructure` la carpeta `errors` y dentro el archivo `auth_errors.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
