@@ -95,6 +95,26 @@ No olvidar configurar también `pubspec.yaml` y `main.dart`.
 
 Detener la aplicación y volver a ejecutarla. El objetivo de esto es que el nuevo asset vaya al dispositivo físico.
 
+## Auth - Repositorio y Datasource
+
+En la carpeta `lib/features/auth` nos creamos dos carpetas, `domain` e `infrastructure`.
+
+En `domain` creamos la carpeta `datasources` y dentro el archivo `auth_datasource.dart`.
+
+También en `domain` creamos la carpeta `repositories` y dentro el archivo `auth_repository.dart`.
+
+Y de nuevo en `domain` creamos la carpeta `entities` y dentro el archivo `user.dart`.
+
+Por último, en `domain` creamos el archivo de barril `domain.dart`.
+
+En la carpeta `infrastructure` creamos las carpetas `datasources`, `mappers` y `repositories`.
+
+En `infrastructure/datasources` creamos el archivo `auth_datasource_impl.dart`.
+
+En `infrastructure/repositories` creamos el archivo `auth_repository_impl.dart`.
+
+Por último, en `infrastructure` creamos el archivo de barril `infrastructure.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
