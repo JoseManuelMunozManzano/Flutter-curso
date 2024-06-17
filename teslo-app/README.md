@@ -129,6 +129,8 @@ Este Provider nos va a permitir mantener el estado de la autenticación de maner
 
 En `lib/features/auth/presentation/providers` creamos un nuevo provider `auth_provider.dart`.
 
+## Login y Logout desde el provider
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
