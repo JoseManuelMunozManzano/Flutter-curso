@@ -79,7 +79,21 @@ En la carpeta `features/shared/inputs` se crean los inputs `username.dart` y `re
 
 En la carpeta `features/auth/presentation/providers` creo el archivo provider `register_form_provider.dart`.
 
-Luego conectamos el Provider al formulario `features/auth/presentation/screens/register_screen.dart`
+Luego conectamos el Provider al formulario `features/auth/presentation/screens/register_screen.dart`.
+
+En la carpeta `lib/config` creamos la carpeta `constants` y dentro el archivo `environment.dart`.
+
+## Variables de entorno
+
+https://pub.dev/packages/flutter_dotenv
+
+En la raiz del proyecto nos creamos dos archivos, `.env` y `.env.template`.
+
+Añadimos también la dependencia `flutter_dotenv` usando `Pubspec Assist`.
+
+No olvidar configurar también `pubspec.yaml` y `main.dart`.
+
+Detener la aplicación y volver a ejecutarla. El objetivo de esto es que el nuevo asset vaya al dispositivo físico.
 
 ## Testing
 

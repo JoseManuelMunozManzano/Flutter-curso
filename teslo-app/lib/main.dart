@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:teslo_shop/config/config.dart';
-import 'package:teslo_shop/config/router/app_router.dart';
 
-void main() {
+void main() async {
+
+  await Environment.initEnvironment();
+
   runApp(
     // Toda la app tendrá acceso a esos Providers
     const ProviderScope(child: MainApp())
