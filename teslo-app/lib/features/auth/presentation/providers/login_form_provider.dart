@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
+import 'package:teslo_shop/features/auth/presentation/providers/auth_provider.dart';
 import 'package:teslo_shop/features/shared/shared.dart';
 
 // Indicar que hay desarrolladores que crean archivos independientes para cada uno de los pasos indicados aquí.
@@ -15,7 +16,15 @@ import 'package:teslo_shop/features/shared/shared.dart';
 // Indicar que este paso se mueve arriba porque es al final lo que más se va a usar.
 final loginFormProvider =
     StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
-  return LoginFormNotifier();
+
+  // En vez de tener la dependencia oculta dentro de LoginFormNotifier, vamos a dejar claro
+  // que hay una dependencia. Nosotros solo necesitamos el método loginUser de AuthNotifier.
+  final loginUserCallback = ref.watch(authProvider.notifier).loginUser;
+
+  return LoginFormNotifier(
+    // Mandamos la dependencia
+    loginUserCallback: loginUserCallback
+  );
 }); 
 
 //! 2 - Como implementamos un notifier
@@ -25,9 +34,15 @@ final loginFormProvider =
 // Se ha instalado en VSCode el plugin: Flutter Riverpod Snippets
 // Fuente creado con el snippet: stateNotifier
 class LoginFormNotifier extends StateNotifier<LoginFormState> {
+
+  // Aquí recibimos la función loginUserCallback
+  final Function(String, String) loginUserCallback;
+
   // En el super indicamos la primera instancia del Notifier.
   // Esta creación del estado inicial tiene que ser siempre síncrona.
-  LoginFormNotifier(): super(LoginFormState());
+  LoginFormNotifier({
+    required this.loginUserCallback,
+  }): super(LoginFormState());
 
   onEmailChange(String value) {
     final newEmail = Email.dirty(value);
@@ -45,12 +60,12 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
     );
   }
 
-  onFormSubmit() {
+  onFormSubmit() async {
     _touchedEveryField();
 
     if (!state.isValid) return;
 
-    print(state);
+    await loginUserCallback(state.email.value, state.password.value);
   }
   
   // Cuando toquemos el botón Ingresar, queremos que todos los campos se verifiquen

@@ -131,6 +131,34 @@ En `lib/features/auth/presentation/providers` creamos un nuevo provider `auth_pr
 
 ## Login y Logout desde el provider
 
+## Obtener el Token de acceso
+
+Ya podemos hacer la petición al backend (no olvidar ejecutarlo en Docker)
+
+Hay dos eslabones que tenemos que conectar, el `auth_provider.dart` que tiene la implementación de nuestro repositorio el cual se conecta al datasource (tiene las implementaciones y conexiones necesarias) y nos permite llegar a nuestro backend.
+
+Por tanto, el provider llama al repositorio y este al datasource. De esta manera, si luego tenemos que hacer cambios, es más fácil.
+
+Luego tenemos `login_form_provider.dart`, que tiene el `loginFormNotifier` que controla cuando cambia el email, el password y, si todo está bien, vamos a llamar al método de `auth_provider` llamado `loginUser()`.
+
+Una vez hechos los cambios, probamos con un suario correcto `test1@google.com` con password `Abc123`.
+
+Si probamos obtenemos un `Connection refused` (en un simulador de iOS probablemente funciona, pero no en uno de Android, de ahí que es buena idea probarlo en el simulador de Android, para ver este error)
+
+Esto error aparece porque estamos mandado llamar `localhost` directamente en el emulador de Android. En este emulador, localhost apunta al mismo emulador, por lo que no tenemos ningún servicio que corra en el puerto 3001.
+
+Para solucionar esto, tanto en Android como, aunque ya funcione sin esto, en iOS, tenemos que apuntar a la IP de la máquina donde está el servicio (en la imagen de Docker) Para obtener la IP ir a los Settings del Wi-Fi del Mac.
+
+Con esta IP vamos a las variables de entorno `.env` y sustituimos localhost por dicha IP.
+
+Bajamos y volvemos a subir la aplicación. Volvemos a escribir las credenciales correctas y ya nos funciona.
+
+Si ponemos unas credenciales erróneas veremos que caemos en WrongCredentials aunque no siempre va a ser ese tipo de error.
+
+Vamos a leer la response, el `message` o el `statusCode`
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
+
+Usuario correcto para probar: `test1@google.com` con password: `Abc123`.
