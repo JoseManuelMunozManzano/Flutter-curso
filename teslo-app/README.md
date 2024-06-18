@@ -157,6 +157,14 @@ Si ponemos unas credenciales erróneas veremos que caemos en WrongCredentials au
 
 Vamos a leer la response, el `message` o el `statusCode`
 
+## Manejo de errores
+
+En `auth_datasource.impl.dart`, método `login()`, cuando ocurre un error siempre devolvemos `WrongCredentials()`, pero esto no es siempre correcto, ya que puede haber errores de timeout, el móvil puede estar en modo avión, o no tener Internet...
+
+Hay varias maneras de manejar los errores y las estamos manejando en `auth_errors.dart`.
+
+De nuevo en `auth_provider.dart` también mejoramos la gestión de los errores.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
