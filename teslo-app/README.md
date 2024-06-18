@@ -165,6 +165,12 @@ Hay varias maneras de manejar los errores y las estamos manejando en `auth_error
 
 De nuevo en `auth_provider.dart` también mejoramos la gestión de los errores.
 
+## Mostrar el error en pantalla
+
+Podemos mostrar el error al usuario modificando `login_screen.dart`, escuchando los cambios en nuestro `authProvider`, ya que en la función `logout()` tenemos nuestro `errorMessage`.
+
+Al final se han reducido el número de clases personalizadas que se usan para los errores.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

@@ -1,5 +1,4 @@
 // Este Provider nos va a permitir mantener el estado de la autenticación de manera global.
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:teslo_shop/features/auth/domain/domain.dart';
 import 'package:teslo_shop/features/auth/infrastructure/infrastructure.dart';
@@ -36,10 +35,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
       _setLoggedUser(user);
 
     // Mejoramos la gestión de los errores
-    } on WrongCredentials {
-      logout('Credenciales no son correctas');
-    } on ConnectionTimeout {
-      logout('Timeout');
+    } on CustomError catch (e) {
+      logout(e.message);
     } catch (e) {
       logout('Error no controlado');
     }

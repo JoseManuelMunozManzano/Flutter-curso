@@ -6,7 +6,8 @@ class InvalidToken implements Exception {}
 class CustomError implements Exception {
 
   final String message;
-  final int errorCode;
+  final bool loggedRequired;  // En true, se graba en un lugar persistente para logs
+  // final int errorCode;
 
-  CustomError(this.message, this.errorCode);
+  CustomError(this.message, [this.loggedRequired = false]);
 }
