@@ -171,6 +171,10 @@ Podemos mostrar el error al usuario modificando `login_screen.dart`, escuchando 
 
 Al final se han reducido el número de clases personalizadas que se usan para los errores.
 
+## Parte de Registro de nuevo usuario
+
+Modificamos: `auth_datasource.impl.dart`, `auth_provider.dart`, `register_form_provider.dart` y `register_screen.dart`
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

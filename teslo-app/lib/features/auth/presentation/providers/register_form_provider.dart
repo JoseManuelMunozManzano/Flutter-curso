@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
+import 'package:teslo_shop/features/auth/presentation/providers/auth_provider.dart';
 import 'package:teslo_shop/features/shared/shared.dart';
 
 // Indicar que hay desarrolladores que crean archivos independientes para cada uno de los pasos indicados aquí.
@@ -15,7 +16,15 @@ import 'package:teslo_shop/features/shared/shared.dart';
 // Indicar que este paso se mueve arriba porque es al final lo que más se va a usar.
 final registerFormProvider =
     StateNotifierProvider.autoDispose<RegisterFormNotifier, RegisterFormState>((ref) {
-  return RegisterFormNotifier();
+
+  // En vez de tener la dependencia oculta dentro de RegisterFormNotifier, vamos a dejar claro
+  // que hay una dependencia. Nosotros solo necesitamos el método RegisterUser de AuthNotifier.
+  final registerUserCallback = ref.watch(authProvider.notifier).registerUser;
+
+  return RegisterFormNotifier(
+    // Mandamos la dependencia
+    registerUserCallback: registerUserCallback
+  );
 }); 
 
 //! 2 - Como implementamos un notifier
@@ -25,9 +34,15 @@ final registerFormProvider =
 // Se ha instalado en VSCode el plugin: Flutter Riverpod Snippets
 // Fuente creado con el snippet: stateNotifier
 class RegisterFormNotifier extends StateNotifier<RegisterFormState> {
+
+  // Aquí recibimos la función registerUserCallback
+  final Function(String, String, String) registerUserCallback;
+
   // En el super indicamos la primera instancia del Notifier.
   // Esta creación del estado inicial tiene que ser siempre síncrona.
-  RegisterFormNotifier(): super(RegisterFormState());
+  RegisterFormNotifier({
+    required this.registerUserCallback
+  }): super(RegisterFormState());
 
   onUsernameChange(String value) {
     final newUsername = Username.dirty(value);
@@ -61,12 +76,12 @@ class RegisterFormNotifier extends StateNotifier<RegisterFormState> {
     );
   }
 
-  onFormSubmit() {
+  onFormSubmit() async {
     _touchedEveryField();
 
     if (!state.isValid) return;
 
-    print(state);
+    await registerUserCallback(state.email.value, state.password.value, state.username.value);
   }
   
   // Cuando toquemos el botón Ingresar, queremos que todos los campos se verifiquen
