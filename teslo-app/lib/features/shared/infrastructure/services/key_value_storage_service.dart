@@ -3,9 +3,9 @@
 // tener que seguir cumpliendo estas reglas.
 abstract class KeyValueStorageService {
 
-  // Esto ahora queda dynamic, pero vamos a usar genéricos para resolverlo
-  Future<void> setKeyValue(String key, dynamic value);
-  Future getValue(String key, dynamic value);
+  // Usamos genéricos para resolver el tipo de dato dynamic que habíamos puesto
+  Future<void> setKeyValue<T>(String key, T value);
+  Future<T?> getValue<T>(String key);
   Future<bool> removeKey(String key);
 
 }

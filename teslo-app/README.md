@@ -210,7 +210,11 @@ Vamos a aplicar el patrón adaptador al igual que hicimos con dotenv (fuente `en
 
 Como solo vamos a necesitar tres métodos (leer, escribir y borrar), no vamos a crear carpetas domain e instrastructure, sino un wrapper.
 
-Dentro de `features/shared/infrastructure` creamos la carpeta `services` y dentro dos archivos, `key_value_storage_service.dart`
+Dentro de `features/shared/infrastructure` creamos la carpeta `services` y dentro dos archivos, el primero `key_value_storage_service.dart` y el segundo, su implementación, lo vemos en la siguiente clase.
+
+## Implementar Patrón Adaptador
+
+Creamos la implementación llamada `key_value_storage_service_impl.dart`.
 
 ## Testing
 
