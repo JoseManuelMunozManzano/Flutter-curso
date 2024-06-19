@@ -196,6 +196,22 @@ Esta parte la voy a ejecutar en un emulador de iOS.
 
 Vamos a hacer un ajuste para un problema que puede producirse en terminales pequeños. Al pulsar para crear una cuenta, no se ve todo el contenido en la pantalla. Para corregir esto, modificamos `register_screen.dart`.
 
+## Preferencias de usuario - Shared Preferences
+
+https://pub.dev/packages/shared_preferences
+
+Con el paquete `shared_preferences` podemos grabar datos en el dispositivo del tipo tokens... Es muy utilizado, fácil de utilizar y funciona para todas las plataformas.
+
+Indicar que la lectura de la data es síncrona y que cada uno de los valores que leemos puede ser nulo.
+
+Instalamos el paquete usando `Pubspec Assist`.
+
+Vamos a aplicar el patrón adaptador al igual que hicimos con dotenv (fuente `environment.dart`)
+
+Como solo vamos a necesitar tres métodos (leer, escribir y borrar), no vamos a crear carpetas domain e instrastructure, sino un wrapper.
+
+Dentro de `features/shared/infrastructure` creamos la carpeta `services` y dentro dos archivos, `key_value_storage_service.dart`
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
