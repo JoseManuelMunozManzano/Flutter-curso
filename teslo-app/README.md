@@ -9,6 +9,7 @@ Este es un proyecto para trabajar con:
 - GoRouter
 
 **1**
+
 Vamos a hacer un login que se puede usar en la vida real.
 
 Esta sección principalmente se enfoca en:
@@ -23,6 +24,20 @@ Esta sección principalmente se enfoca en:
 Esta sección empieza a dejar las bases de la autenticación mediante JWT (Json Web Tokens) el cual es un estándar hoy en día y probablemente lo terminarán utilizando en la vida real.
 
 De nuevo, mi objetivo es tratar de enseñarles lo más apegado a la realidad posible, para que la experiencia les sirva tanto como para aprender Flutter, como para mejorar sus habilidades como desarrolladores en general.
+
+**2**
+
+Esta sección está dedicada a la protección de rutas utilizando Go_Router + Riverpod, puntualmente veremos:
+
+- Proteger rutas
+- Redireccionar
+- Actualizar instancia del GoRouter cuando hay cambios en el estado
+- Colocar listeners de GoRouter
+- Change notifier
+- Preferencias de usuario
+- Almacenar token de acceso de forma permanente
+
+La sección es relativamente corta, pero expandimos temas para el manejo del usuario y tokens de acceso de forma persistente.
 
 ## Inicio de la aplicación
 
@@ -174,6 +189,12 @@ Al final se han reducido el número de clases personalizadas que se usan para lo
 ## Parte de Registro de nuevo usuario
 
 Modificamos: `auth_datasource.impl.dart`, `auth_provider.dart`, `register_form_provider.dart` y `register_screen.dart`
+
+## Inicio GoRouter + Riverpod
+
+Esta parte la voy a ejecutar en un emulador de iOS.
+
+Vamos a hacer un ajuste para un problema que puede producirse en terminales pequeños. Al pulsar para crear una cuenta, no se ve todo el contenido en la pantalla. Para corregir esto, modificamos `register_screen.dart`.
 
 ## Testing
 

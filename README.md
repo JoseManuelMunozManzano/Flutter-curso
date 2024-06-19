@@ -1524,5 +1524,5 @@ Si arrancamos el proyecto nos da un error indicando que, para usar las notificac
   - Vamos a complementar esta app añadiendo a las push notifications, las local notifications
   - Seguimos completando esta app para añadir las push notifications y las local notifications en iOS (no hecho porque hay que pagar la cuenta de desarrollador)
 - teslo-app
-  - Vamos a hacer un mantenimiento de la BBDD de backend usando autenticación JWT entre otras cosas
+  - Vamos a hacer un mantenimiento de la BBDD de backend usando autenticación JWT, GoRouter + Riverpod...
   - teslo-shop-backend: Backend de la aplicación que vamos a crear
