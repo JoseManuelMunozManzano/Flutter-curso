@@ -216,6 +216,10 @@ Dentro de `features/shared/infrastructure` creamos la carpeta `services` y dentr
 
 Creamos la implementación llamada `key_value_storage_service_impl.dart`.
 
+## Guardar Token en el dispositivo
+
+Vamos a inyectar en `auth_provider.dart` el nuevo servicio `key_value_storage_service_impl.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

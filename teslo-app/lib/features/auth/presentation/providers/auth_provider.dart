@@ -2,6 +2,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:teslo_shop/features/auth/domain/domain.dart';
 import 'package:teslo_shop/features/auth/infrastructure/infrastructure.dart';
+import 'package:teslo_shop/features/shared/infrastructure/services/key_value_storage_service.dart';
+import 'package:teslo_shop/features/shared/infrastructure/services/key_value_storage_service_impl.dart';
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
 
@@ -10,18 +12,23 @@ final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   // que podría cambiar) todo lo demás quedaría sin cambios.
   final authRepository = AuthRepositoryImpl();
 
+  final keyValueStorageService = KeyValueStorageServiceImpl();
+
   return AuthNotifier(
-    authRepository: authRepository
+    authRepository: authRepository,
+    keyValueStorageService: keyValueStorageService
   ); 
 });
 
 class AuthNotifier extends StateNotifier<AuthState> {
 
   final AuthRepository authRepository;
+  final KeyValueStorageService keyValueStorageService;
 
   // No hace falta mandar nada a AuthState porque todos los atributos tienen valores por defecto.
   AuthNotifier({
-    required this.authRepository
+    required this.authRepository,
+    required this.keyValueStorageService
   }): super(AuthState());
 
   // Estos tres métodos terminan delegando el llamado al repositorio.
@@ -62,8 +69,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   }
 
-  void _setLoggedUser(User user) {
-    // TODO: necesito guardar el token físicamente
+  void _setLoggedUser(User user) async {
+
+    // Guardamos el token físicamente
+    await keyValueStorageService.setKeyValue('token', user.token);
+
     state = state.copyWith(
       user: user,
       authStatus: AuthStatus.authenticated,
@@ -72,7 +82,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> logout([String? errorMessage]) async {
-    // TODO: Limpiar token
+    
+    // Limpiar token
+    await keyValueStorageService.removeKey('token');
+
     state = state.copyWith(
       authStatus: AuthStatus.notAuthenticated,
       user: null,
