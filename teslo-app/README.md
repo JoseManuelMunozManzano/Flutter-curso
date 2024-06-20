@@ -226,6 +226,18 @@ Vamos a revisar el estado de la autenticación en el método `checkAuthStatus()`
 
 Modificamos también `auth_datasource_impl.dart`.
 
+## Check Auth Status Screen
+
+Independientemente de si estoy o no autenticado o en el proceso de verificación, vamos a mostrar esta pantalla inicial.
+
+En `features/auth/presentation/screens` creamos el screen `check_auth_status_screen.dart`.
+
+Lo añadimos a nuestro sistema de rutas, que está en `config/router/app_router.dart`.
+
+También se ha hecho que, al pulsar en el botón Cerrar Sesión en `side_menu.dart`, se llame al `logout()` en `auth_provider.dart`.
+
+![alt Cerrar Sesión](./images/Cerrar_Sesion.png)
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
