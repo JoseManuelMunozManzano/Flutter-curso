@@ -220,6 +220,12 @@ Creamos la implementación llamada `key_value_storage_service_impl.dart`.
 
 Vamos a inyectar en `auth_provider.dart` el nuevo servicio `key_value_storage_service_impl.dart`.
 
+## Revisar el estado de la autenticación
+
+Vamos a revisar el estado de la autenticación en el método `checkAuthStatus()` del fuente `auth_provider.dart`.
+
+Modificamos también `auth_datasource_impl.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

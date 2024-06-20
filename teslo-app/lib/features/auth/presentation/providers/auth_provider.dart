@@ -29,7 +29,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
   AuthNotifier({
     required this.authRepository,
     required this.keyValueStorageService
-  }): super(AuthState());
+  }): super(AuthState()) {
+    // Justo cuando se crea, en la primera instancia, revisamos si tenemos token
+    checkAuthStatus();
+  }
 
   // Estos tres métodos terminan delegando el llamado al repositorio.
   // Por eso, en authProvider (arriba) lo ponemos como atributo.
@@ -67,6 +70,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   void checkAuthStatus() async {
 
+    // Recordar que nuestro getValue es genérico. Por eso le paso el String
+    final token = await keyValueStorageService.getValue<String>('token');
+    if (token == null) return logout();
+
+    try {
+      final user = await authRepository.checkAuthStatus(token);
+      _setLoggedUser(user);
+    } catch (e) {
+      logout();
+    }
   }
 
   void _setLoggedUser(User user) async {
