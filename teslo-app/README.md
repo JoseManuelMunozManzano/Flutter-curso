@@ -238,6 +238,18 @@ También se ha hecho que, al pulsar en el botón Cerrar Sesión en `side_menu.da
 
 ![alt Cerrar Sesión](./images/Cerrar_Sesion.png)
 
+## Go_Router - Protección de Rutas
+
+Vamos a implementar la protección de rutas de nuestra app. Esto también funciona para Web, móvil, escritorio...
+
+Hay varias formas de implementar esto.
+
+Podemos ir a `app_router.dart`, y, como estamos trabajando con Riverpod, podemos crearnos un Provider que nos regresa la instancia de GoRouter. Al usar el provider, estamos envolviendo nuestro sistema de rutas en un objeto que me permite tener acceso a los diferentes providers.
+
+Otro beneficio es que podemos evitar la construcción de ciertas rutas si no estoy autenticado.
+
+Al hacer este cambio también he tenido que corregir `main.dart` porque ya no tenemos una configuración de Router, sino un Provider que dentro tiene el GoRouter.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
