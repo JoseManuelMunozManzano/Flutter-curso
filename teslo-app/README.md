@@ -322,6 +322,12 @@ Dentro de `repositories` creamos el repositorio `products_repository_impl.dart`.
 
 En la carpeta `features/products/infrastructure` creamos la carpeta `mappers` y dentro el mapper `product_mapper.dart`.
 
+## Riverpod - Product Repository Provider
+
+En la carpeta `features/products/infrastructure` creamos el archivo de barril `infrastructure.dart`.
+
+En la carpeta `features/products/presentation` creamos la carpeta `providers` y dentro el archivo de barril `providers.dart` y el provider `products_repository_provider.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
