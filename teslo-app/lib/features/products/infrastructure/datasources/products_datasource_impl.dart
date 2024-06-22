@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:teslo_shop/config/config.dart';
 import 'package:teslo_shop/features/products/domain/domain.dart';
+import 'package:teslo_shop/features/products/infrastructure/mappers/product_mapper.dart';
 
 // Aquí es donde hacemos todo el trabajo.
 class ProductsDatasourceImpl extends ProductsDatasource {
@@ -19,7 +20,7 @@ class ProductsDatasourceImpl extends ProductsDatasource {
         'Authorization': 'Bearer $accessToken'
       }
     )
-  )
+  );
 
   @override
   Future<List<Product>> createUpdateProduct(Map<String, dynamic> productLike) {
@@ -38,8 +39,7 @@ class ProductsDatasourceImpl extends ProductsDatasource {
     final response = await dio.get<List>('/api/products?limit=$limit&offset=$offset');
     final List<Product> products = [];
     for (final product in response.data ?? []) {
-      // TODO: mapper
-      // products.add()
+      products.add(ProductMapper.jsonToEntity(product));
     }
 
     return products;

@@ -318,6 +318,10 @@ Dentro de `datasources` creamos un nuevo datasource `products_datasource_impl.da
 
 Dentro de `repositories` creamos el repositorio `products_repository_impl.dart`.
 
+## Product Mapper
+
+En la carpeta `features/products/infrastructure` creamos la carpeta `mappers` y dentro el mapper `product_mapper.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
