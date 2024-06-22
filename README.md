@@ -75,7 +75,10 @@ https://gist.github.com/Klerith/2917b2a21ea9c4bfa5d1070c89a89ec7
 - Databases en la nube
   - Firebase. También tiene una opción para trabajar en local: https://firebase.google.com/docs/flutter/setup?platform=ios&hl=es
 - Información local
+
   - Shared Preferences. No es BBDD local, pero si información local: https://pub.dev/packages/shared_preferences
+
+- Extensión de VSCode Dart Data Class Generator ayuda con funciones de Dart, por ejemplo para generar constructores, el copyWith...
 
 ## Recursos gratuitos
 

@@ -328,6 +328,12 @@ En la carpeta `features/products/infrastructure` creamos el archivo de barril `i
 
 En la carpeta `features/products/presentation` creamos la carpeta `providers` y dentro el archivo de barril `providers.dart` y el provider `products_repository_provider.dart`.
 
+## Riverpod - StateNotifierProvider - State, Notifier y Provider
+
+Vamos a crear un nuevo proveedor que me va a servir para llenar todos los productos en una tabla.
+
+En la carpeta `features/products/presentation/providers` creamos un provider `products_provider.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
