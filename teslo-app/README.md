@@ -292,6 +292,32 @@ En la pantalla de login queremos que, al pulsar Intro, se pulse automáticamente
 
 Modificamos `custom_text_form_field.dart` y `login_screen.dart`.
 
+## Entidades, datasources y repositorios
+
+Vamos a preparar nuestra aplicación para poder recibir, manejar y personalizar nuestras interacciones con los productos.
+
+Aquí tendremos las peticiones de los productos.
+
+Todo esto va a requerir un datasource que tendrá que pegarse al mismo endpoint de autenticación.
+
+En `features/products` nos creamos dos directorios, `domain` y `infrastructure`.
+
+Dentro de `domain`, nos creamos tres directorios, `entities`, `datasources` y `repositories`. Recordar que aquí están nuestras reglas del negocio.
+
+Dentro de `entities` creamos la entidad `product.dart`.
+
+Dentro de `datasources` creamos un nuevo datasource `products_datasource.dart`.
+
+Dentro de `repositories` creamos el repositorio `products_repository.dart`.
+
+Por último, dentro de `domain` creamos el archivo de barril `domain.dart`.
+
+Dentro de `infrastructure`, nos creamos dos directorios, `datasources` y `repositories`. Recordar que aquí están nuestras implementaciones.
+
+Dentro de `datasources` creamos un nuevo datasource `products_datasource_impl.dart`.
+
+Dentro de `repositories` creamos el repositorio `products_repository_impl.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
