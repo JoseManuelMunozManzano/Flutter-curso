@@ -286,6 +286,12 @@ También modificamos `login_screen.dart` para en función del estado, habilitar 
 
 ## Inicio Obtener productos - Datasources y Repositories
 
+## onFieldSubmitted
+
+En la pantalla de login queremos que, al pulsar Intro, se pulse automáticamente el botón Ingresar.
+
+Modificamos `custom_text_form_field.dart` y `login_screen.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
