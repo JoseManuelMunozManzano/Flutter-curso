@@ -256,6 +256,10 @@ Seguimos modificando `app_router.dart` para proteger las rutas en función de si
 
 Necesitamos hacer un ChangeNotifier, así que nos vamos a `config/router` y creamos el archivo `app_router_notifier.dart`.
 
+## Navegar dependiendo de la autenticación
+
+Ya tenemos todo lo que necesitamos para hacer la redirección automática. Vamos a modificar de nuevo `app_router.dart` para ello.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
