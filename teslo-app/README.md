@@ -250,6 +250,12 @@ Otro beneficio es que podemos evitar la construcción de ciertas rutas si no est
 
 Al hacer este cambio también he tenido que corregir `main.dart` porque ya no tenemos una configuración de Router, sino un Provider que dentro tiene el GoRouter.
 
+## GoRouterNotifier
+
+Seguimos modificando `app_router.dart` para proteger las rutas en función de si estamos o no autenticados.
+
+Necesitamos hacer un ChangeNotifier, así que nos vamos a `config/router` y creamos el archivo `app_router_notifier.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
