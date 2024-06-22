@@ -39,6 +39,22 @@ Esta sección está dedicada a la protección de rutas utilizando Go_Router + Ri
 
 La sección es relativamente corta, pero expandimos temas para el manejo del usuario y tokens de acceso de forma persistente.
 
+**3**
+
+En esta sección realizaremos lo siguiente:
+
+- Mejorar el mecanismo de Login (Botón de login automático)
+- Masonry ListView
+- Productos
+  - Entidad
+  - Datasources
+  - Repositorios
+- Riverpod
+  - Provider
+  - StateNotifierProvider
+
+Al final, tendremos la pantalla funcionando como la vieron en el video anterior y prepararemos el espacio para la siguiente sección donde le daremos un mantenimiento a nuestros productos.
+
 ## Inicio de la aplicación
 
 En este caso, en vez de partir de puro cero, descargamos un proyecto inicializado de la ruta: `https://github.com/Klerith/flutter-authenticated-crud/tree/01-basic-ui`
@@ -267,6 +283,8 @@ Esto se hace para evitar que se pulse más de una vez al botón de Ingresar. Cua
 Modificamos `login_form_provider.dart`, método `onFormSubmit()` para gestionar el estado.
 
 También modificamos `login_screen.dart` para en función del estado, habilitar o deshabilitar el botón.
+
+## Inicio Obtener productos - Datasources y Repositories
 
 ## Testing
 
