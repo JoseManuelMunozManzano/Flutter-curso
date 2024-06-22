@@ -260,6 +260,14 @@ Necesitamos hacer un ChangeNotifier, así que nos vamos a `config/router` y crea
 
 Ya tenemos todo lo que necesitamos para hacer la redirección automática. Vamos a modificar de nuevo `app_router.dart` para ello.
 
+## Bloquear botón de login
+
+Esto se hace para evitar que se pulse más de una vez al botón de Ingresar. Cuando se pulsa una vez y se hace el post, el botón se bloquea para evitar más post.
+
+Modificamos `login_form_provider.dart`, método `onFormSubmit()` para gestionar el estado.
+
+También modificamos `login_screen.dart` para en función del estado, habilitar o deshabilitar el botón.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

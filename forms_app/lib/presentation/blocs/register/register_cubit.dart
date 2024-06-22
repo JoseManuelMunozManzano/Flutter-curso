@@ -9,6 +9,7 @@ class RegisterCubit extends Cubit<RegisterFormState> {
   RegisterCubit() : super(const RegisterFormState());
 
   void onSubmit() {
+
     // Queremos poder saber que un estado ya no es pure, para que, si pulso Submit,
     // me aparezcan los mensajes de error de las validaciones. Cambiamos a un estado nuevo
     // e indicamos que las propiedades ya son dirty y se valida de nuevo.
