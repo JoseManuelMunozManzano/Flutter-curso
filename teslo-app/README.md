@@ -397,6 +397,14 @@ Modificamos `product_provider.dart` y `product_screen.dart` e implementamos el m
 
 Nos vamos a crear también un par de clases de excepciones. En `features/products/infrastructure` creamos la carpeta `errors` y dentro el archivo `product_errors.dart`.
 
+## Product Screen - Fix
+
+Al hacer la carga del producto vemos que falla el autoDispose.
+
+El problema es que `product_screen.dart` tiene que ser un ConsumerWidget (sin estado), y se creó como un ConsumerStatefulWidget.
+
+Como solo usamos el provider en ese screen, el initState() y luego ya no es necesario, automáticamente lo destruye (el autoDispose) y luego ya no existe ningún notifier. Ese es el error.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
