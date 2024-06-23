@@ -385,6 +385,12 @@ Ahora, pulsando sobre cualquier producto, entramos a su screen para edición.
 
 ## Inicio Crear y Actualizar Productos
 
+## Product Provider
+
+En la carpeta `features/products/presentation/providers` creamos un provider `product_provider.dart` para manejar la data que fluye con el producto que quiero buscar.
+
+En teoría se podría hacer usando dos providers, uno que me diga cuando está cargando el producto y otro que mantenga la información del producto, ambos con autoDispose, pero vamos a seguir practicando con el StateNotifierProvider.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
