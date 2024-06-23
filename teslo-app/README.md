@@ -405,6 +405,18 @@ El problema es que `product_screen.dart` tiene que ser un ConsumerWidget (sin es
 
 Como solo usamos el provider en ese screen, el initState() y luego ya no es necesario, automáticamente lo destruye (el autoDispose) y luego ya no existe ningún notifier. Ese es el error.
 
+## Diseño de la pantalla
+
+Hay un momento en el tiempo en el que el producto existe y otro momento en el que no existe. En este último momento debemos mostrar un loading a pantalla completa.
+
+Como es algo que no es de productos y que es reutilizable, nos vamos a `features/shared/widgets` y ahí creamos un nuevo widget `full_screen_loader.dart`.
+
+NOTA: Esta carpeta de widgets quizá debiera haber estado en la carpeta `features/shared/presentation/widgets`.
+
+Añadimos también en `features/shared/widgets` el widget `custom_product_field.dart`.
+
+Modificamos `products_screen.dart` para llamar a uno de estos nuevos widgets en función de si está cargando o ya está cargado.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
