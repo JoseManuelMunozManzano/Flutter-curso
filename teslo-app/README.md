@@ -334,6 +334,16 @@ Vamos a crear un nuevo proveedor que me va a servir para llenar todos los produc
 
 En la carpeta `features/products/presentation/providers` creamos un provider `products_provider.dart`.
 
+## Pantalla de productos
+
+Vamos a instalar este paquete: https://pub.dev/packages/flutter_staggered_grid_view
+
+Usamos `Pubspec Assist`
+
+Con este paquete obtenemos el estilo de Masonry para mostrar los productos. Si no quisiéramos instalar nada, se puede conseguir otro efecto distinto usando GridView, con la diferencia de que los elementos aparecen alineados.
+
+Modificamos `products_screen.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

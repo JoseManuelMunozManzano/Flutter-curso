@@ -20,10 +20,10 @@ class ProductMapper {
     // Convertimos a imagen completa aquí para no tener esta conversión
     // desparramada por el código.
     images: List<String>.from(json['images'].map(
-      (String image) => image.startsWith('http')
+      (image) => image.startsWith('http')
       ? image
       : '${Environment.apiUrl}/files/product/$image',
     )),
-    user: UserMapper.userJsonToEntity(json['use'])
+    user: UserMapper.userJsonToEntity(json['user'])
   );
 }
