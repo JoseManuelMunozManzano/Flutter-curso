@@ -55,6 +55,25 @@ En esta sección realizaremos lo siguiente:
 
 Al final, tendremos la pantalla funcionando como la vieron en el video anterior y prepararemos el espacio para la siguiente sección donde le daremos un mantenimiento a nuestros productos.
 
+**4**
+
+Esta sección está dedicada a la creación y mantenimiento de productos. Puntualmente:
+
+- Formularios
+- Segmentos de botones
+- Selectores
+- Posteos
+  - Path
+  - Post
+- Retroalimentación de sucesos
+- Manejo de errores
+- Inputs personalizados
+- Y todo lo relacionado al mantenimiento de producto
+
+Importante:
+
+La parte de la cámara y galería de imágenes, es algo que veremos en la siguiente sección.
+
 ## Inicio de la aplicación
 
 En este caso, en vez de partir de puro cero, descargamos un proyecto inicializado de la ruta: `https://github.com/Klerith/flutter-authenticated-crud/tree/01-basic-ui`
@@ -363,6 +382,8 @@ En la configuración de Go_Router, `app_router.dart` agregamos una nueva ruta.
 Y navegamos a la nueva ruta desde `products_screen.dart`.
 
 Ahora, pulsando sobre cualquier producto, entramos a su screen para edición.
+
+## Inicio Crear y Actualizar Productos
 
 ## Testing
 
