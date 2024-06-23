@@ -42,6 +42,13 @@ final goRouterProvider = Provider((ref) {
         path: '/',
         builder: (context, state) => const ProductsScreen(),
       ),
+
+      GoRoute(
+        path: '/product/:id',
+        builder: (context, state) => ProductScreen(
+          productId: state.params['id'] ?? 'no-id',
+        ),
+      ),
     ],
 
     // redirect es como si se sobreescribiera la ruta

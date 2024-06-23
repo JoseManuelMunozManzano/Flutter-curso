@@ -354,6 +354,16 @@ También modificamos `products_screen` para que muestre nuestra nueva card.
 
 Lo implementamos en `products_screen.dart`.
 
+## Pantalla de producto
+
+En la carpeta `features/products/presentation/screens` nos creamos la nueva screen `product_screen.dart` que me va a servir tanto para crear como para actualizar los productos.
+
+En la configuración de Go_Router, `app_router.dart` agregamos una nueva ruta.
+
+Y navegamos a la nueva ruta desde `products_screen.dart`.
+
+Ahora, pulsando sobre cualquier producto, entramos a su screen para edición.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
