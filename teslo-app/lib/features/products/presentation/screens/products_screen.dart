@@ -53,14 +53,18 @@ class _ProductsViewState extends ConsumerState<_ProductsView> {
   void initState() {
     super.initState();
 
-    // TODO: infiniteScroll pending
-
-    // Cargamos la siguiente página.
-    ref.read(productsProvider.notifier).loadNextPage();
+    // InfiniteScroll
+    scrollController.addListener(() {
+      if ((scrollController.position.pixels + 400) >= scrollController.position.maxScrollExtent) {
+        // Cargamos la siguiente página.
+        ref.read(productsProvider.notifier).loadNextPage();
+      }
+    });
   }
 
   @override
   void dispose() {
+    // Borramos el controlador si ya no lo usamos
     scrollController.dispose();
     super.dispose();
   }
@@ -73,6 +77,8 @@ class _ProductsViewState extends ConsumerState<_ProductsView> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: MasonryGridView.count(
+        // Conectamos con nuestro controller para conseguir el InfiniteScroll
+        controller: scrollController,
         physics: const BouncingScrollPhysics(),
         crossAxisCount: 2,
         mainAxisSpacing: 20,

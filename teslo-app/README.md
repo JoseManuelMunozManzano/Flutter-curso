@@ -350,6 +350,10 @@ En la carpeta `features/products/presentation` creamos la carpeta `widgets` crea
 
 También modificamos `products_screen` para que muestre nuestra nueva card.
 
+## Scroll Infinito
+
+Lo implementamos en `products_screen.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
