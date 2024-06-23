@@ -344,6 +344,12 @@ Con este paquete obtenemos el estilo de Masonry para mostrar los productos. Si n
 
 Modificamos `products_screen.dart`.
 
+## Tarjetas de producto
+
+En la carpeta `features/products/presentation` creamos la carpeta `widgets` creamos el archivo de barril `widgets.dart` y el widget `product_card.dart`.
+
+También modificamos `products_screen` para que muestre nuestra nueva card.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
