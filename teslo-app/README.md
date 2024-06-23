@@ -391,6 +391,12 @@ En la carpeta `features/products/presentation/providers` creamos un provider `pr
 
 En teoría se podría hacer usando dos providers, uno que me diga cuando está cargando el producto y otro que mantenga la información del producto, ambos con autoDispose, pero vamos a seguir practicando con el StateNotifierProvider.
 
+## Implementar la carga del producto
+
+Modificamos `product_provider.dart` y `product_screen.dart` e implementamos el método `getProductById()` en `products_datasource_impl.dart`.
+
+Nos vamos a crear también un par de clases de excepciones. En `features/products/infrastructure` creamos la carpeta `errors` y dentro el archivo `product_errors.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
