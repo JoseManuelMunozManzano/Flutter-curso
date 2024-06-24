@@ -443,6 +443,10 @@ Vamos a crear otro StateNotifierProvider porque nos da mucho control, aunque tam
 
 En esta clase solo hacemos la parte del State del StateNotifierProvider.
 
+## Product Form Provider - Notifier
+
+Seguimos codificando nuestro provider `product_form_provider.dart`, ahora la parte Notifier.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
