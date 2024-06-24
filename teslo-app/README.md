@@ -425,6 +425,24 @@ Vamos a crear los campos que necesitamos.
 
 Vamos a `features/shared/infrastructure/inputs` y creamos los archivos de validaciones `title.dart`, `price.dart`, `slug.dart` y `stock.dart`.
 
+## Product Form Provider - State
+
+Estamos en el punto en el que tenemos que preparar la data que queremos enviar al backend con un post.
+
+Solo necesitamos llamar a `dio.post()` mandando la data en el formato que se espera, un `Map<String, dynamic>` y los campos que espera. Si todo va bien obtendremos una response 201 o, si va mal, un 401, 404, 403...
+
+Entonces, vamos a preparar la data que va a fluir a través del formulario. Para ello necesitamos crear un nuevo provider que nos sirva para manejar la data del formulario.
+
+¿Por qué no utilizamos nuestro `productProvider`? Tendría sentido, pero no es lo mismo un producto al formulario de un producto. Aunque la data que se usa del producto sirve para llenar el formulario, no es lo mismo, porque en el formulario necesitamos saber si pasa las reglas de validación y, entre otras cosas, en un formulario puede que no tenga id, pero un producto siempre tiene id.
+
+Incluso aunque se pudiera, es mejor no hacerlo, porque la idea de `productProvider` es proveer información del producto. Ya está, ese es su único objetivo.
+
+En `features/products/presentation/providers` creamos la carpeta `forms` y dentro un provider llamado `product_form_provider.dart`.
+
+Vamos a crear otro StateNotifierProvider porque nos da mucho control, aunque también se podría conseguir el mismo resultado con varios StateProvider pequeñitos.
+
+En esta clase solo hacemos la parte del State del StateNotifierProvider.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
