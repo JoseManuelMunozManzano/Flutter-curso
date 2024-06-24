@@ -453,6 +453,12 @@ Seguimos codificando nuestro provider `product_form_provider.dart`, ahora la par
 
 También necesitaremos el callback para poder hacer el submit de la data.
 
+## Conectar el provider con el formulario
+
+Vamos a conectar nuestro ProductFormProvider con nuestro árbol de widgets y nuestro formulario físico.
+
+Lo hacemos en `product_screen.dart`, en la parte `_ProductView` porque ahí tenemos el producto.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
