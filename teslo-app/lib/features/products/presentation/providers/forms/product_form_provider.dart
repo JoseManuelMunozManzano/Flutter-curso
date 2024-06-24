@@ -4,6 +4,22 @@ import 'package:teslo_shop/config/constants/environment.dart';
 import 'package:teslo_shop/features/products/domain/domain.dart';
 import 'package:teslo_shop/features/shared/shared.dart';
 
+// Provider: será un autoDispose Provider porque cuando salga y regrese quiero que el
+// estado regrese a su estado por defecto, y un family Provider porque necesito recibir
+// el producto (su tipo de dato) para crearlo.
+// También necesitaremos el callback para poder hacer el submit de la data.
+final productFormProvider = StateNotifierProvider.autoDispose.family<ProductFormNotifier, ProductFormState, Product>
+((ref, product) {
+
+  // TODO: createUpdateCallback
+
+  return ProductFormNotifier(
+    product: product,
+    // TODO: onSubmitCallback: createUpdateCallback
+  );
+});
+
+
 // Notifier: Responsable de mantener el estado y sus cambios. También de emitir la data
 // que tiene que ser procesada por otro ente.
 class ProductFormNotifier extends StateNotifier<ProductFormState> {

@@ -447,6 +447,12 @@ En esta clase solo hacemos la parte del State del StateNotifierProvider.
 
 Seguimos codificando nuestro provider `product_form_provider.dart`, ahora la parte Notifier.
 
+## Product Form Provider - Provider
+
+Seguimos codificando nuestro provider `product_form_provider.dart`, ahora la parte Provider, que será un autoDispose Provider porque cuando salga y regrese quiero que el estado regrese a su estado por defecto, y un family Provider porque necesito recibir el producto (su tipo de dato) para crearlo.
+
+También necesitaremos el callback para poder hacer el submit de la data.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
