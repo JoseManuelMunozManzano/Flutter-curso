@@ -417,6 +417,14 @@ Añadimos también en `features/shared/widgets` el widget `custom_product_field.
 
 Modificamos `products_screen.dart` para llamar a uno de estos nuevos widgets en función de si está cargando o ya está cargado.
 
+## Campos adicionales de formulario - Formz
+
+Tenemos que hacer la validación de un formulario que es mediano. El backend tiene sus validaciones, y por eso, para que las pase, también el frontend debe tener esas validaciones.
+
+Vamos a crear los campos que necesitamos.
+
+Vamos a `features/shared/infrastructure/inputs` y creamos los archivos de validaciones `title.dart`, `price.dart`, `slug.dart` y `stock.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
