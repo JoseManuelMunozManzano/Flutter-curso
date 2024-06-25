@@ -57,7 +57,8 @@ Future<bool> onFormSubmit() async {
   if (!state.isFormValid) return false;
 
   // Si no nos mandan la función que tenemos que ejecutar al hacer el submit me voy sin hacer nada
-  if (onSubmitCallback == null) return false;
+  // TODO: Volver a descomentar cuando tengamos el callback
+  // if (onSubmitCallback == null) return false;
 
   final productLike = {
     'id': state.id,

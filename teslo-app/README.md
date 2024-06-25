@@ -463,6 +463,10 @@ Lo hacemos en `product_screen.dart`, en la parte `_ProductView` porque ahí tene
 
 Seguimos modificando `product_screen.dart`.
 
+## Probar el backend - Actualización de Producto
+
+Para probar la actualización del producto, llamaremos a `onFormSubmit()` de `product_form_provider.dart` en el screen `product_screen.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
