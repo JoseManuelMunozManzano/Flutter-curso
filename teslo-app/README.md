@@ -467,6 +467,10 @@ Seguimos modificando `product_screen.dart`.
 
 Para probar la actualización del producto, llamaremos a `onFormSubmit()` de `product_form_provider.dart` en el screen `product_screen.dart`.
 
+## Implementar método createUpdateProduct
+
+Vamos a implementarlo en `feaures/products/infrastructure/datasources/products_datasource_impl.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

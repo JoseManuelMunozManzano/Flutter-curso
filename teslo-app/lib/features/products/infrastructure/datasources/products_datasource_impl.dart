@@ -25,9 +25,33 @@ class ProductsDatasourceImpl extends ProductsDatasource {
   );
 
   @override
-  Future<List<Product>> createUpdateProduct(Map<String, dynamic> productLike) {
-    // TODO: implement createUpdateProduct
-    throw UnimplementedError();
+  Future<List<Product>> createUpdateProduct(Map<String, dynamic> productLike) async {
+  
+    try {
+      final String? productId = productLike['id'];
+      final String method = (productId == null) ? 'POST' : 'PATCH';
+      final String url = (productId == null) ? '/post' : 'products/$productId';
+
+      // Tanto para creación como para actualización, hay que quitar el id.
+      // Es una condición del backend.
+      productLike.remove('id');
+
+      // Hacemos el POST o el PATCH
+      final response = await dio.request(
+        url,
+        // Un Map<String, dynamic> como tenemos en productLike, es un JSON. Se puede ver así.
+        data: productLike,
+        options: Options(
+          method: method,
+        )
+      );
+
+      final product = ProductMapper.jsonToEntity(response.data);
+      return product;
+
+    } catch (e) {
+      throw Exception();
+    }
   }
 
   @override
