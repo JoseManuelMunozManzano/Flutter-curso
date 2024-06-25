@@ -25,12 +25,12 @@ class ProductsDatasourceImpl extends ProductsDatasource {
   );
 
   @override
-  Future<List<Product>> createUpdateProduct(Map<String, dynamic> productLike) async {
+  Future<Product> createUpdateProduct(Map<String, dynamic> productLike) async {
   
     try {
       final String? productId = productLike['id'];
       final String method = (productId == null) ? 'POST' : 'PATCH';
-      final String url = (productId == null) ? '/post' : 'products/$productId';
+      final String url = (productId == null) ? '/post' : '/products/$productId';
 
       // Tanto para creación como para actualización, hay que quitar el id.
       // Es una condición del backend.

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
 import 'package:teslo_shop/config/constants/environment.dart';
 import 'package:teslo_shop/features/products/domain/domain.dart';
+import 'package:teslo_shop/features/products/presentation/providers/providers.dart';
 import 'package:teslo_shop/features/shared/shared.dart';
 
 // Provider: será un autoDispose Provider porque cuando salga y regrese quiero que el
@@ -11,11 +12,11 @@ import 'package:teslo_shop/features/shared/shared.dart';
 final productFormProvider = StateNotifierProvider.autoDispose.family<ProductFormNotifier, ProductFormState, Product>
 ((ref, product) {
 
-  // TODO: createUpdateCallback
+  final createUpdateCallback = ref.watch(productsRepositoryProvider).createUpdateProduct;
 
   return ProductFormNotifier(
     product: product,
-    // TODO: onSubmitCallback: createUpdateCallback
+    onSubmitCallback: createUpdateCallback,
   );
 });
 
@@ -27,12 +28,12 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
   // Este callback será llamado al pulsar el botón que hace el submit del formulario.
   // Vemos que recibe algo que luce como un producto, pero que NO es un producto.
   // Es el objeto que está esperando el backend.
-  final void Function(Map<String, dynamic> productLike)? onSubmitCallback;
+  final Future<Product> Function(Map<String, dynamic> productLike)? onSubmitCallback;
 
   // El producto no lo estamos creando como una propiedad. Solo necesitamos recibirlo.
   ProductFormNotifier({
-    this.onSubmitCallback,
     required Product product,
+    this.onSubmitCallback,
   }):super(
     // En el super creamos el estado inicial de nuestro ProductFormState.
     // Tenemos que hacer ciertas transformaciones en el product para que sea como nuestro State.
@@ -57,8 +58,7 @@ Future<bool> onFormSubmit() async {
   if (!state.isFormValid) return false;
 
   // Si no nos mandan la función que tenemos que ejecutar al hacer el submit me voy sin hacer nada
-  // TODO: Volver a descomentar cuando tengamos el callback
-  // if (onSubmitCallback == null) return false;
+  if (onSubmitCallback == null) return false;
 
   final productLike = {
     'id': state.id,
@@ -79,9 +79,13 @@ Future<bool> onFormSubmit() async {
     ).toList()
   };
 
-  return true;
+  try {
+    await onSubmitCallback!(productLike);
+    return true;
+  } catch (e) {
+    return false;
+  }
 
-  // TODO: Llamar onSubmitCallback
 }
 
 // Cuando vaya a hacer el POST de la data, quiero disparar la validación de Formz para

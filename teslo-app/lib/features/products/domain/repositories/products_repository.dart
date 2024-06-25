@@ -9,5 +9,5 @@ abstract class ProductsRepository {
   Future<List<Product>> searchProductByTerm(String term);
 
   // productLike es algo que se asemeja a un producto
-  Future<List<Product>> createUpdateProduct(Map<String, dynamic> productLike);
+  Future<Product> createUpdateProduct(Map<String, dynamic> productLike);
 }

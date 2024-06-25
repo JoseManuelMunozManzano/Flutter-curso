@@ -471,6 +471,14 @@ Para probar la actualización del producto, llamaremos a `onFormSubmit()` de `pr
 
 Vamos a implementarlo en `feaures/products/infrastructure/datasources/products_datasource_impl.dart`.
 
+## Actualizar producto desde la app
+
+En nuestro provider `product_form_provider.dart` nos creamos la variable `createUpdateCallback`.
+
+Nuestro método de actualización funciona en la pantalla de detalle del producto.
+
+Por ahora no actualiza, en el listado de productos de la pantalla principal de productos, el nombre del producto, si este se ha cambiado, o una imagen nueva. Esto lo tenemos que hacer en el otro provider.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
