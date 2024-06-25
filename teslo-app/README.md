@@ -459,6 +459,10 @@ Vamos a conectar nuestro ProductFormProvider con nuestro árbol de widgets y nue
 
 Lo hacemos en `product_screen.dart`, en la parte `_ProductView` porque ahí tenemos el producto.
 
+## Conectar campos faltantes
+
+Seguimos modificando `product_screen.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
