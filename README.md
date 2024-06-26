@@ -1530,4 +1530,5 @@ Si arrancamos el proyecto nos da un error indicando que, para usar las notificac
   - Vamos a hacer un mantenimiento de la BBDD de backend usando autenticación JWT, GoRouter + Riverpod...
   - Vamos a obtener productos del backend, haciendo la parte de los datasources y repositories
   - Vamos a crear y actualizar productos
+  - Vamos a añadir uso de la cámara, una galería y una carga de archivos
   - teslo-shop-backend: Backend de la aplicación que vamos a crear

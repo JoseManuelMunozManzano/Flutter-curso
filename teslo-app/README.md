@@ -70,9 +70,21 @@ Esta sección está dedicada a la creación y mantenimiento de productos. Puntua
 - Inputs personalizados
 - Y todo lo relacionado al mantenimiento de producto
 
-Importante:
+**5**
 
-La parte de la cámara y galería de imágenes, es algo que veremos en la siguiente sección.
+Esta es la parte de la cámara y galería de imágenes y la vamos a ver en Android.
+
+Esta sección tiene varios objetivos, pero el principal es que aprendamos a tomar y seleccionar fotografías y subirlas a un RESTFul Api.
+
+Puntualmente veremos:
+
+- Patrón adaptador sobre el paquete de cámara
+- POST Form Multipart
+- Mostrar imágenes como archivos
+- Multiples cargas simultáneas
+- Postman - Pruebas de API
+- Actualizar estado del formulario
+- Otras validaciones
 
 ## Inicio de la aplicación
 
@@ -510,6 +522,10 @@ También modificamos `product_form_provider.dart` para no mandar el id una vez c
 Cuando toquemos el botón de actualización de un producto, o algún botón de talla o botón de género, queremos que desaparezca el teclado del dispositivo.
 
 Modificamos `product_screen.dart` para añadir `FocusScope.of(context).unfocus();` y así ocultar el teclado.
+
+## Inicio de Cámara, Galería y carga de archivos
+
+Esta parte la vamos a ver en el simulador de Android. Funciona parcialmente en el simulador de iOS, porque le falta la cámara, mientras que la cámara en el simulador de Android es formidable. También se podría probar en cualquier dispositivo físico.
 
 ## Testing
 
