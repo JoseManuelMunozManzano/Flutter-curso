@@ -489,6 +489,22 @@ También modificamos `product_form_provider.dart` para cambiar la llamada al nue
 
 Lo añadimos en `product_screen.dart`.
 
+## Crear un nuevo producto
+
+Parar crear un nuevo producto vamos a reutilizar toda la lógica que ya tenemos (nuestros formularios).
+
+La única diferencia es que NO tenemos un producto, ¿o sí?
+
+Ahora mismo, para entrar a la pantalla de edición de producto, en nuestro `app_router.dart` vemos que tenemos que indicar la ruta `/product/:id`
+
+Podemos mandar un `id` que podamos reconocer como que es nuevo, por ejemplo `/product/new` y si encontramos ese new sabemos que queremos crear un producto.
+
+Vamos a ir a nuestros providers, en concreto `product_provider.dart`. Recordar que su objetivo es buscar un producto. Ahí es donde preguntamos si nuestro id es new.
+
+También modificamos `products_screen.dart` para crear la acción al botón de Nuevo producto.
+
+También modificamos `product_form_provider.dart` para no mandar el id una vez creado el producto, y así no falle `products_datasource_impl.dart`, ya que aquí espera un null para hacer un POST, y vendría `new`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

@@ -35,8 +35,35 @@ class ProductNotifier extends StateNotifier<ProductState> {
     loadProduct();
   }
 
+  // Este es nuestro nuevo producto vacío.
+  // Indicamos como id de nuestro nuevo producto 'new' (no confundir este new con el de la ruta)
+  Product newEmptyProduct() {
+    return Product(
+      id: 'new',
+      title: '',
+      price: 0,
+      description: '',
+      slug: '',
+      stock: 0,
+      sizes: [],
+      gender: 'men',
+      tags: [],
+      images: [],
+    );
+  }
+
   Future<void> loadProduct() async {
     try {
+
+      // Alta
+      if (state.id == 'new') {
+        state = state.copyWith(
+          isLoading: false,
+          product: newEmptyProduct(),
+        );
+        return;
+      }
+
       final product = await productsRepository.getProductById(state.id);
       
       state = state.copyWith(
