@@ -505,6 +505,12 @@ También modificamos `products_screen.dart` para crear la acción al botón de N
 
 También modificamos `product_form_provider.dart` para no mandar el id una vez creado el producto, y así no falle `products_datasource_impl.dart`, ya que aquí espera un null para hacer un POST, y vendría `new`.
 
+## Ocultar teclado cuando ya no se necesita
+
+Cuando toquemos el botón de actualización de un producto, o algún botón de talla o botón de género, queremos que desaparezca el teclado del dispositivo.
+
+Modificamos `product_screen.dart` para añadir `FocusScope.of(context).unfocus();` y así ocultar el teclado.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

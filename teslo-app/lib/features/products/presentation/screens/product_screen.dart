@@ -26,45 +26,48 @@ class ProductScreen extends ConsumerWidget {
     // referencia a este objeto siempre y cuando sea el mismo id.
     final productState = ref.watch(productProvider(productId));
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Editar Producto'),
-        actions: [
-          IconButton(onPressed: () {
-            
-            },
-            icon: const Icon(Icons.camera_alt_outlined)
-          )
-        ],
-      ),
-
-      body: productState.isLoading
-      ? const FullScreenLoader()
-      : _ProductView(product: productState.product!),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          if (productState.product == null) return;
-
-          // Para mostrar un Snackbar necesitamos el context.
-          final result = await ref.read(productFormProvider(productState.product!).notifier).onFormSubmit();
-          // Pero esto nos va a lanzar un error que dice que no hay que utilizar el BuildContext
-          // a través de gaps (espacios asíncronos) porque en un await se da tiempo a que el build context
-          // cambie en otro sitio, lo que lo hace potencialmente inseguro.
-          // ScaffoldMessenger.of(context);
-          //
-          // Pero se puede solucionar así:
-          if (!result || !context.mounted) return;
-          showSnackbar(context);
-
-          // Otra forma de solucionarlo era usar Futures normales, con el .then, es decir, sin await.
-          // De esta forma, con el .then() toma el valor correcto de BuildContext:
-          //
-          // ref.read(productFormProvider(productState.product!).notifier).onFormSubmit().then((value) {
-          //   if (!value) return;
-          //   showSnackbar(context);
-          // });
-        },
-        child: const Icon(Icons.save_as_outlined),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Editar Producto'),
+          actions: [
+            IconButton(onPressed: () {
+              
+              },
+              icon: const Icon(Icons.camera_alt_outlined)
+            )
+          ],
+        ),
+      
+        body: productState.isLoading
+        ? const FullScreenLoader()
+        : _ProductView(product: productState.product!),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            if (productState.product == null) return;
+      
+            // Para mostrar un Snackbar necesitamos el context.
+            final result = await ref.read(productFormProvider(productState.product!).notifier).onFormSubmit();
+            // Pero esto nos va a lanzar un error que dice que no hay que utilizar el BuildContext
+            // a través de gaps (espacios asíncronos) porque en un await se da tiempo a que el build context
+            // cambie en otro sitio, lo que lo hace potencialmente inseguro.
+            // ScaffoldMessenger.of(context);
+            //
+            // Pero se puede solucionar así:
+            if (!result || !context.mounted) return;
+            showSnackbar(context);
+      
+            // Otra forma de solucionarlo era usar Futures normales, con el .then, es decir, sin await.
+            // De esta forma, con el .then() toma el valor correcto de BuildContext:
+            //
+            // ref.read(productFormProvider(productState.product!).notifier).onFormSubmit().then((value) {
+            //   if (!value) return;
+            //   showSnackbar(context);
+            // });
+          },
+          child: const Icon(Icons.save_as_outlined),
+        ),
       ),
     );
   }
@@ -264,6 +267,7 @@ class _SizeSelector extends StatelessWidget {
       }).toList(),
       selected: Set.from(selectedSizes),
       onSelectionChanged: (newSelection) {
+        FocusScope.of(context).unfocus();
         // Convertimos el Set a List
         onSizesChanged(List.from(newSelection));
       },
@@ -305,6 +309,7 @@ class _GenderSelector extends StatelessWidget {
         }).toList(),
         selected: {selectedGender},
         onSelectionChanged: (newSelection) {
+          FocusScope.of(context).unfocus();
           // Convertimos el Set a List
           onGenderChanged(newSelection.first);
         },
