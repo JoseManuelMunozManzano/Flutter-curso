@@ -485,6 +485,10 @@ Para actualizar los productos que tenemos en la pantalla (realmente estan en el 
 
 También modificamos `product_form_provider.dart` para cambiar la llamada al nuevo método que actualiza o crea un producto.
 
+## Mostrar mensaje de actualización
+
+Lo añadimos en `product_screen.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

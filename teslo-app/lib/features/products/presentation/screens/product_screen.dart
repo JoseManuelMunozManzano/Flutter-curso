@@ -11,6 +11,13 @@ class ProductScreen extends ConsumerWidget {
 
   const ProductScreen({super.key, required this.productId});
 
+  void showSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Producto Actualizado'))
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
@@ -35,10 +42,27 @@ class ProductScreen extends ConsumerWidget {
       ? const FullScreenLoader()
       : _ProductView(product: productState.product!),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           if (productState.product == null) return;
 
-          ref.read(productFormProvider(productState.product!).notifier).onFormSubmit();
+          // Para mostrar un Snackbar necesitamos el context.
+          final result = await ref.read(productFormProvider(productState.product!).notifier).onFormSubmit();
+          // Pero esto nos va a lanzar un error que dice que no hay que utilizar el BuildContext
+          // a través de gaps (espacios asíncronos) porque en un await se da tiempo a que el build context
+          // cambie en otro sitio, lo que lo hace potencialmente inseguro.
+          // ScaffoldMessenger.of(context);
+          //
+          // Pero se puede solucionar así:
+          if (!result || !context.mounted) return;
+          showSnackbar(context);
+
+          // Otra forma de solucionarlo era usar Futures normales, con el .then, es decir, sin await.
+          // De esta forma, con el .then() toma el valor correcto de BuildContext:
+          //
+          // ref.read(productFormProvider(productState.product!).notifier).onFormSubmit().then((value) {
+          //   if (!value) return;
+          //   showSnackbar(context);
+          // });
         },
         child: const Icon(Icons.save_as_outlined),
       ),
