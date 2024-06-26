@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
+
 import 'package:teslo_shop/config/constants/environment.dart';
 import 'package:teslo_shop/features/products/domain/domain.dart';
 import 'package:teslo_shop/features/products/presentation/providers/providers.dart';
@@ -12,7 +13,8 @@ import 'package:teslo_shop/features/shared/shared.dart';
 final productFormProvider = StateNotifierProvider.autoDispose.family<ProductFormNotifier, ProductFormState, Product>
 ((ref, product) {
 
-  final createUpdateCallback = ref.watch(productsRepositoryProvider).createUpdateProduct;
+  // final createUpdateCallback = ref.watch(productsRepositoryProvider).createUpdateProduct;
+  final createUpdateCallback = ref.watch(productsProvider.notifier).createOrUpdateProduct;
 
   return ProductFormNotifier(
     product: product,
@@ -28,7 +30,7 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
   // Este callback será llamado al pulsar el botón que hace el submit del formulario.
   // Vemos que recibe algo que luce como un producto, pero que NO es un producto.
   // Es el objeto que está esperando el backend.
-  final Future<Product> Function(Map<String, dynamic> productLike)? onSubmitCallback;
+  final Future<bool> Function(Map<String, dynamic> productLike)? onSubmitCallback;
 
   // El producto no lo estamos creando como una propiedad. Solo necesitamos recibirlo.
   ProductFormNotifier({
@@ -80,8 +82,7 @@ Future<bool> onFormSubmit() async {
   };
 
   try {
-    await onSubmitCallback!(productLike);
-    return true;
+    return await onSubmitCallback!(productLike);
   } catch (e) {
     return false;
   }

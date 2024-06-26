@@ -479,6 +479,12 @@ Nuestro método de actualización funciona en la pantalla de detalle del product
 
 Por ahora no actualiza, en el listado de productos de la pantalla principal de productos, el nombre del producto, si este se ha cambiado, o una imagen nueva. Esto lo tenemos que hacer en el otro provider.
 
+## Actualizar la pantalla de productos
+
+Para actualizar los productos que tenemos en la pantalla (realmente estan en el provider) principal de productos, tenemos que actualizar `products_provider.dart`.
+
+También modificamos `product_form_provider.dart` para cambiar la llamada al nuevo método que actualiza o crea un producto.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

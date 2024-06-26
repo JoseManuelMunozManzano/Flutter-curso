@@ -29,6 +29,32 @@ class ProductsNotifier extends StateNotifier<ProductsState> {
     loadNextPage();
   }
 
+  Future<bool> createOrUpdateProduct(Map<String, dynamic> productLike) async {
+
+    try {
+      final product = await productsRepository.createUpdateProduct(productLike);
+      final isProductInList = state.products.any((element) => element.id == product.id);
+
+      if (!isProductInList) {
+        state = state.copyWith(
+          products: [...state.products, product]
+        );
+        return true;
+      }
+
+      state = state.copyWith(
+        // Recordar poner el .toList() al final, porque se regresa un Iterable y queremos una lista.
+        products: state.products.map(
+          (element) => (element.id == product.id) ? product : element,
+        ).toList()
+      );
+      return true;
+
+    } catch (e) {
+      return false;
+    }
+  }
+
   // Actualiza el estado de los productos.
   Future loadNextPage() async {
     // Para que no bombardee a peticiones (pasa mucho con el infiniteScroll)
