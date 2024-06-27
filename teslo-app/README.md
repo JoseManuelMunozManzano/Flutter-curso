@@ -569,6 +569,12 @@ En la carpeta `features/shared/infrastructure/services` creamos el archivo con c
 
 La implementación la creamos en la misma carpeta, con nombre `camera_gallery_service_impl.dart`.
 
+## Probar la cámara y galería - Path de la fotografía
+
+Vamos a usar nuestro `camera_gallery_service_impl.dart` (la implementación) en nuestra aplicación.
+
+Para ello, nos vamos a `features/products/presentation/screens/product_screen.dart`
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.

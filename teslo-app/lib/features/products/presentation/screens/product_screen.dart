@@ -32,7 +32,20 @@ class ProductScreen extends ConsumerWidget {
         appBar: AppBar(
           title: const Text('Editar Producto'),
           actions: [
-            IconButton(onPressed: () {
+            IconButton(onPressed: () async {
+                final photoPath = await CameraGalleryServiceImpl().selectPhoto();
+                if (photoPath == null) return;
+
+                photoPath;
+              },
+              icon: const Icon(Icons.photo_library_outlined)
+            ),
+
+            IconButton(onPressed: () async {
+              final photoPath = await CameraGalleryServiceImpl().takePhoto();
+              if (photoPath == null) return;
+
+              photoPath;
               
               },
               icon: const Icon(Icons.camera_alt_outlined)
