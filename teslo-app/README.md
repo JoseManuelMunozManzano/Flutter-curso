@@ -583,6 +583,12 @@ Modificamos `product_screen.dart` y `product_form_provider`.
 
 Indicar que al salir de la pantalla de detalle de producto, las imágenes temporales se borran automáticamente.
 
+## POST - Subir la imagen al backend
+
+Esto que vamos a ver es un procedimiento general para subir una imagen a cualquier backend utilizando un RESTful API.
+
+Vamos a `products_datasource_impl.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
