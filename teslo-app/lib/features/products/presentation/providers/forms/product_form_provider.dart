@@ -102,6 +102,14 @@ void _touchedEverything() {
   );
 }
 
+  // Añadir imágenes al listado de imágenes de un producto
+  void updateProductImage(String path) {
+    state = state.copyWith(
+      images: [...state.images, path],
+    );
+  }
+
+
   // Cambios al state
   void onTitleChanged(String value) {
     state = state.copyWith(

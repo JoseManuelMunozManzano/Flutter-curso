@@ -575,6 +575,14 @@ Vamos a usar nuestro `camera_gallery_service_impl.dart` (la implementación) en 
 
 Para ello, nos vamos a `features/products/presentation/screens/product_screen.dart`
 
+## Mostrar imágenes desde Paths absolutos
+
+Una vez seleccionada una fotografía, no necesitamos subirla a ningún lugar para mostrarla en nuestro detalle del producto. Ya la tenemos en el filesystem del dispositivo.
+
+Modificamos `product_screen.dart` y `product_form_provider`.
+
+Indicar que al salir de la pantalla de detalle de producto, las imágenes temporales se borran automáticamente.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
