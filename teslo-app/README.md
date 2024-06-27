@@ -559,6 +559,16 @@ La documentación aparece en la web: `https://pub.dev/packages/image_picker`, do
 
 Modificamos `Info.plist`, en iOS para añadir los permisos necesarios, indicados en la documentación.
 
+## Patrón adaptador - Servicio
+
+Vamos a envolver el uso del paquete `image_picker` de tal manera que, si el día de mañana decidimos usar otro paquete, sea muy fácil hacer ese cambio sin tener que modificar en muchos lugares de la app.
+
+Para lograr esto vamos a usar el patrón adaptador, que no deja de ser un wrapper o un envoltorio de toda la implementación mínima que necesitamos de este paquete.
+
+En la carpeta `features/shared/infrastructure/services` creamos el archivo con clase abstracta `camera_gallery_service.dart`.
+
+La implementación la creamos en la misma carpeta, con nombre `camera_gallery_service_impl.dart`.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
