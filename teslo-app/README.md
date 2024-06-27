@@ -527,6 +527,28 @@ Modificamos `product_screen.dart` para añadir `FocusScope.of(context).unfocus()
 
 Esta parte la vamos a ver en el simulador de Android. Funciona parcialmente en el simulador de iOS, porque le falta la cámara, mientras que la cámara en el simulador de Android es formidable. También se podría probar en cualquier dispositivo físico.
 
+## Postman - Subir Imagen
+
+Vamos a ver como se hace la petición de subir una imagen para que luego sea más fácil hacer la implementación. Usaremos Postman.
+
+Este es el endpoint POST: `http://localhost:3001/api/files/product`, y no ocupa autorización. Solo sube una imagen a la vez.
+
+En la pestaña `Body` seleccionamos `form-data` y, con la key `file` seleccionamos un File de imagen a subir.
+
+Este endpoint va a backend, en Docker, y coloca la imagen en su filesystem.
+
+Esta es la respuesta esperada
+
+```
+{
+    "image": "37dab17b-c82f-4bf2-8f32-bafb9dfbb98f.png"
+}
+```
+
+Y para ver la imagen usamos en Postman el endpoint GET siguiente: `http://localhost:3001/api/files/product/37dab17b-c82f-4bf2-8f32-bafb9dfbb98f.png`.
+
+Lo que vamos a hacer en nuestra app es asignar temporalmente un montón de fotos a un producto y al pulsar Guardar vamos a disparar todas las peticiones de carga de manera simultanea y vamos a impactar en la BBDD.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
