@@ -549,6 +549,16 @@ Y para ver la imagen usamos en Postman el endpoint GET siguiente: `http://localh
 
 Lo que vamos a hacer en nuestra app es asignar temporalmente un montón de fotos a un producto y al pulsar Guardar vamos a disparar todas las peticiones de carga de manera simultanea y vamos a impactar en la BBDD.
 
+## PubDev - Cámara y galería
+
+Para poder hacer uso de la cámara, necesitamos algún tipo de comunicación con la API nativa de la cámara, y para eso vamos a usar el paquete `image_picker`. Lo instalamos con `Pubspec Assist`.
+
+Este paquete nos permite poder seleccionar de la galería y tomar la fotografía. También funciona bien en la web.
+
+La documentación aparece en la web: `https://pub.dev/packages/image_picker`, donde, en iOS, tenemos que hacer ciertas configuraciones, mientras que en Android ya hace configuraciones por nosotros y no hay que hacer nada.
+
+Modificamos `Info.plist`, en iOS para añadir los permisos necesarios, indicados en la documentación.
+
 ## Testing
 
 Seguir los pasos de ejecución de la parte backend: `teslo-shop-backend`.
