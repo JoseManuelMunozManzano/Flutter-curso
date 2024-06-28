@@ -598,3 +598,13 @@ En Postman ejecutar un `GET` con la siguiente ruta: `https://api.themoviedb.org/
 Para obtener los actores, se puede ejecutar en Postman este `GET` con la siguiente ruta: `https://api.themoviedb.org/3/movie/934632/credits?api_key=my_key&language=es-ES`
 
 Para realizar búsquedas de películas, se puede ejecutar en Postman este `GET` con la siguiente ruta: `https://api.themoviedb.org/3/search/movie?query=batman&api_key=my_key&language=es-ES`
+
+## Producción
+
+Seguir indicaciones en `03_despliegues`.
+
+Para cambiar el nombre de la aplicación:
+
+```
+flutter pub run change_app_package_name:main com.neimerc.cinemapedia
+```
