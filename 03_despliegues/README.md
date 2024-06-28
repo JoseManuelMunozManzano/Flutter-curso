@@ -46,3 +46,44 @@ flutter pub run change_app_package_name:main com.neimerc.cinemapedia
 Es importante que este nombre sea único a nivel mundial.
 
 Una vez ejecutado, salir de la app y volver a ejecutar desde cero, y, si todo funciona, volver a hacer otro commit.
+
+## Cambiar iconos de la aplicación
+
+Vamos a hacer el cambio del icono de nuestra app.
+
+Ver `https://docs.flutter.dev/deployment/android#add-a-launcher-icon`
+
+Todo esto se puede hacer manualmente, pero se puede usar el paquete `https://pub.dev/packages/flutter_launcher_icons` el cual nos ayuda a que, con un comando, ya genere todos los iconos que podamos necesitar, no solo para Android, también para la web, Windows, Mac, iOS... todo.
+
+Instalamos el paquete `flutter_launcher_icons` como dependencia de desarrollo.
+
+Este paquete admite bastante personalización.
+
+En el archivo `pubspec.yaml` de nuestro proyecto creamos:
+
+```
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/app-icon-2.png"
+  min_sdk_android: 21
+```
+
+Y en `pubspec.yaml` en la parte `assets` indicamos:
+
+```
+  assets:
+    - assets/icon/
+```
+
+Y en nuestro proyecto, en la carpeta `assets/icon` pegamos nuestros iconos.
+
+Echamos abajo nuestra app.
+
+Ejecutamos el siguiente comando para cambiar el icono de la app: `flutter pub run flutter_launcher_icons`.
+
+Si todo va bien, podemos ir a `android/app/src/main/res` y ahí veremos que está nuestro icono en las distintas carpetas.
+
+Volvemos a ejecutar nuestra app y deberíamos ver nuestro icono y un cambio en el splash screen (esto lo haremos mejor). Si minimizamos la app en el emulador, veremos nuestro nuevo icono.
+
+NOTA: También, como recurso, tenemos esta web `https://www.bing.com/images/create` para crear iconos usando IA. Por ejemplo, se podría hacer la búsqueda `sales icon app`.
