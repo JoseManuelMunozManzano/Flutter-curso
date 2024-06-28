@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:cinemapedia/presentation/providers/providers.dart';
@@ -35,6 +36,9 @@ class HomeViewState extends ConsumerState<HomeView> {
     // Para esto usamos también Riverpod.
     final initialLoading = ref.watch(initialLoadingProvider);
     if (initialLoading) return const FullScreenLoader();
+
+    // Cuando ya tenemos todo cargado eliminamos nuestro SplashScreen.
+    FlutterNativeSplash.remove();
 
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
