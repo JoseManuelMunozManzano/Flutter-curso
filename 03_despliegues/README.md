@@ -270,3 +270,19 @@ Aparece otra ventana para descargar la app
 ![alt Instalación App](./images/Instalacion%20App.png)
 
 La pulsamos y nos lleva a la página (unreviewed) de la app, y podemos instalarla en nuestro dispositivo de forma remota.
+
+## Android - Google Play Console - Generalidades
+
+De nuevo en la pantalla principal de la Play Console, donde nos aparecen todas las apps que tenemos, pulsamos en nuestra app de `Cinemapedia`. Entramos al dashboard administrativo, y, en el menú lateral de la izquierda, volvemos a pulsar `Prueba interna`.
+
+Una vez estemos satisfechos con las pruebas (si hemos tenido que actualizar por corregir errores se hace sin problemas desde aquí) podemos pulsar en `Promocionar version` para pasar a pruebas cerradas y luego abiertas, y, por último, producción para pasarla oficialmente a la PlayStore. Lo ideal es no saltarse ningún paso para asegurarnos que la app funciona de la manera esperada en diferentes dispositivos.
+
+Antes de pasar a producción, en el menú lateral de la izquierda, buscamos `Crecimiento / Ficha de Play Store principal`, donde habrá que rellenar el formulario.
+
+Las `Fichas personalizadas de Play Store` son opcionales, pero ayuda a que se vea más profesional.
+
+Lo ideal es pasar por cada una de las opciones de `Crecimiento` y rellenar todos los formularios.
+
+Es útil buscar en la Play Store como lucen distintas apps, para hacerlo parecido.
+
+Una vez hecho todo esto, hay un proceso de revisión de la Google Play, que es bastante rápido.
