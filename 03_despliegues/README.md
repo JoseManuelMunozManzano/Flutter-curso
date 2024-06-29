@@ -271,6 +271,8 @@ Aparece otra ventana para descargar la app
 
 La pulsamos y nos lleva a la página (unreviewed) de la app, y podemos instalarla en nuestro dispositivo de forma remota.
 
+Esto puede tardar un rato en aparecer, indicando mientras tanto que no encuentra la url. Esperar.
+
 ## Android - Google Play Console - Generalidades
 
 De nuevo en la pantalla principal de la Play Console, donde nos aparecen todas las apps que tenemos, pulsamos en nuestra app de `Cinemapedia`. Entramos al dashboard administrativo, y, en el menú lateral de la izquierda, volvemos a pulsar `Prueba interna`.
