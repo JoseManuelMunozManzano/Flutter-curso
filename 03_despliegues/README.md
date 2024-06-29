@@ -288,3 +288,9 @@ Lo ideal es pasar por cada una de las opciones de `Crecimiento` y rellenar todos
 Es útil buscar en la Play Store como lucen distintas apps, para hacerlo parecido.
 
 Una vez hecho todo esto, hay un proceso de revisión de la Google Play, que es bastante rápido.
+
+## IOS - Preparar el build de producción
+
+Para la parte de IOS no se va a generar apuntes, porque no tengo cuenta de desarrollador. Si más adelante la tengo, se volverán a ver los videos y generar apuntes.
+
+Documentación: `https://docs.flutter.dev/deployment/ios`
