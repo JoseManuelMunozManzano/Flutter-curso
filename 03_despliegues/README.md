@@ -216,3 +216,57 @@ Esta es la documentación: `https://developer.android.com/studio/publish/upload-
 Y por fin, la PlayStore `https://play.google.com/console/u/0/signup`.
 
 En la próxima clase vamos a subir esta app para poder probarla en nuestro dispositivo físico ya como release, sin tener que tener el teléfono conectado ni el build de Flutter.
+
+## Android - Google Play Console
+
+En la consola de Google Play vamos a hacer click en el botón `Crear aplicación`.
+
+Llenamos la ficha de esa app. Esto es lo mínimo necesario, y hay que rellenar otros formularios cuando queramos pasar a otro tipo de pruebas o ya a producción. El orden es `alpha - beta - producción`.
+
+Al pulsar de nuevo `Crear Aplicación` vamos a un panel (un dashboard) para configurar la app. Pulsamos, en el menú lateral izquierdo donde indica `Pruebas / Prueba interna`. La prueba interna es una prueba cerrada hasta un máximo de 100 verificadores.
+
+El orden sería:
+
+- Prueba interna de desarrolladores de la app, para probar que vaya bien en nuestros dispositivos
+- Si todo sale bien, se promueve a una prueba cerrada, en la cual ya podemos invitar a otras personas a que prueben nuestra app. Si somos freelance, aquí podemos invitar a la persona que nos contrató para que pruebe la app
+- Si todo sale bien, se promueve a una prueba abierta, que ya es para un número más grande de personas (1000 o 2000) para que nos den feedback
+
+En la pantalla de `Prueba interna`, al final de la misma pulsamos en `Crear nueva versión`.
+
+Nos lleva a una pantalla donde tendremos que dejar caer el fichero `app-release.aab` generado al crear el app bundle. Esto va a subir la aplicación, va a verificar las firmas y que todo esté bien, y, si todo va bien, tendremos nuestra app lista para probar.
+
+![alt Prueba Interna](./images/Prueba%20interna.png)
+
+Pulsamos el botón Siguiente.
+
+Nos pueden salir ciertas advertencias o errores. Algunas advertencias se solucionan más adelante.
+
+Pulsamos `Guardar y publicar`. Nos aparece un pop-up de confirmación y confirmamos.
+
+![alt Prueba Interna Publicada](./images/Prueba%20interna%20publicada.png)
+
+Ahora hay que registrar a alguien para que haga la prueba. Nos vamos a la pestaña `Testers` (ver imagen de arriba) Aquí se pueden crear listas, por ejemplo, `Noticias Testers`, `Testers de Objetivos`, `ReactNative - Testers`...
+
+Nos creamos un nuevo listado. Para ello pulsamos en `Crear una lista de correo electrónico`.
+
+![alt Lista](./images/Lista.png)
+
+Pulsamos `Guardar cambios`.
+
+Volvemos a la pantalla de Prueba Interna Publicada. Hacemos check en `Flutter-General` y pulsamos `Guardar`.
+
+Eso nos genera un vínculo:
+
+![alt Vinculo](./images/Vinculo.png)
+
+Si pulsamos para `Copiar enlace` y pegamos la URL en un navegador, nos sale la web para aceptar la invitación a ser tester. También puede lanzar correos electrónicos.
+
+![alt Invitación Tester](./images/Invitacion%20Tester.png)
+
+Pulsamos el botón `Accept Invite`.
+
+Aparece otra ventana para descargar la app
+
+![alt Instalación App](./images/Instalacion%20App.png)
+
+La pulsamos y nos lleva a la página (unreviewed) de la app, y podemos instalarla en nuestro dispositivo de forma remota.
