@@ -620,3 +620,9 @@ Para cambiar el splash screen ejecutar:
 ```
 dart run flutter_native_splash:create
 ```
+
+Android AAB
+
+```
+flutter build appbundle
+```

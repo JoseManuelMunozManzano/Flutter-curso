@@ -200,3 +200,19 @@ android {
 6. Revisar la configuración de Gradle. Aparecen versiones y sugerencias.
 
 7. Building the app for release. Queremos crear el AAB (app bundle) que es la opción preferida. Esto lo hacemos en el siguiente punto.
+
+## Android - Crear el App Bundle
+
+En la terminal, nos situamos en la carpeta del proyecto y vamos a ejecutar `flutter build appbundle` para crear dicho app bundle. Este proceso verifica los archivos, usa las llaves y ejecuta todo el proceso de construcción para el bundleRelease.
+
+Como indica la documentación, por defecto el app bundle se crea en `build/app/outputs/bundle/release/app-release.aab`. Vemos que el archivo pesa 25MB, que puede parecer mucho, pero ahí está el release para dispositivos de 32 bits, 64 bits y ARM64.
+
+Nos vamos a esa ruta y nos llevamos ese fichero a otra ruta. En mi caso lo llevo a una carpeta `releases` que está dentro de la carpeta `Flutter`, pero fuera de los cursos realizados.
+
+La parte de `Test the app bundle` la vamos a hacer `Online using Google Play` donde en un canal alfa la subida es casi instantantea, sin periodo de revisión. Esto es solo para probar el bundle, pero es recomendable siempre crear un alpha para probar la app antes de que pase al test run de los beta testers y sucesivas revisiones hasta el release final.
+
+Esta es la documentación: `https://developer.android.com/studio/publish/upload-bundle`.
+
+Y por fin, la PlayStore `https://play.google.com/console/u/0/signup`.
+
+En la próxima clase vamos a subir esta app para poder probarla en nuestro dispositivo físico ya como release, sin tener que tener el teléfono conectado ni el build de Flutter.
