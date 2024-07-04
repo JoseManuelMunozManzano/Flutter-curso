@@ -1,6 +1,6 @@
 # hello_world_app
 
-Esta sección crearemos nuestra primera aplicación real de Flutter, la que nos enseñará cosas como:
+En esta sección crearemos nuestra primera aplicación real de Flutter, la que nos enseñará cosas como:
 
 - Stateful y Stateless Widgets
 - Scaffold
