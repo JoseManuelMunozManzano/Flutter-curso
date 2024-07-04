@@ -96,7 +96,7 @@ SDK portable - Open source framework - UI Widget Library
 
 Sirve para crear hermosas aplicaciones compiladas de forma nativa, multi-plataforma con un único código base.
 
-Está fuertemente inspirado en React, en el sentido es que este reutiliza componentes, llamados Widgets en Flutter.
+Está fuertemente inspirado en React, en el sentido en que este reutiliza componentes, llamados Widgets en Flutter.
 
 Un Widget no es más que un objeto o una clase reutilizable que tiene cierta apariencia.
 
@@ -159,7 +159,7 @@ Al iniciar algún proyecto de Flutter, crear la carpeta `.vscode` en la raiz y d
 }
 ```
 
-Esto ayuda a agregar la palabra `const` en donde debe sin tener que agregarlo manualmente quitar importaciones innecesarias y añadir punto y coma al guardar nuestros cambios.
+Esto ayuda a agregar la palabra `const` en donde debe sin tener que agregarlo manualmente, quitar importaciones innecesarias y añadir punto y coma al guardar nuestros cambios.
 
 ## Trabajar con los colores indicados en el seed
 
@@ -169,7 +169,7 @@ Lo que se hace es indicar en `main.dart` la paleta de colores: `theme: AppTheme(
 
 Y luego en cada Widget donde necesitemos acceso a la paleta accedemos al contexto: `final colors = Theme.of(context).colorScheme;`
 
-Y para usarlo en un Widet Decoration, por ejemplo un color primario en función de nuestra paleta de colores:
+Y para usarlo en un Widget Decoration, por ejemplo un color primario en función de nuestra paleta de colores:
 
 ```
 decoration: BoxDecoration(
@@ -201,7 +201,7 @@ child: Image.network(
 
 ## Mostrar mensaje mientras se carga la imagen
 
-Usamos `loadingBuilder` dentro de nuestro Widget `Image`
+Usamos `loadingBuilder` dentro de nuestro Widget `Image`.
 
 Recordar que un Builder es algo que se va a construir en tiempo de ejecución.
 
@@ -211,7 +211,7 @@ El context es nuestro árbol de Widgets e info del dispositivo.
 
 ```
 loadingBuilder: (context, child, loadingProgress) {
-  // Si se cargo por completo, regresa la imagen
+  // Si se cargó por completo, regresa la imagen
   if (loadingProgress == null) return child;
 
   // Indicando el mismo size se evitan brincos en el diseño cuando pasamos del loader a la imagen.
@@ -277,7 +277,7 @@ suffixIcon: IconButton(
 
 ## Mantener el foco
 
-Cuando un elemento necesita un foco, se puede hacer de la siguiente manera:
+Cuando un elemento necesita el foco, se puede hacer de la siguiente manera:
 
 `final focusNode = FocusNode();`
 
@@ -319,7 +319,7 @@ Para instalar:
 Formas de instalar paquetes:
 
 - Forma 1
-  - Ir al terminal, a la raiz del proyecto y ejecutar: `flutter pub add provider`.
+  - Ir al terminal, a la raiz del proyecto y ejecutar: `flutter pub add provider`
   - Podemos ver donde se han instalado todos esos paquetes. Para ello abrir el archivo `pubspec.yaml` y bajar hasta ver `dependencies`
 - Forma 2
   - Abrir el fichero `pubspec.yaml`, bajar hasta dependencias y escribir: `provider: ^6.1.2`
@@ -332,7 +332,7 @@ Formas de instalar paquetes:
 
 Siempre que instalemos un paquete, deberíamos revisar si hay que tener en cuenta algo para que funcione en iOS, Android, Web...
 
-Envolver archivo `main.dart` con nuestro Provider para crear un provider a nivel global de nuestra aplicación:
+Envolver el archivo `main.dart` con nuestro Provider para crear un provider a nivel global de nuestra aplicación:
 
 - Situarnos sobre MaterialApp y pulsar Cmd+.
 - Pulsar sobre Wrap with widget...
@@ -461,9 +461,11 @@ Pueden ver los ejercicios de una u otra sintaxis con el switch que colocaron en 
 
 ![alt Ejercicios usando ambas sintaxis](./Images/05_Riverpod_Exercises.png)
 
-Pueden experimentar ambas sintaxis, y trabajar con la que más les guste. Pueden leer más al respecto aquí
+Pueden experimentar ambas sintaxis, y trabajar con la que más les guste. Pueden leer más al respecto aquí:
 
 https://docs-v2.riverpod.dev/docs/concepts/about_code_generation
+
+Y podemos acceder a este curso: `https://github.com/JoseManuelMunozManzano/Flutter_Provider_Anotaciones`
 
 ## Cambiar variables final de una clase
 
@@ -473,7 +475,7 @@ Ver app `widgets_app`, fuente `app_theme.dart`.
 
 ```
 // La idea de este método es regresar una nueva instancia de AppTheme.
-// La idea es hacer una copia del tema actual (instacia) que fluirá por toda la aplicación.
+// La idea es hacer una copia del tema actual (instancia) que fluirá por toda la aplicación.
 // To-do lo que se pida será opcional.
 // Forma de uso, por ejemplo en main.dart
 //   ThemeData.dark().copyWith( incluir aquí las opciones que quiero cambiar);
@@ -506,7 +508,7 @@ Y también corrige un bug. El provider notifica a los listeners que hubo un camb
 ## Petición HTTP
 
 Aunque se puede hacer una petición HTTP directamente con Dart, es necesario mucho código.
-Al final vamos a acabar usando uno de dos paquetes:
+Al final vamos a acabar usando uno de estos dos paquetes:
 
 - http: https://pub.dev/packages/http
 - dio: https://pub.dev/packages/dio
@@ -842,7 +844,7 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
 
 ## Ciclos de Vida
 
-Los StatelessWidgnet NO tienen ciclo de vida. Se crean siempre que haga falta.
+Los StatelessWidget NO tienen ciclo de vida. Se crean siempre que haga falta.
 
 Los StatefulWidget SI tienen ciclo de vida. Si hay que crear un listener o un controller hay que convertir el Widget a StatefulWidget.
 
@@ -978,7 +980,7 @@ onTap: () {
 - Las rutas se crean con la misma sintaxis que se usa en programación web
 - go_router expande la funcionalidad del context, por ejemplo, context.go(), por lo que podemos usar el context para la navegación
 - Indicar que todo lo que es el `Navigator` de Flutter sigue funcionando
-- En este ejemplo de usa el path para la navegación
+- En este ejemplo se usa el path para la navegación
 
 ```
 // Fuente app_router.dart
@@ -1122,8 +1124,8 @@ class CustomButton extends StatelessWidget {
       // Se puede usar este borderRadius o envolver Material en un Widget ClipRRect e indicar la misma sentencia que vemos abajo.
       borderRadius: BorderRadius.circular(20),
       // InkWell es como un GestureDetector, pero reacciona al Splash Screen (un fondo
-      //simple -generalmente blanco o del color principal de la aplicación – junto
-      //con el logotipo de nuestra aplicación y un breve texto)
+      // simple -generalmente blanco o del color principal de la aplicación – junto
+      // con el logotipo de nuestra aplicación y un breve texto)
       child: InkWell(
         // Solo haciendo el onTap, al pulsar en el icono se ve como una luz que se mueve.
         // Recordar que si se indica valor null, el botón estaría deshabilitado.
@@ -1154,7 +1156,7 @@ Si usáramos el SingleChildScrollView, toda la lista es montada y renderizada, a
 
 Teniendo esto en cuenta, en principio el ListView es mas interesante en cuanto a rendimiento, pero la parte negativa es que este es menos flexible, por lo que en layouts complejos donde la lista no sea muy grande, podemos implementar el SingleChildScrollView, sacrificando ese pequeño porcentaje de rendimiento pero ganando en cuanto a facilidad de realizar el diseño.
 
-En listas grandes, ahí ya normalmente siempre te interesará implementar un ListView (o cualquier elemento que tenga un Builder) para que los dispositivos con menos recursos no sufran tanto.
+En listas grandes, ahí ya normalmente siempre interesará implementar un ListView (o cualquier elemento que tenga un Builder) para que los dispositivos con menos recursos no sufran tanto.
 
 ## Visualización en márgenes inferiores del dispositivo
 
@@ -1291,7 +1293,7 @@ Positioned(
 
 ## Truco cuando tenemos que indicar un Widget pero realmente no queremos mostrar nada
 
-En este ejemplo, si la variable endReached es true, mostramos el botón, pero si no, mostramos un Widget que realmente no ocupada nada.
+En este ejemplo, si la variable endReached es true, mostramos el botón, pero si no, mostramos un Widget que realmente no ocupa nada.
 
 Se hace con el Widget `SizedBox()` pero sin indicar nada.
 
@@ -1356,7 +1358,7 @@ void moveScrollToBotton() {
 
 ## Saber si un dispositivo tiene Notch
 
-Se consigue sabiendo cuando padding hay en una dirección, en este caso en la parte de arriba.
+Se consigue sabiendo cuanto padding hay en una dirección, en este caso en la parte de arriba.
 
 Se considera (se puede hacer un print para ver los valores de iOS y Android), que si el valor obtenido es mayor que 35 hay notch.
 
