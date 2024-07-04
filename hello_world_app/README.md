@@ -60,9 +60,9 @@ Tenemos distintos estados:
 
 No se puede cambiar un estado en un StatelessWidget. Si necesitamos tener estado en un Widget, este debe ser un StatefulWidget.
 
-Debe haber los menos posibles StatefulWidget posibles en nuestra app. Esto no significa que no deba haber, ya que son necesarios para gestioanr el estado de nuestra app, pero casi todos los Widget deberían ser StatelessWidget.
+Debe haber los menos StatefulWidget posibles en nuestra app. Esto no significa que no deba haber, ya que son necesarios para gestioanr el estado de nuestra app, pero casi todos los Widget deberían ser StatelessWidget.
 
-Indicar también que, para gestionar el estado, existen también paquetes especiales.
+Indicar también que, para gestionar el estado, existen paquetes especiales.
 
 ## AppBar y Acciones
 
@@ -78,4 +78,4 @@ Hemos hecho esta copia para poder hacer pruebas con el AppBar.
 
 Tenemos que tener mucho cuidado con que Flutter no se descontrole, en el sentido de tener una especie de callback Hell con llave, llave, corchete, llave...
 
-Cuando vemos que hay mucho nivel de indentación, lo mejor es extraer ese Widget, para que el proyecto sea más fácil de mantener.
+Cuando veamos que hay mucho nivel de indentación, lo mejor es extraer ese Widget, para que el proyecto sea más fácil de mantener.
